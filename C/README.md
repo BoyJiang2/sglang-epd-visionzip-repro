@@ -62,6 +62,17 @@ python -m sglang.launch_server --model-path "$MODEL_PATH" \
 
 `SGLANG_EPD_VISIONZIP_RATIO=0` selects the standard encoder path. The adaptation targets image-only Qwen2.5-VL, a TP1 encoder without vision data-parallel sharding, and HTTP with `zmq_to_scheduler`. Compressed runs require ViT CUDA graphs to be off. Use the same graph setting in B and C. Enable `SGLANG_EPD_VISIONZIP_TRACE=1` on the encoder for a separate diagnostic replay to log the feature and metadata frame bytes. Those frame measurements exclude TCP and IP overhead.
 
+Capture six untimed identity requests before stopping B. Pass three frozen traces whose first rows contain one, four, and eight images, respectively. Repeat against C100 using the same traces. The script checks the prompt and 16 generated token IDs per request and reports first-token log-probability differences for serial and mixed concurrent requests. Use the encoder frame logs for feature bytes and the CPU checks for position handling.
+
+```bash
+python3 C/check_identity.py --endpoint "$B_PD_ENDPOINT" --model "$MODEL_ID" \
+  --traces "$ONE_IMAGE_TRACE" "$FOUR_IMAGE_TRACE" "$EIGHT_IMAGE_TRACE" \
+  --output "$RUN_DIR/identity.B.jsonl"
+python3 C/check_identity.py --endpoint "$C100_PD_ENDPOINT" --model "$MODEL_ID" \
+  --traces "$ONE_IMAGE_TRACE" "$FOUR_IMAGE_TRACE" "$EIGHT_IMAGE_TRACE" \
+  --output "$RUN_DIR/identity.C100.jsonl" --reference "$RUN_DIR/identity.B.jsonl"
+```
+
 ## Author reference, single GPU
 
 `visionzip_reference.py` uses standard Transformers at 100% and the authors' implementation at 70% and 50%. It requires a CUDA PyTorch environment with one visible GPU, `transformers==4.49.0`, `qwen-vl-utils==0.0.8`, Pillow, and Accelerate. The default eager attention backend avoids a FlashAttention dependency. Install a compatible FlashAttention 2 build before setting `--attention flash_attention_2`.
