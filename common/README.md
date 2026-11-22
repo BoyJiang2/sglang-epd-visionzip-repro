@@ -104,3 +104,12 @@ python3 common/compare_quality.py --base "$B_SCORES" --test "$C70_SCORES" \
 ```
 
 For RealWorldQA or MuirBench, omit `--ocr-responses`. MuirBench also reports the change in the fraction of pairs answered correctly on both questions.
+
+For the MuirBench load pilot, select one reciprocal question pair per task and maximum image count within the pair. Record each pair's two `doc_id`, `idx`, `counterpart_idx`, `task` and `images` values in the selection JSON, with the dataset `revision`, total `rows`, `arrival_seed` and `candidate_qps`. The experiment's selection covers 36 strata and 72 questions. Extract the selected rows from the frozen trace and use the same pilot across configurations.
+
+```bash
+python3 common/muir_pilot_trace.py --frozen-trace "$MUIR_FULL_TRACE" \
+  --selection "$MUIR_PILOT_SELECTION" --output "$MUIR_PILOT_TRACE"
+```
+
+At a lower candidate QPS, pass `--qps` and a new output path. The extraction keeps the chosen question order, image bytes and prompts while regenerating only planned arrivals. A qualified pilot completes all 72 requests.
