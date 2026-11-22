@@ -44,7 +44,7 @@ python -m sglang.launch_server --model-path "$MODEL_PATH" \
 # PD node. Send benchmark requests to this service or to the same router used for B.
 CUDA_VISIBLE_DEVICES="$GPU_UUID" \
 PYTHONPATH="$SGLANG_ROOT/python${PYTHONPATH:+:$PYTHONPATH}" \
-SGLANG_HOST_IP="$PD_IP" \
+SGLANG_HOST_IP="$PD_IP" SGLANG_ENCODER_BOOTSTRAP_HEALTH_CHECK_INTERVAL=0 \
 python -m sglang.launch_server --model-path "$MODEL_PATH" \
   --served-model-name "${MODEL_ID:-qwen2.5-vl-7b}" --dtype bfloat16 --tp-size 1 \
   --attention-backend fa3 --mm-attention-backend fa3 \

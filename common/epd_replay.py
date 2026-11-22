@@ -591,7 +591,8 @@ async def replay_matrix(args):
 
     failures = 0
     for name, count in identifiers:
-        output = args.run_dir / f"{name}.{args.group}.jsonl"
+        suffix = f".{args.label}" if args.label else ""
+        output = args.run_dir / f"{name}.{args.group}{suffix}.jsonl"
         if output.exists():
             with output.open("rb") as stream:
                 if sum(1 for _ in stream) != count:
@@ -657,6 +658,7 @@ def main():
     matrix_args.add_argument("--model", required=True)
     matrix_args.add_argument("--group", choices=["B", "C70", "C50"], required=True)
     matrix_args.add_argument("--endpoints", nargs=1, required=True)
+    matrix_args.add_argument("--label", help="Add a suffix while preserving the original results")
     run_args = actions.add_parser("replay")
     run_args.add_argument("--trace", type=Path, required=True)
     run_args.add_argument("--output", type=Path, required=True)
@@ -694,6 +696,8 @@ def main():
         summarize(args)
         return 0
     if args.action == "replay-matrix":
+        if args.label is not None and not args.label.replace("-", "").isalnum():
+            parser.error("matrix label must contain letters, numbers or hyphens")
         return asyncio.run(replay_matrix(args))
     if len(args.endpoints) != (2 if args.group == "A" else 1):
         parser.error("A requires two endpoints; the other groups require one")

@@ -26,7 +26,7 @@ python3 common/epd_replay.py summarize \
   --expected-requests 128 --output "$RUN_DIR/synthetic.summary.json"
 ```
 
-Reuse the trace for C70 and C50 with their respective PD endpoints. The summary reports TTFT, per-request TPOT, SSE content-block gaps, throughput, request outcomes, and endpoint distribution. For a full frozen A matrix, `replay-matrix` reads `formal-design.json` and the associated A traces and response logs. Individual runs support `--interference control|same|separate` for fixed 256-token streams. The two interference modes require a separate one-request, eight-image trace via `--heavy-trace`.
+Reuse the trace for C70 and C50 with their respective PD endpoints. The summary reports TTFT, per-request TPOT, SSE content-block gaps, throughput, request outcomes, and endpoint distribution. For B, C70, and C50, `replay-matrix` reads `formal-design.json` and the associated A traces and response logs. Pass `--label no-probe` to write rerun results with a `.no-probe.jsonl` suffix and keep the original results. Individual runs support `--interference control|same|separate` for fixed 256-token streams. The two interference modes require a separate one-request, eight-image trace via `--heavy-trace`.
 
 ## Data revisions
 
