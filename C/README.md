@@ -62,7 +62,7 @@ python -m sglang.launch_server --model-path "$MODEL_PATH" \
 
 `SGLANG_EPD_VISIONZIP_RATIO=0` selects the standard encoder path. The adaptation targets image-only Qwen2.5-VL, a TP1 encoder without vision data-parallel sharding, and HTTP with `zmq_to_scheduler`. Compressed runs require ViT CUDA graphs to be off. Use the same graph setting in B and C. For diagnostics, export `SGLANG_EPD_VISIONZIP_TRACE=1` on both nodes before starting C. The encoder logs feature and metadata frame bytes and per-image row counts. PD logs received rows, visual placeholders, and M-RoPE sequence length. Frame bytes exclude TCP and IP overhead. For formal timing, leave the trace off.
 
-Capture six untimed identity requests before stopping B. Pass three frozen traces whose first rows contain one, four, and eight images, respectively. Repeat against C100 using the same traces. The script checks the prompt and 16 generated token IDs per request and reports first-token log-probability differences for serial and mixed concurrent requests. With the transfer logs it also checks that the sent rows, received rows, and placeholders agree for each image. The CPU checks verify exact M-RoPE coordinates.
+Capture six untimed identity requests before stopping B. Pass three frozen traces whose first rows contain one, four, and eight images, respectively. Repeat against C100 using the same traces. The script checks the scheduler's final prompt length and the 16 generated token IDs per request, then reports first-token log-probability differences for serial and mixed concurrent requests. Input IDs returned by the tokenizer can precede E/PD prompt assembly. With the transfer logs the check also verifies that the sent rows, received rows, and placeholders agree for each image. The CPU checks verify exact M-RoPE coordinates.
 
 ```bash
 python3 C/check_identity.py --endpoint "$B_PD_ENDPOINT" --model "$MODEL_ID" \
@@ -73,6 +73,8 @@ python3 C/check_identity.py --endpoint "$C100_PD_ENDPOINT" --model "$MODEL_ID" \
   --output "$RUN_DIR/identity.C100.jsonl" --reference "$RUN_DIR/identity.B.jsonl" \
   --transfer-logs "$C100_ENCODER_LOG" "$C100_PD_LOG"
 ```
+
+Before each timed compressed run, replay the same untimed probes with `--ratio 70` or `--ratio 50`. Use the C100 response log as `--reference`, its encoder log as `--reference-encoder-log`, and the compressed run's two logs as `--transfer-logs`. The verifier checks actual feature bytes, exact per-image retention after rounding, and the corresponding prompt-length change.
 
 ## Author reference, single GPU
 
