@@ -22,6 +22,32 @@ class UnsupportedAspectRatio(ValueError):
     """The frozen Qwen preprocessing rejects this image's aspect ratio."""
 
 
+def compact_author_cache(source):
+    anchor = "        torch.cuda.empty_cache()\n        outputs = self.model("
+    if source.count(anchor) != 1:
+        raise ValueError("The frozen VisionZip decoder call changed")
+    # GenerationMixin and M-RoPE still use the original prompt coordinates.
+    # Only the language decoder sees compact KV indices and the matching mask.
+    update = """        past_length = past_key_values.get_seq_length() if past_key_values is not None else 0
+        if past_length == 0:
+            self._visionzip_prompt_keep = img_mask if select_pixel else None
+        keep = self._visionzip_prompt_keep
+        if keep is not None:
+            if (past_key_values is not None and not isinstance(past_key_values, DynamicCache)):
+                raise ValueError("VisionZip reference requires a dynamic cache")
+            length = inputs_embeds.shape[1]
+            if past_length:
+                original_length = keep.numel()
+                attention_mask = torch.cat(
+                    (attention_mask[:, :original_length][:, keep], attention_mask[:, original_length:]), dim=-1
+                )
+            if attention_mask.shape != (1, past_length + length):
+                raise ValueError("VisionZip reference cache and attention mask lengths disagree")
+            cache_position = torch.arange(past_length, past_length + length, device=inputs_embeds.device)
+"""
+    return source.replace(anchor, update + "\n" + anchor)
+
+
 @contextmanager
 def load_model_class(ratio, author_source):
     if ratio == 100:
@@ -36,6 +62,7 @@ def load_model_class(ratio, author_source):
         raise ValueError("The frozen VisionZip source does not have the expected ratios")
     if ratio == 50:
         source = source.replace(selected, selected.replace("0.65", "0.45"))
+    source = compact_author_cache(source)
     with TemporaryDirectory(prefix="visionzip-author-") as directory:
         staged = Path(directory) / author_source.name
         staged.write_text(source, encoding="utf-8")

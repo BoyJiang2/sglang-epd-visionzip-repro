@@ -80,9 +80,12 @@ Before each timed compressed run, replay the same untimed probes with `--ratio 7
 
 `visionzip_reference.py` uses standard Transformers at 100% and the authors' implementation at 70% and 50%. It requires a CUDA PyTorch environment with one visible GPU, `transformers==4.49.0`, `qwen-vl-utils==0.0.8`, Pillow, and Accelerate. The default eager attention backend avoids a FlashAttention dependency. Install a compatible FlashAttention 2 build before setting `--attention flash_attention_2`.
 
+The compressed reference uses a local cache-layout compatibility fix. The pinned author code shrinks the visual sequence while carrying the original `cache_position` into the eager decoder. The runner applies the fix to its temporary source copy, preserving the author's token selection, merges, and M-RoPE coordinates. The decoder receives contiguous DynamicCache indices and the matching attention mask at prefill and every decode step. Record the run as the author implementation with this compatibility fix.
+
 ```bash
 git clone https://github.com/JIA-Lab-research/VisionZip.git ../visionzip-author
 git -C ../visionzip-author checkout --detach 8f86b55c6f000eb033e6912538af2dd7dcb30502
+python C/visionzip_reference_cpu_checks.py ../visionzip-author/Qwen2_5_VL/qwen2_5vl_visionzip.py
 python C/visionzip_reference.py --model "$MODEL_PATH" --ratio 70 \
   --author-source ../visionzip-author/Qwen2_5_VL/qwen2_5vl_visionzip.py \
   --trace "$QUALITY_TRACE" --output "$REFERENCE_OUTPUT"
@@ -94,4 +97,4 @@ Generate the trace with `common/epd_replay.py generate-quality` and choose `ocrb
 
 `LICENSE.sglang` is the unmodified Apache 2.0 license from the pinned SGLang commit. The patch contains local changes to SGLang's encoder, receiver, model, and multimodal processor. [Upstream SGLang license](https://github.com/sgl-project/sglang/blob/8396d60a14ef03b23d2cdaa5c64adb18eba7c703/LICENSE)
 
-The runner loads the authors' VisionZip source from a separate checkout. It leaves the source in place and creates a temporary copy for the ratio adjustment. The source header credits the Qwen Team, Hugging Face, and Senqiao Yang. [VisionZip license](https://github.com/JIA-Lab-research/VisionZip/blob/8f86b55c6f000eb033e6912538af2dd7dcb30502/LICENSE)
+The runner loads the authors' VisionZip source from a separate checkout and applies the ratio and cache-layout changes to a temporary copy. The source header credits the Qwen Team, Hugging Face, and Senqiao Yang. [VisionZip license](https://github.com/JIA-Lab-research/VisionZip/blob/8f86b55c6f000eb033e6912538af2dd7dcb30502/LICENSE)
