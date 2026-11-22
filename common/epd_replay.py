@@ -242,6 +242,7 @@ async def replay(args):
 
     requests = []
     interference = getattr(args, "interference", None)
+    arrival_scale = getattr(args, "arrival_scale", 1.0)
     heavy_trace = args.heavy_trace if interference in ("same", "separate") else None
     paths = [args.trace, heavy_trace] if heavy_trace else [args.trace]
     run_id = uuid.uuid4().hex[:12]
@@ -305,7 +306,7 @@ async def replay(args):
             async def request(index, row, payload):
                 route_index = 0 if interference == "same" else index
                 endpoint = args.endpoints[(route_index + args.route_offset) % len(args.endpoints)]
-                planned = row["at"]
+                planned = row["at"] * arrival_scale
                 skip_reason = None
                 trigger = None
                 if interference and index == 1:
@@ -671,6 +672,10 @@ def main():
     run_args.add_argument("--route-offset", type=int, default=0)
     run_args.add_argument("--timeout", type=float, default=150)
     run_args.add_argument(
+        "--arrival-scale", type=float, default=1.0,
+        help="Multiply the frozen arrival offsets without rewriting the trace.",
+    )
+    run_args.add_argument(
         "--interference", choices=("control", "same", "separate"),
         help="Use a fixed 256-token trace with no heavy request, or route an eight-image request after first content.",
     )
@@ -704,6 +709,8 @@ def main():
         return asyncio.run(replay_matrix(args))
     if len(args.endpoints) != (2 if args.group == "A" else 1):
         parser.error("A requires two endpoints; the other groups require one")
+    if not math.isfinite(args.arrival_scale) or args.arrival_scale <= 0:
+        parser.error("arrival scale must be finite and positive")
     if args.interference in ("same", "separate"):
         if args.heavy_trace is None:
             parser.error("same and separate interference require --heavy-trace")

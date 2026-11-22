@@ -113,3 +113,5 @@ python3 common/muir_pilot_trace.py --frozen-trace "$MUIR_FULL_TRACE" \
 ```
 
 At a lower candidate QPS, pass `--qps` and a new output path. The extraction keeps the chosen question order, image bytes and prompts while regenerating only planned arrivals. A qualified pilot completes all 72 requests.
+
+For the full MuirBench run, use the same original trace in all four groups. Pass `replay --arrival-scale` with the original trace QPS divided by the qualified shared QPS. For example, a trace generated at 2 QPS needs `--arrival-scale 2` to run at 1 QPS. This changes the planned offsets without creating another copy of the full image trace. Record the scale with the run and preserve failed attempts before lowering it.
