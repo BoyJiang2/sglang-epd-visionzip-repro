@@ -44,3 +44,18 @@ python3 common/diagnostics/report_muir_traffic.py --client-host "$PD_CLIENT_IP" 
 ```
 
 For remote A requests, the client counts the submitted JSON body and the SSE response through the `[DONE]` line. A local A request has zero inter-node traffic. B/C use the HTTP body and returned feature frames. Match rows by the benchmark question, ordered images and request identity. Unknown application counts stay null, and TCP counts remain separate from application bytes.
+
+## OCRBench and RealWorldQA traffic probes
+
+Run `quality_probe_trace.py --run-dir "$RUN_DIR" --selection "$RUN_DIR/quality-transport-probe-selection.json"` with the frozen full traces and the registered selection of 32 questions per dataset. Replay each probe trace at its recorded arrival times for B, C70 and C50 with the encoder and PD traces enabled.
+
+```bash
+python3 common/diagnostics/report_quality_probes.py --run-dir "$RUN_DIR" \
+  --client-host "$PD_CLIENT_IP" \
+  --b-logs "$B_ENCODER_LOG" "$B_PD_LOG" \
+  --c70-logs "$C70_ENCODER_LOG" "$C70_PD_LOG" \
+  --c50-logs "$C50_ENCODER_LOG" "$C50_PD_LOG" \
+  --output "$RUN_DIR/quality-traffic.json" --figure "$RUN_DIR/quality-traffic.png"
+```
+
+The plot uses mean application MiB per request over the probes measured in all three groups. It takes accuracy from the full 1,000-question OCRBench and 765-question RealWorldQA score files and shows the paired traffic sample size on each panel.
