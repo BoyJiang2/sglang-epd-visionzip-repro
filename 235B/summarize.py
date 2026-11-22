@@ -17,9 +17,11 @@ MODEL_REVISION = "7fbcd8c9e2ad011808ed8a57d64c462605c3e381"
 
 
 def frozen_requests(path, case):
+    digest = hashlib.sha256()
     with path.open("rb") as stream:
-        digest = hashlib.file_digest(stream, "sha256").hexdigest()
-    if digest != case["trace_sha256"]:
+        for block in iter(lambda: stream.read(1024 * 1024), b""):
+            digest.update(block)
+    if digest.hexdigest() != case["trace_sha256"]:
         raise ValueError(f"{path}: trace differs from the registered SHA-256")
     requests = {}
     with path.open(encoding="utf-8") as stream:
