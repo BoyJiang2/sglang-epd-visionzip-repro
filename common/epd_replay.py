@@ -663,7 +663,10 @@ def main():
     run_args.add_argument("--trace", type=Path, required=True)
     run_args.add_argument("--output", type=Path, required=True)
     run_args.add_argument("--model", required=True)
-    run_args.add_argument("--group", choices=["A", "B", "C100", "C70", "C50"], required=True)
+    run_args.add_argument(
+        "--group", choices=["A", "B", "C100", "C70", "C50", "235B-4", "235B-5", "235B-6"],
+        required=True,
+    )
     run_args.add_argument("--endpoints", nargs="+", required=True)
     run_args.add_argument("--route-offset", type=int, default=0)
     run_args.add_argument("--timeout", type=float, default=150)
