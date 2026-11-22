@@ -1,8 +1,16 @@
 diff --git a/python/sglang/srt/disaggregation/encoder/receiver.py b/python/sglang/srt/disaggregation/encoder/receiver.py
-index 824fae4..7ad8603 100644
+index 824fae4..d4c816c 100644
 --- a/python/sglang/srt/disaggregation/encoder/receiver.py
 +++ b/python/sglang/srt/disaggregation/encoder/receiver.py
-@@ -528,7 +528,7 @@ _GENERAL_VIDEO_META_ATTRS = (
+@@ -1,6 +1,7 @@
+ import asyncio
+ import itertools
+ import logging
++import os
+ import random
+ import threading
+ import time
+@@ -528,7 +529,7 @@ _GENERAL_VIDEO_META_ATTRS = (
      "video_timestamps",
      "second_per_grid_ts",
  )
@@ -11,8 +19,36 @@ index 824fae4..7ad8603 100644
  # MiMo-VL audio-in-video fields; appended only when model_type is MiMo.
  _MIMO_VIDEO_AUDIO_META_ATTRS = (
      "video_audio_feature_lens",
+@@ -1080,11 +1081,26 @@ class WaitingMMRequestBase(ABC):
+ 
+     def _finish_assemble(self, recv_embedding) -> None:
+         """Build validated mm data, bind its pool slot, then publish it."""
++        mm_meta = self.recv_embedding_data.get_mm_extra_meta()
+         mm_inputs = self.mm_processor.get_validated_mm_data(
+             _select_mm_processor_prompt(self.recv_req, self.mm_processor),
+             recv_embedding,
+-            **self.recv_embedding_data.get_mm_extra_meta(),
++            **mm_meta,
+         )
++        if (
++            "visionzip_indices" in mm_meta
++            and os.environ.get("SGLANG_EPD_VISIONZIP_TRACE") == "1"
++        ):
++            logger.info(
++                "visionzip_receive req_id=%s image_rows=%s placeholders=%s "
++                "prompt_length=%d mrope_length=%d mrope_delta=%s",
++                self.rid,
++                [item.precomputed_embeddings.shape[0] for item in mm_inputs.mm_items],
++                [end - start + 1 for item in mm_inputs.mm_items for start, end in item.offsets],
++                len(mm_inputs.input_ids),
++                mm_inputs.mrope_positions.shape[-1],
++                mm_inputs.mrope_position_delta.flatten().tolist(),
++            )
+         attach_mm_routing_labels(
+             mm_inputs.mm_items,
+             self.recv_req.mm_routing_labels,
 diff --git a/python/sglang/srt/disaggregation/encoder/server.py b/python/sglang/srt/disaggregation/encoder/server.py
-index e956728..fcf7af5 100644
+index e956728..d658dc3 100644
 --- a/python/sglang/srt/disaggregation/encoder/server.py
 +++ b/python/sglang/srt/disaggregation/encoder/server.py
 @@ -557,6 +557,10 @@ class MMEncoder:
@@ -76,24 +112,25 @@ index e956728..fcf7af5 100644
              mm_embedding = await self._compute_global_cache_embedding(
                  ctx, keep_on_gpu=keep_on_gpu
              )
-@@ -2062,6 +2102,16 @@ class MMEncoder:
+@@ -2062,6 +2102,17 @@ class MMEncoder:
                      sock.close(linger=0)
                  raise
  
 +            if self.trace_visionzip_payload and buffer is not None:
 +                logger.info(
 +                    "visionzip_payload req_id=%s ratio=%d rows=%d "
-+                    "feature_bytes=%d metadata_bytes=%d",
++                    "feature_bytes=%d metadata_bytes=%d image_rows=%s",
 +                    mm_data.req_id,
 +                    self.visionzip_ratio,
 +                    mm_data.shape[0],
 +                    memoryview(buffer).nbytes,
 +                    len(serialized_data),
++                    list(map(len, getattr(mm_data, "visionzip_indices", ()))),
 +                )
              if encoder_metrics_collector is not None:
                  encoder_metrics_collector.observe_transfer(
                      time.perf_counter() - transfer_start,
-@@ -2170,14 +2220,20 @@ class MMEncoder:
+@@ -2170,14 +2221,20 @@ class MMEncoder:
              token_offset = 0
              for req, num_items in zip(requests, ctx.items_per_req):
                  item_end = item_offset + num_items
@@ -332,7 +369,7 @@ index a21bfbf..e70cd77 100644
  
      _lora_pattern = re.compile(
 diff --git a/python/sglang/srt/multimodal/processors/qwen_vl.py b/python/sglang/srt/multimodal/processors/qwen_vl.py
-index ade11ee..b7ede7d 100644
+index ade11ee..384c4cc 100644
 --- a/python/sglang/srt/multimodal/processors/qwen_vl.py
 +++ b/python/sglang/srt/multimodal/processors/qwen_vl.py
 @@ -10,6 +10,7 @@ import torch
@@ -343,7 +380,7 @@ index ade11ee..b7ede7d 100644
  from sglang.srt.environ import envs
  from sglang.srt.layers.rotary_embedding import MRotaryEmbedding
  from sglang.srt.managers.req_types import MultimodalDataItem, MultimodalProcessorOutput
-@@ -638,6 +639,19 @@ class QwenVLImageProcessor(MediaArtifactCacheMixin, SGLangBaseProcessor):
+@@ -638,6 +639,22 @@ class QwenVLImageProcessor(MediaArtifactCacheMixin, SGLangBaseProcessor):
              tokens_per_second=self._tokens_per_second,
          )
          mrope_positions = mrope_positions.squeeze(1)
@@ -353,6 +390,9 @@ index ade11ee..b7ede7d 100644
 +                modality != Modality.IMAGE for modality in modality_list
 +            ):
 +                raise ValueError("VisionZip E/PD supports Qwen2.5-VL images only")
++            selected_rows = sum(map(len, visionzip_indices))
++            if embeddings[Modality.IMAGE].shape[0] != selected_rows:
++                raise ValueError("VisionZip received rows do not match the image selections")
 +            input_ids, offsets, mrope_positions, mrope_position_delta = compact_prompt(
 +                input_ids,
 +                offsets,

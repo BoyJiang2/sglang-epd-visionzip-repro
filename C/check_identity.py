@@ -5,6 +5,7 @@ from concurrent.futures import ThreadPoolExecutor
 import json
 import math
 from pathlib import Path
+import re
 from urllib.request import Request, urlopen
 from uuid import uuid4
 
@@ -56,6 +57,40 @@ def signature(record):
     return prompt_ids, output_ids, first_logprob
 
 
+def verify_transfer(records, encoder_log, pd_log):
+    encoder = encoder_log.read_text(encoding="utf-8")
+    receiver = pd_log.read_text(encoding="utf-8")
+    for record in records:
+        rid = re.escape(record["rid"])
+        sent_parts = re.findall(
+            rf"visionzip_payload req_id={rid}_local_part_0 ratio=100 rows=(\d+) "
+            r"feature_bytes=(\d+) metadata_bytes=(\d+) image_rows=(\[[^\n]*?\])",
+            encoder,
+        )
+        received_layouts = re.findall(
+            rf"visionzip_receive req_id={rid} image_rows=(\[[^\n]*?\]) "
+            r"placeholders=(\[[^\n]*?\]) prompt_length=(\d+) mrope_length=(\d+)",
+            receiver,
+        )
+        if len(sent_parts) != 1 or len(received_layouts) != 1:
+            raise ValueError(f"{record['rid']}: missing or duplicate transfer records")
+        sent, = sent_parts
+        received, = received_layouts
+        rows, feature_bytes, metadata_bytes = map(int, sent[:3])
+        image_rows = json.loads(sent[3])
+        prompt_len, position_len = map(int, received[2:])
+        if not (
+            len(image_rows) == len(record["images"])
+            and sum(image_rows) == rows
+            and image_rows == json.loads(received[0]) == json.loads(received[1])
+            and prompt_len == position_len == len(signature(record)[0])
+            and feature_bytes > 0
+            and metadata_bytes > 0
+        ):
+            raise ValueError(f"{record['rid']}: C100 payload and PD layout disagree")
+        print(f"{record['rid']} image_rows={image_rows} feature_bytes={feature_bytes} metadata_bytes={metadata_bytes}")
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--endpoint", required=True)
@@ -63,6 +98,7 @@ def main():
     parser.add_argument("--traces", nargs=3, type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--reference", type=Path)
+    parser.add_argument("--transfer-logs", nargs=2, type=Path, metavar=("ENCODER_LOG", "PD_LOG"))
     args = parser.parse_args()
     rows = []
     for path in args.traces:
@@ -92,6 +128,8 @@ def main():
                 f"{observed['mode']} {observed['id']}: matched token IDs, "
                 f"first-logprob delta={observed_sig[2] - expected_sig[2]:.8g}"
             )
+    if args.transfer_logs:
+        verify_transfer(actual, *args.transfer_logs)
     print(f"{len(actual)} identity probes captured")
 
 

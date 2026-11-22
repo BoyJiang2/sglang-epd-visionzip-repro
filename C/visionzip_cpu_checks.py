@@ -137,6 +137,48 @@ multi.add(first)
 assert multi.ready and multi.get_mm_extra_meta()["visionzip_indices"] == [[0,2],[1]]
 torch.testing.assert_close(multi.get_embedding(is_concat=True)[Modality.IMAGE], batch_features[:3])
 
+ns.update(
+    MRotaryEmbedding=types.SimpleNamespace(
+        get_rope_index=lambda **_: (positions.unsqueeze(1), delta)
+    ),
+    compact_prompt=module.compact_prompt,
+    MultimodalDataItem=types.SimpleNamespace,
+    MultimodalProcessorOutput=types.SimpleNamespace,
+)
+run_source(
+    "multimodal/processors/qwen_vl.py",
+    set(),
+    ns,
+    ("QwenVLImageProcessor", {"get_mm_data"}),
+)
+processor = types.SimpleNamespace(
+    model_type="qwen2_5_vl",
+    _spatial_merge_size=2,
+    mm_tokens=types.SimpleNamespace(image_token_id=9, video_token_id=8, audio_token_id=7),
+    build_input_ids=lambda *_, **__: (original, offsets, [Modality.IMAGE] * 2),
+    vision_start_token_id=91,
+    audio_start_token_id=None,
+    IM_START_TOKEN_ID=91,
+    IM_END_TOKEN_ID=92,
+    hf_config=types.SimpleNamespace(),
+    _tokens_per_second=2,
+)
+assembled = ns["get_mm_data"](
+    processor, "", {Modality.IMAGE: batch_features[:4]}, visionzip_indices=keep
+)
+assert assembled.input_ids == ids and torch.equal(assembled.mrope_positions, p)
+assert [item.precomputed_embeddings.shape[0] for item in assembled.mm_items] == [3, 1]
+for wrong_size in (3, 5):
+    try:
+        ns["get_mm_data"](
+            processor, "", {Modality.IMAGE: batch_features[:wrong_size]},
+            visionzip_indices=keep,
+        )
+    except ValueError as error:
+        assert "received rows do not match" in str(error)
+    else:
+        raise AssertionError("incorrect feature count reached the language model")
+
 native_features = torch.randn(13, 32)
 staged.clear()
 ctx.aux_data.clear()
@@ -152,5 +194,6 @@ torch.testing.assert_close(
 )
 print(
     "PASS: attention mass parity, 50/70/100, malformed metadata, C100 and "
-    "M-RoPE, batched staging, out-of-order parts, and native B staging."
+    "M-RoPE, batched staging, out-of-order parts, received row validation, "
+    "and native B staging."
 )

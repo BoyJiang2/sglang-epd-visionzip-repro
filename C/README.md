@@ -60,9 +60,9 @@ python -m sglang.launch_server --model-path "$MODEL_PATH" \
 | C70 | Keep about 65% dominant rows and 5% contextual rows per image. | Verify the compact image segments and record exact retained rows per image, including rounding. |
 | C50 | Keep about 45% dominant rows and 5% contextual rows per image. | Repeat the same checks and compare actual bytes, quality, and performance against B. |
 
-`SGLANG_EPD_VISIONZIP_RATIO=0` selects the standard encoder path. The adaptation targets image-only Qwen2.5-VL, a TP1 encoder without vision data-parallel sharding, and HTTP with `zmq_to_scheduler`. Compressed runs require ViT CUDA graphs to be off. Use the same graph setting in B and C. Enable `SGLANG_EPD_VISIONZIP_TRACE=1` on the encoder for a separate diagnostic replay to log the feature and metadata frame bytes. Those frame measurements exclude TCP and IP overhead.
+`SGLANG_EPD_VISIONZIP_RATIO=0` selects the standard encoder path. The adaptation targets image-only Qwen2.5-VL, a TP1 encoder without vision data-parallel sharding, and HTTP with `zmq_to_scheduler`. Compressed runs require ViT CUDA graphs to be off. Use the same graph setting in B and C. For diagnostics, export `SGLANG_EPD_VISIONZIP_TRACE=1` on both nodes before starting C. The encoder logs feature and metadata frame bytes and per-image row counts. PD logs received rows, visual placeholders, and M-RoPE sequence length. Frame bytes exclude TCP and IP overhead. For formal timing, leave the trace off.
 
-Capture six untimed identity requests before stopping B. Pass three frozen traces whose first rows contain one, four, and eight images, respectively. Repeat against C100 using the same traces. The script checks the prompt and 16 generated token IDs per request and reports first-token log-probability differences for serial and mixed concurrent requests. Use the encoder frame logs for feature bytes and the CPU checks for position handling.
+Capture six untimed identity requests before stopping B. Pass three frozen traces whose first rows contain one, four, and eight images, respectively. Repeat against C100 using the same traces. The script checks the prompt and 16 generated token IDs per request and reports first-token log-probability differences for serial and mixed concurrent requests. With the transfer logs it also checks that the sent rows, received rows, and placeholders agree for each image. The CPU checks verify exact M-RoPE coordinates.
 
 ```bash
 python3 C/check_identity.py --endpoint "$B_PD_ENDPOINT" --model "$MODEL_ID" \
@@ -70,7 +70,8 @@ python3 C/check_identity.py --endpoint "$B_PD_ENDPOINT" --model "$MODEL_ID" \
   --output "$RUN_DIR/identity.B.jsonl"
 python3 C/check_identity.py --endpoint "$C100_PD_ENDPOINT" --model "$MODEL_ID" \
   --traces "$ONE_IMAGE_TRACE" "$FOUR_IMAGE_TRACE" "$EIGHT_IMAGE_TRACE" \
-  --output "$RUN_DIR/identity.C100.jsonl" --reference "$RUN_DIR/identity.B.jsonl"
+  --output "$RUN_DIR/identity.C100.jsonl" --reference "$RUN_DIR/identity.B.jsonl" \
+  --transfer-logs "$C100_ENCODER_LOG" "$C100_PD_LOG"
 ```
 
 ## Author reference, single GPU
