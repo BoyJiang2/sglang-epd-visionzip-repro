@@ -28,6 +28,15 @@ python3 common/epd_replay.py summarize \
 
 Reuse the trace for C70 and C50 with their respective PD endpoints. The summary reports TTFT, per-request TPOT, SSE content-block gaps, throughput, request outcomes, and endpoint distribution. For B, C70, and C50, `replay-matrix` reads `formal-design.json` and the associated A traces and response logs. Pass `--label no-probe` to write rerun results with a `.no-probe.jsonl` suffix and keep the original results. Individual runs support `--interference control|same|separate` for fixed 256-token streams. The two interference modes require a separate one-request, eight-image trace via `--heavy-trace`.
 
+After all four groups finish the frozen matrix and the random-image sweeps, generate the per-run table and the common-load plot with Matplotlib installed.
+
+```bash
+python3 common/report_performance.py --run-dir "$RUN_DIR" --b-label no-probe \
+  --output "$RUN_DIR/7b-performance.json" --figure "$RUN_DIR/7b-ttft.pdf"
+```
+
+The report requires one full request record per planned submission and checks IDs, image fingerprints, planned arrival offsets and requested output lengths across groups. The plot pools the three replicates at the QPS shared by all image counts (0.5 in the frozen plan). P95 TTFT uses completed requests, and the adjacent completion panel includes every submitted request.
+
 ## Data revisions
 
 | Task | Hub dataset | Revision | Test rows |
