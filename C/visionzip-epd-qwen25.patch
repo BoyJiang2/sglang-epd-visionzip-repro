@@ -1,0 +1,365 @@
+diff --git a/python/sglang/srt/disaggregation/encoder/receiver.py b/python/sglang/srt/disaggregation/encoder/receiver.py
+index 824fae4..7ad8603 100644
+--- a/python/sglang/srt/disaggregation/encoder/receiver.py
++++ b/python/sglang/srt/disaggregation/encoder/receiver.py
+@@ -528,7 +528,7 @@ _GENERAL_VIDEO_META_ATTRS = (
+     "video_timestamps",
+     "second_per_grid_ts",
+ )
+-_GENERAL_IMAGE_META_ATTRS = ("original_image_sizes",)
++_GENERAL_IMAGE_META_ATTRS = ("original_image_sizes", "visionzip_indices")
+ # MiMo-VL audio-in-video fields; appended only when model_type is MiMo.
+ _MIMO_VIDEO_AUDIO_META_ATTRS = (
+     "video_audio_feature_lens",
+diff --git a/python/sglang/srt/disaggregation/encoder/server.py b/python/sglang/srt/disaggregation/encoder/server.py
+index e956728..fcf7af5 100644
+--- a/python/sglang/srt/disaggregation/encoder/server.py
++++ b/python/sglang/srt/disaggregation/encoder/server.py
+@@ -557,6 +557,10 @@ class MMEncoder:
+             get_mm().allow_local_media_files,
+         )
+         self.transfer_backend = get_disagg().encoder_transfer_backend
++        self.visionzip_ratio = int(os.environ.get("SGLANG_EPD_VISIONZIP_RATIO", "0"))
++        self.trace_visionzip_payload = os.environ.get("SGLANG_EPD_VISIONZIP_TRACE") == "1"
++        if self.visionzip_ratio not in (0, 50, 70, 100):
++            raise ValueError("SGLANG_EPD_VISIONZIP_RATIO must be one of 0, 50, 70, 100")
+         self.use_mooncake = self.transfer_backend == "mooncake"
+         self.rank = rank
+         # DP rank for metric labels; overridden by runtime.run_dp_worker.
+@@ -1753,6 +1757,40 @@ class MMEncoder:
+                 modality,
+             )
+ 
++            if self.visionzip_ratio and not ctx.is_health_check:
++                if (
++                    self.model_type != "qwen2_5_vl"
++                    or modality != Modality.IMAGE
++                    or self.transfer_backend != "zmq_to_scheduler"
++                    or get_parallel().tp_size != 1
++                    or get_mm().enable_prefix_mm_cache
++                ):
++                    raise ValueError(
++                        "VisionZip requires Qwen2.5-VL images, TP1, "
++                        "zmq_to_scheduler, and no prefix MM cache"
++                    )
++                start = time.perf_counter()
++                counts = ctx.preprocess_result.token_counts
++                with torch.inference_mode():
++                    if self.visionzip_ratio == 100:
++                        mm_embedding = ctx.get_feature_fn(mm_items)
++                        indices = [list(range(n)) for n in counts]
++                    else:
++                        mm_embedding, indices = ctx.get_feature_fn(
++                            mm_items, visionzip_ratio=self.visionzip_ratio
++                        )
++                    mm_embedding = mm_embedding.cpu()
++                if len(indices) != len(counts) or mm_embedding.shape[0] != sum(
++                    map(len, indices)
++                ):
++                    raise InternalError("VisionZip compact embedding/image count mismatch")
++                ctx.aux_data["visionzip_indices"] = indices
++                if encoder_metrics_collector is not None:
++                    encoder_metrics_collector.observe_model_forward(
++                        time.perf_counter() - start, modality=modality_str
++                    )
++                return mm_embedding
++
+             cache_hit = False
+             # The prefix cache hashes the whole request; a fused multi-request
+             # batch has no per-request key, so only N=1 contexts use it.
+@@ -1872,6 +1910,8 @@ class MMEncoder:
+     ) -> Optional[torch.Tensor]:
+         """Compute one flattened request with global cache as an optional stage."""
+         if ctx.use_global_cache:
++            if self.visionzip_ratio:
++                raise ValueError("VisionZip requires the global MM cache to be disabled")
+             mm_embedding = await self._compute_global_cache_embedding(
+                 ctx, keep_on_gpu=keep_on_gpu
+             )
+@@ -2062,6 +2102,16 @@ class MMEncoder:
+                     sock.close(linger=0)
+                 raise
+ 
++            if self.trace_visionzip_payload and buffer is not None:
++                logger.info(
++                    "visionzip_payload req_id=%s ratio=%d rows=%d "
++                    "feature_bytes=%d metadata_bytes=%d",
++                    mm_data.req_id,
++                    self.visionzip_ratio,
++                    mm_data.shape[0],
++                    memoryview(buffer).nbytes,
++                    len(serialized_data),
++                )
+             if encoder_metrics_collector is not None:
+                 encoder_metrics_collector.observe_transfer(
+                     time.perf_counter() - transfer_start,
+@@ -2170,14 +2220,20 @@ class MMEncoder:
+             token_offset = 0
+             for req, num_items in zip(requests, ctx.items_per_req):
+                 item_end = item_offset + num_items
+-                num_tokens = sum(
+-                    ctx.preprocess_result.token_counts[item_offset:item_end]
+-                )
++                req_aux_data = dict(ctx.aux_data)
++                indices = ctx.aux_data.get("visionzip_indices")
++                if indices is None:
++                    num_tokens = sum(
++                        ctx.preprocess_result.token_counts[item_offset:item_end]
++                    )
++                else:
++                    selected = indices[item_offset:item_end]
++                    req_aux_data["visionzip_indices"] = selected
++                    num_tokens = sum(map(len, selected))
+                 embedding = mm_embedding[token_offset : token_offset + num_tokens]
+                 if keep_on_gpu and len(requests) > 1:
+                     # A view would pin the whole batch tensor until the last transfer.
+                     embedding = embedding.clone()
+-                req_aux_data = dict(ctx.aux_data)
+                 if ctx.aux_data.get("original_image_sizes") is not None:
+                     req_aux_data["original_image_sizes"] = ctx.aux_data[
+                         "original_image_sizes"
+diff --git a/python/sglang/srt/disaggregation/encoder/visionzip.py b/python/sglang/srt/disaggregation/encoder/visionzip.py
+new file mode 100644
+index 0000000..a78db73
+--- /dev/null
++++ b/python/sglang/srt/disaggregation/encoder/visionzip.py
+@@ -0,0 +1,71 @@
++"""VisionZip for image-only Qwen2.5-VL E/PD, using the original visual positions."""
++
++import torch
++import torch.nn.functional as F
++
++
++def image_statistics(query, key, patch_counts, merge_size, reverse_indices):
++    """Reproduce incoming attention mass and mean key per merged patch group."""
++    masses, keys = [], []
++    for q, k in zip(query.split(patch_counts), key.split(patch_counts)):
++        q, k = q.transpose(0, 1), k.transpose(0, 1)
++        mass = torch.zeros(k.shape[1], dtype=torch.float32, device=k.device)
++        for block in q.split(128, dim=1):
++            logits = block @ k.transpose(1, 2)
++            weights = (logits * (q.shape[-1] ** -0.5)).softmax(dim=-1)
++            mass += weights.float().sum(dim=(0, 1)) / q.shape[0]
++        masses.append(mass.view(-1, merge_size).mean(dim=-1))
++        keys.append(k.reshape(k.shape[0], -1, merge_size, k.shape[-1]).mean(2).mean(0))
++    return torch.cat(masses)[reverse_indices], torch.cat(keys)[reverse_indices]
++
++
++def compress_image(embedding, score, key, ratio):
++    """Select dominant tokens, then merge remaining tokens into contextual anchors."""
++    rows = embedding.shape[0]
++    if ratio == 100:
++        return embedding, list(range(rows))
++    dominant = score.topk(int((ratio - 5) * rows / 100)).indices
++    mask = torch.ones(rows, dtype=torch.bool, device=embedding.device)
++    mask[dominant] = False
++    rest = mask.nonzero().flatten()
++    count = max(int(0.05 * rows), 1)
++    stride = max(rest.numel() // count, 1)
++    anchor = rest[::stride][:count]
++    mask[anchor] = False
++    others = mask.nonzero().flatten()
++    keys = F.normalize(key.float(), dim=-1)
++    similarity = keys[others] @ keys[anchor].transpose(0, 1)
++    assigned = similarity.argmax(dim=1)
++    membership = F.one_hot(assigned, num_classes=anchor.numel()).to(embedding.dtype)
++    counts = membership.sum(dim=0).clamp(min=1).unsqueeze(1)
++    merged = embedding[anchor] + membership.transpose(0, 1) @ embedding[others] / counts
++    order = torch.cat((dominant, anchor)).argsort()
++    keep = torch.cat((dominant, anchor))[order]
++    features = torch.cat((embedding[dominant], merged), dim=0)[order]
++    return features, keep.tolist()
++
++
++def compact_prompt(input_ids, offsets, positions, delta, selections):
++    """Retain original coordinates while accounting for a shorter physical KV sequence."""
++    if len(offsets) != len(selections):
++        raise ValueError("VisionZip image offset/selection count mismatch")
++    keep, new_offsets = [], []
++    end = 0
++    for (start, stop), selected in zip(offsets, selections):
++        if not selected or list(sorted(set(selected))) != selected:
++            raise ValueError("VisionZip indices must be nonempty, unique and sorted")
++        if not 0 <= end <= start <= stop < len(input_ids):
++            raise ValueError("VisionZip image offsets must be ordered and disjoint")
++        if selected[0] < 0 or selected[-1] > stop - start:
++            raise ValueError("VisionZip index is outside its original image span")
++        keep.extend(range(end, start))
++        new_offsets.append((len(keep), len(keep) + len(selected) - 1))
++        keep.extend(start + index for index in selected)
++        end = stop + 1
++    keep.extend(range(end, len(input_ids)))
++    return (
++        [input_ids[i] for i in keep],
++        new_offsets,
++        positions[:, keep],
++        delta + len(input_ids) - len(keep),
++    )
+diff --git a/python/sglang/srt/layers/attention/vision.py b/python/sglang/srt/layers/attention/vision.py
+index 3c1982e..cb0412c 100644
+--- a/python/sglang/srt/layers/attention/vision.py
++++ b/python/sglang/srt/layers/attention/vision.py
+@@ -1587,6 +1587,10 @@ class VisionAttention(nn.Module):
+             else:
+                 q, k = self._apply_qk_norm(q, k)
+ 
++        qk_observer = kwargs.get("qk_observer")
++        if qk_observer is not None:
++            qk_observer(q, k)
++
+         if full_attn or self.sinks is None:
+             effective_window_size = (-1, -1)
+             s_aux = None
+diff --git a/python/sglang/srt/models/qwen2_5_vl.py b/python/sglang/srt/models/qwen2_5_vl.py
+index a21bfbf..e70cd77 100644
+--- a/python/sglang/srt/models/qwen2_5_vl.py
++++ b/python/sglang/srt/models/qwen2_5_vl.py
+@@ -39,6 +39,10 @@ from transformers.models.qwen2_5_vl.configuration_qwen2_5_vl import (
+     Qwen2_5_VLVisionConfig,
+ )
+ 
++from sglang.srt.disaggregation.encoder.visionzip import (
++    compress_image,
++    image_statistics,
++)
+ from sglang.srt.environ import envs
+ from sglang.srt.layers.activation import SiluAndMul
+ from sglang.srt.layers.attention.vision import (
+@@ -269,6 +273,7 @@ class Qwen2_5_VisionBlock(nn.Module):
+         position_embeddings: torch.Tensor,
+         output_ws=None,
+         forward_metadata: Optional[VisionAttentionMetadata] = None,
++        qk_observer=None,
+     ) -> torch.Tensor:
+         S, B, H = x.shape
+         # norm1: flatten to 2D -> [S*B, H], then reshape back
+@@ -283,6 +288,7 @@ class Qwen2_5_VisionBlock(nn.Module):
+             position_embeddings=position_embeddings,
+             output_ws=output_ws,
+             forward_metadata=forward_metadata,
++            qk_observer=qk_observer,
+         )
+         attn = rearrange(attn, "b s h -> s b h")
+ 
+@@ -499,8 +505,11 @@ class Qwen2_5_VisionTransformer(nn.Module, RotaryPosMixin):
+         self,
+         x: torch.Tensor,
+         grid_thw: torch.Tensor,
+-    ) -> torch.Tensor:
++        visionzip_ratio=None,
++    ):
+         if self.enable_cg:
++            if visionzip_ratio is not None:
++                raise ValueError("VisionZip requires SGLANG_VIT_ENABLE_CUDA_GRAPH=0")
+             return self.forward_with_cuda_graph(x, grid_thw)
+ 
+         # patchify
+@@ -564,6 +573,16 @@ class Qwen2_5_VisionTransformer(nn.Module, RotaryPosMixin):
+             cu_window_seqlens, device=x.device
+         )
+ 
++        stats = None
++        if visionzip_ratio is not None:
++            patch_counts = [t * h * w for t, h, w in grid_thw.tolist()]
++
++            def observe_qk(q, k):
++                nonlocal stats
++                stats = image_statistics(
++                    q, k, patch_counts, self.spatial_merge_unit, reverse_indices
++                )
++
+         # transformers
+         x = x.unsqueeze(1)
+         for layer_num, blk in enumerate(self.blocks):
+@@ -581,13 +600,30 @@ class Qwen2_5_VisionTransformer(nn.Module, RotaryPosMixin):
+                 cu_seqlens=cu_seqlens_now,
+                 position_embeddings=position_embeddings,
+                 forward_metadata=metadata_now,
++                qk_observer=(
++                    observe_qk
++                    if visionzip_ratio is not None and layer_num == len(self.blocks) - 1
++                    else None
++                ),
+             )
+ 
+         # adapter
+         x = self.merger(x)
+         x = x[reverse_indices, :]
+ 
+-        return x
++        if visionzip_ratio is None:
++            return x
++        scores, keys = stats
++        rows = [n // self.spatial_merge_unit for n in patch_counts]
++        images = [
++            compress_image(embedding, score, key, visionzip_ratio)
++            for embedding, score, key in zip(
++                x.split(rows), scores.split(rows), keys.split(rows)
++            )
++        ]
++        return torch.cat([features for features, _ in images]), [
++            indices for _, indices in images
++        ]
+ 
+     def forward_with_cuda_graph(
+         self,
+@@ -760,7 +796,9 @@ class Qwen2_5_VLForConditionalGeneration(nn.Module):
+     def pad_input_ids(self, input_ids: array, mm_inputs: MultimodalInputs) -> array:
+         return pad_mm_tokens(input_ids, mm_inputs)
+ 
+-    def get_image_feature(self, items: List[MultimodalDataItem]) -> torch.Tensor:
++    def get_image_feature(
++        self, items: List[MultimodalDataItem], visionzip_ratio=None
++    ):
+         # in qwen-vl, last dim is the same
+         pixel_values = torch.cat([item.feature for item in items], dim=0).type(
+             self.visual.dtype
+@@ -787,11 +825,15 @@ class Qwen2_5_VLForConditionalGeneration(nn.Module):
+         assert pixel_values.dim() == 2, pixel_values.dim()
+         assert image_grid_thw.dim() == 2, image_grid_thw.dim()
+         if self.use_data_parallel:
++            if visionzip_ratio is not None:
++                raise ValueError("VisionZip requires unsharded vision encoding")
+             return run_dp_sharded_mrope_vision_model(
+                 self.visual, pixel_values, image_grid_thw.tolist(), rope_type="rope_3d"
+             )
+         else:
+-            image_embeds = self.visual(pixel_values, grid_thw=image_grid_thw)
++            image_embeds = self.visual(
++                pixel_values, grid_thw=image_grid_thw, visionzip_ratio=visionzip_ratio
++            )
+         return image_embeds
+ 
+     _lora_pattern = re.compile(
+diff --git a/python/sglang/srt/multimodal/processors/qwen_vl.py b/python/sglang/srt/multimodal/processors/qwen_vl.py
+index ade11ee..b7ede7d 100644
+--- a/python/sglang/srt/multimodal/processors/qwen_vl.py
++++ b/python/sglang/srt/multimodal/processors/qwen_vl.py
+@@ -10,6 +10,7 @@ import torch
+ from PIL import Image
+ from transformers import BaseImageProcessor
+ 
++from sglang.srt.disaggregation.encoder.visionzip import compact_prompt
+ from sglang.srt.environ import envs
+ from sglang.srt.layers.rotary_embedding import MRotaryEmbedding
+ from sglang.srt.managers.req_types import MultimodalDataItem, MultimodalProcessorOutput
+@@ -638,6 +639,19 @@ class QwenVLImageProcessor(MediaArtifactCacheMixin, SGLangBaseProcessor):
+             tokens_per_second=self._tokens_per_second,
+         )
+         mrope_positions = mrope_positions.squeeze(1)
++        visionzip_indices = kwargs.get("visionzip_indices")
++        if visionzip_indices is not None:
++            if self.model_type != "qwen2_5_vl" or any(
++                modality != Modality.IMAGE for modality in modality_list
++            ):
++                raise ValueError("VisionZip E/PD supports Qwen2.5-VL images only")
++            input_ids, offsets, mrope_positions, mrope_position_delta = compact_prompt(
++                input_ids,
++                offsets,
++                mrope_positions,
++                mrope_position_delta,
++                visionzip_indices,
++            )
+ 
+         mm_items = []
+         consumed_per_modality = {}

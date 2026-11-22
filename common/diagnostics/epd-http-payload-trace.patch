@@ -1,0 +1,124 @@
+--- a/python/sglang/srt/disaggregation/encoder/receiver.py
++++ b/python/sglang/srt/disaggregation/encoder/receiver.py
+@@ -1,7 +1,10 @@
+ import asyncio
+ import itertools
+ import logging
++import os
+ import random
++import socket
++import struct
+ import threading
+ import time
+ import uuid
+@@ -10,6 +13,7 @@
+ from array import array
+ from collections import OrderedDict, defaultdict
+ from contextlib import asynccontextmanager
++from contextvars import ContextVar
+ from enum import IntEnum
+ from http import HTTPStatus
+ from typing import TYPE_CHECKING, Dict, List, Optional, Tuple
+@@ -850,6 +854,18 @@
+     )
+ 
+ 
++def _encode_tcp_payload(sock):
++    # The Linux 5.15 x86_64 UAPI places bytes_sent and bytes_retrans here.
++    # TCP_INFO on a retired transport is unavailable and must not count as zero.
++    if sock is None or not hasattr(socket, "TCP_INFO"):
++        return None
++    try:
++        info = sock.getsockopt(socket.IPPROTO_TCP, socket.TCP_INFO, 216)
++        return struct.unpack_from("=QQ", info, 200)
++    except (OSError, struct.error):
++        return None
++
++
+ def _encoder_media_item(mm_item: dict):
+     """Keep per-media options aligned while preserving the legacy URL shape."""
+     item = {
+@@ -2804,20 +2820,75 @@
+                 cum_num_items += assigned_num
+             part_idx_offset += num_parts
+ 
++        trace_config, counters, connector = [], [], None
++        if os.environ.get("SGLANG_EPD_HTTP_TRACE") == "1":
++            trace = aiohttp.TraceConfig()
++            active_request = ContextVar("epd_encode_trace", default=None)
++
++            async def on_chunk_sent(session, context, params):
++                context.trace_request_ctx["body_bytes"] += len(params.chunk)
++
++            class EncodeTraceConnector(aiohttp.TCPConnector):
++                async def connect(self, req, traces, timeout):
++                    connection = await super().connect(req, traces, timeout)
++                    info = active_request.get()
++                    if info is not None:
++                        info["connections"] += 1
++                        transport = connection.transport
++                        if transport is not None:
++                            info["socket"] = transport.get_extra_info("socket")
++                            info["before"] = _encode_tcp_payload(info["socket"])
++                    return connection
++
++            trace.on_request_chunk_sent.append(on_chunk_sent)
++            trace_config = [trace]
++            connector = EncodeTraceConnector()
++            counters = [
++                {
++                    "req_id": msg["req_id"],
++                    "part_idx": msg["part_idx"],
++                    "body_bytes": 0,
++                    "connections": 0,
++                }
++                for msg in encode_requests
++            ]
++
+         async with aiohttp.ClientSession(
+-            timeout=aiohttp.ClientTimeout(total=envs.SGLANG_ENCODER_HTTP_TIMEOUT.get())
++            timeout=aiohttp.ClientTimeout(total=envs.SGLANG_ENCODER_HTTP_TIMEOUT.get()),
++            trace_configs=trace_config,
++            connector=connector,
+         ) as session:
+-            # Send encode requests
++            async def send_encode(msg, info):
++                url = f"{effective_urls[msg['encoder_idx']]}/{endpoint_encode}"
++                if info is None:
++                    return await session.post(url, json=msg)
++                token = active_request.set(info)
++                try:
++                    return await session.post(url, json=msg, trace_request_ctx=info)
++                finally:
++                    after = _encode_tcp_payload(info.get("socket"))
++                    before = info.get("before")
++                    if after is not None and before is not None and info["connections"] == 1:
++                        info["tcp_payload_sent"] = after[0] - before[0]
++                        info["tcp_retrans_sent"] = after[1] - before[1]
++                    active_request.reset(token)
+ 
+             tasks = [
+-                session.post(
+-                    f"{effective_urls[encode_request['encoder_idx']]}/{endpoint_encode}",
+-                    json=encode_request,
+-                )
+-                for encode_request in encode_requests
++                send_encode(msg, counters[i] if counters else None)
++                for i, msg in enumerate(encode_requests)
+             ]
+-
+             responses = await asyncio.gather(*tasks, return_exceptions=True)
++            for info, response in zip(counters, responses):
++                logger.info(
++                    "epd_encode_http req_id=%s part_idx=%s body_bytes=%d "
++                    "tcp_payload_sent=%s tcp_retrans_sent=%s http_status=%s",
++                    info["req_id"],
++                    info["part_idx"],
++                    info["body_bytes"],
++                    info.get("tcp_payload_sent", "unavailable"),
++                    info.get("tcp_retrans_sent", "unavailable"),
++                    getattr(response, "status", "exception"),
++                )
+             # Dispatch only. The embedding never comes back through this call:
+             # zmq_to_tokenizer is pushed to our PULL socket during /encode,
+             # zmq_to_scheduler to the ports its ranks registered, and mooncake

@@ -1,0 +1,19 @@
+--- a/python/sglang/srt/disaggregation/encoder/receiver.py
++++ b/python/sglang/srt/disaggregation/encoder/receiver.py
+@@ -2545,10 +2545,15 @@
+     def create_req(self, recv_req: TokenizedGenerateReqInput):
+         from sglang.srt.managers.schedule_batch import Req
+ 
++        # A request can fail before the encoder returns the token layout.
++        # Retire it with an empty prompt without admitting it to inference.
++        input_ids = recv_req.input_ids
++        if input_ids is None:
++            input_ids = array("q")
+         req = Req(
+             recv_req.rid,
+             recv_req.input_text,
+-            recv_req.input_ids,
++            input_ids,
+             recv_req.sampling_params,
+             return_logprob=recv_req.return_logprob,
+             top_logprobs_num=recv_req.top_logprobs_num,

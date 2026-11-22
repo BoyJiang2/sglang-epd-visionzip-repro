@@ -1,0 +1,20 @@
+{
+  "rates_qps": {
+    "1": [4, 2, 0.5],
+    "4": [2, 1, 0.5],
+    "8": [1, 0.5, 0.25]
+  },
+  "seeds": [23011, 23012, 23013],
+  "requests_per_cell": 128,
+  "output_tokens": 64,
+  "resolution": "1080p",
+  "paper": {
+    "target_rates": [1, 0.8, 0.6, 0.4, 0.2],
+    "requests": 64,
+    "output_tokens": 256,
+    "random_images_upper_bound": 8,
+    "seed": 3467
+  },
+  "groups": ["A", "B", "C70", "C50"],
+  "timeout_per_request_s": 180
+}
