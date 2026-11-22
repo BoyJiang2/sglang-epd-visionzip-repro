@@ -85,3 +85,13 @@ python3 common/epd_replay.py score-quality \
 ```
 
 Use the same trace for every group. The scorer reads the captured response log and writes a new score file. It reports a full-set official score when every test row has a completed response. Failed or missing requests remain visible in the submitted denominator.
+
+Compare two score reports on that frozen set. The paired bootstrap samples images for OCRBench, questions for RealWorldQA, and reciprocal pairs for MuirBench. It reports the change in percentage points with a 95% interval, score transitions, and both groups' completion counts. The submitted-score comparison counts service failures as uncredited. Use it as the task accuracy comparison only when both reports have full official coverage.
+
+```bash
+python3 common/compare_quality.py --base "$B_SCORES" --test "$C70_SCORES" \
+  --ocr-responses "$B_OCR_RESPONSES" "$C70_OCR_RESPONSES" \
+  --output "$RUN_DIR/ocrbench.B-to-C70.paired.json"
+```
+
+For RealWorldQA or MuirBench, omit `--ocr-responses`. MuirBench also reports the change in the fraction of pairs answered correctly on both questions.
