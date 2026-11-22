@@ -22,3 +22,9 @@ python3 common/diagnostics/snapshot_embedding_tcp.py delta \
 ```
 
 The tool reads the sender's Linux TCP counters without restarting the service. It rejects comparisons across different socket identities or unordered samples. Inspect the send queues and acknowledged bytes to check that the probe drained. Report TCP payload separately from the application frame counts and PD→E HTTP bytes. [Linux TCP counter definitions](https://github.com/torvalds/linux/blob/v5.15/include/uapi/linux/tcp.h)
+
+## Paired probe payload summary
+
+During the six untimed probes for each C ratio, enable both the encoder payload trace and the PD HTTP trace. Collect the probe response JSONL and the two service logs for each ratio. Use `report_probe_transport.py --c100 RESPONSES E_LOG PD_LOG --c70 RESPONSES E_LOG PD_LOG --c50 RESPONSES E_LOG PD_LOG --output REPORT.json`.
+
+The report matches logical requests and ordered image fingerprints across ratios. It sums measured feature frames, embedding metadata and PD→E HTTP bodies at the application boundary. PD→E TCP payload is reported separately, with the number of available socket samples. Savings are relative to C100, which has its own index metadata.
