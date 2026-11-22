@@ -3,6 +3,7 @@
 The patches target SGLang `8396d60a14ef03b23d2cdaa5c64adb18eba7c703`. The default baseline uses the upstream checkout.
 
 - `epd-http-payload-trace.patch` logs the serialized PD→E HTTP body and optional Linux `TCP_INFO` counters when `SGLANG_EPD_HTTP_TRACE=1`. It applies to both the pinned baseline and the VisionZip checkout. The TCP measurement covers transport payload bytes. Link, IP, and TCP headers are excluded. A closed transport or unsupported counter is reported as unavailable. Use an independent diagnostic replay for this instrumentation.
+- `epd-native-feature-payload-trace.patch` logs the native encoder's feature and metadata frame sizes when `SGLANG_EPD_NATIVE_PAYLOAD_TRACE=1`. The encoder keeps its native model path and transfer backend. The patch was verified with a local ZMQ sender and receiver.
 - `epd-unadmitted-input-ids.patch` lets an E/PD request canceled before its token layout arrives retire without crashing. Patch application and the CPU regression passed on the pinned source. After applying the patch, run `python3 common/diagnostics/epd_unadmitted_cpu_checks.py "$SGLANG_DIR"`.
 
 ## Persistent encoder connection
@@ -28,3 +29,18 @@ The tool reads the sender's Linux TCP counters without restarting the service. I
 During the six untimed probes for each C ratio, enable both the encoder payload trace and the PD HTTP trace. Collect the probe response JSONL and the two service logs for each ratio. Use `report_probe_transport.py --c100 RESPONSES E_LOG PD_LOG --c70 RESPONSES E_LOG PD_LOG --c50 RESPONSES E_LOG PD_LOG --output REPORT.json`.
 
 The report matches logical requests and ordered image fingerprints across ratios. It sums measured feature frames, embedding metadata and PD→E HTTP bodies at the application boundary. PD→E TCP payload is reported separately, with the number of available socket samples. Savings are relative to C100, which has its own index metadata.
+
+## MuirBench request-level table
+
+For the MuirBench quality replay, retain the response and score files alongside the role logs. Use the native encoder and PD instrumentation for B and the VisionZip encoder and PD instrumentation for C70/C50. The formal synthetic timing runs keep diagnostic logging off.
+
+```bash
+python3 common/diagnostics/report_muir_traffic.py --client-host "$PD_CLIENT_IP" \
+  --a "$A_RESPONSES" "$A_SCORES" \
+  --b "$B_RESPONSES" "$B_SCORES" "$B_ENCODER_LOG" "$B_PD_LOG" \
+  --c70 "$C70_RESPONSES" "$C70_SCORES" "$C70_ENCODER_LOG" "$C70_PD_LOG" \
+  --c50 "$C50_RESPONSES" "$C50_SCORES" "$C50_ENCODER_LOG" "$C50_PD_LOG" \
+  --output "$RUN_DIR/muir-traffic.json"
+```
+
+For remote A requests, the client counts the submitted JSON body and the SSE response through the `[DONE]` line. A local A request has zero inter-node traffic. B/C use the HTTP body and returned feature frames. Match rows by the benchmark question, ordered images and request identity. Unknown application counts stay null, and TCP counts remain separate from application bytes.

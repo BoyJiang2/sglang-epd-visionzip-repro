@@ -345,6 +345,7 @@ async def replay(args):
                     "vision_tokens_estimate": row["vision_tokens_estimate"],
                     "expected_output_tokens": row["output_tokens"],
                     "client_http_body_bytes": 0 if skip_reason else len(payload),
+                    "client_sse_bytes_observed": 0,
                     "content_chunks": [],
                     "response_ids": [],
                     "completion_tokens": None,
@@ -373,6 +374,7 @@ async def replay(args):
                         record["http_status"] = response.status
                         response.raise_for_status()
                         async for line in response.content:
+                            record["client_sse_bytes_observed"] += len(line)
                             if not line.startswith(b"data:"):
                                 continue
                             data = line[5:].strip()
