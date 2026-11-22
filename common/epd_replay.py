@@ -423,9 +423,11 @@ async def replay(args):
                 output.write(json.dumps(record, ensure_ascii=False) + "\n")
                 return record["status"]
 
-            outcomes = await asyncio.gather(
-                *(request(index, *pair) for index, pair in enumerate(requests))
-            )
+            pending = (request(index, *pair) for index, pair in enumerate(requests))
+            if getattr(args, "serial", False):
+                outcomes = [await item for item in pending]
+            else:
+                outcomes = await asyncio.gather(*pending)
     skipped = outcomes.count("skipped")
     completed = outcomes.count("complete")
     totals = {"submitted": len(requests) - skipped, "completed": completed}
@@ -677,7 +679,12 @@ def main():
         "--arrival-scale", type=float, default=1.0,
         help="Multiply the frozen arrival offsets without rewriting the trace.",
     )
-    run_args.add_argument(
+    scheduling = run_args.add_mutually_exclusive_group()
+    scheduling.add_argument(
+        "--serial", action="store_true",
+        help="Wait for each request to finish before sending the next, keeping the same trace and routing.",
+    )
+    scheduling.add_argument(
         "--interference", choices=("control", "same", "separate"),
         help="Use a fixed 256-token trace with no heavy request, or route an eight-image request after first content.",
     )
