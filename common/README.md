@@ -132,7 +132,7 @@ python3 common/audit_7b.py --run-dir "$RUN_DIR" --b-label no-probe \
   --muir-label 1qps --output "$RUN_DIR/7b-raw-evidence-audit.json"
 ```
 
-The audit checks every planned matrix cell and its pairing, long-generation interference repeats, quality and author-reference outputs, and the C100/C70/C50 feature-layout probes. It records verified, missing and invalid checks, including failures inside complete request logs. Use the label of the qualified full MuirBench replay. Before publishing the 7B freeze, review the audit alongside the traffic and stage-timing analyses, rendered figures and service releases.
+The audit checks every planned matrix cell and its pairing, long-generation interference repeats, quality and author-reference outputs, and the C100/C70/C50 feature-layout probes. From the receiver logs it verifies that compact prompts preserve the measured first decode position. It records verified, missing and invalid checks, including failures inside complete request logs. Use the label of the qualified full MuirBench replay. Before publishing the 7B freeze, review the audit alongside the traffic and stage-timing analyses, rendered figures and service releases.
 
 When the measurements are complete, build the analysis bundle with Matplotlib in the Python environment.
 

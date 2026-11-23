@@ -162,7 +162,9 @@ def matched_transfer(run):
 
     baseline = probes("B")
     reference = probes("C100")
-    if [signature(row)[:2] for row in baseline] != [signature(row)[:2] for row in reference]:
+    baseline_signatures = [signature(row) for row in baseline]
+    signatures = [signature(row) for row in reference]
+    if [entry[:2] for entry in baseline_signatures] != [entry[:2] for entry in signatures]:
         raise ValueError("C100 prompt lengths or generated token IDs differ from B")
     details = {}
     with redirect_stdout(StringIO()):
@@ -173,12 +175,28 @@ def matched_transfer(run):
             phase = "identity" if ratio == 100 else "payload"
             logs = [run / f"C{ratio}-{node}-{phase}.service.log" for node in ("qjy000", "qjy001")]
             frames = verify_transfer(actual, *logs, ratio)
+            receiver = logs[1].read_text(encoding="utf-8")
+            starts = []
+            for row in actual:
+                delta = re.findall(
+                    rf"visionzip_receive req_id={re.escape(row['rid'])} [^\n]* mrope_delta=\[(-?\d+)\]",
+                    receiver,
+                )
+                if len(delta) != 1:
+                    raise ValueError(f"{row['rid']}: expected one M-RoPE decode delta")
+                starts.append(signature(row)[0] + int(delta[0]))
             if ratio == 100:
                 original_frames = frames
+                expected_starts = starts
             else:
                 verify_compression(actual, reference, frames, original_frames, ratio)
+                if starts != expected_starts:
+                    raise ValueError(f"C{ratio}: compressed prompt changed the first decode position")
             details[f"C{ratio}"] = dict(probes=len(frames), feature_bytes=sum(f[1] for f in frames),
-                                        metadata_bytes=sum(f[2] for f in frames))
+                                        metadata_bytes=sum(f[2] for f in frames), first_decode_positions=starts)
+    details["C100"]["first_logprob_deltas_from_B"] = [
+        observed[2] - expected[2] for expected, observed in zip(baseline_signatures, signatures, strict=True)
+    ]
     return details
 
 

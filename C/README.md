@@ -21,6 +21,8 @@ python C/visionzip_cpu_checks.py ../sglang-c
 
 The checks cover the author-style score and merge formulas, C100 identity, malformed indices, multi-image prompt and decode positions, and out-of-order embedding parts. For serving, install the fixed base build's dependencies and launch from the patched sources on both nodes. [SGLang installation and base E/PD setup](https://github.com/sgl-project/sglang/blob/8396d60a14ef03b23d2cdaa5c64adb18eba7c703/docs/docs/advanced_features/epd_disaggregation.mdx)
 
+Run `python C/visionzip_cpu_checks.py ../sglang-c "$SGLANG_B_ROOT"` to use a separate pinned native B checkout for the comparison. The test uses the Qwen2.5-VL position builder and the scheduler's decode position expansion for 1, 4 and 8 images, including a non-square 1080p-derived grid.
+
 ## Run C100, C70, and C50
 
 Set `SGLANG_ROOT` to the local patched checkout, `MODEL_PATH` to a local copy of the same pinned checkpoint, and `ENCODER_IP` and `PD_IP` to your two experiment addresses. Set `GPU_UUID` on each node to its allocated GPU. Use the same pixel budget as B. Leave the optional prefix and global multimodal caches off and disable the PD radix cache for the comparison.
