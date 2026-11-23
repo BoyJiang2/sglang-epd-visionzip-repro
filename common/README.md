@@ -39,6 +39,8 @@ The report requires one full request record per planned submission and checks ID
 
 Each cell reports failures before and after arrival of the first nonempty content block. For A→B, B→C70, and B→C50, the JSON also records both completed, baseline only, treatment only, and neither completed for paired request IDs. TTFT deltas subtract baseline from treatment on pairs that complete in both runs.
 
+The [TPOT supplement](../plans/tail-p99.json) adds five 128-request repeats at the same single-image 4 QPS setting as the three formal repeats. Generate each new seed with the same synthetic generator and name its traces `tail-p99-1img-4qps-seed<seed>.trace.jsonl`. Replay each seed for all four groups and store `<trace-stem>.<group>.jsonl` beside the original evidence. Run `python3 common/report_tail_p99.py --run-dir "$RUN_DIR" --plan plans/tail-p99.json --output "$RUN_DIR/tail-p99-summary.json"` to verify the pairing and summarize the eight repeats. The 95% P99 interval resamples whole requests within each seed and requires at least 1,000 completed streams with 64 output tokens. SSE gap counts are reported separately.
+
 For the long-generation interference runs, report adjacent SSE content-block gaps at the actual send time of the eight-image request. In the no-interference control use the first content block plus 50 ms. Include a gap straddling the alignment point so the first stall is visible. The report keeps attempted and completed repeats, the number of observed gaps, and 95% intervals for pooled post-trigger P95 and P99. Each bootstrap draw resamples whole long requests within a condition. An SSE block may contain more than one token.
 
 ```bash

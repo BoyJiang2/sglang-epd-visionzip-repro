@@ -1,0 +1,10 @@
+{
+  "images": 1,
+  "qps": 4,
+  "requests_per_replay": 128,
+  "output_tokens": 64,
+  "formal_seeds": [23011, 23012, 23013],
+  "supplement_seeds": [23014, 23015, 23016, 23017, 23018],
+  "groups": ["A", "B", "C70", "C50"],
+  "minimum_completed_per_group": 1000
+}
