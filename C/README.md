@@ -2,7 +2,7 @@
 
 C uses the same Qwen2.5-VL-7B-Instruct checkpoint and E/PD placement as B. The encoder uses the final ViT block's post-RoPE query and key tensors to score tokens. It selects dominant tokens, merges the remaining features into contextual representatives, and sends only the retained visual feature rows. PD uses the retained indices to shrink the prompt and preserve original M-RoPE coordinates. The patch preserves the vision attention backend.
 
-The patch publishes each compressed image's retained row count before the forward pass and preserves request retirement when the encoder fails before sending a token layout. CPU checks cover both paths. The previous revision passed six archived two-node C100 identity probes. The revised runtime needs a fresh C100 probe and compressed GPU measurements.
+The patch publishes each compressed image's retained row count before the forward pass and preserves request retirement when the encoder fails before sending a token layout. CPU checks cover both paths. The revised runtime passed six two-node C100 identity probes and six C70 payload probes. The C70 probes matched each image's sent rows, received rows, and visual placeholders in serial and mixed workloads.
 
 ## Apply and check
 
