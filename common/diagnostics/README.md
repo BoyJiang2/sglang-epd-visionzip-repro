@@ -62,7 +62,7 @@ python3 common/diagnostics/report_quality_probes.py --run-dir "$RUN_DIR" \
   --output "$RUN_DIR/quality-traffic.json" --figure "$RUN_DIR/quality-traffic.png"
 ```
 
-The plot uses mean application MiB per request over the probes measured in all three groups. It takes accuracy from the full 1,000-question OCRBench and 765-question RealWorldQA score files and shows the paired traffic sample size on each panel.
+The plot uses mean application MiB per request over the probes measured in all three groups. Its vertical axis shows correct answers divided by submissions for the 1,000-question OCRBench and 765-question RealWorldQA sets. The legend identifies any failed or skipped requests. The JSON keeps completed, correct and submitted counts, and reports official accuracy for groups with complete coverage. Each panel shows the paired traffic sample size.
 
 ## Paired stage timing
 

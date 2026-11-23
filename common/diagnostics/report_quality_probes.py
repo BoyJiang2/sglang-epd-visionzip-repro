@@ -86,26 +86,30 @@ def full_score(path, task, group):
     _, revision, dataset_size = DATASETS[task]
     scores = json.loads(path.read_text(encoding="utf-8"))
     items = scores["items"]
+    completed = sum(item["status"] == "complete" for item in items)
     correct = sum(item["correct"] is True for item in items)
     official = scores["official_score"]
+    submitted_accuracy = correct / dataset_size
     if (
         (scores["task"], scores["dataset_revision"], scores["group"]) != (task, revision, group)
-        or scores["submitted"] != scores["completed"]
+        or scores["completed"] != completed
         or scores["submitted"] != len(items)
         or len(items) != dataset_size
         or {item["doc_id"] for item in items} != set(range(dataset_size))
         or any(
-            item["status"] != "complete"
-            or type(item["correct"]) is not bool
+            item["status"] not in ("complete", "failed", "skipped")
+            or (type(item["correct"]) is not bool if item["status"] == "complete" else item["correct"] is not None)
             or item["request_id"] != f"{task}-{item['doc_id']:05d}"
             for item in items
         )
         or scores["correct"] != correct
-        or official is None
-        or not math.isclose(official, correct / dataset_size)
+        or not math.isclose(scores["service_accuracy"], submitted_accuracy)
+        or (completed == dataset_size and (official is None or not math.isclose(official, submitted_accuracy)))
+        or (completed != dataset_size and official is not None)
     ):
-        raise ValueError(f"{path}: scores must cover the complete pinned test set")
-    return official
+        raise ValueError(f"{path}: scores must account for every question in the pinned test set")
+    return dict(submitted=dataset_size, completed=completed, correct=correct,
+                submitted_accuracy=submitted_accuracy, full_set_accuracy=official)
 
 
 def report(run_dir, plan, paths, client_hosts):
@@ -133,7 +137,7 @@ def report(run_dir, plan, paths, client_hosts):
         encoder = index_log(encoder_log, NATIVE_TRACE if group == "B" else VISIONZIP_TRACE, set(engine_ids))
         pd = index_log(pd_log, PD_TRACE, set(engine_ids))
         for task in TASK_NAMES:
-            official = full_score(run_dir / f"quality-{task}.{group}.scores.json", task, group)
+            score = full_score(run_dir / f"quality-{task}.{group}.scores.json", task, group)
             samples = {
                 rid: dict(
                     expected,
@@ -143,10 +147,7 @@ def report(run_dir, plan, paths, client_hosts):
                 )
                 for rid, expected in registered[task].items()
             }
-            result["tasks"][task]["groups"][group] = {
-                "full_set_accuracy": official,
-                "requests": samples,
-            }
+            result["tasks"][task]["groups"][group] = dict(score, requests=samples)
     total_key = "cross_node_total_application_bytes"
     for task, result_task in result["tasks"].items():
         _, revision, dataset_size = DATASETS[task]
@@ -183,13 +184,16 @@ def make_figure(result):
         paired = data["paired_measured_requests"]
         axis.set_title(f"{name} · {data['full_set_rows']:,} test questions", loc="left", weight="bold")
         axis.set_xlabel(f"Mean measured application MiB/request\n{paired}/{SAMPLES} paired probes at 2 QPS")
-        axis.set_ylabel("Full-set accuracy (%)")
+        axis.set_ylabel("Correct / submitted (%)")
         if paired:
             x = [points[group]["mean_measured_mib_per_request"] for group in GROUPS]
-            y = [100 * points[group]["full_set_accuracy"] for group in GROUPS]
+            y = [100 * points[group]["submitted_accuracy"] for group in GROUPS]
             axis.plot(x, y, color="#9BA7AD", linewidth=1, zorder=1)
             for group, xp, yp, color in zip(GROUPS, x, y, colors):
-                axis.scatter(xp, yp, c=color, label=group, s=52, zorder=2)
+                score = points[group]
+                failed = score["submitted"] - score["completed"]
+                label = f"{group} ({failed} failed or skipped)" if failed else group
+                axis.scatter(xp, yp, c=color, label=label, s=52, zorder=2)
             axis.legend(frameon=False, title="Configuration")
             axis.grid(alpha=0.22)
             axis.margins(x=0.13, y=0.22)
