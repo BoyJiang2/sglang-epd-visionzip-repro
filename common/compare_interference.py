@@ -2,10 +2,30 @@
 
 import argparse
 from collections import Counter
+from itertools import chain
 import json
 from pathlib import Path
+from random import Random
+from statistics import quantiles
 
 from epd_replay import percentiles
+
+
+BOOTSTRAP_DRAWS = 2000
+BOOTSTRAP_SEED = 23011
+
+
+def post_gap_confidence(streams):
+    bounds = dict(long_requests=len(streams), p95=None, p99=None)
+    if len(streams) < 2:
+        return bounds
+    rng = Random(BOOTSTRAP_SEED)
+    estimates = [percentiles(chain.from_iterable(rng.choices(streams, k=len(streams))))
+                 for _ in range(BOOTSTRAP_DRAWS)]
+    for key in ("p95", "p99"):
+        cuts = quantiles((estimate[key] for estimate in estimates), n=40, method="inclusive")
+        bounds[key] = [cuts[0], cuts[-1]]
+    return bounds
 
 
 def analyze_mode(run_dir, group, mode, repeats):
@@ -49,13 +69,15 @@ def analyze_mode(run_dir, group, mode, repeats):
             # Include the interval that straddles the arrival; it can contain a stall.
             (after if right >= trigger else pre).append(gap)
         row["post_trigger_gap_ms"] = percentiles(after)
-        post.extend(after)
+        if after:
+            post.append(after)
     return {
         "submitted_repeats": repeats,
         "long_outcomes": dict(long_statuses),
         "heavy_outcomes": dict(heavy_statuses),
         "before_gap_ms": percentiles(pre),
-        "after_gap_ms": percentiles(post),
+        "after_gap_ms": percentiles(chain.from_iterable(post)),
+        "after_gap_ci95_ms": post_gap_confidence(post),
         "per_repeat": per_repeat,
     }
 
@@ -80,6 +102,10 @@ def plot(report, destination):
     for key, shift, color, marker in (("p95", -0.12, "#26618B", "o"), ("p99", 0.12, "#AE502B", "D")):
         values = [(index + shift, result["after_gap_ms"][key])
                   for index, (_, _, result) in enumerate(conditions) if result["after_gap_ms"][key] is not None]
+        for index, (_, _, result) in enumerate(conditions):
+            bounds = result["after_gap_ci95_ms"][key]
+            if bounds is not None:
+                axes.vlines(index + shift, *bounds, colors=color, alpha=0.6, linewidth=1.4)
         axes.scatter([point[0] for point in values], [point[1] for point in values],
                      color=color, marker=marker, s=38, label=key.upper(), zorder=3)
     axes.set(xlim=(-0.5, len(conditions) - 0.5), ylim=(0, None), ylabel="SSE content-block gap (ms)")
@@ -87,7 +113,7 @@ def plot(report, destination):
     axes.set_xlabel("Long = streams with measured gaps  ·  Heavy = completed eight-image requests", fontsize=9)
     axes.grid(axis="y", alpha=0.2)
     axes.legend(loc="upper left", bbox_to_anchor=(1.01, 1), borderaxespad=0, frameon=False)
-    axes.set_title("Pooled intervals within each condition · Control trigger: first content + 50 ms", fontsize=9)
+    axes.set_title("Pooled gaps with 95% request-bootstrap intervals · Control trigger: first content + 50 ms", fontsize=9)
     figure.suptitle("Long-stream gaps after trigger")
     with destination.open("xb") as stream:
         figure.savefig(stream, format=destination.suffix.lower().lstrip("."), dpi=180)
@@ -112,6 +138,7 @@ def main():
         "measure": "Adjacent nonempty SSE content-block gaps within the same long request",
         "alignment": "Actual heavy request send; nominal first content + 50 ms in control",
         "inclusion": "Completed 256-token long requests with usable alignment; pooled within each mode",
+        "bootstrap": dict(unit="long request", confidence=0.95, draws=BOOTSTRAP_DRAWS, seed=BOOTSTRAP_SEED),
         "groups": {
             group: {
                 mode: analyze_mode(args.run_dir, group, mode, args.repeats)
