@@ -37,6 +37,8 @@ python3 common/report_performance.py --run-dir "$RUN_DIR" --b-label no-probe \
 
 The report requires one full request record per planned submission and checks IDs, image fingerprints, planned arrival offsets and requested output lengths across groups. The plot pools the three replicates at the QPS shared by all image counts (0.5 in the frozen plan). P95 TTFT uses completed requests, and the adjacent completion panel includes every submitted request.
 
+Each cell reports failures before and after arrival of the first nonempty content block. For A→B, B→C70, and B→C50, the JSON also records both completed, baseline only, treatment only, and neither completed for paired request IDs. TTFT deltas subtract baseline from treatment on pairs that complete in both runs.
+
 For the long-generation interference runs, report adjacent SSE content-block gaps at the actual send time of the eight-image request. In the no-interference control use the first content block plus 50 ms. Include a gap straddling the alignment point so the first stall is visible. The report keeps attempted and completed repeats, the number of observed gaps, and 95% intervals for pooled post-trigger P95 and P99. Each bootstrap draw resamples whole long requests within a condition. An SSE block may contain more than one token.
 
 ```bash

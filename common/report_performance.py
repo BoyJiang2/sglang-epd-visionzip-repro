@@ -1,7 +1,7 @@
 """Verify the frozen synthetic matrix and plot the common-load comparison."""
 
 import argparse
-from collections import defaultdict
+from collections import Counter, defaultdict
 import json
 from pathlib import Path
 
@@ -28,6 +28,22 @@ def fingerprint(row):
     ))
 
 
+def paired_requests(baseline, treatment):
+    outcomes = Counter()
+    ttft_delta = []
+    for rid, base in baseline.items():
+        test = treatment[rid]
+        completed = base["status"] == "complete", test["status"] == "complete"
+        outcomes[completed] += 1
+        if all(completed):
+            ttft_delta.append((test["content_chunks"][0][0] - base["content_chunks"][0][0]) * 1000)
+    return dict(
+        paired=len(baseline), both_completed=outcomes[True, True],
+        baseline_only=outcomes[True, False], treatment_only=outcomes[False, True],
+        neither_completed=outcomes[False, False], ttft_delta_ms=percentiles(ttft_delta),
+    )
+
+
 def collect(run_dir, plan, b_label):
     groups = plan["groups"]
     rates = {int(images): row for images, row in plan["rates_qps"].items()}
@@ -46,11 +62,12 @@ def collect(run_dir, plan, b_label):
         ("official", paper["random_images_upper_bound"], rate, paper["seed"], paper["requests"], paper["output_tokens"])
         for rate in paper["target_rates"]
     )
-    runs = []
+    runs, comparisons = [], []
     pooled = defaultdict(list)
     for kind, images, rate, seed, count, output_tokens in cases:
         name = f"{kind}-{images}img-{rate}qps-seed{seed}"
         first = None
+        case_rows = {}
         for group in groups:
             suffix = f".{b_label}" if group == "B" and b_label else ""
             path = run_dir / f"{name}.{group}{suffix}.jsonl"
@@ -69,9 +86,17 @@ def collect(run_dir, plan, b_label):
             elif first != signatures:
                 raise ValueError(f"{path}: inputs or planned arrivals differ across groups")
             metrics = summarize_run(path, count)
+            with_content = sum(row["status"] == "failed" and bool(row["content_chunks"]) for row in rows.values())
+            metrics["failed_before_first_content"] = metrics["failed"] - with_content
+            metrics["failed_after_first_content"] = with_content
             runs.append(dict(kind=kind, images=images, qps=rate, seed=seed, **metrics))
+            case_rows[group] = rows
             if kind == "formal" and rate == common_rate:
                 pooled[group, images].extend(rows.values())
+        for base, test in (("A", "B"), ("B", "C70"), ("B", "C50")):
+            if base in case_rows and test in case_rows:
+                comparisons.append(dict(kind=kind, images=images, qps=rate, seed=seed, baseline=base, treatment=test,
+                                        **paired_requests(case_rows[base], case_rows[test])))
 
     figure = []
     for (group, images), rows in sorted(pooled.items()):
@@ -80,7 +105,7 @@ def collect(run_dir, plan, b_label):
             group=group, images=images, submitted=len(rows), completed=len(ttft),
             completion_rate=len(ttft) / len(rows), ttft_ms=percentiles(ttft),
         ))
-    return {"common_qps": common_rate, "groups": groups, "runs": runs, "figure": figure}
+    return {"common_qps": common_rate, "groups": groups, "runs": runs, "paired_comparisons": comparisons, "figure": figure}
 
 
 def plot(report, destination):
