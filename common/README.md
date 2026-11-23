@@ -124,3 +124,12 @@ At a lower candidate QPS, pass `--qps` and a new output path. The extraction kee
 For the full MuirBench run, use the same original trace in all four groups. Pass `replay --arrival-scale` with the original trace QPS divided by the qualified shared QPS. For example, a trace generated at 2 QPS needs `--arrival-scale 2` to run at 1 QPS. This changes the planned offsets without creating another copy of the full image trace. Record the scale with the run and preserve failed attempts before lowering it.
 
 Replay the same 72-question pilot with `replay --serial` and an unused output path to check whether concurrent execution changes greedy answers. Serial mode waits for the previous request to finish before sending the next and keeps the frozen request order, endpoints and generation settings. Save both response logs and match by question ID and ordered image hashes.
+
+## 7B raw evidence audit
+
+```bash
+python3 common/audit_7b.py --run-dir "$RUN_DIR" --b-label no-probe \
+  --muir-label 1qps --output "$RUN_DIR/7b-raw-evidence-audit.json"
+```
+
+The audit checks every planned matrix cell and its pairing, long-generation interference repeats, quality and author-reference outputs, and the C100/C70/C50 feature-layout probes. It records verified, missing and invalid checks, including failures inside complete request logs. Use the label of the qualified full MuirBench replay. Before publishing the 7B freeze, review the audit alongside the traffic and stage-timing analyses, rendered figures and service releases.
