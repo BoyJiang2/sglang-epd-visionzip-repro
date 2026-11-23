@@ -22,7 +22,9 @@ GPU_UUIDS="$TP4_UUIDS" ENCODER_URLS="http://127.0.0.1:31231 http://127.0.0.1:312
 
 使用固定请求轨迹，报告有效请求率、TTFT、TPOT、完成/失败数、总完成吞吐及每卡完成吞吐。三组的卡数不同，卡数与每卡指标须和延迟一同呈现。`bash 235B/start.sh --help`、各角色的 `--dry-run` 可检查配置。
 
-7B 结果冻结后，在运行目录中登记 `scale-design.json`。填入模型 `model_revision`、按启动顺序排列的四个 `tp4` UUID、两个 `encoders` UUID，以及 2–3 个 `cases`。每个 case 填 `name`、`requests` 和 `trace_sha256`，并保存对应的 `<name>.trace.jsonl`。同一负载点在三个配置中重放相同轨迹。
+规模回放使用运行目录中的 `scale-design.json`。填入模型 `model_revision`、按启动顺序排列的四个 `tp4` UUID、两个 `encoders` UUID，以及 2–3 个 `cases`。每个 case 填 `name`、`requests` 和 `trace_sha256`，并保存对应的 `<name>.trace.jsonl`。等待 7B 结果冻结后，同一负载点在三个配置中重放相同轨迹。
+
+本次双机流程在核对 7B 全量分析和服务释放后，使用 `python3 235B/register.py --run-dir "$PARENT_RUN_DIR"` 登记单图 0.5 QPS、八图 1 QPS 的原始 128 请求轨迹。命令核对分析哈希和轨迹与 A 组的配对身份，先原子写入 `235b/scale-design.json`，再发布 `7b-frozen.json`。等待中的 qjy001 控制器通过模型、GPU 和端口预检后开始规模回放。
 
 ```bash
 # GROUP 依次为 235B-4、235B-5、235B-6。CASE 为登记的负载名。
