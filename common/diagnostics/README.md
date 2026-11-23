@@ -59,3 +59,11 @@ python3 common/diagnostics/report_quality_probes.py --run-dir "$RUN_DIR" \
 ```
 
 The plot uses mean application MiB per request over the probes measured in all three groups. It takes accuracy from the full 1,000-question OCRBench and 765-question RealWorldQA score files and shows the paired traffic sample size on each panel.
+
+## Paired stage timing
+
+In a separate B/C70/C50 run, start E with `--enable-metrics` and PD with `--enable-metrics --export-metrics-to-file --export-metrics-to-file-dir "$PD_METRICS_DIR"`. Warm up each service, save E's `/metrics` immediately before and after the replay, and retain the client JSONL and PD export files. Use the same ordered requests and planned offsets across the three groups.
+
+Pass a manifest to `python3 common/diagnostics/report_stage_timing.py MANIFEST.json --output REPORT.json`. Give each entry in `configurations` a `name`, an `expected_requests` count, and a `groups` object with `B`, `C70`, `C50`. Each group entry points to `responses`, `e_metrics_before`, `e_metrics_after`, and the `pd_export` array of native log files. Paths are relative to the manifest directory.
+
+PD prefill time includes any scheduling gaps between chunks. Encoder preprocess and forward observations are per batch. The C forward measurement includes VisionZip and the copy to host. The ZMQ send measurement ends when E releases its local send buffer. The report keeps these observation units and PD matching coverage alongside client TTFT.
