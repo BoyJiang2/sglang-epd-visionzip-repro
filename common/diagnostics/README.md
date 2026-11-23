@@ -47,6 +47,8 @@ For remote A requests, the client counts the submitted JSON body and the SSE res
 
 The joined report includes each task category's submitted and completed question counts, accuracy, and the fraction of reciprocal pairs answered correctly on both questions. The reports preserve attempted and completed denominators. When a request fails, the category can come from the paired question or an aligned group. Pairs with no observed category appear under `unlabeled`.
 
+The HTTP diagnostic also records `rpc_headers_ms` per encoder part. For a successful RPC, this is the PD monotonic interval from entering the HTTP call to receiving response headers. It includes request encoding and upload, E queueing and work, and the response path through headers. Use the recorded HTTP status to separate successful RPCs from elapsed times to failure.
+
 ## OCRBench and RealWorldQA traffic probes
 
 Run `quality_probe_trace.py --run-dir "$RUN_DIR" --selection "$RUN_DIR/quality-transport-probe-selection.json"` with the frozen full traces and the registered selection of 32 questions per dataset. Replay each probe trace at its recorded arrival times for B, C70 and C50 with the encoder and PD traces enabled.

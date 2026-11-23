@@ -36,7 +36,7 @@
  def _encoder_media_item(mm_item: dict):
      """Keep per-media options aligned while preserving the legacy URL shape."""
      item = {
-@@ -2804,20 +2820,75 @@
+@@ -2804,20 +2820,78 @@
                  cum_num_items += assigned_num
              part_idx_offset += num_parts
  
@@ -85,9 +85,11 @@
 +                if info is None:
 +                    return await session.post(url, json=msg)
 +                token = active_request.set(info)
++                started = time.perf_counter()
 +                try:
 +                    return await session.post(url, json=msg, trace_request_ctx=info)
 +                finally:
++                    info["rpc_headers_ms"] = 1000 * (time.perf_counter() - started)
 +                    after = _encode_tcp_payload(info.get("socket"))
 +                    before = info.get("before")
 +                    if after is not None and before is not None and info["connections"] == 1:
@@ -109,13 +111,14 @@
 +            for info, response in zip(counters, responses):
 +                logger.info(
 +                    "epd_encode_http req_id=%s part_idx=%s body_bytes=%d "
-+                    "tcp_payload_sent=%s tcp_retrans_sent=%s http_status=%s",
++                    "tcp_payload_sent=%s tcp_retrans_sent=%s http_status=%s rpc_headers_ms=%.6f",
 +                    info["req_id"],
 +                    info["part_idx"],
 +                    info["body_bytes"],
 +                    info.get("tcp_payload_sent", "unavailable"),
 +                    info.get("tcp_retrans_sent", "unavailable"),
 +                    getattr(response, "status", "exception"),
++                    info["rpc_headers_ms"],
 +                )
              # Dispatch only. The embedding never comes back through this call:
              # zmq_to_tokenizer is pushed to our PULL socket during /encode,
