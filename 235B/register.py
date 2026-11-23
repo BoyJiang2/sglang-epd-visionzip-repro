@@ -106,8 +106,8 @@ def register(run):
     placement = read_json(root / "gpu-placement.preflight.json")
     if placement["model_revision"] != MODEL_REVISION:
         raise ValueError("235B model revision does not match the registered FP8 checkpoint")
-    tp4 = [item["gpu_uuid"] for item in placement["tp4"]]
-    encoders = [item["gpu_uuid"] for item in placement["encoders"]]
+    tp4 = [item["uuid"] for item in placement["tp4"]]
+    encoders = [item["uuid"] for item in placement["encoders"]]
     if ([item["index"] for item in placement["tp4"]] != [4, 5, 6, 7]
             or [item["index"] for item in placement["encoders"]] != [1, 2]
             or len(set(tp4 + encoders)) != 6

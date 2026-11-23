@@ -26,6 +26,8 @@ GPU_UUIDS="$TP4_UUIDS" ENCODER_URLS="http://127.0.0.1:31231 http://127.0.0.1:312
 
 本次双机流程在核对 7B 全量分析和服务释放后，使用 `python3 235B/register.py --run-dir "$PARENT_RUN_DIR"` 登记单图 0.5 QPS、八图 1 QPS 的原始 128 请求轨迹。命令核对分析哈希和轨迹与 A 组的配对身份，先原子写入 `235b/scale-design.json`，再发布 `7b-frozen.json`。等待中的 qjy001 控制器通过模型、GPU 和端口预检后开始规模回放。
 
+受控回放可并行执行 `python3 235B/sample_gpus.py --run-dir "$RUN_DIR" --deadline-epoch-s "$LEASE_CUTOFF_EPOCH"`。采样器等待控制器的启动回执，按约一秒一次记录该组已分配 GPU 的利用率和显存。汇总按每个负载从首条请求发出到最后一条结束的区间取样，分别报告共置、PD 和 E 的平均 GPU 利用率、单卡显存峰值和有效采样数。
+
 ```bash
 # GROUP 依次为 235B-4、235B-5、235B-6。CASE 为登记的负载名。
 python3 common/epd_replay.py replay --group "$GROUP" --model "$MODEL_ID" \

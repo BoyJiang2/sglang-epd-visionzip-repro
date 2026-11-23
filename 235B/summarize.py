@@ -62,6 +62,40 @@ def managed_placements(run_dir, tp4, encoders):
     return placements
 
 
+def gpu_activity(path, services, start, finish):
+    if not path.is_file():
+        return None
+    roles = {"colocated" if len(services) == 1 else "pd": services[0]["gpu_uuids"]}
+    if len(services) > 1:
+        roles["encoder"] = [gpu for service in services[1:] for gpu in service["gpu_uuids"]]
+    devices = {gpu for gpus in roles.values() for gpu in gpus}
+    snapshots, errors = [], 0
+    with path.open(encoding="utf-8") as stream:
+        for line in stream:
+            if not line.endswith("\n"):
+                break
+            row = json.loads(line)
+            if not start <= row["epoch_s"] <= finish:
+                continue
+            if "error" in row:
+                errors += 1
+                continue
+            if set(row["gpus"]) != devices:
+                raise ValueError(f"{path}: sampled GPUs differ from the verified service allocation")
+            snapshots.append(row)
+    return dict(
+        samples=len(snapshots), sample_errors=errors,
+        first_sample_offset_s=snapshots[0]["epoch_s"] - start if snapshots else None,
+        last_sample_offset_s=snapshots[-1]["epoch_s"] - start if snapshots else None,
+        roles={
+            role: dict(gpu_count=len(gpus),
+                       mean_utilization_pct=fmean(row["gpus"][gpu]["utilization_pct"] for row in snapshots for gpu in gpus),
+                       peak_used_mib_per_gpu=max(row["gpus"][gpu]["used_mib"] for row in snapshots for gpu in gpus))
+            for role, gpus in roles.items()
+        } if snapshots else {},
+    )
+
+
 def frozen_requests(path, case):
     digest = hashlib.sha256()
     with path.open("rb") as stream:
@@ -115,6 +149,7 @@ def report(run_dir, plan):
                 for row in completed if (row["completion_tokens"] or 0) > 1
             ]
             metrics = summarize_run(path, count)
+            activity = None
             if group in placements:
                 services = placements[group]
                 origin = metrics["wall_origin_ns"] / 1e9
@@ -123,6 +158,8 @@ def report(run_dir, plan):
                         or origin < max(s["launch_epoch_s"] for s in services)
                         or finish > min(s["release_epoch_s"] for s in services)):
                     raise ValueError(f"{path}: replay falls outside the verified service endpoints or lifetimes")
+                first_send = origin + min(row["send_offset_s"] for row in rows.values())
+                activity = gpu_activity(run_dir / f"{group}.gpu-samples.jsonl", services, first_send, finish)
             throughput = metrics["completed_requests_per_s"]
             runs.append(dict(
                 case=name, gpu_count=gpus, tp4=tp4, encoders=encoders[:gpus-4],
@@ -130,6 +167,7 @@ def report(run_dir, plan):
                 mean_ttft_ms=fmean(row["content_chunks"][0][0] * 1000 for row in completed) if completed else None,
                 mean_tpot_ms=fmean(actual_tpot) if actual_tpot else None,
                 completed_requests_per_s_per_gpu=throughput / gpus if throughput is not None else None,
+                gpu_activity=activity,
                 **metrics,
             ))
     return {"model_revision": MODEL_REVISION, "cases": cases, "runtime_placements": placements, "runs": runs}
