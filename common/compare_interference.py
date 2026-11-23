@@ -60,15 +60,54 @@ def analyze_mode(run_dir, group, mode, repeats):
     }
 
 
+def plot(report, destination):
+    from matplotlib.backends.backend_agg import FigureCanvasAgg
+    from matplotlib.figure import Figure
+
+    conditions = [(group, mode, result) for group, modes in report["groups"].items()
+                  for mode, result in modes.items()]
+    figure = Figure(figsize=(max(6.4, 1.14 * len(conditions)), 3.8), layout="constrained")
+    FigureCanvasAgg(figure)
+    axes = figure.subplots()
+    labels = []
+    for group, mode, result in conditions:
+        attempts = result["submitted_repeats"]
+        measured = sum(row.get("post_trigger_gap_ms", {}).get("n", 0) > 0 for row in result["per_repeat"])
+        label = f"{group} · {mode}\n{measured}/{attempts} long"
+        if mode != "control":
+            label += f"\n{result['heavy_outcomes'].get('complete', 0)}/{attempts} heavy"
+        labels.append(label)
+    for key, shift, color, marker in (("p95", -0.12, "#26618B", "o"), ("p99", 0.12, "#AE502B", "D")):
+        values = [(index + shift, result["after_gap_ms"][key])
+                  for index, (_, _, result) in enumerate(conditions) if result["after_gap_ms"][key] is not None]
+        axes.scatter([point[0] for point in values], [point[1] for point in values],
+                     color=color, marker=marker, s=38, label=key.upper(), zorder=3)
+    axes.set(xlim=(-0.5, len(conditions) - 0.5), ylim=(0, None), ylabel="SSE content-block gap (ms)")
+    axes.set_xticks(range(len(labels)), labels, fontsize=9)
+    axes.set_xlabel("Long = streams with measured gaps  ·  Heavy = completed eight-image requests", fontsize=9)
+    axes.grid(axis="y", alpha=0.2)
+    axes.legend(loc="upper left", bbox_to_anchor=(1.01, 1), borderaxespad=0, frameon=False)
+    axes.set_title("Pooled intervals within each condition · Control trigger: first content + 50 ms", fontsize=9)
+    figure.suptitle("Long-stream gaps after trigger")
+    with destination.open("xb") as stream:
+        figure.savefig(stream, format=destination.suffix.lower().lstrip("."), dpi=180)
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--run-dir", type=Path, required=True)
     parser.add_argument("--groups", nargs="+", choices=("A", "B", "C70", "C50"), required=True)
     parser.add_argument("--repeats", type=int, default=10)
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--figure", type=Path, help="Optional PNG or PDF of post-trigger gap percentiles")
     args = parser.parse_args()
     if args.repeats <= 0:
         parser.error("repeats must be positive")
+    if args.figure:
+        if args.figure.suffix.lower() not in (".png", ".pdf") or args.figure.resolve() == args.output.resolve():
+            parser.error("the figure needs a separate .pdf or .png path")
+        if args.figure.exists() or args.output.exists():
+            parser.error("choose new paths for the report and figure")
     report = {
         "measure": "Adjacent nonempty SSE content-block gaps within the same long request",
         "alignment": "Actual heavy request send; nominal first content + 50 ms in control",
@@ -84,6 +123,8 @@ def main():
     with args.output.open("x", encoding="utf-8") as f:
         json.dump(report, f, indent=2)
         f.write("\n")
+    if args.figure:
+        plot(report, args.figure)
 
 
 if __name__ == "__main__":

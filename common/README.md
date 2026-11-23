@@ -41,7 +41,7 @@ For the long-generation interference runs, report adjacent SSE content-block gap
 
 ```bash
 python3 common/compare_interference.py --run-dir "$RUN_DIR" --groups A B C70 C50 \
-  --output "$RUN_DIR/7b-interference.json"
+  --output "$RUN_DIR/7b-interference.json" --figure "$RUN_DIR/interference.png"
 ```
 
 ## Data revisions
@@ -133,3 +133,12 @@ python3 common/audit_7b.py --run-dir "$RUN_DIR" --b-label no-probe \
 ```
 
 The audit checks every planned matrix cell and its pairing, long-generation interference repeats, quality and author-reference outputs, and the C100/C70/C50 feature-layout probes. It records verified, missing and invalid checks, including failures inside complete request logs. Use the label of the qualified full MuirBench replay. Before publishing the 7B freeze, review the audit alongside the traffic and stage-timing analyses, rendered figures and service releases.
+
+When the measurements are complete, build the analysis bundle with Matplotlib in the Python environment.
+
+```bash
+python3 common/build_7b_report.py --run-dir "$RUN_DIR" --output-dir "$RUN_DIR/analysis-7b" \
+  --client-host "$PD_CLIENT_IP" --b-label no-probe --muir-label 1qps
+```
+
+The bundle uses a new output directory, runs the raw audit first, and saves figures, paired quality comparisons, traffic and stage statistics. `analysis-receipt.json` records hashes after all commands succeed. Review those outputs and the release records before publishing the separate 7B freeze.
