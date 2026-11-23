@@ -66,8 +66,12 @@ The plot uses mean application MiB per request over the probes measured in all t
 
 ## Paired stage timing
 
-In a separate B/C70/C50 run, start E with `--enable-metrics` and PD with `--enable-metrics --export-metrics-to-file --export-metrics-to-file-dir "$PD_METRICS_DIR"`. Warm up each service, save E's `/metrics` immediately before and after the replay, and retain the client JSONL and PD export files. Use the same ordered requests and planned offsets across the three groups.
+In a separate B/C70/C50 run, start E with `--enable-metrics` and PD with `--enable-metrics --export-metrics-to-file --export-metrics-to-file-dir "$PD_METRICS_DIR"`. Warm up each service, save E's `/metrics` immediately before and after the replay, and retain the client JSONL, both role logs and PD export files. Use the same ordered requests and planned offsets across the three groups.
+
+For phase logs, use the HTTP patch on PD with `SGLANG_EPD_HTTP_TRACE=1`. On B's encoder use the native feature patch with `SGLANG_EPD_NATIVE_PAYLOAD_TRACE=1`. On C's encoder apply `epd-visionzip-phase-trace.patch` to the pinned C sources and set `SGLANG_EPD_VISIONZIP_PHASE_TRACE=1`.
 
 Pass a manifest to `python3 common/diagnostics/report_stage_timing.py MANIFEST.json --output REPORT.json`. Give each entry in `configurations` a `name`, an `expected_requests` count, and a `groups` object with `B`, `C70`, `C50`. Each group entry points to `responses`, `e_metrics_before`, `e_metrics_after`, and the `pd_export` array of native log files. Paths are relative to the manifest directory.
 
 PD prefill time includes any scheduling gaps between chunks. Encoder preprocess and forward observations are per batch. The C forward measurement includes VisionZip and the copy to host. The ZMQ send measurement ends when E releases its local send buffer. The report keeps these observation units and PD matching coverage alongside client TTFT.
+
+Pass `--pd-log GROUP PATH` and `--encoder-log GROUP PATH` for each diagnostic group to add the phase logs. The report keeps successful HTTP time to headers and failed elapsed time in separate distributions. ViT, VisionZip scoring and merging use one CUDA-event observation per eligible C batch. The enclosing wall span includes the copy to host. Metadata serialization and buffer-view creation are timed per request part in both B and C. The report includes measurement coverage and excludes C batches containing work outside the paired comparison.

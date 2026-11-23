@@ -1,0 +1,239 @@
+diff --git a/python/sglang/srt/disaggregation/encoder/server.py b/python/sglang/srt/disaggregation/encoder/server.py
+--- a/python/sglang/srt/disaggregation/encoder/server.py
++++ b/python/sglang/srt/disaggregation/encoder/server.py
+@@ -2,6 +2,7 @@
+ import concurrent.futures
+ import ctypes
+ import hashlib
++import json
+ import logging
+ import os
+ import pickle
+@@ -321,6 +322,7 @@
+     str_mm_hashes: Optional[List[str]]
+     use_global_cache: bool
+     is_health_check: bool
++    visionzip_phase_ms: Optional[Tuple[float, float, float, float]] = None
+ 
+ 
+ def _preprocess_layout_digest(ctx: EncodeContext) -> tuple[int, int]:
+@@ -559,6 +561,9 @@
+         self.transfer_backend = get_disagg().encoder_transfer_backend
+         self.visionzip_ratio = int(os.environ.get("SGLANG_EPD_VISIONZIP_RATIO", "0"))
+         self.trace_visionzip_payload = os.environ.get("SGLANG_EPD_VISIONZIP_TRACE") == "1"
++        self.trace_visionzip_phases = (
++            os.environ.get("SGLANG_EPD_VISIONZIP_PHASE_TRACE") == "1"
++        )
+         if self.visionzip_ratio not in (0, 50, 70, 100):
+             raise ValueError("SGLANG_EPD_VISIONZIP_RATIO must be one of 0, 50, 70, 100")
+         self.use_mooncake = self.transfer_backend == "mooncake"
+@@ -1769,17 +1774,34 @@
+                         "VisionZip requires Qwen2.5-VL images, TP1, "
+                         "zmq_to_scheduler, and no prefix MM cache"
+                     )
++                phase_events = None
++                feature_kwargs = {}
++                if self.trace_visionzip_phases:
++                    phase_events = tuple(
++                        torch.cuda.Event(enable_timing=True) for _ in range(5)
++                    )
++                    feature_kwargs["visionzip_phase_events"] = phase_events
+                 start = time.perf_counter()
+                 counts = ctx.preprocess_result.token_counts
+                 with torch.inference_mode():
+                     if self.visionzip_ratio == 100:
+-                        mm_embedding = ctx.get_feature_fn(mm_items)
++                        mm_embedding = ctx.get_feature_fn(mm_items, **feature_kwargs)
+                         indices = [list(range(n)) for n in counts]
+                     else:
+                         mm_embedding, indices = ctx.get_feature_fn(
+-                            mm_items, visionzip_ratio=self.visionzip_ratio
++                            mm_items, visionzip_ratio=self.visionzip_ratio, **feature_kwargs
+                         )
+                     mm_embedding = mm_embedding.cpu()
++                if phase_events is not None:
++                    # The blocking D2H copy follows the events on the encoder stream.
++                    to_host_ms = (time.perf_counter() - start) * 1000
++                    begin, score_begin, score_end, vit_end, merge_end = phase_events
++                    vit_ms = begin.elapsed_time(vit_end)
++                    score_ms = merge_ms = 0.0
++                    if self.visionzip_ratio != 100:
++                        score_ms = score_begin.elapsed_time(score_end)
++                        merge_ms = vit_end.elapsed_time(merge_end)
++                    ctx.visionzip_phase_ms = (vit_ms - score_ms, score_ms, merge_ms, to_host_ms)
+                 if len(indices) != len(counts) or mm_embedding.shape[0] != sum(
+                     map(len, indices)
+                 ):
+@@ -2042,6 +2064,14 @@
+         logger.info(f"{endpoint = }")
+ 
+         # Serialize data
++        serialize_start_ns = None
++        if (
++            self.trace_visionzip_phases
++            and self.transfer_backend == "zmq_to_scheduler"
++            and mm_data.error_msg is None
++            and hasattr(mm_data, "visionzip_indices")
++        ):
++            serialize_start_ns = time.monotonic_ns()
+         if get_disagg().encoder_transfer_backend == "mooncake":
+             # Mooncake already pushed the embedding via RDMA;
+             new_mm_data = mm_data.copy_without_embedding()
+@@ -2057,6 +2087,23 @@
+                 serialized_data = pickle.dumps(new_mm_data)
+                 buffer = embedding_tensor.__buffer__()
+ 
++        if serialize_start_ns is not None:
++            serialize_ms = (time.monotonic_ns() - serialize_start_ns) / 1_000_000
++            logger.info(
++                "visionzip_phase_serialize %s",
++                json.dumps(
++                    {
++                        "req_id": mm_data.req_id,
++                        "part_idx": mm_data.part_idx,
++                        "num_parts": mm_data.num_parts,
++                        "ratio": self.visionzip_ratio,
++                        "serialize_ms": serialize_ms,
++                        "metadata_bytes": len(serialized_data),
++                        "feature_bytes": memoryview(buffer).nbytes,
++                    },
++                    separators=(",", ":"),
++                ),
++            )
+         transfer_start = time.perf_counter()
+         if self.transfer_backend == "zmq_to_scheduler" and url is not None:
+             lock = self.scheduler_send_locks.get(endpoint)
+@@ -2269,6 +2316,30 @@
+             if keep_on_gpu and is_epd_accelerator(mm_embedding.device):
+                 current_device_stream(mm_embedding.device).synchronize()
+             self._stage_embedding_batch(staged_embeddings)
++            phase_ms = getattr(ctx, "visionzip_phase_ms", None)
++            if phase_ms is not None:
++                vit_ms, score_ms, merge_ms, to_host_ms = phase_ms
++                logger.info(
++                    "visionzip_phase_batch %s",
++                    json.dumps(
++                        {
++                            "batch_id": ctx.req_id,
++                            "ratio": self.visionzip_ratio,
++                            "req_parts": [
++                                [req["req_id"], req["part_idx"], req["num_parts"]]
++                                for req in requests
++                            ],
++                            "images": ctx.num_items,
++                            "rows_in": sum(ctx.preprocess_result.token_counts),
++                            "rows_out": mm_embedding.shape[0],
++                            "vit_ms": vit_ms,
++                            "score_ms": score_ms,
++                            "merge_ms": merge_ms,
++                            "feature_to_host_wall_ms": to_host_ms,
++                        },
++                        separators=(",", ":"),
++                    ),
++                )
+             return results
+         except BaseException:
+             for mm_data in staged_embeddings:
+diff --git a/python/sglang/srt/models/qwen2_5_vl.py b/python/sglang/srt/models/qwen2_5_vl.py
+--- a/python/sglang/srt/models/qwen2_5_vl.py
++++ b/python/sglang/srt/models/qwen2_5_vl.py
+@@ -506,11 +506,18 @@
+         x: torch.Tensor,
+         grid_thw: torch.Tensor,
+         visionzip_ratio=None,
++        visionzip_phase_events=None,
+     ):
++        phase = visionzip_phase_events
++        if phase is not None:
++            phase[0].record()  # Visual forward start.
+         if self.enable_cg:
+             if visionzip_ratio is not None:
+                 raise ValueError("VisionZip requires SGLANG_VIT_ENABLE_CUDA_GRAPH=0")
+-            return self.forward_with_cuda_graph(x, grid_thw)
++            output = self.forward_with_cuda_graph(x, grid_thw)
++            if phase is not None:
++                phase[3].record()  # ViT end with no score or token merge.
++            return output
+ 
+         # patchify
+         x = x.to(device=self.device, dtype=self.dtype)
+@@ -579,9 +586,13 @@
+ 
+             def observe_qk(q, k):
+                 nonlocal stats
++                if phase is not None:
++                    phase[1].record()  # Score start.
+                 stats = image_statistics(
+                     q, k, patch_counts, self.spatial_merge_unit, reverse_indices
+                 )
++                if phase is not None:
++                    phase[2].record()  # Score end.
+ 
+         # transformers
+         x = x.unsqueeze(1)
+@@ -611,6 +622,8 @@
+         x = self.merger(x)
+         x = x[reverse_indices, :]
+ 
++        if phase is not None:
++            phase[3].record()  # ViT end after its native merger and reorder.
+         if visionzip_ratio is None:
+             return x
+         scores, keys = stats
+@@ -621,9 +634,10 @@
+                 x.split(rows), scores.split(rows), keys.split(rows)
+             )
+         ]
+-        return torch.cat([features for features, _ in images]), [
+-            indices for _, indices in images
+-        ]
++        features = torch.cat([features for features, _ in images])
++        if phase is not None:
++            phase[4].record()  # Token selection and merge end.
++        return features, [indices for _, indices in images]
+ 
+     def forward_with_cuda_graph(
+         self,
+@@ -797,7 +811,10 @@
+         return pad_mm_tokens(input_ids, mm_inputs)
+ 
+     def get_image_feature(
+-        self, items: List[MultimodalDataItem], visionzip_ratio=None
++        self,
++        items: List[MultimodalDataItem],
++        visionzip_ratio=None,
++        visionzip_phase_events=None,
+     ):
+         # in qwen-vl, last dim is the same
+         pixel_values = torch.cat([item.feature for item in items], dim=0).type(
+@@ -817,22 +834,25 @@
+ 
+         if pixel_values.dim() == 2:
+             current_dim = pixel_values.shape[-1]
+-            if current_dim == expected_dim:
+-                return pixel_values
+-            if current_dim != raw_patch_dim:
++            if current_dim == expected_dim or current_dim != raw_patch_dim:
++                if visionzip_phase_events is not None:
++                    raise ValueError("VisionZip phase tracing requires raw image patches")
+                 return pixel_values
+ 
+         assert pixel_values.dim() == 2, pixel_values.dim()
+         assert image_grid_thw.dim() == 2, image_grid_thw.dim()
+         if self.use_data_parallel:
+-            if visionzip_ratio is not None:
++            if visionzip_ratio is not None or visionzip_phase_events is not None:
+                 raise ValueError("VisionZip requires unsharded vision encoding")
+             return run_dp_sharded_mrope_vision_model(
+                 self.visual, pixel_values, image_grid_thw.tolist(), rope_type="rope_3d"
+             )
+         else:
+             image_embeds = self.visual(
+-                pixel_values, grid_thw=image_grid_thw, visionzip_ratio=visionzip_ratio
++                pixel_values,
++                grid_thw=image_grid_thw,
++                visionzip_ratio=visionzip_ratio,
++                visionzip_phase_events=visionzip_phase_events,
+             )
+         return image_embeds
+ 

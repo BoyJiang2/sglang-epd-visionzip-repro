@@ -71,7 +71,11 @@ def build(run, output, b_label, muir_label, client_hosts):
             "--output", output / "muir-traffic.json")
     execute("diagnostics/report_quality_probes.py", "--run-dir", run, *host_args, *quality_args,
             "--output", output / "quality-traffic.json", "--figure", output / "quality-traffic.png")
-    execute("diagnostics/report_stage_timing.py", run / "stage-timing-manifest.json",
+    stage_logs = []
+    for group in ENCODER_GROUPS:
+        encoder, pd = role_logs(group, "stage-timing")
+        stage_logs.extend(["--encoder-log", group, encoder, "--pd-log", group, pd])
+    execute("diagnostics/report_stage_timing.py", run / "stage-timing-manifest.json", *stage_logs,
             "--output", output / "stage-timing.json")
 
     artifacts = {

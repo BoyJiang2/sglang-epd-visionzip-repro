@@ -1,13 +1,33 @@
 --- a/python/sglang/srt/disaggregation/encoder/server.py
 +++ b/python/sglang/srt/disaggregation/encoder/server.py
-@@ -2062,6 +2062,11 @@
+@@ -2002,6 +2002,9 @@
+         logger.info(f"{endpoint = }")
+ 
+         # Serialize data
++        serialize_start_ns = None
++        if self.transfer_backend == "zmq_to_scheduler" and os.environ.get("SGLANG_EPD_NATIVE_PAYLOAD_TRACE") == "1":
++            serialize_start_ns = time.monotonic_ns()
+         if get_disagg().encoder_transfer_backend == "mooncake":
+             # Mooncake already pushed the embedding via RDMA;
+             new_mm_data = mm_data.copy_without_embedding()
+@@ -2017,6 +2020,9 @@
+                 serialized_data = pickle.dumps(new_mm_data)
+                 buffer = embedding_tensor.__buffer__()
+ 
++        serialize_ms = None
++        if serialize_start_ns is not None:
++            serialize_ms = (time.monotonic_ns() - serialize_start_ns) / 1_000_000
+         transfer_start = time.perf_counter()
+         if self.transfer_backend == "zmq_to_scheduler" and url is not None:
+             lock = self.scheduler_send_locks.get(endpoint)
+@@ -2062,6 +2068,11 @@
                      sock.close(linger=0)
                  raise
  
-+            if buffer is not None and os.environ.get("SGLANG_EPD_NATIVE_PAYLOAD_TRACE") == "1":
++            if buffer is not None and serialize_start_ns is not None:
 +                logger.info(
-+                    "epd_feature_payload req_id=%s rows=%d feature_bytes=%d metadata_bytes=%d",
-+                    mm_data.req_id, mm_data.shape[0], memoryview(buffer).nbytes, len(serialized_data),
++                    "epd_feature_payload req_id=%s rows=%d feature_bytes=%d metadata_bytes=%d serialize_ms=%.6f",
++                    mm_data.req_id, mm_data.shape[0], memoryview(buffer).nbytes, len(serialized_data), serialize_ms,
 +                )
              if encoder_metrics_collector is not None:
                  encoder_metrics_collector.observe_transfer(
