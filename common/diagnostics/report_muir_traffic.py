@@ -220,6 +220,32 @@ def collect(group, paths, client_hosts):
     return joined
 
 
+def task_summary(rows, categories):
+    by_idx = {row["idx"]: row for row in rows}
+    summary = {}
+    for index, row in by_idx.items():
+        partner = row["counterpart_idx"]
+        category = categories.get(index, categories.get(partner, "unlabeled"))
+        counts = summary.setdefault(category, dict(submitted=0, completed=0, correct=0,
+                                                  pairs_submitted=0, pairs_completed=0, pairs_both_correct=0))
+        counts["submitted"] += 1
+        counts["completed"] += row["status"] == "complete"
+        counts["correct"] += row["correct"] is True
+        if index < partner:
+            other = by_idx[partner]
+            counts["pairs_submitted"] += 1
+            counts["pairs_completed"] += row["status"] == other["status"] == "complete"
+            counts["pairs_both_correct"] += row["correct"] is other["correct"] is True
+    for counts in summary.values():
+        counts["service_accuracy"] = counts["correct"] / counts["submitted"]
+        counts["accuracy_completed"] = counts["correct"] / counts["completed"] if counts["completed"] else None
+        counts["pair_service_accuracy"] = counts["pairs_both_correct"] / counts["pairs_submitted"]
+        counts["pair_accuracy_completed"] = (
+            counts["pairs_both_correct"] / counts["pairs_completed"] if counts["pairs_completed"] else None
+        )
+    return dict(sorted(summary.items()))
+
+
 def report(groups, client_hosts):
     result = {
         "dataset_revision": REVISION,
@@ -231,7 +257,7 @@ def report(groups, client_hosts):
         },
         "groups": {},
     }
-    identity, image_digests = {}, {}
+    identity, image_digests, categories = {}, {}, {}
     for group, paths in groups.items():
         rows = collect(group, paths, client_hosts)
         for row in rows:
@@ -242,7 +268,13 @@ def report(groups, client_hosts):
                 digests is not None and digests != image_digests.setdefault(rid, digests)
             ):
                 raise ValueError(f"{rid}: groups used different question pairs or image order")
+            category = row["task_category"]
+            if category is not None:
+                for index in (row["idx"], row["counterpart_idx"]):
+                    if category != categories.setdefault(index, category):
+                        raise ValueError(f"{rid}: score category differs between matching questions")
         result["groups"][group] = rows
+    result["task_summary"] = {group: task_summary(rows, categories) for group, rows in result["groups"].items()}
     return result
 
 

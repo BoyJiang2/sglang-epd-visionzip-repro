@@ -45,6 +45,8 @@ python3 common/diagnostics/report_muir_traffic.py --client-host "$PD_CLIENT_IP" 
 
 For remote A requests, the client counts the submitted JSON body and the SSE response through the `[DONE]` line. A local A request has zero inter-node traffic. B/C use the HTTP body and returned feature frames. Match rows by the benchmark question, ordered images and request identity. Unknown application counts stay null, and TCP counts remain separate from application bytes.
 
+The joined report includes each task category's submitted and completed question counts, accuracy, and the fraction of reciprocal pairs answered correctly on both questions. The reports preserve attempted and completed denominators. When a request fails, the category can come from the paired question or an aligned group. Pairs with no observed category appear under `unlabeled`.
+
 ## OCRBench and RealWorldQA traffic probes
 
 Run `quality_probe_trace.py --run-dir "$RUN_DIR" --selection "$RUN_DIR/quality-transport-probe-selection.json"` with the frozen full traces and the registered selection of 32 questions per dataset. Replay each probe trace at its recorded arrival times for B, C70 and C50 with the encoder and PD traces enabled.
