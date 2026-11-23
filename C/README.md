@@ -2,7 +2,7 @@
 
 C uses the same Qwen2.5-VL-7B-Instruct checkpoint and E/PD placement as B. The encoder uses the final ViT block's post-RoPE query and key tensors to score tokens. It selects dominant tokens, merges the remaining features into contextual representatives, and sends only the retained visual feature rows. PD uses the retained indices to shrink the prompt and preserve original M-RoPE coordinates. The patch preserves the vision attention backend.
 
-The patch was validated on CPU with synthetic inputs. Two-node GPU correctness, performance, and quality measurements remain to be validated.
+The patch publishes each compressed image's retained row count before the forward pass and preserves request retirement when the encoder fails before sending a token layout. CPU checks cover both paths. The previous revision passed six archived two-node C100 identity probes. The revised runtime needs a fresh C100 probe and compressed GPU measurements.
 
 ## Apply and check
 
@@ -17,9 +17,10 @@ git -C ../sglang-c checkout --detach "$BASE"
 git -C ../sglang-c apply --check "$REPRO/C/visionzip-epd-qwen25.patch"
 git -C ../sglang-c apply "$REPRO/C/visionzip-epd-qwen25.patch"
 python C/visionzip_cpu_checks.py ../sglang-c
+python common/diagnostics/epd_unadmitted_cpu_checks.py ../sglang-c
 ```
 
-The checks cover the author-style score and merge formulas, C100 identity, malformed indices, multi-image prompt and decode positions, and out-of-order embedding parts. For serving, install the fixed base build's dependencies and launch from the patched sources on both nodes. [SGLang installation and base E/PD setup](https://github.com/sgl-project/sglang/blob/8396d60a14ef03b23d2cdaa5c64adb18eba7c703/docs/docs/advanced_features/epd_disaggregation.mdx)
+The checks cover the author-style score and merge formulas, C100 identity, malformed indices, multi-image prompt and decode positions, out-of-order embedding parts, compressed BF16 metadata, and retirement before token-layout assembly. For serving, install the fixed base build's dependencies and launch from the patched sources on both nodes. [SGLang installation and base E/PD setup](https://github.com/sgl-project/sglang/blob/8396d60a14ef03b23d2cdaa5c64adb18eba7c703/docs/docs/advanced_features/epd_disaggregation.mdx)
 
 Run `python C/visionzip_cpu_checks.py ../sglang-c "$SGLANG_B_ROOT"` to use a separate pinned native B checkout for the comparison. The test uses the Qwen2.5-VL position builder and the scheduler's decode position expansion for 1, 4 and 8 images, including a non-square 1080p-derived grid.
 

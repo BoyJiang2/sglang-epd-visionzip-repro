@@ -1,4 +1,5 @@
 import ast
+import asyncio
 import importlib.util
 import itertools
 import types
@@ -103,6 +104,7 @@ class InternalError(RuntimeError):
     pass
 
 ns = dict(globals(), is_epd_accelerator=lambda device: False)
+ns["image_token_budget"] = getattr(module, "image_token_budget", None)
 run_source("disaggregation/encoder/receiver.py", {
     "EmbeddingData", "MultiModalEmbeddingData", "_validate_embedding_part",
     "_MODALITY_GRID_ATTRS", "_GENERAL_IMAGE_META_ATTRS", "_GENERAL_VIDEO_META_ATTRS",
@@ -111,26 +113,91 @@ run_source("disaggregation/encoder/receiver.py", {
 }, ns)
 EmbeddingData = ns["EmbeddingData"]
 MultiModalEmbeddingData = ns["MultiModalEmbeddingData"]
-run_source("disaggregation/encoder/server.py", set(), ns, ("MMEncoder", {"_stage_embeddings"}))
+run_source(
+    "disaggregation/encoder/server.py", set(), ns,
+    ("MMEncoder", {
+        "_stage_embeddings", "_publish_preprocess_metadata",
+        "_embedding_state_for_stage", "_stage_embedding_batch",
+    }),
+)
 batch_features = torch.randn(7, 32)
 ctx = types.SimpleNamespace(
     req_id="req-first", modality=Modality.IMAGE,
     items_per_req=[2, 1], use_global_cache=False,
-    aux_data={"visionzip_indices":[[0, 2], [1], [0, 1, 2, 3]]},
-    preprocess_result=types.SimpleNamespace(token_counts=[4, 3, 6],grid_thw=torch.tensor([[1,2,8],[1,2,6],[1,2,12]])),
+    aux_data={"visionzip_indices":[[0, 2], [0], [0, 1, 2, 3]]},
+    preprocess_result=types.SimpleNamespace(token_counts=[3, 1, 6],grid_thw=torch.tensor([[1,2,6],[1,2,2],[1,2,12]])),
 )
 requests = [
     {"req_id":"first","num_parts":1,"part_idx":0},
     {"req_id":"second","num_parts":1,"part_idx":0},
 ]
 staged = []
-fake_encoder = types.SimpleNamespace(rank=0, _stage_embedding_batch=staged.extend)
+fake_encoder = types.SimpleNamespace(
+    rank=0, visionzip_ratio=70, _stage_embedding_batch=staged.extend,
+)
 result = ns["_stage_embeddings"](fake_encoder, ctx, requests, batch_features, keep_on_gpu=False)
 assert [r[1] for r in result] == [3, 4]
-assert staged[0].visionzip_indices == [[0,2],[1]]
+assert staged[0].visionzip_indices == [[0,2],[0]]
 assert staged[1].visionzip_indices == [[0,1,2,3]]
 torch.testing.assert_close(staged[0].get_embedding(), batch_features[:3])
 torch.testing.assert_close(staged[1].get_embedding(), batch_features[3:])
+
+
+async def check_encoder_metadata():
+    published = []
+
+    async def publish(*args):
+        published.append(args)
+
+    ns["meta_registry"] = types.SimpleNamespace(publish=publish)
+    request = requests[0]
+    for ratio, health_check, rows in (
+        (0, False, 2691), (100, False, 2691), (70, False, 1883),
+        (50, False, 1344), (70, True, 2691),
+    ):
+        compressed_ctx = types.SimpleNamespace(
+            req_id=request["req_id"], modality=Modality.IMAGE,
+            is_health_check=health_check, items_per_req=[1], use_global_cache=False,
+            aux_data={"visionzip_indices": [list(range(rows))]}
+            if ratio and not health_check else {},
+            preprocess_result=types.SimpleNamespace(
+                token_counts=[2691], grid_thw=torch.tensor([[1, 78, 138]]),
+            ),
+        )
+        state = types.SimpleNamespace(embedding_data=None, embedding_ready=asyncio.Event())
+        encoder = types.SimpleNamespace(
+            rank=0, visionzip_ratio=ratio, _embedding_dims={Modality.IMAGE: 3584},
+            _embedding_dtype=torch.bfloat16, _element_size=2,
+            _require_active_encode_state=lambda req_id: state,
+            _deregister_shared_mr=lambda _: None,
+        )
+        for name in ("_embedding_state_for_stage", "_stage_embedding_batch"):
+            setattr(encoder, name, types.MethodType(ns[name], encoder))
+        await ns["_publish_preprocess_metadata"](encoder, compressed_ctx, [request])
+        assert published[-1] == (request["req_id"], rows * 3584 * 2, rows, 3584), (
+            ratio, health_check, published[-1]
+        )
+        if ratio == 70 and not health_check:
+            wrong_dtype = torch.empty(rows, 3584, dtype=torch.float16)
+            try:
+                ns["_stage_embeddings"](
+                    encoder, compressed_ctx, [request], wrong_dtype, keep_on_gpu=False,
+                )
+            except InternalError as error:
+                assert "Embedding metadata mismatch" in str(error)
+            else:
+                raise AssertionError("Encoder staged embeddings with the wrong dtype")
+            assert not state.embedding_ready.is_set()
+        features = torch.empty(rows, 3584, dtype=torch.bfloat16)
+        result = ns["_stage_embeddings"](
+            encoder, compressed_ctx, [request], features, keep_on_gpu=False,
+        )
+        assert result == [(features.nbytes, rows, 3584, None, None)]
+        assert state.embedding_ready.is_set()
+
+
+asyncio.run(check_encoder_metadata())
+
 first = EmbeddingData("example", 2, 0, torch.tensor([[1,2,8]]), Modality.IMAGE,
                       batch_features[:2], visionzip_indices=[[0,2]])
 second = EmbeddingData("example", 2, 1, torch.tensor([[1,2,6]]), Modality.IMAGE,
@@ -296,21 +363,21 @@ native_source = "separate B source" if native_root != root else "native branch i
 print(f"PASS: real Qwen2.5-VL M-RoPE against {native_source}, "
       "1/4/8 images through C100/C70/C50, including grid 1x78x138.")
 
-native_features = torch.randn(13, 32)
+native_features = torch.randn(10, 32)
 staged.clear()
 ctx.aux_data.clear()
 native = ns["_stage_embeddings"](
     fake_encoder, ctx, requests, native_features, keep_on_gpu=False
 )
-assert [r[1] for r in native] == [7, 6]
+assert [r[1] for r in native] == [4, 6]
 assert all(not hasattr(p, "visionzip_indices") for p in staged)
 native_multi = MultiModalEmbeddingData.from_embedding_data(staged[0])
 assert "visionzip_indices" not in native_multi.get_mm_extra_meta()
 torch.testing.assert_close(
-    native_multi.get_embedding(is_concat=True)[Modality.IMAGE], native_features[:7]
+    native_multi.get_embedding(is_concat=True)[Modality.IMAGE], native_features[:4]
 )
 print(
     "PASS: attention mass parity, 50/70/100, malformed metadata, batched "
     "staging, out-of-order parts, received row validation, "
-    "and native B staging."
+    "prepublished row counts and dtype, and native B staging."
 )

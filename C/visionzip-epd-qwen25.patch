@@ -1,5 +1,5 @@
 diff --git a/python/sglang/srt/disaggregation/encoder/receiver.py b/python/sglang/srt/disaggregation/encoder/receiver.py
-index 824fae4..d4c816c 100644
+index 824fae4..04aebb7 100644
 --- a/python/sglang/srt/disaggregation/encoder/receiver.py
 +++ b/python/sglang/srt/disaggregation/encoder/receiver.py
 @@ -1,6 +1,7 @@
@@ -47,11 +47,36 @@ index 824fae4..d4c816c 100644
          attach_mm_routing_labels(
              mm_inputs.mm_items,
              self.recv_req.mm_routing_labels,
+@@ -2545,10 +2561,15 @@ class MMReceiverBase(ABC):
+     def create_req(self, recv_req: TokenizedGenerateReqInput):
+         from sglang.srt.managers.schedule_batch import Req
+ 
++        # A request can fail before the encoder returns the token layout.
++        # Retire it with an empty prompt without admitting it to inference.
++        input_ids = recv_req.input_ids
++        if input_ids is None:
++            input_ids = array("q")
+         req = Req(
+             recv_req.rid,
+             recv_req.input_text,
+-            recv_req.input_ids,
++            input_ids,
+             recv_req.sampling_params,
+             return_logprob=recv_req.return_logprob,
+             top_logprobs_num=recv_req.top_logprobs_num,
 diff --git a/python/sglang/srt/disaggregation/encoder/server.py b/python/sglang/srt/disaggregation/encoder/server.py
-index e956728..d658dc3 100644
+index e956728..67c65fe 100644
 --- a/python/sglang/srt/disaggregation/encoder/server.py
 +++ b/python/sglang/srt/disaggregation/encoder/server.py
-@@ -557,6 +557,10 @@ class MMEncoder:
+@@ -33,6 +33,7 @@ from sglang.srt.disaggregation.encoder.receiver import (
+     is_epd_accelerator,
+     video_meta_attrs_for,
+ )
++from sglang.srt.disaggregation.encoder.visionzip import image_token_budget
+ from sglang.srt.distributed.parallel_state import (
+     create_custom_parallel_group,
+     get_default_distributed_backend,
+@@ -557,6 +558,10 @@ class MMEncoder:
              get_mm().allow_local_media_files,
          )
          self.transfer_backend = get_disagg().encoder_transfer_backend
@@ -62,7 +87,7 @@ index e956728..d658dc3 100644
          self.use_mooncake = self.transfer_backend == "mooncake"
          self.rank = rank
          # DP rank for metric labels; overridden by runtime.run_dp_worker.
-@@ -1753,6 +1757,40 @@ class MMEncoder:
+@@ -1753,6 +1758,40 @@ class MMEncoder:
                  modality,
              )
  
@@ -103,7 +128,7 @@ index e956728..d658dc3 100644
              cache_hit = False
              # The prefix cache hashes the whole request; a fused multi-request
              # batch has no per-request key, so only N=1 contexts use it.
-@@ -1872,6 +1910,8 @@ class MMEncoder:
+@@ -1872,6 +1911,8 @@ class MMEncoder:
      ) -> Optional[torch.Tensor]:
          """Compute one flattened request with global cache as an optional stage."""
          if ctx.use_global_cache:
@@ -112,7 +137,29 @@ index e956728..d658dc3 100644
              mm_embedding = await self._compute_global_cache_embedding(
                  ctx, keep_on_gpu=keep_on_gpu
              )
-@@ -2062,6 +2102,17 @@ class MMEncoder:
+@@ -1898,10 +1939,20 @@ class MMEncoder:
+         if self.rank != 0:
+             return
+         embedding_dim = self._embedding_dims[ctx.modality]
++        token_counts = ctx.preprocess_result.token_counts
++        if (
++            self.visionzip_ratio in (50, 70)
++            and ctx.modality == Modality.IMAGE
++            and not ctx.is_health_check
++        ):
++            token_counts = [
++                sum(image_token_budget(rows, self.visionzip_ratio))
++                for rows in token_counts
++            ]
+         item_offset = 0
+         for request, item_count in zip(requests, ctx.items_per_req):
+             item_end = item_offset + item_count
+-            token_count = sum(ctx.preprocess_result.token_counts[item_offset:item_end])
++            token_count = sum(token_counts[item_offset:item_end])
+             req_id = request["req_id"]
+             state = self._require_active_encode_state(req_id)
+             state.embedding_data = EmbeddingData(
+@@ -2062,6 +2113,17 @@ class MMEncoder:
                      sock.close(linger=0)
                  raise
  
@@ -130,7 +177,7 @@ index e956728..d658dc3 100644
              if encoder_metrics_collector is not None:
                  encoder_metrics_collector.observe_transfer(
                      time.perf_counter() - transfer_start,
-@@ -2170,14 +2221,20 @@ class MMEncoder:
+@@ -2170,14 +2232,25 @@ class MMEncoder:
              token_offset = 0
              for req, num_items in zip(requests, ctx.items_per_req):
                  item_end = item_offset + num_items
@@ -139,14 +186,19 @@ index e956728..d658dc3 100644
 -                )
 +                req_aux_data = dict(ctx.aux_data)
 +                indices = ctx.aux_data.get("visionzip_indices")
++                counts = ctx.preprocess_result.token_counts[item_offset:item_end]
 +                if indices is None:
-+                    num_tokens = sum(
-+                        ctx.preprocess_result.token_counts[item_offset:item_end]
-+                    )
++                    num_tokens = sum(counts)
 +                else:
 +                    selected = indices[item_offset:item_end]
++                    compact_counts = list(map(len, selected))
++                    if compact_counts != [
++                        sum(image_token_budget(rows, self.visionzip_ratio))
++                        for rows in counts
++                    ]:
++                        raise InternalError("VisionZip selected row count mismatch")
 +                    req_aux_data["visionzip_indices"] = selected
-+                    num_tokens = sum(map(len, selected))
++                    num_tokens = sum(compact_counts)
                  embedding = mm_embedding[token_offset : token_offset + num_tokens]
                  if keep_on_gpu and len(requests) > 1:
                      # A view would pin the whole batch tensor until the last transfer.
@@ -157,10 +209,10 @@ index e956728..d658dc3 100644
                          "original_image_sizes"
 diff --git a/python/sglang/srt/disaggregation/encoder/visionzip.py b/python/sglang/srt/disaggregation/encoder/visionzip.py
 new file mode 100644
-index 0000000..a78db73
+index 0000000..aa881f0
 --- /dev/null
 +++ b/python/sglang/srt/disaggregation/encoder/visionzip.py
-@@ -0,0 +1,71 @@
+@@ -0,0 +1,78 @@
 +"""VisionZip for image-only Qwen2.5-VL E/PD, using the original visual positions."""
 +
 +import torch
@@ -182,16 +234,23 @@ index 0000000..a78db73
 +    return torch.cat(masses)[reverse_indices], torch.cat(keys)[reverse_indices]
 +
 +
++def image_token_budget(rows, ratio):
++    """Return dominant and contextual tokens for one image."""
++    if ratio == 100:
++        return rows, 0
++    return int((ratio - 5) * rows / 100), max(int(0.05 * rows), 1)
++
++
 +def compress_image(embedding, score, key, ratio):
 +    """Select dominant tokens, then merge remaining tokens into contextual anchors."""
 +    rows = embedding.shape[0]
 +    if ratio == 100:
 +        return embedding, list(range(rows))
-+    dominant = score.topk(int((ratio - 5) * rows / 100)).indices
++    dominant_count, count = image_token_budget(rows, ratio)
++    dominant = score.topk(dominant_count).indices
 +    mask = torch.ones(rows, dtype=torch.bool, device=embedding.device)
 +    mask[dominant] = False
 +    rest = mask.nonzero().flatten()
-+    count = max(int(0.05 * rows), 1)
 +    stride = max(rest.numel() // count, 1)
 +    anchor = rest[::stride][:count]
 +    mask[anchor] = False
