@@ -8,6 +8,7 @@ from pathlib import Path
 from random import Random
 from statistics import quantiles
 
+from diagnostics.sample_7b_roles import summarize_window
 from epd_replay import percentiles, summarize_run
 from report_performance import fingerprint, load_cell
 
@@ -56,9 +57,11 @@ def summarize(run, plan):
                 for row in rows.values() if row["status"] == "complete" and row["completion_tokens"] == tokens
             ]
             samples[group].append(values)
+            activity = {node: summarize_window(run, f"{group}-{node}-tail-p99", list(rows.values()))
+                        for node in ("qjy000", "qjy001")} if not core else None
             repeats[group].append(dict(seed=seed, records=count, completed=metrics["completed"],
                                        failures=metrics["failures_by_type"], tpot_samples=len(values),
-                                       sse_gaps=metrics["sse_content_chunk_gap_ms"]["n"]))
+                                       sse_gaps=metrics["sse_content_chunk_gap_ms"]["n"], gpu_activity=activity))
 
     results = {}
     for group, runs in repeats.items():

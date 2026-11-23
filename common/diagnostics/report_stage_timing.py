@@ -13,6 +13,7 @@ import re
 import sys
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from diagnostics.sample_7b_roles import summarize_window
 from epd_replay import percentiles
 from report_performance import fingerprint
 
@@ -311,6 +312,8 @@ def collect_group(base, group, config, expected):
         complete_latencies_ms={name: percentiles([row[name] for row in complete if row[name] is not None])
                                for name in metrics},
         encoder_histograms=encoder_deltas(base / config["e_metrics_before"], base / config["e_metrics_after"]),
+        gpu_activity={role: summarize_window(base, f"{group}-{node}-stage-timing", responses)
+                      for role, node in (("encoder", "qjy000"), ("pd", "qjy001"))},
         requests=requests,
     )
     return signatures, result

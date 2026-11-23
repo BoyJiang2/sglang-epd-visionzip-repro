@@ -68,6 +68,8 @@ The plot uses mean application MiB per request over the probes measured in all t
 
 In a separate B/C70/C50 run, start E with `--enable-metrics` and PD with `--enable-metrics --export-metrics-to-file --export-metrics-to-file-dir "$PD_METRICS_DIR"`. Warm up each service, save E's `/metrics` immediately before and after the replay, and retain the client JSONL, both role logs and PD export files. Use the same ordered requests and planned offsets across the three groups.
 
+For a managed 7B diagnostic, start `python3 common/diagnostics/sample_7b_roles.py --run-dir "$RUN_DIR" --node "$NODE" --gpu-uuid "$GPU_UUID" --deadline-epoch-s "$CUTOFF_EPOCH"` on each node. The sampler reads the assigned GPU about once a second while its recorded service is live. The timing and TPOT reports restrict samples to the window from first request send to last request outcome. They retain sample counts, query failures, mean GPU utilization, and peak device memory for each role or replica.
+
 For phase logs, use the HTTP patch on PD with `SGLANG_EPD_HTTP_TRACE=1`. On B's encoder use the native feature patch with `SGLANG_EPD_NATIVE_PAYLOAD_TRACE=1`. On C's encoder apply `epd-visionzip-phase-trace.patch` to the pinned C sources and set `SGLANG_EPD_VISIONZIP_PHASE_TRACE=1`.
 
 Pass a manifest to `python3 common/diagnostics/report_stage_timing.py MANIFEST.json --output REPORT.json`. Give each entry in `configurations` a `name`, an `expected_requests` count, and a `groups` object with `B`, `C70`, `C50`. Each group entry points to `responses`, `e_metrics_before`, `e_metrics_after`, and the `pd_export` array of native log files. Paths are relative to the manifest directory.
