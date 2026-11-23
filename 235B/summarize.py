@@ -14,6 +14,52 @@ from report_performance import fingerprint, load_cell
 
 
 MODEL_REVISION = "7fbcd8c9e2ad011808ed8a57d64c462605c3e381"
+SGLANG_REVISION = "8396d60a14ef03b23d2cdaa5c64adb18eba7c703"
+PD_PORT, ENCODER_PORTS, BOOTSTRAP_PORT = 31230, (31231, 31232), 8997
+
+
+def managed_placements(run_dir, tp4, encoders):
+    started = run_dir / "scale.started.json"
+    if not started.exists():
+        return {}
+    session = json.loads(started.read_text(encoding="utf-8"))
+    if (session["model_revision"], session["source_commit"], session["tp4"], session["encoders"]) != (
+        MODEL_REVISION, SGLANG_REVISION, tp4, encoders,
+    ):
+        raise ValueError("Scale session differs from the registered model or GPU placement")
+    placements = {}
+    for gpu_count in (4, 5, 6):
+        group = f"235B-{gpu_count}"
+        active_encoders = encoders[:gpu_count - 4]
+        encoder_ports = ENCODER_PORTS[:len(active_encoders)]
+        roles = [(PD_PORT, tp4)]
+        roles.extend((port, [gpu]) for port, gpu in zip(encoder_ports, active_encoders))
+        services = []
+        for port, expected in roles:
+            stem = f"{group}-{port}"
+            launch = json.loads((run_dir / f"{stem}.launch.json").read_text(encoding="utf-8"))
+            release = json.loads((run_dir / f"{stem}.release.json").read_text(encoding="utf-8"))
+            command = launch["command"]
+            encoder = port != PD_PORT
+            ports = [port, BOOTSTRAP_PORT] if not encoder and encoder_ports else [port]
+            if (launch["gpu_uuids"] != expected or launch["ports"] != ports
+                    or launch["model_revision"] != MODEL_REVISION or launch["source_commit"] != session["source_commit"]
+                    or any(launch[key] != release[key] for key in ("pid", "gpu_uuids", "ports"))
+                    or release["idle"] is not True or not session["epoch_s"] <= launch["epoch_s"] < release["epoch_s"]
+                    or "--port" not in command or command[command.index("--port") + 1:][:1] != [str(port)]
+                    or "--tp-size" not in command or command[command.index("--tp-size") + 1:][:1] != [str(len(expected))]
+                    or ("--encoder-only" in command) != encoder
+                    or ("--language-only" in command) != (not encoder and bool(encoder_ports))):
+                raise ValueError(f"{stem}: launch and release do not establish the registered role and devices")
+            if not encoder and encoder_ports and (
+                "--encoder-urls" not in command
+                or command[command.index("--encoder-urls") + 1:] != [f"http://127.0.0.1:{p}" for p in encoder_ports]
+            ):
+                raise ValueError(f"{stem}: PD routes differ from the registered encoders")
+            services.append(dict(port=port, gpu_uuids=launch["gpu_uuids"], pid=launch["pid"],
+                                 launch_epoch_s=launch["epoch_s"], release_epoch_s=release["epoch_s"]))
+        placements[group] = services
+    return placements
 
 
 def frozen_requests(path, case):
@@ -50,6 +96,7 @@ def report(run_dir, plan):
     if not 2 <= len(cases) <= 3 or len({case["name"] for case in cases}) != len(cases):
         raise ValueError("Register two or three unique load points")
 
+    placements = managed_placements(run_dir, tp4, encoders)
     runs = []
     for case in cases:
         name, count = case["name"], case["requests"]
@@ -68,6 +115,14 @@ def report(run_dir, plan):
                 for row in completed if (row["completion_tokens"] or 0) > 1
             ]
             metrics = summarize_run(path, count)
+            if group in placements:
+                services = placements[group]
+                origin = metrics["wall_origin_ns"] / 1e9
+                finish = origin + max(row["send_offset_s"] + row["duration_s"] for row in rows.values())
+                if (set(metrics["endpoints"]) != {f"http://127.0.0.1:{PD_PORT}"}
+                        or origin < max(s["launch_epoch_s"] for s in services)
+                        or finish > min(s["release_epoch_s"] for s in services)):
+                    raise ValueError(f"{path}: replay falls outside the verified service endpoints or lifetimes")
             throughput = metrics["completed_requests_per_s"]
             runs.append(dict(
                 case=name, gpu_count=gpus, tp4=tp4, encoders=encoders[:gpus-4],
@@ -77,7 +132,7 @@ def report(run_dir, plan):
                 completed_requests_per_s_per_gpu=throughput / gpus if throughput is not None else None,
                 **metrics,
             ))
-    return {"model_revision": MODEL_REVISION, "cases": cases, "runs": runs}
+    return {"model_revision": MODEL_REVISION, "cases": cases, "runtime_placements": placements, "runs": runs}
 
 
 def main():

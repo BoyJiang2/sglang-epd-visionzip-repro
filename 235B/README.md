@@ -35,4 +35,4 @@ python3 common/epd_replay.py replay --group "$GROUP" --model "$MODEL_ID" \
 python3 235B/summarize.py --run-dir "$RUN_DIR" --output "$RUN_DIR/scale-summary.json"
 ```
 
-汇总检查轨迹 SHA-256、请求 ID、图像哈希、到达时刻和生成预算。平均 TTFT 与 TPOT 使用有效样本，完成率和总吞吐保留已提交请求与失败记录。每卡吞吐按 4、5、6 张分配卡分别归一。保留启动回执和 GPU 日志核实实际卡数、NCCL 初始化与编码器分配。
+汇总检查轨迹 SHA-256、请求 ID、图像哈希、到达时刻和生成预算。平均 TTFT 与 TPOT 使用有效样本，完成率和总吞吐保留已提交请求与失败记录。每卡吞吐按 4、5、6 张分配卡分别归一。使用本次 qjy001 控制器时，汇总会校验启动与释放回执、GPU UUID 和 E/PD 路由，并检查回放处在对应服务的运行区间内。手动回放也应保留启动回执和 GPU 日志，以核实实际卡数、NCCL 初始化与编码器分配。
