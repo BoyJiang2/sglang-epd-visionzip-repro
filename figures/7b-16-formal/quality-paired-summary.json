@@ -1,0 +1,396 @@
+{
+  "model": "7B",
+  "campaign": "20261123T093855Z-7b-16-campaign",
+  "tasks": {
+    "ocrbench": {
+      "sources": {
+        "A": {
+          "run_id": "20261123T155537Z-7b-16-a-resume",
+          "correct": 823,
+          "submitted": 1000,
+          "completed": 1000,
+          "raw_sha256": "0e9c3075c51442077d3ded891ce207dea38fd7e623782e6bdb485dd087416972",
+          "receipt_sha256": "0901139cf5a3b49eee0ef67d60e0734dcc4b18989bed0075b626a58708170d21",
+          "score_sha256": "16565d5149c64aca8e3b6e56d99651e93f6ad458e90d6df5e9a9e661776feca5"
+        },
+        "B": {
+          "run_id": "20261123T101049Z-7b-16-b-pilot",
+          "correct": 822,
+          "submitted": 1000,
+          "completed": 1000,
+          "raw_sha256": "d2a364a111366e3c0dc8a55c3505670fd717ec4459c158bade4d71cf2e5a332a",
+          "receipt_sha256": "8307ce51556f77559c5957a21686718506f2ad2453afed4f5753bcf2e5c040b9",
+          "score_sha256": "70dc2ec6ad3444359edc9253e1e6bc6aad512ee6f630035657348ea576f7a910"
+        },
+        "C70": {
+          "run_id": "20261123T110704Z-7b-16-c70-pilot",
+          "correct": 781,
+          "submitted": 1000,
+          "completed": 1000,
+          "raw_sha256": "400a96c0a5eaa5dc454a2a77a5c767f55fe694110168e1da0df119280f991f15",
+          "receipt_sha256": "a1d1c5300374fc48a3d7d7eff7d1bc417b353d97ac56b39de5c8337e54bd3a84",
+          "score_sha256": "a40c568904f9a6b6c7009ec2c092812308b347a0216ea12f957700d0c14cb6b8"
+        },
+        "C50": {
+          "run_id": "20261123T120518Z-7b-16-c50-retry",
+          "correct": 683,
+          "submitted": 1000,
+          "completed": 1000,
+          "raw_sha256": "517fe0d892c12b54aa77de10591cb45752e21b4fb23a0a9d44edb3ba12f0e403",
+          "receipt_sha256": "6aff0480eaea662e57971ed9a329fdf973988255ca5307f4a678c9d5f9939614",
+          "score_sha256": "4710a44c035947970e2ab9a0722072b7b03267afe7bf1f71ee0e109ddf069c75"
+        }
+      },
+      "comparisons": {
+        "C70": {
+          "path": "quality-ocrbench.B-to-C70.paired.json",
+          "sha256": "1ee8c215f018665f08345d1fdeeb1ca3d683013546a8099ef4f5594650b0a9b1",
+          "values": {
+            "task": "ocrbench",
+            "dataset_revision": "92a54bd1384387c178d5a07140a2d85e0a3d12e1",
+            "base": {
+              "group": "B",
+              "submitted": 1000,
+              "completed": 1000,
+              "correct": 822,
+              "official_score": 0.822
+            },
+            "test": {
+              "group": "C70",
+              "submitted": 1000,
+              "completed": 1000,
+              "correct": 781,
+              "official_score": 0.781
+            },
+            "resampling_unit": "image SHA-256",
+            "bootstrap_repeats": 5000,
+            "seed": 23011,
+            "official_full_coverage": true,
+            "submitted_accuracy": {
+              "denominator": 1000,
+              "clusters": 930,
+              "delta_pp": -4.1,
+              "ci95_pp": [
+                -5.7956777996070725,
+                -2.441505595116989
+              ]
+            },
+            "transitions_base_to_test": {
+              "False->False": 161,
+              "False->True": 17,
+              "True->False": 58,
+              "True->True": 764
+            }
+          }
+        },
+        "C50": {
+          "path": "quality-ocrbench.B-to-C50.paired.json",
+          "sha256": "641f95bd727363a07ea3fe429820b885c1bba8989cc680e730e6ed0cead911cf",
+          "values": {
+            "task": "ocrbench",
+            "dataset_revision": "92a54bd1384387c178d5a07140a2d85e0a3d12e1",
+            "base": {
+              "group": "B",
+              "submitted": 1000,
+              "completed": 1000,
+              "correct": 822,
+              "official_score": 0.822
+            },
+            "test": {
+              "group": "C50",
+              "submitted": 1000,
+              "completed": 1000,
+              "correct": 683,
+              "official_score": 0.683
+            },
+            "resampling_unit": "image SHA-256",
+            "bootstrap_repeats": 5000,
+            "seed": 23011,
+            "official_full_coverage": true,
+            "submitted_accuracy": {
+              "denominator": 1000,
+              "clusters": 930,
+              "delta_pp": -13.9,
+              "ci95_pp": [
+                -16.479017400204707,
+                -11.411411411411411
+              ]
+            },
+            "transitions_base_to_test": {
+              "False->False": 156,
+              "False->True": 22,
+              "True->False": 161,
+              "True->True": 661
+            }
+          }
+        }
+      }
+    },
+    "realworldqa": {
+      "sources": {
+        "A": {
+          "run_id": "20261123T155537Z-7b-16-a-resume",
+          "correct": 481,
+          "submitted": 765,
+          "completed": 765,
+          "raw_sha256": "d35eb3a1f79f6e1751de83735c9b19b93dc00976f9195c61a1093df3a0b837bd",
+          "receipt_sha256": "3613a414268483da8ad1451a286ef678294202b95bb8060defdc49dcbe15dc9a",
+          "score_sha256": "dd3879f7c34887ee63ea6a70d500fc1e18babb0f018dcc499c3bf889ccaf987e"
+        },
+        "B": {
+          "run_id": "20261123T101049Z-7b-16-b-pilot",
+          "correct": 481,
+          "submitted": 765,
+          "completed": 765,
+          "raw_sha256": "b395f3281cde3d5390a8e80bb898d80fdd5bebb149ae84ff8ff006dde2e85c51",
+          "receipt_sha256": "df8eb45c66af0b00b0e2ff1664100a2e0a33cff99682795b1b2592027d1fbdf2",
+          "score_sha256": "a65b2723a7693125b9c4d2f0cf2f1c12421bac0bc131c49e70326e0606453db3"
+        },
+        "C70": {
+          "run_id": "20261123T110704Z-7b-16-c70-pilot",
+          "correct": 483,
+          "submitted": 765,
+          "completed": 765,
+          "raw_sha256": "acc705a622ef456eaae7ec281a01c8b76e9f9a5d2754589a98799aee3c2a60d3",
+          "receipt_sha256": "1e4c7776352178b8695e4ae937ca5d074551700303351dfcf7031bb3daf39704",
+          "score_sha256": "d9c48ea3a553f720d8da09e947ad2f5259727a2fefa2e4f693c432ad9ba6a9f5"
+        },
+        "C50": {
+          "run_id": "20261123T120518Z-7b-16-c50-retry",
+          "correct": 479,
+          "submitted": 765,
+          "completed": 765,
+          "raw_sha256": "c3ff37eecfbab93b3486b5140ca858f963d3f4b324dfd4aa65d67b1caa0eb1d5",
+          "receipt_sha256": "64d0446bafd3db3e7d7498f7fa9a79db771d5daf863512bbd75fd70bf892949c",
+          "score_sha256": "9403ff76a1234b85929a0dcfc3180db7c43bb8fee7cf929dedb2510712883fce"
+        }
+      },
+      "comparisons": {
+        "C70": {
+          "path": "quality-realworldqa.B-to-C70.paired.json",
+          "sha256": "c346cd215ae7b2a331929837801f2c10bc190bcc7757b2e047d9ac5f55bb6eb1",
+          "values": {
+            "task": "realworldqa",
+            "dataset_revision": "907c4e5228fd1703c710ed937601cb5f89ab8d5c",
+            "base": {
+              "group": "B",
+              "submitted": 765,
+              "completed": 765,
+              "correct": 481,
+              "official_score": 0.6287581699346405
+            },
+            "test": {
+              "group": "C70",
+              "submitted": 765,
+              "completed": 765,
+              "correct": 483,
+              "official_score": 0.6313725490196078
+            },
+            "resampling_unit": "question",
+            "bootstrap_repeats": 5000,
+            "seed": 23011,
+            "official_full_coverage": true,
+            "submitted_accuracy": {
+              "denominator": 765,
+              "clusters": 765,
+              "delta_pp": 0.26143790849673204,
+              "ci95_pp": [
+                -1.1764705882352942,
+                1.6993464052287581
+              ]
+            },
+            "transitions_base_to_test": {
+              "False->False": 268,
+              "False->True": 16,
+              "True->False": 14,
+              "True->True": 467
+            }
+          }
+        },
+        "C50": {
+          "path": "quality-realworldqa.B-to-C50.paired.json",
+          "sha256": "e24bfe5f018af78a218c37d71de168940eb325bfd44c77203a0c0a376024c643",
+          "values": {
+            "task": "realworldqa",
+            "dataset_revision": "907c4e5228fd1703c710ed937601cb5f89ab8d5c",
+            "base": {
+              "group": "B",
+              "submitted": 765,
+              "completed": 765,
+              "correct": 481,
+              "official_score": 0.6287581699346405
+            },
+            "test": {
+              "group": "C50",
+              "submitted": 765,
+              "completed": 765,
+              "correct": 479,
+              "official_score": 0.6261437908496732
+            },
+            "resampling_unit": "question",
+            "bootstrap_repeats": 5000,
+            "seed": 23011,
+            "official_full_coverage": true,
+            "submitted_accuracy": {
+              "denominator": 765,
+              "clusters": 765,
+              "delta_pp": -0.26143790849673204,
+              "ci95_pp": [
+                -1.9607843137254901,
+                1.4379084967320261
+              ]
+            },
+            "transitions_base_to_test": {
+              "False->False": 264,
+              "False->True": 20,
+              "True->False": 22,
+              "True->True": 459
+            }
+          }
+        }
+      }
+    },
+    "muirbench": {
+      "sources": {
+        "A": {
+          "run_id": "20261123T164341Z-7b-16-a-formal",
+          "correct": 1508,
+          "submitted": 2600,
+          "completed": 2600,
+          "raw_sha256": "905d1048f0f5fe11cc715dd5d146a54781213bc9167d399e966632d8eb24aa26",
+          "receipt_sha256": "cc70deee80ebd93bb7c30b4b015298f8fb595e5865788620a1035349a80b0bcb",
+          "score_sha256": "17e95de8011efe1e1cdb6d840f3ee8a7256b0a20ffbb3f5a861223fe37de16b0"
+        },
+        "B": {
+          "run_id": "20261123T180658Z-7b-16-b-formal",
+          "correct": 1508,
+          "submitted": 2600,
+          "completed": 2600,
+          "raw_sha256": "58b4ff278945eccd3f68a95fd96da349e6d908502f8f15f79c23e2ac6ff6f640",
+          "receipt_sha256": "63a0cb944045dc30bb1ddcb59eb1d61692078c891020175122e39571344c346d",
+          "score_sha256": "a5ec5b8e149a70d2ecffb7a5cda4df3fb9aa8806edd226b21bb2d5ca5a9f9f1d"
+        },
+        "C70": {
+          "run_id": "20261123T193318Z-7b-16-c70-formal",
+          "correct": 1508,
+          "submitted": 2600,
+          "completed": 2600,
+          "raw_sha256": "93dba2c0552d896cabc5d1f5382f9f47edc4101f3b9c1560a461e0168ab0c6eb",
+          "receipt_sha256": "110c279d19c50e433cd31418d2bcb4cacbf83cc9b966c6968490a4ce0ec72d66",
+          "score_sha256": "e49c3d9fb71d3c82ea9a14f73462bb49162b340ad9ea1b640fabce90ef0c065e"
+        },
+        "C50": {
+          "run_id": "20261123T205856Z-7b-16-c50-formal",
+          "correct": 1502,
+          "submitted": 2600,
+          "completed": 2600,
+          "raw_sha256": "8655b504ed5809501ceb01261539c00e99ff35df0a4c189edcdba4d6281cc486",
+          "receipt_sha256": "66dc62101eacd7335504e242a995ba9335d06459b8b98344892c62c8d830b1d0",
+          "score_sha256": "7d53b4bd8dc1d858d0013c141ccbf1d28042b08c6149876c7e915cae3659b48f"
+        }
+      },
+      "comparisons": {
+        "C70": {
+          "path": "quality-muirbench.B-to-C70.paired.json",
+          "sha256": "b4a0631721a14cd9f6b7b0a6dc05a1421c93d278219b07e0f8aee2b15a706453",
+          "values": {
+            "task": "muirbench",
+            "dataset_revision": "4c393cffc985c77d28de3b9045e2e5186920df80",
+            "base": {
+              "group": "B",
+              "submitted": 2600,
+              "completed": 2600,
+              "correct": 1508,
+              "official_score": 0.58
+            },
+            "test": {
+              "group": "C70",
+              "submitted": 2600,
+              "completed": 2600,
+              "correct": 1508,
+              "official_score": 0.58
+            },
+            "resampling_unit": "question pair",
+            "bootstrap_repeats": 5000,
+            "seed": 23011,
+            "official_full_coverage": true,
+            "submitted_accuracy": {
+              "denominator": 2600,
+              "clusters": 1300,
+              "delta_pp": 0.0,
+              "ci95_pp": [
+                -0.8076923076923077,
+                0.8076923076923077
+              ]
+            },
+            "transitions_base_to_test": {
+              "False->False": 1035,
+              "False->True": 57,
+              "True->False": 57,
+              "True->True": 1451
+            },
+            "submitted_both_correct": {
+              "denominator": 1300,
+              "clusters": 1300,
+              "delta_pp": 0.3076923076923077,
+              "ci95_pp": [
+                -0.9230769230769231,
+                1.5384615384615385
+              ]
+            }
+          }
+        },
+        "C50": {
+          "path": "quality-muirbench.B-to-C50.paired.json",
+          "sha256": "bf8c06f646921a58c2daee04d2b6e8a1b66b103f39da9abc6d899ccc609f34a8",
+          "values": {
+            "task": "muirbench",
+            "dataset_revision": "4c393cffc985c77d28de3b9045e2e5186920df80",
+            "base": {
+              "group": "B",
+              "submitted": 2600,
+              "completed": 2600,
+              "correct": 1508,
+              "official_score": 0.58
+            },
+            "test": {
+              "group": "C50",
+              "submitted": 2600,
+              "completed": 2600,
+              "correct": 1502,
+              "official_score": 0.5776923076923077
+            },
+            "resampling_unit": "question pair",
+            "bootstrap_repeats": 5000,
+            "seed": 23011,
+            "official_full_coverage": true,
+            "submitted_accuracy": {
+              "denominator": 2600,
+              "clusters": 1300,
+              "delta_pp": -0.23076923076923078,
+              "ci95_pp": [
+                -1.1923076923076923,
+                0.7307692307692307
+              ]
+            },
+            "transitions_base_to_test": {
+              "False->False": 1010,
+              "False->True": 82,
+              "True->False": 88,
+              "True->True": 1420
+            },
+            "submitted_both_correct": {
+              "denominator": 1300,
+              "clusters": 1300,
+              "delta_pp": -0.23076923076923078,
+              "ci95_pp": [
+                -1.6923076923076923,
+                1.2307692307692308
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}

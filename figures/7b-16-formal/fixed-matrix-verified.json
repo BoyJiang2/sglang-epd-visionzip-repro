@@ -1,0 +1,2538 @@
+{
+  "model": "7B",
+  "campaign": "20261123T093855Z-7b-16-campaign",
+  "input_kind": "measured",
+  "gpus": 16,
+  "points": [
+    {
+      "submitted": 384,
+      "success": 384,
+      "failure": 0,
+      "success_per_s": 2.076248418405397,
+      "images": 1,
+      "qps": 2,
+      "group": "A",
+      "p95_ms": 563.1527261808515
+    },
+    {
+      "submitted": 384,
+      "success": 384,
+      "failure": 0,
+      "success_per_s": 2.0763483078234106,
+      "images": 1,
+      "qps": 2,
+      "group": "B",
+      "p95_ms": 596.4090702123942
+    },
+    {
+      "submitted": 384,
+      "success": 384,
+      "failure": 0,
+      "success_per_s": 2.0790144218389286,
+      "images": 1,
+      "qps": 2,
+      "group": "C50",
+      "p95_ms": 513.3395990356804
+    },
+    {
+      "submitted": 384,
+      "success": 384,
+      "failure": 0,
+      "success_per_s": 2.0771022535672397,
+      "images": 1,
+      "qps": 2,
+      "group": "C70",
+      "p95_ms": 591.3717769086362
+    },
+    {
+      "submitted": 384,
+      "success": 384,
+      "failure": 0,
+      "success_per_s": 15.062885802483935,
+      "images": 1,
+      "qps": 16,
+      "group": "A",
+      "p95_ms": 682.5361862778666
+    },
+    {
+      "submitted": 384,
+      "success": 384,
+      "failure": 0,
+      "success_per_s": 12.263990747859285,
+      "images": 1,
+      "qps": 16,
+      "group": "B",
+      "p95_ms": 3591.5602569468347
+    },
+    {
+      "submitted": 384,
+      "success": 384,
+      "failure": 0,
+      "success_per_s": 14.86336373712618,
+      "images": 1,
+      "qps": 16,
+      "group": "C50",
+      "p95_ms": 948.527520336211
+    },
+    {
+      "submitted": 384,
+      "success": 384,
+      "failure": 0,
+      "success_per_s": 14.116965798042214,
+      "images": 1,
+      "qps": 16,
+      "group": "C70",
+      "p95_ms": 1527.441763971001
+    },
+    {
+      "submitted": 384,
+      "success": 384,
+      "failure": 0,
+      "success_per_s": 23.593998974251782,
+      "images": 1,
+      "qps": 32,
+      "group": "A",
+      "p95_ms": 1183.3654690533879
+    },
+    {
+      "submitted": 384,
+      "success": 384,
+      "failure": 0,
+      "success_per_s": 12.692751702495933,
+      "images": 1,
+      "qps": 32,
+      "group": "B",
+      "p95_ms": 6218.389736115933
+    },
+    {
+      "submitted": 384,
+      "success": 384,
+      "failure": 0,
+      "success_per_s": 20.838081969353116,
+      "images": 1,
+      "qps": 32,
+      "group": "C50",
+      "p95_ms": 2472.061807569117
+    },
+    {
+      "submitted": 384,
+      "success": 384,
+      "failure": 0,
+      "success_per_s": 16.641671158054436,
+      "images": 1,
+      "qps": 32,
+      "group": "C70",
+      "p95_ms": 4020.629359129817
+    },
+    {
+      "submitted": 384,
+      "success": 384,
+      "failure": 0,
+      "success_per_s": 1.031632392515138,
+      "images": 4,
+      "qps": 1,
+      "group": "A",
+      "p95_ms": 2231.25869166106
+    },
+    {
+      "submitted": 384,
+      "success": 384,
+      "failure": 0,
+      "success_per_s": 1.0361989103514309,
+      "images": 4,
+      "qps": 1,
+      "group": "B",
+      "p95_ms": 1773.5718016512694
+    },
+    {
+      "submitted": 384,
+      "success": 384,
+      "failure": 0,
+      "success_per_s": 1.0408793733872734,
+      "images": 4,
+      "qps": 1,
+      "group": "C50",
+      "p95_ms": 1238.9365079812706
+    },
+    {
+      "submitted": 384,
+      "success": 384,
+      "failure": 0,
+      "success_per_s": 1.0386011245102762,
+      "images": 4,
+      "qps": 1,
+      "group": "C70",
+      "p95_ms": 1519.7565475478768
+    },
+    {
+      "submitted": 384,
+      "success": 384,
+      "failure": 0,
+      "success_per_s": 5.54486604420685,
+      "images": 4,
+      "qps": 6,
+      "group": "A",
+      "p95_ms": 2735.256983526051
+    },
+    {
+      "submitted": 384,
+      "success": 384,
+      "failure": 0,
+      "success_per_s": 3.1281056367106723,
+      "images": 4,
+      "qps": 6,
+      "group": "B",
+      "p95_ms": 21030.80527186394
+    },
+    {
+      "submitted": 384,
+      "success": 384,
+      "failure": 0,
+      "success_per_s": 5.351631972762951,
+      "images": 4,
+      "qps": 6,
+      "group": "C50",
+      "p95_ms": 4745.207399968059
+    },
+    {
+      "submitted": 384,
+      "success": 384,
+      "failure": 0,
+      "success_per_s": 4.357887313560705,
+      "images": 4,
+      "qps": 6,
+      "group": "C70",
+      "p95_ms": 10675.5349598825
+    },
+    {
+      "submitted": 384,
+      "success": 384,
+      "failure": 0,
+      "success_per_s": 6.04458065828894,
+      "images": 4,
+      "qps": 8,
+      "group": "A",
+      "p95_ms": 4990.992071572691
+    },
+    {
+      "submitted": 384,
+      "success": 384,
+      "failure": 0,
+      "success_per_s": 3.1348275220714257,
+      "images": 4,
+      "qps": 8,
+      "group": "B",
+      "p95_ms": 25168.807251378897
+    },
+    {
+      "submitted": 384,
+      "success": 384,
+      "failure": 0,
+      "success_per_s": 5.866197964791766,
+      "images": 4,
+      "qps": 8,
+      "group": "C50",
+      "p95_ms": 7655.296030547471
+    },
+    {
+      "submitted": 384,
+      "success": 384,
+      "failure": 0,
+      "success_per_s": 4.449467644356258,
+      "images": 4,
+      "qps": 8,
+      "group": "C70",
+      "p95_ms": 13706.365016382193
+    },
+    {
+      "submitted": 384,
+      "success": 384,
+      "failure": 0,
+      "success_per_s": 0.5158324775941421,
+      "images": 8,
+      "qps": 0.5,
+      "group": "A",
+      "p95_ms": 4804.754308518022
+    },
+    {
+      "submitted": 384,
+      "success": 384,
+      "failure": 0,
+      "success_per_s": 0.518250031181199,
+      "images": 8,
+      "qps": 0.5,
+      "group": "B",
+      "p95_ms": 3858.963008597493
+    },
+    {
+      "submitted": 384,
+      "success": 384,
+      "failure": 0,
+      "success_per_s": 0.5214893959428502,
+      "images": 8,
+      "qps": 0.5,
+      "group": "C50",
+      "p95_ms": 2086.4764055237174
+    },
+    {
+      "submitted": 384,
+      "success": 384,
+      "failure": 0,
+      "success_per_s": 0.5201983054238576,
+      "images": 8,
+      "qps": 0.5,
+      "group": "C70",
+      "p95_ms": 2724.6174642816186
+    },
+    {
+      "submitted": 384,
+      "success": 384,
+      "failure": 0,
+      "success_per_s": 1.4873747226797436,
+      "images": 8,
+      "qps": 1.5,
+      "group": "A",
+      "p95_ms": 5053.337292559448
+    },
+    {
+      "submitted": 384,
+      "success": 384,
+      "failure": 0,
+      "success_per_s": 1.3185495173899004,
+      "images": 8,
+      "qps": 1.5,
+      "group": "B",
+      "p95_ms": 22183.744410052896
+    },
+    {
+      "submitted": 384,
+      "success": 384,
+      "failure": 0,
+      "success_per_s": 1.5351436501223565,
+      "images": 8,
+      "qps": 1.5,
+      "group": "C50",
+      "p95_ms": 2821.6030611656606
+    },
+    {
+      "submitted": 384,
+      "success": 384,
+      "failure": 0,
+      "success_per_s": 1.5162604715338097,
+      "images": 8,
+      "qps": 1.5,
+      "group": "C70",
+      "p95_ms": 5235.211627930404
+    },
+    {
+      "submitted": 384,
+      "success": 384,
+      "failure": 0,
+      "success_per_s": 2.860596944470358,
+      "images": 8,
+      "qps": 4,
+      "group": "A",
+      "p95_ms": 11278.91801064834
+    },
+    {
+      "submitted": 384,
+      "success": 384,
+      "failure": 0,
+      "success_per_s": 1.4056408835774976,
+      "images": 8,
+      "qps": 4,
+      "group": "B",
+      "p95_ms": 58809.356754738845
+    },
+    {
+      "submitted": 384,
+      "success": 384,
+      "failure": 0,
+      "success_per_s": 2.995073570118697,
+      "images": 8,
+      "qps": 4,
+      "group": "C50",
+      "p95_ms": 14986.33155981079
+    },
+    {
+      "submitted": 384,
+      "success": 384,
+      "failure": 0,
+      "success_per_s": 2.109807371904514,
+      "images": 8,
+      "qps": 4,
+      "group": "C70",
+      "p95_ms": 31167.641483433545
+    }
+  ],
+  "cells": [
+    {
+      "images": 1,
+      "qps": 2,
+      "seed": 23011,
+      "group": "A",
+      "run_id": "20261123T164341Z-7b-16-a-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 542.672204785049,
+        "p95": 554.0776468813419,
+        "p99": 560.8921102248132
+      },
+      "completed_requests_per_s": 2.0187915797269094,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-1img-2qps-seed23011.A.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-1img-2qps-seed23011.A.20261123T164341Z-7b-16-a-formal.receipt.json",
+      "responses_sha256": "993357960df81fb4ed09cd2858f57eaaa11c0f890ec763652dd695b4fe319ea8"
+    },
+    {
+      "images": 1,
+      "qps": 2,
+      "seed": 23011,
+      "group": "B",
+      "run_id": "20261123T180658Z-7b-16-b-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 541.053275577724,
+        "p95": 598.0551531538367,
+        "p99": 699.4535960443319
+      },
+      "completed_requests_per_s": 2.0188630703910206,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-1img-2qps-seed23011.B.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-1img-2qps-seed23011.B.20261123T180658Z-7b-16-b-formal.receipt.json",
+      "responses_sha256": "e4dae82814632f3b1744149619cf8ccca2a4e4eecac51afdcf256f2ea2d906a9"
+    },
+    {
+      "images": 1,
+      "qps": 2,
+      "seed": 23011,
+      "group": "C70",
+      "run_id": "20261123T193318Z-7b-16-c70-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 523.8576605916023,
+        "p95": 626.7973260954024,
+        "p99": 707.1047268621626
+      },
+      "completed_requests_per_s": 2.0193671183172475,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-1img-2qps-seed23011.C70.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-1img-2qps-seed23011.C70.20261123T193318Z-7b-16-c70-formal.receipt.json",
+      "responses_sha256": "c57b20af603b85fad3d819cf4f2ae14dd183c1e84cbd9ab2a89e8e8268881ae5"
+    },
+    {
+      "images": 1,
+      "qps": 2,
+      "seed": 23011,
+      "group": "C50",
+      "run_id": "20261123T205856Z-7b-16-c50-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 460.6744358316064,
+        "p95": 567.1171221882107,
+        "p99": 930.1630523987129
+      },
+      "completed_requests_per_s": 2.0210092742610786,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-1img-2qps-seed23011.C50.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-1img-2qps-seed23011.C50.20261123T205856Z-7b-16-c50-formal.receipt.json",
+      "responses_sha256": "a2deae600d92f71923b609bc5f101694dcdd9b80237a1cab320c123378c45d9b"
+    },
+    {
+      "images": 1,
+      "qps": 2,
+      "seed": 23012,
+      "group": "A",
+      "run_id": "20261123T164341Z-7b-16-a-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 542.1041268855333,
+        "p95": 574.6352578513324,
+        "p99": 590.9216991811991
+      },
+      "completed_requests_per_s": 1.8693201434877598,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-1img-2qps-seed23012.A.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-1img-2qps-seed23012.A.20261123T164341Z-7b-16-a-formal.receipt.json",
+      "responses_sha256": "b8ca9d444e54d9144727efcb139896f79b7dd77ce9510f96efd3713a26c7a690"
+    },
+    {
+      "images": 1,
+      "qps": 2,
+      "seed": 23012,
+      "group": "B",
+      "run_id": "20261123T180658Z-7b-16-b-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 535.7002653181553,
+        "p95": 549.1025922819972,
+        "p99": 647.1801676414908
+      },
+      "completed_requests_per_s": 1.8694754518265988,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-1img-2qps-seed23012.B.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-1img-2qps-seed23012.B.20261123T180658Z-7b-16-b-formal.receipt.json",
+      "responses_sha256": "a45254809b2c812478fb8ff4ec63dba39be67734394be79b261a4110da8ac415"
+    },
+    {
+      "images": 1,
+      "qps": 2,
+      "seed": 23012,
+      "group": "C70",
+      "run_id": "20261123T193318Z-7b-16-c70-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 521.6470193117857,
+        "p95": 577.6598079130055,
+        "p99": 666.7431827634574
+      },
+      "completed_requests_per_s": 1.8701565014935586,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-1img-2qps-seed23012.C70.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-1img-2qps-seed23012.C70.20261123T193318Z-7b-16-c70-formal.receipt.json",
+      "responses_sha256": "4d0d91ad1e0d215972666fa174366170626cc73a18f9dd29b483b57a961b8f8c"
+    },
+    {
+      "images": 1,
+      "qps": 2,
+      "seed": 23012,
+      "group": "C50",
+      "run_id": "20261123T205856Z-7b-16-c50-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 457.61171355843544,
+        "p95": 469.8384255170822,
+        "p99": 583.7218108214438
+      },
+      "completed_requests_per_s": 1.871585123540972,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-1img-2qps-seed23012.C50.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-1img-2qps-seed23012.C50.20261123T205856Z-7b-16-c50-formal.receipt.json",
+      "responses_sha256": "22cbcd31913e5152ec74b81be81a7c876f1f072e396f6a5d4fdf6e1d66580156"
+    },
+    {
+      "images": 1,
+      "qps": 2,
+      "seed": 23013,
+      "group": "A",
+      "run_id": "20261123T164341Z-7b-16-a-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 545.7685748115182,
+        "p95": 561.4793693646789,
+        "p99": 573.8273282721639
+      },
+      "completed_requests_per_s": 2.4118811775856726,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-1img-2qps-seed23013.A.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-1img-2qps-seed23013.A.20261123T164341Z-7b-16-a-formal.receipt.json",
+      "responses_sha256": "eb0f6e4857528cbe76fa8564cc5a852eed0056e8b2cde7411fe22db1842345f7"
+    },
+    {
+      "images": 1,
+      "qps": 2,
+      "seed": 23013,
+      "group": "B",
+      "run_id": "20261123T180658Z-7b-16-b-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 538.5249136015773,
+        "p95": 620.0250225141644,
+        "p99": 688.0006929859519
+      },
+      "completed_requests_per_s": 2.4119249793359385,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-1img-2qps-seed23013.B.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-1img-2qps-seed23013.B.20261123T180658Z-7b-16-b-formal.receipt.json",
+      "responses_sha256": "e2f5045eda1b01c0082cdb0663ce4d7132a182d3ad3f06c9f2a78429372b576e"
+    },
+    {
+      "images": 1,
+      "qps": 2,
+      "seed": 23013,
+      "group": "C70",
+      "run_id": "20261123T193318Z-7b-16-c70-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 523.676342330873,
+        "p95": 548.1412827037275,
+        "p99": 635.6601970829071
+      },
+      "completed_requests_per_s": 2.4131240442181805,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-1img-2qps-seed23013.C70.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-1img-2qps-seed23013.C70.20261123T193318Z-7b-16-c70-formal.receipt.json",
+      "responses_sha256": "c56b15825799532a6bd1471867cbf632c0730d59c06855fc091af65a4881fca3"
+    },
+    {
+      "images": 1,
+      "qps": 2,
+      "seed": 23013,
+      "group": "C50",
+      "run_id": "20261123T205856Z-7b-16-c50-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 460.4977359995246,
+        "p95": 522.0760038122536,
+        "p99": 633.284551538527
+      },
+      "completed_requests_per_s": 2.416143492255998,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-1img-2qps-seed23013.C50.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-1img-2qps-seed23013.C50.20261123T205856Z-7b-16-c50-formal.receipt.json",
+      "responses_sha256": "791688a221efba4646978452eca73e961c94100c3537d9f154ed9655f087072b"
+    },
+    {
+      "images": 1,
+      "qps": 16,
+      "seed": 23011,
+      "group": "A",
+      "run_id": "20261123T164341Z-7b-16-a-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 552.65155993402,
+        "p95": 1077.0016215741634,
+        "p99": 1095.25844655931
+      },
+      "completed_requests_per_s": 14.562716137891515,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-1img-16qps-seed23011.A.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-1img-16qps-seed23011.A.20261123T164341Z-7b-16-a-formal.receipt.json",
+      "responses_sha256": "4971e6ab490f4be5dd7da17c8a520d9a3631ab4d3142d3a400f893683e2eb946"
+    },
+    {
+      "images": 1,
+      "qps": 16,
+      "seed": 23011,
+      "group": "B",
+      "run_id": "20261123T180658Z-7b-16-b-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 1560.0303495302796,
+        "p95": 2520.4805739223957,
+        "p99": 3029.6387211978445
+      },
+      "completed_requests_per_s": 12.164599130701816,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-1img-16qps-seed23011.B.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-1img-16qps-seed23011.B.20261123T180658Z-7b-16-b-formal.receipt.json",
+      "responses_sha256": "50c01fe31353d3d9d69cef9ea732d3dbf2fafcdaf1cc6e46d8142689a2f7c7e7"
+    },
+    {
+      "images": 1,
+      "qps": 16,
+      "seed": 23011,
+      "group": "C70",
+      "run_id": "20261123T193318Z-7b-16-c70-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 751.3379566371441,
+        "p95": 1236.7177159525456,
+        "p99": 1381.8784710206094
+      },
+      "completed_requests_per_s": 13.736932678471229,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-1img-16qps-seed23011.C70.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-1img-16qps-seed23011.C70.20261123T193318Z-7b-16-c70-formal.receipt.json",
+      "responses_sha256": "b1219de8b31fec23077812b750ddfd791b37d66ea62e0d526d583f341bb24cc1"
+    },
+    {
+      "images": 1,
+      "qps": 16,
+      "seed": 23011,
+      "group": "C50",
+      "run_id": "20261123T205856Z-7b-16-c50-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 586.6360142827034,
+        "p95": 925.7526347413661,
+        "p99": 1051.5206024423244
+      },
+      "completed_requests_per_s": 14.15728280951505,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-1img-16qps-seed23011.C50.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-1img-16qps-seed23011.C50.20261123T205856Z-7b-16-c50-formal.receipt.json",
+      "responses_sha256": "9c4a338520876b999fc527e3c025dfed8bb01c62810b3a6114113310c339f016"
+    },
+    {
+      "images": 1,
+      "qps": 16,
+      "seed": 23012,
+      "group": "A",
+      "run_id": "20261123T164341Z-7b-16-a-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 541.4288761094213,
+        "p95": 570.3640639781952,
+        "p99": 606.8207997083664
+      },
+      "completed_requests_per_s": 13.743681432295979,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-1img-16qps-seed23012.A.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-1img-16qps-seed23012.A.20261123T164341Z-7b-16-a-formal.receipt.json",
+      "responses_sha256": "0848ad4c25d88e3427f0e405f5a0e0b71fbbf0a0a4538f337aa4dc9f07cf130a"
+    },
+    {
+      "images": 1,
+      "qps": 16,
+      "seed": 23012,
+      "group": "B",
+      "run_id": "20261123T180658Z-7b-16-b-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 876.926152035594,
+        "p95": 2176.6620196402077,
+        "p99": 2310.9036504477267
+      },
+      "completed_requests_per_s": 12.025186524986161,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-1img-16qps-seed23012.B.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-1img-16qps-seed23012.B.20261123T180658Z-7b-16-b-formal.receipt.json",
+      "responses_sha256": "883b74bde2a19f82ccbe91f76b159bc2e0158504aca1c3591474e0cd7c18302f"
+    },
+    {
+      "images": 1,
+      "qps": 16,
+      "seed": 23012,
+      "group": "C70",
+      "run_id": "20261123T193318Z-7b-16-c70-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 701.3334352523088,
+        "p95": 1363.031055685133,
+        "p99": 1450.3483811207116
+      },
+      "completed_requests_per_s": 12.95965684248068,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-1img-16qps-seed23012.C70.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-1img-16qps-seed23012.C70.20261123T193318Z-7b-16-c70-formal.receipt.json",
+      "responses_sha256": "f7107552a8739ddcf0c6a6c68218f4bee20ce3924dfe64f1e32f55f7d53ae735"
+    },
+    {
+      "images": 1,
+      "qps": 16,
+      "seed": 23012,
+      "group": "C50",
+      "run_id": "20261123T205856Z-7b-16-c50-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 579.5764178037643,
+        "p95": 854.5431825332347,
+        "p99": 976.3392562605442
+      },
+      "completed_requests_per_s": 13.58328651582045,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-1img-16qps-seed23012.C50.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-1img-16qps-seed23012.C50.20261123T205856Z-7b-16-c50-formal.receipt.json",
+      "responses_sha256": "efd1b9a9b6e81f5df9e3d7461998dc5b349c557b6f691ef8ea0114a255ce79ba"
+    },
+    {
+      "images": 1,
+      "qps": 16,
+      "seed": 23013,
+      "group": "A",
+      "run_id": "20261123T164341Z-7b-16-a-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 548.5250828787684,
+        "p95": 602.785975765437,
+        "p99": 631.2395802885294
+      },
+      "completed_requests_per_s": 17.32027439928261,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-1img-16qps-seed23013.A.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-1img-16qps-seed23013.A.20261123T164341Z-7b-16-a-formal.receipt.json",
+      "responses_sha256": "992f6c08bfca830c644d9841fb45a82f94007c2212f4f4892cf9ff3af155f401"
+    },
+    {
+      "images": 1,
+      "qps": 16,
+      "seed": 23013,
+      "group": "B",
+      "run_id": "20261123T180658Z-7b-16-b-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 2427.6764346286654,
+        "p95": 3935.0327611900866,
+        "p99": 4108.59960930422
+      },
+      "completed_requests_per_s": 12.617653915291422,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-1img-16qps-seed23013.B.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-1img-16qps-seed23013.B.20261123T180658Z-7b-16-b-formal.receipt.json",
+      "responses_sha256": "b0268fb3d66bd61604c30caba66e08d4a3a9fd75b31e9e8c284c2d23f069c001"
+    },
+    {
+      "images": 1,
+      "qps": 16,
+      "seed": 23013,
+      "group": "C70",
+      "run_id": "20261123T193318Z-7b-16-c70-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 1147.3207529634237,
+        "p95": 1673.6486686393619,
+        "p99": 1814.4600905664265
+      },
+      "completed_requests_per_s": 15.986887414153674,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-1img-16qps-seed23013.C70.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-1img-16qps-seed23013.C70.20261123T193318Z-7b-16-c70-formal.receipt.json",
+      "responses_sha256": "35f6739e48bc36eab0f07a35fa38cf700da103057f948daa9703f4e599320cd2"
+    },
+    {
+      "images": 1,
+      "qps": 16,
+      "seed": 23013,
+      "group": "C50",
+      "run_id": "20261123T205856Z-7b-16-c50-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 660.3450449183583,
+        "p95": 1104.483770951629,
+        "p99": 1399.7962410002947
+      },
+      "completed_requests_per_s": 17.366038842501414,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-1img-16qps-seed23013.C50.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-1img-16qps-seed23013.C50.20261123T205856Z-7b-16-c50-formal.receipt.json",
+      "responses_sha256": "f3da6ced96093c86a5b97568c420cded415a58ac8b98cc37cdf9831b589dcf58"
+    },
+    {
+      "images": 1,
+      "qps": 32,
+      "seed": 23011,
+      "group": "A",
+      "run_id": "20261123T164341Z-7b-16-a-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 647.4930085241795,
+        "p95": 1098.3127481304111,
+        "p99": 1378.0487205274408
+      },
+      "completed_requests_per_s": 22.5647419402368,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-1img-32qps-seed23011.A.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-1img-32qps-seed23011.A.20261123T164341Z-7b-16-a-formal.receipt.json",
+      "responses_sha256": "c8fe6d00cfe378d76a7dac5485cddf98caaa9f249cb06c15899b224991af79cf"
+    },
+    {
+      "images": 1,
+      "qps": 32,
+      "seed": 23011,
+      "group": "B",
+      "run_id": "20261123T180658Z-7b-16-b-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 3780.8332359418273,
+        "p95": 5843.79370175302,
+        "p99": 6350.781549178066
+      },
+      "completed_requests_per_s": 12.583984853066552,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-1img-32qps-seed23011.B.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-1img-32qps-seed23011.B.20261123T180658Z-7b-16-b-formal.receipt.json",
+      "responses_sha256": "0f347656568a2a151cde129b42ee21749be1823b189d22303317305a59465636"
+    },
+    {
+      "images": 1,
+      "qps": 32,
+      "seed": 23011,
+      "group": "C70",
+      "run_id": "20261123T193318Z-7b-16-c70-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 2287.478616461158,
+        "p95": 3777.3931310512125,
+        "p99": 3948.4513011574745
+      },
+      "completed_requests_per_s": 16.497771300137085,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-1img-32qps-seed23011.C70.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-1img-32qps-seed23011.C70.20261123T193318Z-7b-16-c70-formal.receipt.json",
+      "responses_sha256": "225a8e1af3248a68136b988bb24d189a604d60bc1262f81ebda0837afb71f2be"
+    },
+    {
+      "images": 1,
+      "qps": 32,
+      "seed": 23011,
+      "group": "C50",
+      "run_id": "20261123T205856Z-7b-16-c50-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 1423.210708424449,
+        "p95": 2104.3437600135803,
+        "p99": 2318.495088461787
+      },
+      "completed_requests_per_s": 20.649291647850163,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-1img-32qps-seed23011.C50.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-1img-32qps-seed23011.C50.20261123T205856Z-7b-16-c50-formal.receipt.json",
+      "responses_sha256": "fbc1d101afcab20b994e267cbe5562ddb7bb6403d203f94e5a14195ad357484b"
+    },
+    {
+      "images": 1,
+      "qps": 32,
+      "seed": 23012,
+      "group": "A",
+      "run_id": "20261123T164341Z-7b-16-a-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 552.0729459822178,
+        "p95": 824.1784647107125,
+        "p99": 951.3661330938342
+      },
+      "completed_requests_per_s": 23.380425368182912,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-1img-32qps-seed23012.A.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-1img-32qps-seed23012.A.20261123T164341Z-7b-16-a-formal.receipt.json",
+      "responses_sha256": "3343b6735cb29f7c1efe83266aca6b2735589d99ccc2fe458a52a00db8bb5ca1"
+    },
+    {
+      "images": 1,
+      "qps": 32,
+      "seed": 23012,
+      "group": "B",
+      "run_id": "20261123T180658Z-7b-16-b-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 3343.308286741376,
+        "p95": 5492.091874033213,
+        "p99": 5662.349363621324
+      },
+      "completed_requests_per_s": 12.76191799459839,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-1img-32qps-seed23012.B.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-1img-32qps-seed23012.B.20261123T180658Z-7b-16-b-formal.receipt.json",
+      "responses_sha256": "b370a832def20c60042b82c45b6b68ca224fd1ce791767ecc7d0822ffe5c6a11"
+    },
+    {
+      "images": 1,
+      "qps": 32,
+      "seed": 23012,
+      "group": "C70",
+      "run_id": "20261123T193318Z-7b-16-c70-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 2030.6310094892979,
+        "p95": 3256.5639629028738,
+        "p99": 3389.7185271978383
+      },
+      "completed_requests_per_s": 16.6214958925378,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-1img-32qps-seed23012.C70.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-1img-32qps-seed23012.C70.20261123T193318Z-7b-16-c70-formal.receipt.json",
+      "responses_sha256": "1f115d821ffc2894bcbd8b6574ecbbaad18efa146d616d3dc514e03e1ab65b71"
+    },
+    {
+      "images": 1,
+      "qps": 32,
+      "seed": 23012,
+      "group": "C50",
+      "run_id": "20261123T205856Z-7b-16-c50-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 1021.1871173232794,
+        "p95": 1893.0698736570778,
+        "p99": 2024.9264886602762
+      },
+      "completed_requests_per_s": 20.610763277655053,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-1img-32qps-seed23012.C50.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-1img-32qps-seed23012.C50.20261123T205856Z-7b-16-c50-formal.receipt.json",
+      "responses_sha256": "ce29a63ed9d9ded7a531ae25c0e2ce851b57e323e45d9e1f4749cb42e098122a"
+    },
+    {
+      "images": 1,
+      "qps": 32,
+      "seed": 23013,
+      "group": "A",
+      "run_id": "20261123T164341Z-7b-16-a-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 882.0082023739815,
+        "p95": 1431.4824565313759,
+        "p99": 1679.6435740590096
+      },
+      "completed_requests_per_s": 24.96054451781464,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-1img-32qps-seed23013.A.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-1img-32qps-seed23013.A.20261123T164341Z-7b-16-a-formal.receipt.json",
+      "responses_sha256": "1dcb25dce34699a7769e4fcc7064b52ab1e144caca2364ef1437242be1b3f445"
+    },
+    {
+      "images": 1,
+      "qps": 32,
+      "seed": 23013,
+      "group": "B",
+      "run_id": "20261123T180658Z-7b-16-b-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 4009.3949493020773,
+        "p95": 6473.466983623803,
+        "p99": 7053.159604910763
+      },
+      "completed_requests_per_s": 12.733799544212337,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-1img-32qps-seed23013.B.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-1img-32qps-seed23013.B.20261123T180658Z-7b-16-b-formal.receipt.json",
+      "responses_sha256": "56a6429b90433e0cd6415cb8ad5aad21da8053043127632ae41fba673729b5d4"
+    },
+    {
+      "images": 1,
+      "qps": 32,
+      "seed": 23013,
+      "group": "C70",
+      "run_id": "20261123T193318Z-7b-16-c70-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 2703.2149117439985,
+        "p95": 4646.962646488101,
+        "p99": 5145.970738120377
+      },
+      "completed_requests_per_s": 16.8086854046596,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-1img-32qps-seed23013.C70.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-1img-32qps-seed23013.C70.20261123T193318Z-7b-16-c70-formal.receipt.json",
+      "responses_sha256": "490a9076c38c9667e8538525f970b2fd80aa041cf49178d97b29dd4b20eae175"
+    },
+    {
+      "images": 1,
+      "qps": 32,
+      "seed": 23013,
+      "group": "C50",
+      "run_id": "20261123T205856Z-7b-16-c50-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 1654.9409264698625,
+        "p95": 2810.436713322997,
+        "p99": 3270.939731299877
+      },
+      "completed_requests_per_s": 21.26707779226484,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-1img-32qps-seed23013.C50.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-1img-32qps-seed23013.C50.20261123T205856Z-7b-16-c50-formal.receipt.json",
+      "responses_sha256": "b2b7c446311744fbe8d3af8f66a3835a9edad0eb88ade17d26cdf88659e69188"
+    },
+    {
+      "images": 4,
+      "qps": 1,
+      "seed": 23011,
+      "group": "A",
+      "run_id": "20261123T164341Z-7b-16-a-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 2182.303494773805,
+        "p95": 2218.725449964404,
+        "p99": 2238.576077222824
+      },
+      "completed_requests_per_s": 1.0033226290878379,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-4img-1qps-seed23011.A.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-4img-1qps-seed23011.A.20261123T164341Z-7b-16-a-formal.receipt.json",
+      "responses_sha256": "f963597a8747c7557c1cab7a5384dedd51df81ce6b71d709b332b99ea2cdab5c"
+    },
+    {
+      "images": 4,
+      "qps": 1,
+      "seed": 23011,
+      "group": "B",
+      "run_id": "20261123T180658Z-7b-16-b-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 1589.69668392092,
+        "p95": 1708.590923808515,
+        "p99": 1927.2171643748889
+      },
+      "completed_requests_per_s": 1.007515283751681,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-4img-1qps-seed23011.B.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-4img-1qps-seed23011.B.20261123T180658Z-7b-16-b-formal.receipt.json",
+      "responses_sha256": "31b1cc37485bc5fa53fa89550e84e61da25ddefcb449348f61154090c6c5f380"
+    },
+    {
+      "images": 4,
+      "qps": 1,
+      "seed": 23011,
+      "group": "C70",
+      "run_id": "20261123T193318Z-7b-16-c70-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 1332.186327315867,
+        "p95": 1493.103434983641,
+        "p99": 1529.1282705962658
+      },
+      "completed_requests_per_s": 1.0098777778587233,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-4img-1qps-seed23011.C70.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-4img-1qps-seed23011.C70.20261123T193318Z-7b-16-c70-formal.receipt.json",
+      "responses_sha256": "142d68f8169af80aac5a2bd6519c0480b64f2037092b67399160f371d5d89d1e"
+    },
+    {
+      "images": 4,
+      "qps": 1,
+      "seed": 23011,
+      "group": "C50",
+      "run_id": "20261123T205856Z-7b-16-c50-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 1062.369187362492,
+        "p95": 1188.0670282058418,
+        "p99": 1246.5551461651921
+      },
+      "completed_requests_per_s": 1.0118660745220633,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-4img-1qps-seed23011.C50.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-4img-1qps-seed23011.C50.20261123T205856Z-7b-16-c50-formal.receipt.json",
+      "responses_sha256": "5a5f5b48ade0a8dd2d99c981965e10da83ffed06ab10d3b43ddbaf42232fb42d"
+    },
+    {
+      "images": 4,
+      "qps": 1,
+      "seed": 23012,
+      "group": "A",
+      "run_id": "20261123T164341Z-7b-16-a-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 2173.2725258916616,
+        "p95": 2226.1725234799087,
+        "p99": 2251.1192178353667
+      },
+      "completed_requests_per_s": 0.9292608335675718,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-4img-1qps-seed23012.A.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-4img-1qps-seed23012.A.20261123T164341Z-7b-16-a-formal.receipt.json",
+      "responses_sha256": "3d2eff01db11abba6497b1143b0d150aaf327f4cd8f9c1318d5a5d302580c533"
+    },
+    {
+      "images": 4,
+      "qps": 1,
+      "seed": 23012,
+      "group": "B",
+      "run_id": "20261123T180658Z-7b-16-b-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 1599.3952713906765,
+        "p95": 1708.5747544653714,
+        "p99": 1837.9808719269931
+      },
+      "completed_requests_per_s": 0.9331164884963364,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-4img-1qps-seed23012.B.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-4img-1qps-seed23012.B.20261123T180658Z-7b-16-b-formal.receipt.json",
+      "responses_sha256": "b857a47e524b02c59578ad5852255da914c4bef86f7b88e2e5dd7c453b1ded56"
+    },
+    {
+      "images": 4,
+      "qps": 1,
+      "seed": 23012,
+      "group": "C70",
+      "run_id": "20261123T193318Z-7b-16-c70-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 1332.2860226035118,
+        "p95": 1485.00385126099,
+        "p99": 1599.2194535769527
+      },
+      "completed_requests_per_s": 0.9351197014091919,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-4img-1qps-seed23012.C70.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-4img-1qps-seed23012.C70.20261123T193318Z-7b-16-c70-formal.receipt.json",
+      "responses_sha256": "07141d23b9001d54ba6a9b409bb93ddfd2d77c2f96482ca6b2a1615b6edd5e12"
+    },
+    {
+      "images": 4,
+      "qps": 1,
+      "seed": 23012,
+      "group": "C50",
+      "run_id": "20261123T205856Z-7b-16-c50-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 1058.2472141832113,
+        "p95": 1210.122272837907,
+        "p99": 1242.362300530076
+      },
+      "completed_requests_per_s": 0.9369657286442143,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-4img-1qps-seed23012.C50.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-4img-1qps-seed23012.C50.20261123T205856Z-7b-16-c50-formal.receipt.json",
+      "responses_sha256": "334811e3f197bf90c6c01fbef8d5de9de36bb08fec02d3214dbf36721c6e8079"
+    },
+    {
+      "images": 4,
+      "qps": 1,
+      "seed": 23013,
+      "group": "A",
+      "run_id": "20261123T164341Z-7b-16-a-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 2185.1007053628564,
+        "p95": 2234.9598336033523,
+        "p99": 2243.1761244870722
+      },
+      "completed_requests_per_s": 1.197317855436778,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-4img-1qps-seed23013.A.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-4img-1qps-seed23013.A.20261123T164341Z-7b-16-a-formal.receipt.json",
+      "responses_sha256": "4b0be9a98547878085a054d94fb5a1ec0da4bdb319982213f00500af8d4df448"
+    },
+    {
+      "images": 4,
+      "qps": 1,
+      "seed": 23013,
+      "group": "B",
+      "run_id": "20261123T180658Z-7b-16-b-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 1612.9133617505431,
+        "p95": 1926.3323621824386,
+        "p99": 2492.2981416247794
+      },
+      "completed_requests_per_s": 1.2034002944829907,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-4img-1qps-seed23013.B.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-4img-1qps-seed23013.B.20261123T180658Z-7b-16-b-formal.receipt.json",
+      "responses_sha256": "a36055bfcedacdfebbe7075b1f793099ccebb3cfd0062ee83d1828211c735440"
+    },
+    {
+      "images": 4,
+      "qps": 1,
+      "seed": 23013,
+      "group": "C70",
+      "run_id": "20261123T193318Z-7b-16-c70-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 1341.1045223474503,
+        "p95": 1611.8056126870215,
+        "p99": 1960.1988420076668
+      },
+      "completed_requests_per_s": 1.2064181763716586,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-4img-1qps-seed23013.C70.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-4img-1qps-seed23013.C70.20261123T193318Z-7b-16-c70-formal.receipt.json",
+      "responses_sha256": "8db3030ede6aa4a9a5ef63e1f4c428d26cd63b366d17f9466ec8e3099f5080ef"
+    },
+    {
+      "images": 4,
+      "qps": 1,
+      "seed": 23013,
+      "group": "C50",
+      "run_id": "20261123T205856Z-7b-16-c50-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 1065.4196795076132,
+        "p95": 1269.6492861025035,
+        "p99": 1411.3252458348873
+      },
+      "completed_requests_per_s": 1.2097305184921756,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-4img-1qps-seed23013.C50.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-4img-1qps-seed23013.C50.20261123T205856Z-7b-16-c50-formal.receipt.json",
+      "responses_sha256": "9491f748cfd16de9b5496f680cdd9a40187a50102fbfd8e65f4e33cd7556c915"
+    },
+    {
+      "images": 4,
+      "qps": 6,
+      "seed": 23011,
+      "group": "A",
+      "run_id": "20261123T164341Z-7b-16-a-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 2213.2460670545697,
+        "p95": 2652.6611993089323,
+        "p99": 3044.9822101555783
+      },
+      "completed_requests_per_s": 5.4503560856377025,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-4img-6qps-seed23011.A.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-4img-6qps-seed23011.A.20261123T164341Z-7b-16-a-formal.receipt.json",
+      "responses_sha256": "2a4841abfc77e7271514b13bfd097718b265c3e58e833681c44ed467f80457fb"
+    },
+    {
+      "images": 4,
+      "qps": 6,
+      "seed": 23011,
+      "group": "B",
+      "run_id": "20261123T180658Z-7b-16-b-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 11082.251300103962,
+        "p95": 19480.803358834237,
+        "p99": 20065.312610995024
+      },
+      "completed_requests_per_s": 3.1015006899839537,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-4img-6qps-seed23011.B.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-4img-6qps-seed23011.B.20261123T180658Z-7b-16-b-formal.receipt.json",
+      "responses_sha256": "b098cd1cac3580c93531edf0bf2d38c5122fbefd92f4077454f03c3841440db9"
+    },
+    {
+      "images": 4,
+      "qps": 6,
+      "seed": 23011,
+      "group": "C70",
+      "run_id": "20261123T193318Z-7b-16-c70-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 5400.123086757958,
+        "p95": 8350.15575941652,
+        "p99": 8664.035501424223
+      },
+      "completed_requests_per_s": 4.2986545053211636,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-4img-6qps-seed23011.C70.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-4img-6qps-seed23011.C70.20261123T193318Z-7b-16-c70-formal.receipt.json",
+      "responses_sha256": "b4eadf58075afd3296dba1fe0c30930cb76ef54d5067babb4b0d53afc34e094b"
+    },
+    {
+      "images": 4,
+      "qps": 6,
+      "seed": 23011,
+      "group": "C50",
+      "run_id": "20261123T205856Z-7b-16-c50-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 2011.0906660556793,
+        "p95": 3000.2803901210427,
+        "p99": 3224.4999087229376
+      },
+      "completed_requests_per_s": 5.334180515699798,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-4img-6qps-seed23011.C50.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-4img-6qps-seed23011.C50.20261123T205856Z-7b-16-c50-formal.receipt.json",
+      "responses_sha256": "f235a540d2779a16e18d0543394c7b7cd5ecabce6c3df8084faf98b820a1e9aa"
+    },
+    {
+      "images": 4,
+      "qps": 6,
+      "seed": 23012,
+      "group": "A",
+      "run_id": "20261123T164341Z-7b-16-a-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 2211.765442043543,
+        "p95": 2703.4087075851858,
+        "p99": 3223.4237594716274
+      },
+      "completed_requests_per_s": 5.037984441319773,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-4img-6qps-seed23012.A.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-4img-6qps-seed23012.A.20261123T164341Z-7b-16-a-formal.receipt.json",
+      "responses_sha256": "a92d378b7badc7714d0d774bb697e0c0adda7c97c3fb065dbcc7d8ce49f7ff25"
+    },
+    {
+      "images": 4,
+      "qps": 6,
+      "seed": 23012,
+      "group": "B",
+      "run_id": "20261123T180658Z-7b-16-b-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 9587.503872811794,
+        "p95": 17774.2694651708,
+        "p99": 17975.825453791767
+      },
+      "completed_requests_per_s": 3.147854650706264,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-4img-6qps-seed23012.B.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-4img-6qps-seed23012.B.20261123T180658Z-7b-16-b-formal.receipt.json",
+      "responses_sha256": "201736298e13572d84e0769b53f5dd7d6f5070e3873fe0e0f43ca719ce84657a"
+    },
+    {
+      "images": 4,
+      "qps": 6,
+      "seed": 23012,
+      "group": "C70",
+      "run_id": "20261123T193318Z-7b-16-c70-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 3514.388930052519,
+        "p95": 6649.5040364563465,
+        "p99": 7350.923135075718
+      },
+      "completed_requests_per_s": 4.322987043182279,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-4img-6qps-seed23012.C70.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-4img-6qps-seed23012.C70.20261123T193318Z-7b-16-c70-formal.receipt.json",
+      "responses_sha256": "ca7dd83d92c7df611ee886965d16eb653eb086a70d4f7566ffd5356fe3796815"
+    },
+    {
+      "images": 4,
+      "qps": 6,
+      "seed": 23012,
+      "group": "C50",
+      "run_id": "20261123T205856Z-7b-16-c50-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 1657.7917421236634,
+        "p95": 3636.523655522616,
+        "p99": 3982.2361766546965
+      },
+      "completed_requests_per_s": 4.913654462382378,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-4img-6qps-seed23012.C50.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-4img-6qps-seed23012.C50.20261123T205856Z-7b-16-c50-formal.receipt.json",
+      "responses_sha256": "c9b26d67d0515f92d41384799cd1c5f65666a742f97230fc56180c71d86a7f81"
+    },
+    {
+      "images": 4,
+      "qps": 6,
+      "seed": 23013,
+      "group": "A",
+      "run_id": "20261123T164341Z-7b-16-a-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 2276.2356474995613,
+        "p95": 3082.5032242573798,
+        "p99": 3945.471635591239
+      },
+      "completed_requests_per_s": 6.28635498187295,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-4img-6qps-seed23013.A.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-4img-6qps-seed23013.A.20261123T164341Z-7b-16-a-formal.receipt.json",
+      "responses_sha256": "f10fdcc77327444e5c5c052d70c143bc9faa890f8b5d80a0464a41cc36b3421b"
+    },
+    {
+      "images": 4,
+      "qps": 6,
+      "seed": 23013,
+      "group": "B",
+      "run_id": "20261123T180658Z-7b-16-b-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 13228.364993818104,
+        "p95": 22784.67038832605,
+        "p99": 23307.90599403903
+      },
+      "completed_requests_per_s": 3.135330338196432,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-4img-6qps-seed23013.B.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-4img-6qps-seed23013.B.20261123T180658Z-7b-16-b-formal.receipt.json",
+      "responses_sha256": "dca70e346543b7ff4507f0b9d21e5a5598643b07eaffeed7f9fc9460d8316a31"
+    },
+    {
+      "images": 4,
+      "qps": 6,
+      "seed": 23013,
+      "group": "C70",
+      "run_id": "20261123T193318Z-7b-16-c70-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 7086.134641431272,
+        "p95": 11089.729770366102,
+        "p99": 11272.353382855654
+      },
+      "completed_requests_per_s": 4.455245874580442,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-4img-6qps-seed23013.C70.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-4img-6qps-seed23013.C70.20261123T193318Z-7b-16-c70-formal.receipt.json",
+      "responses_sha256": "03b92fd7639ff62532f86ec54f31dd8f5967f0df7491493abeb23da5fa3c76c6"
+    },
+    {
+      "images": 4,
+      "qps": 6,
+      "seed": 23013,
+      "group": "C50",
+      "run_id": "20261123T205856Z-7b-16-c50-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 3335.185693576932,
+        "p95": 5456.584142893554,
+        "p99": 6240.766443032771
+      },
+      "completed_requests_per_s": 5.8965070093156005,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-4img-6qps-seed23013.C50.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-4img-6qps-seed23013.C50.20261123T205856Z-7b-16-c50-formal.receipt.json",
+      "responses_sha256": "9fd42c1a71f13a165c9228e6b59634c9de228102ea2f07de2ef26c30f2bf1570"
+    },
+    {
+      "images": 4,
+      "qps": 8,
+      "seed": 23011,
+      "group": "A",
+      "run_id": "20261123T164341Z-7b-16-a-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 2426.8631786108017,
+        "p95": 3135.9592935070395,
+        "p99": 6048.853505384177
+      },
+      "completed_requests_per_s": 5.892387200140981,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-4img-8qps-seed23011.A.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-4img-8qps-seed23011.A.20261123T164341Z-7b-16-a-formal.receipt.json",
+      "responses_sha256": "332a4f5933a663a32e123ea401ff542b486a7afd449d80ed9e2d49d7f6b80253"
+    },
+    {
+      "images": 4,
+      "qps": 8,
+      "seed": 23011,
+      "group": "B",
+      "run_id": "20261123T180658Z-7b-16-b-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 13546.570573933423,
+        "p95": 24021.57219108194,
+        "p99": 25089.01077432558
+      },
+      "completed_requests_per_s": 3.1245874696572824,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-4img-8qps-seed23011.B.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-4img-8qps-seed23011.B.20261123T180658Z-7b-16-b-formal.receipt.json",
+      "responses_sha256": "7b370d1231e13e63cf7a6998464b0fe8f85343673606fbd746d75a494dfd1220"
+    },
+    {
+      "images": 4,
+      "qps": 8,
+      "seed": 23011,
+      "group": "C70",
+      "run_id": "20261123T193318Z-7b-16-c70-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 7726.9432954490185,
+        "p95": 12564.348432980478,
+        "p99": 13129.272458609194
+      },
+      "completed_requests_per_s": 4.400613675065349,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-4img-8qps-seed23011.C70.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-4img-8qps-seed23011.C70.20261123T193318Z-7b-16-c70-formal.receipt.json",
+      "responses_sha256": "b92eec34df039d4a3d5ac46d2be7c4be9865247eb6927b2412a4a7204381fc6c"
+    },
+    {
+      "images": 4,
+      "qps": 8,
+      "seed": 23011,
+      "group": "C50",
+      "run_id": "20261123T205856Z-7b-16-c50-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 3817.711287178099,
+        "p95": 5986.1508081667125,
+        "p99": 6241.381238251925
+      },
+      "completed_requests_per_s": 5.831393214674333,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-4img-8qps-seed23011.C50.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-4img-8qps-seed23011.C50.20261123T205856Z-7b-16-c50-formal.receipt.json",
+      "responses_sha256": "711080fd3ea228bc6e3815f5cb5cf334141bbf4028ee910e6c5dbddaebfef987"
+    },
+    {
+      "images": 4,
+      "qps": 8,
+      "seed": 23012,
+      "group": "A",
+      "run_id": "20261123T164341Z-7b-16-a-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 2251.830728724599,
+        "p95": 3306.653546914459,
+        "p99": 4697.380394842481
+      },
+      "completed_requests_per_s": 5.998483704452697,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-4img-8qps-seed23012.A.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-4img-8qps-seed23012.A.20261123T164341Z-7b-16-a-formal.receipt.json",
+      "responses_sha256": "2bd668a0e542a1227a9d914d8d947cf3aa58fcdefd1af2d29a51bbfd2beee14a"
+    },
+    {
+      "images": 4,
+      "qps": 8,
+      "seed": 23012,
+      "group": "B",
+      "run_id": "20261123T180658Z-7b-16-b-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 12683.57214704156,
+        "p95": 23286.512049194425,
+        "p99": 23869.58395184949
+      },
+      "completed_requests_per_s": 3.1406362353087913,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-4img-8qps-seed23012.B.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-4img-8qps-seed23012.B.20261123T180658Z-7b-16-b-formal.receipt.json",
+      "responses_sha256": "52d55e0e5eb01e0ab5a4235a4e0879ce187a40cb9396de05f88659cb0681510b"
+    },
+    {
+      "images": 4,
+      "qps": 8,
+      "seed": 23012,
+      "group": "C70",
+      "run_id": "20261123T193318Z-7b-16-c70-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 6631.948816590011,
+        "p95": 11318.126113619655,
+        "p99": 11733.406883534046
+      },
+      "completed_requests_per_s": 4.477043584116949,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-4img-8qps-seed23012.C70.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-4img-8qps-seed23012.C70.20261123T193318Z-7b-16-c70-formal.receipt.json",
+      "responses_sha256": "7a15bb6eb9b897b45cba7adba90d9ccebf6d0b9bd2611eab7ae82be9db044840"
+    },
+    {
+      "images": 4,
+      "qps": 8,
+      "seed": 23012,
+      "group": "C50",
+      "run_id": "20261123T205856Z-7b-16-c50-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 2498.4120531007648,
+        "p95": 4823.875991906972,
+        "p99": 5676.595755890012
+      },
+      "completed_requests_per_s": 5.760148069683223,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-4img-8qps-seed23012.C50.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-4img-8qps-seed23012.C50.20261123T205856Z-7b-16-c50-formal.receipt.json",
+      "responses_sha256": "9f64c0a2f43433e14c0bb034990260823b3f0db479083efe90bc9a40013582fd"
+    },
+    {
+      "images": 4,
+      "qps": 8,
+      "seed": 23013,
+      "group": "A",
+      "run_id": "20261123T164341Z-7b-16-a-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 3544.7112331166863,
+        "p95": 5712.601643241944,
+        "p99": 8362.917474862192
+      },
+      "completed_requests_per_s": 6.254180746072049,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-4img-8qps-seed23013.A.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-4img-8qps-seed23013.A.20261123T164341Z-7b-16-a-formal.receipt.json",
+      "responses_sha256": "da28ff0974917c92266409a868b1c999dc02664841363626386718640ee17f2a"
+    },
+    {
+      "images": 4,
+      "qps": 8,
+      "seed": 23013,
+      "group": "B",
+      "run_id": "20261123T180658Z-7b-16-b-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 15214.553976431489,
+        "p95": 27255.053833313286,
+        "p99": 27524.33274174109
+      },
+      "completed_requests_per_s": 3.13930956294515,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-4img-8qps-seed23013.B.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-4img-8qps-seed23013.B.20261123T180658Z-7b-16-b-formal.receipt.json",
+      "responses_sha256": "a0010847022f219f5afa721024135ecab396f40a345425c89e7eb93d775bada9"
+    },
+    {
+      "images": 4,
+      "qps": 8,
+      "seed": 23013,
+      "group": "C70",
+      "run_id": "20261123T193318Z-7b-16-c70-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 9185.231195762753,
+        "p95": 15644.06843231991,
+        "p99": 16363.1918855384
+      },
+      "completed_requests_per_s": 4.471567104230436,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-4img-8qps-seed23013.C70.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-4img-8qps-seed23013.C70.20261123T193318Z-7b-16-c70-formal.receipt.json",
+      "responses_sha256": "0b972a63266c8093d472e34e4ad45e4c04772f614730d80f3cbf111086fbc6b7"
+    },
+    {
+      "images": 4,
+      "qps": 8,
+      "seed": 23013,
+      "group": "C50",
+      "run_id": "20261123T205856Z-7b-16-c50-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 5373.928791843355,
+        "p95": 8693.77439878881,
+        "p99": 9575.18329070881
+      },
+      "completed_requests_per_s": 6.0127865779853655,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-4img-8qps-seed23013.C50.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-4img-8qps-seed23013.C50.20261123T205856Z-7b-16-c50-formal.receipt.json",
+      "responses_sha256": "07299c415bfc557083e0128929bcbb93d92e4230e0d572d554026429ba625866"
+    },
+    {
+      "images": 8,
+      "qps": 0.5,
+      "seed": 23011,
+      "group": "A",
+      "run_id": "20261123T164341Z-7b-16-a-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 4628.105651587248,
+        "p95": 4812.484411709011,
+        "p99": 4881.211382281035
+      },
+      "completed_requests_per_s": 0.5016080551578221,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-8img-0.5qps-seed23011.A.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-8img-0.5qps-seed23011.A.20261123T164341Z-7b-16-a-formal.receipt.json",
+      "responses_sha256": "40da3334e8e3100aee53b45cb35a24fb9dc43db640964437a8f427f49c442361"
+    },
+    {
+      "images": 8,
+      "qps": 0.5,
+      "seed": 23011,
+      "group": "B",
+      "run_id": "20261123T180658Z-7b-16-b-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 3447.5557766854763,
+        "p95": 3795.428850874305,
+        "p99": 4431.415888126941
+      },
+      "completed_requests_per_s": 0.503918174507926,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-8img-0.5qps-seed23011.B.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-8img-0.5qps-seed23011.B.20261123T180658Z-7b-16-b-formal.receipt.json",
+      "responses_sha256": "a7e599cd53e7e50b7de7daab00f48ee1a39774d0ab94e6bb63b4065db3df067e"
+    },
+    {
+      "images": 8,
+      "qps": 0.5,
+      "seed": 23011,
+      "group": "C70",
+      "run_id": "20261123T193318Z-7b-16-c70-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 2540.4290203005075,
+        "p95": 2693.829519394785,
+        "p99": 2928.9499038085346
+      },
+      "completed_requests_per_s": 0.505773982946053,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-8img-0.5qps-seed23011.C70.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-8img-0.5qps-seed23011.C70.20261123T193318Z-7b-16-c70-formal.receipt.json",
+      "responses_sha256": "be307703a3d58adc25cf6293c6d91a7f1887b41be47261d688a174095ed4b2f2"
+    },
+    {
+      "images": 8,
+      "qps": 0.5,
+      "seed": 23011,
+      "group": "C50",
+      "run_id": "20261123T205856Z-7b-16-c50-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 1931.1063177883625,
+        "p95": 2025.9161796420813,
+        "p99": 2113.343298919499
+      },
+      "completed_requests_per_s": 0.5069882627001292,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-8img-0.5qps-seed23011.C50.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-8img-0.5qps-seed23011.C50.20261123T205856Z-7b-16-c50-formal.receipt.json",
+      "responses_sha256": "2f66d32de4bf0cb99d362bae3a207708fc77c9c3de500dcf586d849d5901cede"
+    },
+    {
+      "images": 8,
+      "qps": 0.5,
+      "seed": 23012,
+      "group": "A",
+      "run_id": "20261123T164341Z-7b-16-a-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 4624.029994010925,
+        "p95": 4786.086443904787,
+        "p99": 4924.117642045021
+      },
+      "completed_requests_per_s": 0.46472876919764206,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-8img-0.5qps-seed23012.A.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-8img-0.5qps-seed23012.A.20261123T164341Z-7b-16-a-formal.receipt.json",
+      "responses_sha256": "40cb760f7d5f7d13d2f0f38fe965ff01e5e58a6b20cca57ebe1d464c269f38fa"
+    },
+    {
+      "images": 8,
+      "qps": 0.5,
+      "seed": 23012,
+      "group": "B",
+      "run_id": "20261123T180658Z-7b-16-b-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 3456.427665427327,
+        "p95": 3735.7707015238702,
+        "p99": 3925.3853245265786
+      },
+      "completed_requests_per_s": 0.46669066113216745,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-8img-0.5qps-seed23012.B.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-8img-0.5qps-seed23012.B.20261123T180658Z-7b-16-b-formal.receipt.json",
+      "responses_sha256": "165584074aa17dff69a19100f6b9b0822685505abd2219f101cc4c974262eba6"
+    },
+    {
+      "images": 8,
+      "qps": 0.5,
+      "seed": 23012,
+      "group": "C70",
+      "run_id": "20261123T193318Z-7b-16-c70-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 2541.1229422315955,
+        "p95": 2663.100708648563,
+        "p99": 2741.508127488196
+      },
+      "completed_requests_per_s": 0.4682856118839043,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-8img-0.5qps-seed23012.C70.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-8img-0.5qps-seed23012.C70.20261123T193318Z-7b-16-c70-formal.receipt.json",
+      "responses_sha256": "88d91764397f6ec3e607c8b583cc68df7dfe10ec0f8ab2f4b3a3ad6b84d267b4"
+    },
+    {
+      "images": 8,
+      "qps": 0.5,
+      "seed": 23012,
+      "group": "C50",
+      "run_id": "20261123T205856Z-7b-16-c50-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 1932.3684042319655,
+        "p95": 2071.067444514483,
+        "p99": 2156.5844002366066
+      },
+      "completed_requests_per_s": 0.46928465023620136,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-8img-0.5qps-seed23012.C50.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-8img-0.5qps-seed23012.C50.20261123T205856Z-7b-16-c50-formal.receipt.json",
+      "responses_sha256": "31c80f73d7b26f1ea825c8ff79690778d60e5d29b3093db3568f0ca468c2bde0"
+    },
+    {
+      "images": 8,
+      "qps": 0.5,
+      "seed": 23013,
+      "group": "A",
+      "run_id": "20261123T164341Z-7b-16-a-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 4658.778150565922,
+        "p95": 4813.931868318468,
+        "p99": 4903.12000958249
+      },
+      "completed_requests_per_s": 0.5986373299481865,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-8img-0.5qps-seed23013.A.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-8img-0.5qps-seed23013.A.20261123T164341Z-7b-16-a-formal.receipt.json",
+      "responses_sha256": "9163df93002639c2200c058504d7d1c4c2737d3b894734091ff01c1863adaaf8"
+    },
+    {
+      "images": 8,
+      "qps": 0.5,
+      "seed": 23013,
+      "group": "B",
+      "run_id": "20261123T180658Z-7b-16-b-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 3475.5360605195165,
+        "p95": 4388.293267041447,
+        "p99": 5460.994467344136
+      },
+      "completed_requests_per_s": 0.6018601584704298,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-8img-0.5qps-seed23013.B.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-8img-0.5qps-seed23013.B.20261123T180658Z-7b-16-b-formal.receipt.json",
+      "responses_sha256": "1ea1c43896c88032525488502cd6b1ce14b6d9e1d1b00188e414dc59cb2f991e"
+    },
+    {
+      "images": 8,
+      "qps": 0.5,
+      "seed": 23013,
+      "group": "C70",
+      "run_id": "20261123T193318Z-7b-16-c70-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 2555.21740578115,
+        "p95": 2930.447271838784,
+        "p99": 3764.279506783933
+      },
+      "completed_requests_per_s": 0.6044433251798275,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-8img-0.5qps-seed23013.C70.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-8img-0.5qps-seed23013.C70.20261123T193318Z-7b-16-c70-formal.receipt.json",
+      "responses_sha256": "ed2a3b9800adea658a873c47219b68bb19d9d8b53bb7d5ad154e96aca2dfdf45"
+    },
+    {
+      "images": 8,
+      "qps": 0.5,
+      "seed": 23013,
+      "group": "C50",
+      "run_id": "20261123T205856Z-7b-16-c50-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 1948.1357391923666,
+        "p95": 2151.513986941427,
+        "p99": 2500.1089082099506
+      },
+      "completed_requests_per_s": 0.6062742729812212,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-8img-0.5qps-seed23013.C50.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-8img-0.5qps-seed23013.C50.20261123T205856Z-7b-16-c50-formal.receipt.json",
+      "responses_sha256": "509d764392d78ebf928b55515e1b0a63f7a1be00aee9dfc24df05d5e57606841"
+    },
+    {
+      "images": 8,
+      "qps": 1.5,
+      "seed": 23011,
+      "group": "A",
+      "run_id": "20261123T164341Z-7b-16-a-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 4633.648417890072,
+        "p95": 4900.269511155785,
+        "p99": 5399.123519174755
+      },
+      "completed_requests_per_s": 1.4483973551787896,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-8img-1.5qps-seed23011.A.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-8img-1.5qps-seed23011.A.20261123T164341Z-7b-16-a-formal.receipt.json",
+      "responses_sha256": "3bcc3ed102402830689d0b1d2e1a05c7eb6e56db477fe894bf7e18829ea0a1eb"
+    },
+    {
+      "images": 8,
+      "qps": 1.5,
+      "seed": 23011,
+      "group": "B",
+      "run_id": "20261123T180658Z-7b-16-b-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 7530.845023691654,
+        "p95": 12772.695927042514,
+        "p99": 13514.801891036332
+      },
+      "completed_requests_per_s": 1.3155579146739687,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-8img-1.5qps-seed23011.B.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-8img-1.5qps-seed23011.B.20261123T180658Z-7b-16-b-formal.receipt.json",
+      "responses_sha256": "b1e051a7b427975e142970d28b998f9ce19d61190c3426230623fddce3db418f"
+    },
+    {
+      "images": 8,
+      "qps": 1.5,
+      "seed": 23011,
+      "group": "C70",
+      "run_id": "20261123T193318Z-7b-16-c70-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 2860.3886030614376,
+        "p95": 4194.3407548591495,
+        "p99": 4525.721224118024
+      },
+      "completed_requests_per_s": 1.4661954614825892,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-8img-1.5qps-seed23011.C70.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-8img-1.5qps-seed23011.C70.20261123T193318Z-7b-16-c70-formal.receipt.json",
+      "responses_sha256": "7c7a6ffb11a77c65ac69f1d452c9a2262b8c1ddfbb11875b18fbf41bd5fa0de4"
+    },
+    {
+      "images": 8,
+      "qps": 1.5,
+      "seed": 23011,
+      "group": "C50",
+      "run_id": "20261123T205856Z-7b-16-c50-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 1957.5796835124493,
+        "p95": 2670.718790125102,
+        "p99": 2863.874289542437
+      },
+      "completed_requests_per_s": 1.4929391775885417,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-8img-1.5qps-seed23011.C50.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-8img-1.5qps-seed23011.C50.20261123T205856Z-7b-16-c50-formal.receipt.json",
+      "responses_sha256": "03f0b9650365dd2be1f38f788464d71ba92cc4fedb8b7967539444e830b3c9d8"
+    },
+    {
+      "images": 8,
+      "qps": 1.5,
+      "seed": 23012,
+      "group": "A",
+      "run_id": "20261123T164341Z-7b-16-a-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 4645.1611602678895,
+        "p95": 4985.927656199785,
+        "p99": 5453.7165671028215
+      },
+      "completed_requests_per_s": 1.3448493106635082,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-8img-1.5qps-seed23012.A.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-8img-1.5qps-seed23012.A.20261123T164341Z-7b-16-a-formal.receipt.json",
+      "responses_sha256": "5a90903f0dcc4d286586cd551586bcadd2633c862010e01a4093d8e7d2261dc6"
+    },
+    {
+      "images": 8,
+      "qps": 1.5,
+      "seed": 23012,
+      "group": "B",
+      "run_id": "20261123T180658Z-7b-16-b-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 4601.80265083909,
+        "p95": 12387.557594198735,
+        "p99": 13637.51131953672
+      },
+      "completed_requests_per_s": 1.2532778703881267,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-8img-1.5qps-seed23012.B.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-8img-1.5qps-seed23012.B.20261123T180658Z-7b-16-b-formal.receipt.json",
+      "responses_sha256": "36784cbbc2d4480a86847b3e0cf17d84ec7f98d40e614d7b21d7de656971ec5c"
+    },
+    {
+      "images": 8,
+      "qps": 1.5,
+      "seed": 23012,
+      "group": "C70",
+      "run_id": "20261123T193318Z-7b-16-c70-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 2678.668074309826,
+        "p95": 5248.189125582577,
+        "p99": 5418.222746979445
+      },
+      "completed_requests_per_s": 1.374006202680603,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-8img-1.5qps-seed23012.C70.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-8img-1.5qps-seed23012.C70.20261123T193318Z-7b-16-c70-formal.receipt.json",
+      "responses_sha256": "2aa3248f975a670a37517a1e8c9fffc08dcc4463be6be45373cba002236a555f"
+    },
+    {
+      "images": 8,
+      "qps": 1.5,
+      "seed": 23012,
+      "group": "C50",
+      "run_id": "20261123T205856Z-7b-16-c50-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 1965.1268236339092,
+        "p95": 2706.901372410357,
+        "p99": 2839.3952037394047
+      },
+      "completed_requests_per_s": 1.3844407594007129,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-8img-1.5qps-seed23012.C50.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-8img-1.5qps-seed23012.C50.20261123T205856Z-7b-16-c50-formal.receipt.json",
+      "responses_sha256": "ed0cede0453d97718256d1a9561bb3c50fc814edd173671ad44146f2ce24e47d"
+    },
+    {
+      "images": 8,
+      "qps": 1.5,
+      "seed": 23013,
+      "group": "A",
+      "run_id": "20261123T164341Z-7b-16-a-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 4666.2203799933195,
+        "p95": 5059.62940407917,
+        "p99": 5641.457614786923
+      },
+      "completed_requests_per_s": 1.7153229803435934,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-8img-1.5qps-seed23013.A.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-8img-1.5qps-seed23013.A.20261123T164341Z-7b-16-a-formal.receipt.json",
+      "responses_sha256": "96135dfab34a16c89839a39752501d324a69f1051143dad7a5c69d67cf2453de"
+    },
+    {
+      "images": 8,
+      "qps": 1.5,
+      "seed": 23013,
+      "group": "B",
+      "run_id": "20261123T180658Z-7b-16-b-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 13681.2086943537,
+        "p95": 23200.620852597058,
+        "p99": 24260.695428065956
+      },
+      "completed_requests_per_s": 1.3943384560957128,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-8img-1.5qps-seed23013.B.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-8img-1.5qps-seed23013.B.20261123T180658Z-7b-16-b-formal.receipt.json",
+      "responses_sha256": "23664166bb81196ce6bfc4c943e45bb3bd8cafd1eea879b3157e4bd8efd737b4"
+    },
+    {
+      "images": 8,
+      "qps": 1.5,
+      "seed": 23013,
+      "group": "C70",
+      "run_id": "20261123T193318Z-7b-16-c70-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 3697.9949083179235,
+        "p95": 5687.938391231,
+        "p99": 6252.025435604156
+      },
+      "completed_requests_per_s": 1.7583474317298335,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-8img-1.5qps-seed23013.C70.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-8img-1.5qps-seed23013.C70.20261123T193318Z-7b-16-c70-formal.receipt.json",
+      "responses_sha256": "6fd8a07cf1aa5408cf9d8f91a972a4f493f6c18cab4ce7157e44afb88328d963"
+    },
+    {
+      "images": 8,
+      "qps": 1.5,
+      "seed": 23013,
+      "group": "C50",
+      "run_id": "20261123T205856Z-7b-16-c50-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 2026.6074677929282,
+        "p95": 3160.134067758918,
+        "p99": 3521.5104262717073
+      },
+      "completed_requests_per_s": 1.779101297002956,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-8img-1.5qps-seed23013.C50.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-8img-1.5qps-seed23013.C50.20261123T205856Z-7b-16-c50-formal.receipt.json",
+      "responses_sha256": "db9fd593d327bc26d1d026397c40b472d1fff5393bdcb5379c2e6d8c9b4ea5db"
+    },
+    {
+      "images": 8,
+      "qps": 4,
+      "seed": 23011,
+      "group": "A",
+      "run_id": "20261123T164341Z-7b-16-a-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 5600.313891656697,
+        "p95": 7533.282743394375,
+        "p99": 13858.103782720873
+      },
+      "completed_requests_per_s": 2.7913991990745135,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-8img-4qps-seed23011.A.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-8img-4qps-seed23011.A.20261123T164341Z-7b-16-a-formal.receipt.json",
+      "responses_sha256": "13ae7c235ce93f2a21e47168cbdd2d89c859075bfc707ab045d53c9f725eeedd"
+    },
+    {
+      "images": 8,
+      "qps": 4,
+      "seed": 23011,
+      "group": "B",
+      "run_id": "20261123T180658Z-7b-16-b-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 31460.348445922136,
+        "p95": 57416.596760321416,
+        "p99": 59512.22918422893
+      },
+      "completed_requests_per_s": 1.3976128425371976,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-8img-4qps-seed23011.B.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-8img-4qps-seed23011.B.20261123T180658Z-7b-16-b-formal.receipt.json",
+      "responses_sha256": "4aa98b09ed36c9d7c3b2d6e338075ec8a8d6a0b315e8193f5efc301cbe68b05b"
+    },
+    {
+      "images": 8,
+      "qps": 4,
+      "seed": 23011,
+      "group": "C70",
+      "run_id": "20261123T193318Z-7b-16-c70-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 15984.557004645467,
+        "p95": 28648.2771538198,
+        "p99": 29698.31637930125
+      },
+      "completed_requests_per_s": 2.0977228886135206,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-8img-4qps-seed23011.C70.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-8img-4qps-seed23011.C70.20261123T193318Z-7b-16-c70-formal.receipt.json",
+      "responses_sha256": "7234aa2d0773ad0af6bf3aea292b9cda62debf7cab40a0e2e2897ead2f35459c"
+    },
+    {
+      "images": 8,
+      "qps": 4,
+      "seed": 23011,
+      "group": "C50",
+      "run_id": "20261123T205856Z-7b-16-c50-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 6728.419755585492,
+        "p95": 10970.29458237812,
+        "p99": 11628.356486465782
+      },
+      "completed_requests_per_s": 2.9675124041347964,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-8img-4qps-seed23011.C50.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-8img-4qps-seed23011.C50.20261123T205856Z-7b-16-c50-formal.receipt.json",
+      "responses_sha256": "9df310e2a671b0bf7513bf590318edc77407ba10b904f0ce0b82514c072cf39e"
+    },
+    {
+      "images": 8,
+      "qps": 4,
+      "seed": 23012,
+      "group": "A",
+      "run_id": "20261123T164341Z-7b-16-a-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 4787.4156618490815,
+        "p95": 7805.371224042029,
+        "p99": 10085.20219307394
+      },
+      "completed_requests_per_s": 2.8794026284679295,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-8img-4qps-seed23012.A.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-8img-4qps-seed23012.A.20261123T164341Z-7b-16-a-formal.receipt.json",
+      "responses_sha256": "87685aa6345f93f967670e2e050df2f4f81ef893eba77c943c7e63b17829b2f6"
+    },
+    {
+      "images": 8,
+      "qps": 4,
+      "seed": 23012,
+      "group": "B",
+      "run_id": "20261123T180658Z-7b-16-b-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 29352.406554855406,
+        "p95": 55561.24228797853,
+        "p99": 56572.19188652933
+      },
+      "completed_requests_per_s": 1.4102487644991129,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-8img-4qps-seed23012.B.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-8img-4qps-seed23012.B.20261123T180658Z-7b-16-b-formal.receipt.json",
+      "responses_sha256": "5aeb537f0c578c68466ca7c5873b3e0a33a7599a14fcdd2842bb11104ac57ee3"
+    },
+    {
+      "images": 8,
+      "qps": 4,
+      "seed": 23012,
+      "group": "C70",
+      "run_id": "20261123T193318Z-7b-16-c70-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 13810.232768766582,
+        "p95": 25606.902098096907,
+        "p99": 26065.677671693265
+      },
+      "completed_requests_per_s": 2.1216644434063383,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-8img-4qps-seed23012.C70.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-8img-4qps-seed23012.C70.20261123T193318Z-7b-16-c70-formal.receipt.json",
+      "responses_sha256": "99ca0d17d067400df86f9ac3ad06f1968bf399be06724a3aa11ff2c41ae5301a"
+    },
+    {
+      "images": 8,
+      "qps": 4,
+      "seed": 23012,
+      "group": "C50",
+      "run_id": "20261123T205856Z-7b-16-c50-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 4119.129518978298,
+        "p95": 8406.639335025104,
+        "p99": 9230.304657313975
+      },
+      "completed_requests_per_s": 2.968597721696087,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-8img-4qps-seed23012.C50.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-8img-4qps-seed23012.C50.20261123T205856Z-7b-16-c50-formal.receipt.json",
+      "responses_sha256": "c6afa8f155ec1b04e01cfcb25cefd5db65ca9d5bc022c07b66b756ffe61274bd"
+    },
+    {
+      "images": 8,
+      "qps": 4,
+      "seed": 23013,
+      "group": "A",
+      "run_id": "20261123T164341Z-7b-16-a-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 8829.037823714316,
+        "p95": 12041.587978787722,
+        "p99": 18286.599259488296
+      },
+      "completed_requests_per_s": 2.9137985975995706,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-8img-4qps-seed23013.A.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-8img-4qps-seed23013.A.20261123T164341Z-7b-16-a-formal.receipt.json",
+      "responses_sha256": "d24f48dc466abcdce40aac51e09f54de910572fcca780210b9885b2fd778eaf9"
+    },
+    {
+      "images": 8,
+      "qps": 4,
+      "seed": 23013,
+      "group": "B",
+      "run_id": "20261123T180658Z-7b-16-b-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 34367.50766914338,
+        "p95": 62657.72708952428,
+        "p99": 64329.494826514274
+      },
+      "completed_requests_per_s": 1.4091308571093837,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-8img-4qps-seed23013.B.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-8img-4qps-seed23013.B.20261123T180658Z-7b-16-b-formal.receipt.json",
+      "responses_sha256": "2a8117f9dc9253f51c489dd71d8a389606eb6400ba53b7531799290796f813e5"
+    },
+    {
+      "images": 8,
+      "qps": 4,
+      "seed": 23013,
+      "group": "C70",
+      "run_id": "20261123T193318Z-7b-16-c70-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 18642.12055876851,
+        "p95": 33251.22603550553,
+        "p99": 33817.965805176646
+      },
+      "completed_requests_per_s": 2.1101707261791933,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-8img-4qps-seed23013.C70.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-8img-4qps-seed23013.C70.20261123T193318Z-7b-16-c70-formal.receipt.json",
+      "responses_sha256": "767b281482fbc364065328c392a49edd7cc905e61e15a8eefe2a04a2dc5a6612"
+    },
+    {
+      "images": 8,
+      "qps": 4,
+      "seed": 23013,
+      "group": "C50",
+      "run_id": "20261123T205856Z-7b-16-c50-formal",
+      "submitted": 128,
+      "completed": 128,
+      "failed": 0,
+      "ttft_ms": {
+        "n": 128,
+        "p50": 9348.62034022808,
+        "p95": 15460.355260968208,
+        "p99": 15844.6971485205
+      },
+      "completed_requests_per_s": 3.050613872825393,
+      "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-8img-4qps-seed23013.C50.jsonl",
+      "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/formal-8img-4qps-seed23013.C50.20261123T205856Z-7b-16-c50-formal.receipt.json",
+      "responses_sha256": "15714d89fc1bcca917f1e02110f9d31bea9be3b588c25b5adb3fde0310ae8ab3"
+    }
+  ],
+  "run_ids": {
+    "A": "20261123T164341Z-7b-16-a-formal",
+    "B": "20261123T180658Z-7b-16-b-formal",
+    "C70": "20261123T193318Z-7b-16-c70-formal",
+    "C50": "20261123T205856Z-7b-16-c50-formal"
+  },
+  "timing": "Client first nonempty content chunk. P95 pooled over completed requests across 3 seeds.",
+  "throughput": "Successful requests divided by the sum of observation windows, including drain."
+}

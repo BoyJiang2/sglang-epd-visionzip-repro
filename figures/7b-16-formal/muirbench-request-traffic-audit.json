@@ -1,0 +1,153 @@
+{
+  "model": "7B",
+  "campaign": "20261123T093855Z-7b-16-campaign",
+  "pin_sha256": "04ab900c5962f57af2f880fe00645f97ed567eb2d4bc1ec9b7628f2b8e1a6fe9",
+  "pairs_verified": 2600,
+  "groups": {
+    "A": {
+      "run_id": "20261123T164341Z-7b-16-a-formal",
+      "submitted": 2600,
+      "completed": 2600,
+      "correct": 1508,
+      "target_qps": 1.0,
+      "raw_sha256": "905d1048f0f5fe11cc715dd5d146a54781213bc9167d399e966632d8eb24aa26",
+      "score_sha256": "17e95de8011efe1e1cdb6d840f3ee8a7256b0a20ffbb3f5a861223fe37de16b0",
+      "release": {
+        "qjy000": 1795457172.6096501,
+        "qjy001": 1795457175.6228187
+      },
+      "ttft_ms": {
+        "n": 2600,
+        "p50": 333.7564840912819,
+        "p95": 4450.4141487181205,
+        "p99": 10680.55201802426
+      },
+      "cross_node_total_application_bytes": {
+        "n": 2600,
+        "median": 25644.5
+      },
+      "cross_node_inbound_application_bytes": {
+        "n": 2600,
+        "median": 1122.0
+      },
+      "cross_node_outbound_application_bytes": {
+        "n": 2600,
+        "median": 24396.0
+      }
+    },
+    "B": {
+      "run_id": "20261123T230931Z-7b-16-b-phase",
+      "submitted": 2600,
+      "completed": 2600,
+      "correct": 1508,
+      "target_qps": 1.0,
+      "raw_sha256": "28db7acc7b0a7a8a94da37ebe0ca9fa9a400f4cbc838b63be124753fd58e2f40",
+      "score_sha256": "a5ec5b8e149a70d2ecffb7a5cda4df3fb9aa8806edd226b21bb2d5ca5a9f9f1d",
+      "release": {
+        "qjy000": 1795478479.9278142,
+        "qjy001": 1795478486.1865382
+      },
+      "ttft_ms": {
+        "n": 2600,
+        "p50": 275.07685869932175,
+        "p95": 5650.187897961591,
+        "p99": 33586.479392852634
+      },
+      "dispatch_evidence_complete": 2600,
+      "encoder_partition_evidence_complete": 2600,
+      "pd_http_partition_evidence_complete": 2600,
+      "cross_node_total_application_bytes": {
+        "n": 2600,
+        "median": 13446347.5
+      },
+      "cross_node_inbound_application_bytes": {
+        "n": 2600,
+        "median": 11616120.0
+      },
+      "cross_node_outbound_application_bytes": {
+        "n": 2600,
+        "median": 1527032.0
+      },
+      "pd_to_e_tcp_payload_bytes": {
+        "n": 2600,
+        "median": 1527804.0
+      }
+    },
+    "C70": {
+      "run_id": "20261124T001300Z-7b-16-c70-phase",
+      "submitted": 2600,
+      "completed": 2600,
+      "correct": 1508,
+      "target_qps": 1.0,
+      "raw_sha256": "4448e0d0b4aedd2d4da89abf4af26f6491d379346ff3ff8cbdbde378b07483bb",
+      "score_sha256": "e49c3d9fb71d3c82ea9a14f73462bb49162b340ad9ea1b640fabce90ef0c065e",
+      "release": {
+        "qjy000": 1795482365.6902106,
+        "qjy001": 1795482373.018092
+      },
+      "ttft_ms": {
+        "n": 2600,
+        "p50": 246.39906641095877,
+        "p95": 3073.7930963747253,
+        "p99": 12507.240174654919
+      },
+      "dispatch_evidence_complete": 2600,
+      "encoder_partition_evidence_complete": 2600,
+      "pd_http_partition_evidence_complete": 2600,
+      "cross_node_total_application_bytes": {
+        "n": 2600,
+        "median": 9910561.0
+      },
+      "cross_node_inbound_application_bytes": {
+        "n": 2600,
+        "median": 8106490.5
+      },
+      "cross_node_outbound_application_bytes": {
+        "n": 2600,
+        "median": 1527032.0
+      },
+      "pd_to_e_tcp_payload_bytes": {
+        "n": 2600,
+        "median": 1527804.0
+      }
+    },
+    "C50": {
+      "run_id": "20261124T012116Z-7b-16-c50-phase",
+      "submitted": 2600,
+      "completed": 2600,
+      "correct": 1502,
+      "target_qps": 1.0,
+      "raw_sha256": "535050e1912c3fbdc9d7bd300371545743a15415d2e66d8d24e1e431ca2e14b7",
+      "score_sha256": "7d53b4bd8dc1d858d0013c141ccbf1d28042b08c6149876c7e915cae3659b48f",
+      "release": {
+        "qjy000": 1795486444.8192785,
+        "qjy001": 1795486451.117925
+      },
+      "ttft_ms": {
+        "n": 2600,
+        "p50": 214.67477269470692,
+        "p95": 2085.47534495593,
+        "p99": 5718.2793478295225
+      },
+      "dispatch_evidence_complete": 2600,
+      "encoder_partition_evidence_complete": 2600,
+      "pd_http_partition_evidence_complete": 2600,
+      "cross_node_total_application_bytes": {
+        "n": 2600,
+        "median": 7544670.0
+      },
+      "cross_node_inbound_application_bytes": {
+        "n": 2600,
+        "median": 5776164.5
+      },
+      "cross_node_outbound_application_bytes": {
+        "n": 2600,
+        "median": 1527032.0
+      },
+      "pd_to_e_tcp_payload_bytes": {
+        "n": 2600,
+        "median": 1527804.0
+      }
+    }
+  }
+}

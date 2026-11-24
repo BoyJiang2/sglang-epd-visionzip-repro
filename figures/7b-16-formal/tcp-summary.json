@@ -1,0 +1,175 @@
+{
+  "model": "7B",
+  "runs": [
+    "20261124T000206Z-7b-16-b-phase-probes",
+    "20261124T001300Z-7b-16-c70-phase",
+    "20261124T012116Z-7b-16-c50-phase"
+  ],
+  "windows": {
+    "1img": {
+      "B": {
+        "valid_sockets": 32,
+        "observed_socket_union": 32,
+        "changed_or_missing": [],
+        "outside_request_window": [],
+        "before": "20261124T000206Z-7b-16-b-phase-probes/tcp-1img.before.json",
+        "after": "20261124T000206Z-7b-16-b-phase-probes/tcp-1img.after.json",
+        "recovered_paths": [],
+        "before_capture_failures": [],
+        "after_capture_failures": [],
+        "tcp_payload_acked": 19289906,
+        "tcp_payload_sent": 19289906
+      },
+      "C70": {
+        "valid_sockets": 32,
+        "observed_socket_union": 32,
+        "changed_or_missing": [],
+        "outside_request_window": [],
+        "before": "20261124T001300Z-7b-16-c70-phase/tcp-1img.before.json",
+        "after": "20261124T001300Z-7b-16-c70-phase/tcp-1img.after.json",
+        "recovered_paths": [],
+        "before_capture_failures": [],
+        "after_capture_failures": [],
+        "tcp_payload_acked": 13503629,
+        "tcp_payload_sent": 13503629
+      },
+      "C50": {
+        "valid_sockets": 32,
+        "observed_socket_union": 32,
+        "changed_or_missing": [],
+        "outside_request_window": [],
+        "before": "20261124T012116Z-7b-16-c50-phase/tcp-1img.before.json",
+        "after": "20261124T012116Z-7b-16-c50-phase/tcp-1img.after.json",
+        "recovered_paths": [],
+        "before_capture_failures": [],
+        "after_capture_failures": [],
+        "tcp_payload_acked": 9638495,
+        "tcp_payload_sent": 9638495
+      }
+    },
+    "4img": {
+      "B": {
+        "valid_sockets": 32,
+        "observed_socket_union": 32,
+        "changed_or_missing": [],
+        "outside_request_window": [],
+        "before": "20261124T000206Z-7b-16-b-phase-probes/tcp-4img.before.json",
+        "after": "20261124T000206Z-7b-16-b-phase-probes/tcp-4img.after.json",
+        "recovered_paths": [],
+        "before_capture_failures": [],
+        "after_capture_failures": [],
+        "tcp_payload_acked": 77159624,
+        "tcp_payload_sent": 77159624
+      },
+      "C70": {
+        "valid_sockets": 32,
+        "observed_socket_union": 32,
+        "changed_or_missing": [],
+        "outside_request_window": [],
+        "before": "20261124T001300Z-7b-16-c70-phase/tcp-4img.before.json",
+        "after": "20261124T001300Z-7b-16-c70-phase/tcp-4img.after.json",
+        "recovered_paths": [],
+        "before_capture_failures": [],
+        "after_capture_failures": [],
+        "tcp_payload_acked": 54014528,
+        "tcp_payload_sent": 54014528
+      },
+      "C50": {
+        "valid_sockets": 32,
+        "observed_socket_union": 32,
+        "changed_or_missing": [],
+        "outside_request_window": [],
+        "before": "20261124T012116Z-7b-16-c50-phase/tcp-4img.before.json",
+        "after": "20261124T012116Z-7b-16-c50-phase/tcp-4img.after.json",
+        "recovered_paths": [],
+        "before_capture_failures": [],
+        "after_capture_failures": [],
+        "tcp_payload_acked": 38554008,
+        "tcp_payload_sent": 38554008
+      }
+    },
+    "8img": {
+      "B": {
+        "valid_sockets": 32,
+        "observed_socket_union": 32,
+        "changed_or_missing": [],
+        "outside_request_window": [],
+        "before": "20261124T000206Z-7b-16-b-phase-probes/tcp-8img.before.json",
+        "after": "20261124T000206Z-7b-16-b-phase-probes/tcp-8img.after.json",
+        "recovered_paths": [],
+        "before_capture_failures": [],
+        "after_capture_failures": [],
+        "tcp_payload_acked": 154319248,
+        "tcp_payload_sent": 154319248
+      },
+      "C70": {
+        "valid_sockets": 32,
+        "observed_socket_union": 32,
+        "changed_or_missing": [],
+        "outside_request_window": [],
+        "before": "20261124T001300Z-7b-16-c70-phase/tcp-8img.before.json",
+        "after": "20261124T001300Z-7b-16-c70-phase/tcp-8img.after.json",
+        "recovered_paths": [],
+        "before_capture_failures": [],
+        "after_capture_failures": [],
+        "tcp_payload_acked": 108029014,
+        "tcp_payload_sent": 108029014
+      },
+      "C50": {
+        "valid_sockets": 32,
+        "observed_socket_union": 32,
+        "changed_or_missing": [],
+        "outside_request_window": [],
+        "before": "20261124T012116Z-7b-16-c50-phase/tcp-8img.before.json",
+        "after": "20261124T012116Z-7b-16-c50-phase/tcp-8img.after.json",
+        "recovered_paths": [],
+        "before_capture_failures": [],
+        "after_capture_failures": [],
+        "tcp_payload_acked": 77107995,
+        "tcp_payload_sent": 77107995
+      }
+    },
+    "mixed": {
+      "B": {
+        "valid_sockets": 32,
+        "observed_socket_union": 32,
+        "changed_or_missing": [],
+        "outside_request_window": [],
+        "before": "20261124T000206Z-7b-16-b-phase-probes/tcp-mixed.before.json",
+        "after": "20261124T000206Z-7b-16-b-phase-probes/tcp-mixed.after.json",
+        "recovered_paths": [],
+        "before_capture_failures": [],
+        "after_capture_failures": [],
+        "tcp_payload_acked": 250768766,
+        "tcp_payload_sent": 250768766
+      },
+      "C70": {
+        "valid_sockets": 32,
+        "observed_socket_union": 32,
+        "changed_or_missing": [],
+        "outside_request_window": [],
+        "before": "20261124T001300Z-7b-16-c70-phase/tcp-mixed.before.json",
+        "after": "20261124T001300Z-7b-16-c70-phase/tcp-mixed.after.json",
+        "recovered_paths": [],
+        "before_capture_failures": [],
+        "after_capture_failures": [],
+        "tcp_payload_acked": 175547171,
+        "tcp_payload_sent": 175547171
+      },
+      "C50": {
+        "valid_sockets": 32,
+        "observed_socket_union": 32,
+        "changed_or_missing": [],
+        "outside_request_window": [],
+        "before": "20261124T012116Z-7b-16-c50-phase/tcp-mixed.before.json",
+        "after": "20261124T012116Z-7b-16-c50-phase/tcp-mixed.after.json",
+        "recovered_paths": [],
+        "before_capture_failures": [],
+        "after_capture_failures": [],
+        "tcp_payload_acked": 125300498,
+        "tcp_payload_sent": 125300498
+      }
+    }
+  },
+  "boundary": "Linux TCP payload deltas over sampled drained E→P ZMQ sockets; mixed is a window aggregate"
+}

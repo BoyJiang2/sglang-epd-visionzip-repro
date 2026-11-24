@@ -1,0 +1,6555 @@
+{
+  "model": "7B",
+  "input_kind": "measured",
+  "run_dir": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign",
+  "model_revision": "cc594898137f460bfe9f0759e9844b3ce807cfb5",
+  "deployment_evidence": {
+    "A": false,
+    "B": false,
+    "C70": false,
+    "C50": false
+  },
+  "planned_gpus": 16,
+  "deployment_sources": {
+    "A": null,
+    "B": null,
+    "C70": null,
+    "C50": null
+  },
+  "definitions": {
+    "ttft": "First nonempty SSE content block, completed requests only.",
+    "request_tpot": "Visible per-token timestamps. Never inferred from SSE blocks.",
+    "sse_span_per_token": "First–last SSE content span divided by reported tokens minus one.",
+    "throughput": "Completions / first-send to last-terminal-outcome observation seconds.",
+    "completion_fraction_planned": "Successful responses divided by all planned requests.",
+    "feature_bytes": "E→P frame totals sum each ZMQ receiver copy. Image/DeepStack bytes count unique tensor rows. Physical link bytes require another capture.",
+    "kv_pages": "Sum of verified rank-local pages. Same logical positions can appear on each rank.",
+    "kv_bytes": "Engine payload counters paired with D checksum evidence. No link-byte inference.",
+    "missing": "Unlogged requests and unavailable counters are tracked separately from failures."
+  },
+  "totals": {
+    "official": {
+      "A": {
+        "planned": 320,
+        "submitted": 320,
+        "success": 320,
+        "failure": 0,
+        "skipped": 0,
+        "unlogged": 0,
+        "observation_s": 736.4851185362786,
+        "completion_fraction_planned": 1.0,
+        "completion_fraction_submitted": 1.0,
+        "success_per_s": 0.43449621987743814,
+        "success_per_gpu_s": 0.027156013742339884,
+        "ttft_ms": {
+          "n": 320,
+          "p50": 2739.4420597702265,
+          "p95": 4664.18511653319,
+          "p99": 4826.088379733264
+        },
+        "request_tpot_ms": {
+          "n": 0,
+          "p50": null,
+          "p95": null,
+          "p99": null
+        },
+        "sse_span_per_token_ms": {
+          "n": 320,
+          "p50": 5.585445690096593,
+          "p95": 5.889104314732785,
+          "p99": 6.242518153991185
+        },
+        "sse_content_chunk_gap_ms": {
+          "n": 68395,
+          "p50": 5.712050944566727,
+          "p95": 11.424938775599005,
+          "p99": 11.83251041918993
+        },
+        "gpu_roles": {
+          "replica": {
+            "gpu_cells": 80,
+            "observed_gpu_cells": 0,
+            "samples": 0,
+            "sample_errors": 0,
+            "mean_utilization_pct": null,
+            "peak_used_mib": null
+          }
+        }
+      },
+      "B": {
+        "planned": 320,
+        "submitted": 320,
+        "success": 320,
+        "failure": 0,
+        "skipped": 0,
+        "unlogged": 0,
+        "observation_s": 734.4905360266566,
+        "completion_fraction_planned": 1.0,
+        "completion_fraction_submitted": 1.0,
+        "success_per_s": 0.4356761378180458,
+        "success_per_gpu_s": 0.027229758613627864,
+        "ttft_ms": {
+          "n": 320,
+          "p50": 2021.0333690047264,
+          "p95": 3466.8003026396036,
+          "p99": 3576.8692341819406
+        },
+        "request_tpot_ms": {
+          "n": 0,
+          "p50": null,
+          "p95": null,
+          "p99": null
+        },
+        "sse_span_per_token_ms": {
+          "n": 320,
+          "p50": 5.691142865986216,
+          "p95": 6.401299621690722,
+          "p99": 6.826377115851524
+        },
+        "sse_content_chunk_gap_ms": {
+          "n": 67386,
+          "p50": 5.7250624522566795,
+          "p95": 11.766975279897451,
+          "p99": 13.164861220866438
+        },
+        "gpu_roles": {
+          "decode": {
+            "gpu_cells": 20,
+            "observed_gpu_cells": 0,
+            "samples": 0,
+            "sample_errors": 0,
+            "mean_utilization_pct": null,
+            "peak_used_mib": null
+          },
+          "encoder": {
+            "gpu_cells": 40,
+            "observed_gpu_cells": 0,
+            "samples": 0,
+            "sample_errors": 0,
+            "mean_utilization_pct": null,
+            "peak_used_mib": null
+          },
+          "prefill": {
+            "gpu_cells": 20,
+            "observed_gpu_cells": 0,
+            "samples": 0,
+            "sample_errors": 0,
+            "mean_utilization_pct": null,
+            "peak_used_mib": null
+          }
+        }
+      },
+      "C70": {
+        "planned": 320,
+        "submitted": 320,
+        "success": 320,
+        "failure": 0,
+        "skipped": 0,
+        "unlogged": 0,
+        "observation_s": 733.6382763478905,
+        "completion_fraction_planned": 1.0,
+        "completion_fraction_submitted": 1.0,
+        "success_per_s": 0.43618225809180156,
+        "success_per_gpu_s": 0.027261391130737597,
+        "ttft_ms": {
+          "n": 320,
+          "p50": 1604.596747085452,
+          "p95": 2550.0075499527156,
+          "p99": 2661.760910600424
+        },
+        "request_tpot_ms": {
+          "n": 0,
+          "p50": null,
+          "p95": null,
+          "p99": null
+        },
+        "sse_span_per_token_ms": {
+          "n": 320,
+          "p50": 5.534591496575112,
+          "p95": 5.993092098437688,
+          "p99": 6.296196715431471
+        },
+        "sse_content_chunk_gap_ms": {
+          "n": 66946,
+          "p50": 5.577106960117817,
+          "p95": 11.319132521748543,
+          "p99": 12.169047817587858
+        },
+        "gpu_roles": {
+          "decode": {
+            "gpu_cells": 20,
+            "observed_gpu_cells": 20,
+            "samples": 2936,
+            "sample_errors": 0,
+            "mean_utilization_pct": 14.92608991825613,
+            "peak_used_mib": 67669
+          },
+          "encoder": {
+            "gpu_cells": 40,
+            "observed_gpu_cells": 40,
+            "samples": 5872,
+            "sample_errors": 0,
+            "mean_utilization_pct": 4.489952316076295,
+            "peak_used_mib": 4061
+          },
+          "prefill": {
+            "gpu_cells": 20,
+            "observed_gpu_cells": 20,
+            "samples": 2936,
+            "sample_errors": 0,
+            "mean_utilization_pct": 11.142370572207085,
+            "peak_used_mib": 67789
+          }
+        }
+      },
+      "C50": {
+        "planned": 320,
+        "submitted": 320,
+        "success": 320,
+        "failure": 0,
+        "skipped": 0,
+        "unlogged": 0,
+        "observation_s": 732.6534810811281,
+        "completion_fraction_planned": 1.0,
+        "completion_fraction_submitted": 1.0,
+        "success_per_s": 0.43676855193235037,
+        "success_per_gpu_s": 0.027298034495771898,
+        "ttft_ms": {
+          "n": 320,
+          "p50": 1257.2970502078533,
+          "p95": 1939.603860396892,
+          "p99": 2007.357454765588
+        },
+        "request_tpot_ms": {
+          "n": 0,
+          "p50": null,
+          "p95": null,
+          "p99": null
+        },
+        "sse_span_per_token_ms": {
+          "n": 320,
+          "p50": 5.450489463321134,
+          "p95": 5.856038971858866,
+          "p99": 6.060809085985609
+        },
+        "sse_content_chunk_gap_ms": {
+          "n": 66215,
+          "p50": 5.4314956068992615,
+          "p95": 10.982734337449076,
+          "p99": 11.6775793582201
+        },
+        "gpu_roles": {
+          "decode": {
+            "gpu_cells": 20,
+            "observed_gpu_cells": 20,
+            "samples": 2928,
+            "sample_errors": 0,
+            "mean_utilization_pct": 14.34016393442623,
+            "peak_used_mib": 67691
+          },
+          "encoder": {
+            "gpu_cells": 40,
+            "observed_gpu_cells": 40,
+            "samples": 5848,
+            "sample_errors": 0,
+            "mean_utilization_pct": 5.4151846785225715,
+            "peak_used_mib": 4061
+          },
+          "prefill": {
+            "gpu_cells": 20,
+            "observed_gpu_cells": 20,
+            "samples": 2928,
+            "sample_errors": 0,
+            "mean_utilization_pct": 7.924521857923497,
+            "peak_used_mib": 67389
+          }
+        }
+      }
+    }
+  },
+  "cells": [
+    {
+      "name": "official-8img-0.2qps-seed3467",
+      "kind": "official",
+      "images": 8,
+      "qps": 0.2,
+      "seed": 3467,
+      "tokens": 256,
+      "group": "A",
+      "planned": 64,
+      "submitted": 64,
+      "success": 64,
+      "failure": 0,
+      "skipped": 0,
+      "unlogged": 0,
+      "source": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/official-8img-0.2qps-seed3467.A.jsonl",
+      "observation_s": 319.00366357527673,
+      "failures_by_type": {},
+      "endpoints": {
+        "http://192.168.0.237:33500": {
+          "submitted": 4,
+          "completed": 4,
+          "failed": 0,
+          "images": 12,
+          "completed_images": 12
+        },
+        "http://192.168.0.237:33501": {
+          "submitted": 4,
+          "completed": 4,
+          "failed": 0,
+          "images": 27,
+          "completed_images": 27
+        },
+        "http://192.168.0.237:33502": {
+          "submitted": 4,
+          "completed": 4,
+          "failed": 0,
+          "images": 20,
+          "completed_images": 20
+        },
+        "http://192.168.0.237:33503": {
+          "submitted": 4,
+          "completed": 4,
+          "failed": 0,
+          "images": 21,
+          "completed_images": 21
+        },
+        "http://192.168.0.237:33504": {
+          "submitted": 4,
+          "completed": 4,
+          "failed": 0,
+          "images": 20,
+          "completed_images": 20
+        },
+        "http://192.168.0.237:33505": {
+          "submitted": 4,
+          "completed": 4,
+          "failed": 0,
+          "images": 19,
+          "completed_images": 19
+        },
+        "http://192.168.0.237:33506": {
+          "submitted": 4,
+          "completed": 4,
+          "failed": 0,
+          "images": 20,
+          "completed_images": 20
+        },
+        "http://192.168.0.237:33507": {
+          "submitted": 4,
+          "completed": 4,
+          "failed": 0,
+          "images": 21,
+          "completed_images": 21
+        },
+        "http://192.168.0.240:33500": {
+          "submitted": 4,
+          "completed": 4,
+          "failed": 0,
+          "images": 10,
+          "completed_images": 10
+        },
+        "http://192.168.0.240:33501": {
+          "submitted": 4,
+          "completed": 4,
+          "failed": 0,
+          "images": 17,
+          "completed_images": 17
+        },
+        "http://192.168.0.240:33502": {
+          "submitted": 4,
+          "completed": 4,
+          "failed": 0,
+          "images": 17,
+          "completed_images": 17
+        },
+        "http://192.168.0.240:33503": {
+          "submitted": 4,
+          "completed": 4,
+          "failed": 0,
+          "images": 24,
+          "completed_images": 24
+        },
+        "http://192.168.0.240:33504": {
+          "submitted": 4,
+          "completed": 4,
+          "failed": 0,
+          "images": 25,
+          "completed_images": 25
+        },
+        "http://192.168.0.240:33505": {
+          "submitted": 4,
+          "completed": 4,
+          "failed": 0,
+          "images": 23,
+          "completed_images": 23
+        },
+        "http://192.168.0.240:33506": {
+          "submitted": 4,
+          "completed": 4,
+          "failed": 0,
+          "images": 20,
+          "completed_images": 20
+        },
+        "http://192.168.0.240:33507": {
+          "submitted": 4,
+          "completed": 4,
+          "failed": 0,
+          "images": 16,
+          "completed_images": 16
+        }
+      },
+      "timing": {
+        "ttft_ms": {
+          "n": 64,
+          "p50": 2739.264733158052,
+          "p95": 4674.235498905182,
+          "p99": 4764.286621324717
+        },
+        "request_tpot_ms": {
+          "n": 0,
+          "p50": null,
+          "p95": null,
+          "p99": null
+        },
+        "sse_span_per_token_ms": {
+          "n": 64,
+          "p50": 5.582464840628353,
+          "p95": 5.879355759962516,
+          "p99": 6.081026043158535
+        },
+        "sse_content_chunk_gap_ms": {
+          "n": 13679,
+          "p50": 5.701247602701187,
+          "p95": 11.418878845870495,
+          "p99": 11.822500042617321
+        }
+      },
+      "gpu_devices": {
+        "GPU-7fa2179a-f959-6997-1664-60d6bd13badc": {
+          "node": "qjy000",
+          "index": 0,
+          "role": "replica",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-f1851450-9636-91b9-eee0-1292bc31e5b3": {
+          "node": "qjy000",
+          "index": 1,
+          "role": "replica",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-b530f5ba-daaf-4bd4-e6f4-520ff1e6b3d1": {
+          "node": "qjy000",
+          "index": 2,
+          "role": "replica",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-50846dc4-a485-2e59-5f16-79d5d65c497d": {
+          "node": "qjy000",
+          "index": 3,
+          "role": "replica",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-a89f85e5-964a-6895-c675-ae7e19865edf": {
+          "node": "qjy000",
+          "index": 4,
+          "role": "replica",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-809843a6-ca46-e991-2296-4cc20d8c6998": {
+          "node": "qjy000",
+          "index": 5,
+          "role": "replica",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-5949db27-6dd3-c2de-ce52-846a32b4e41b": {
+          "node": "qjy000",
+          "index": 6,
+          "role": "replica",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-1561bc6c-8a4e-bf69-aa2a-c51374467c0a": {
+          "node": "qjy000",
+          "index": 7,
+          "role": "replica",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-fb4fa10d-9222-d6f3-2d9b-5524d21da330": {
+          "node": "qjy001",
+          "index": 0,
+          "role": "replica",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-ea263dbc-c428-d593-eb3d-cfe35a8eb881": {
+          "node": "qjy001",
+          "index": 1,
+          "role": "replica",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-c87fe37a-55db-b5d5-4db9-b23a879096c5": {
+          "node": "qjy001",
+          "index": 2,
+          "role": "replica",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-a1fc259e-abd6-5e93-6d6f-516ff08ea543": {
+          "node": "qjy001",
+          "index": 3,
+          "role": "replica",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-76cdcb81-7ca9-1504-68da-4bc379c9f978": {
+          "node": "qjy001",
+          "index": 4,
+          "role": "replica",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-2d197d92-3d32-937e-5457-83f6c39e5f7f": {
+          "node": "qjy001",
+          "index": 5,
+          "role": "replica",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-66b03d7f-5f80-f9d9-2ebc-98e2b9fc7e81": {
+          "node": "qjy001",
+          "index": 6,
+          "role": "replica",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-0909f212-4be0-6d58-bb82-fb8aed60d343": {
+          "node": "qjy001",
+          "index": 7,
+          "role": "replica",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        }
+      },
+      "transfer": null,
+      "official_provenance": {
+        "run_id": "20261123T094025Z-7b-16-a-pilot",
+        "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/official-8img-0.2qps-seed3467.A.jsonl",
+        "response_sha256": "e8a8660118be95f99c8635c1257b06a266b36fbd69291546a53a111a54142a14",
+        "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/official-8img-0.2qps-seed3467.A.receipt.json",
+        "receipt_sha256": "f23637da815b04261fb2490f62df1ccd8e2339e62f123db381d08f63f84d22e8",
+        "frozen_trace_sha256": "d74e5eee63e9020d97abbe66e8cc050e5cb0069fa1dbf1a68fdf5d71efb040b7",
+        "submitted": 64,
+        "completed": 64,
+        "last_terminal_epoch_s": 1795427620.7244642
+      }
+    },
+    {
+      "name": "official-8img-0.4qps-seed3467",
+      "kind": "official",
+      "images": 8,
+      "qps": 0.4,
+      "seed": 3467,
+      "tokens": 256,
+      "group": "A",
+      "planned": 64,
+      "submitted": 64,
+      "success": 64,
+      "failure": 0,
+      "skipped": 0,
+      "unlogged": 0,
+      "source": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/official-8img-0.4qps-seed3467.A.jsonl",
+      "observation_s": 160.99861644394696,
+      "failures_by_type": {},
+      "endpoints": {
+        "http://192.168.0.237:33500": {
+          "submitted": 4,
+          "completed": 4,
+          "failed": 0,
+          "images": 12,
+          "completed_images": 12
+        },
+        "http://192.168.0.237:33501": {
+          "submitted": 4,
+          "completed": 4,
+          "failed": 0,
+          "images": 27,
+          "completed_images": 27
+        },
+        "http://192.168.0.237:33502": {
+          "submitted": 4,
+          "completed": 4,
+          "failed": 0,
+          "images": 20,
+          "completed_images": 20
+        },
+        "http://192.168.0.237:33503": {
+          "submitted": 4,
+          "completed": 4,
+          "failed": 0,
+          "images": 21,
+          "completed_images": 21
+        },
+        "http://192.168.0.237:33504": {
+          "submitted": 4,
+          "completed": 4,
+          "failed": 0,
+          "images": 20,
+          "completed_images": 20
+        },
+        "http://192.168.0.237:33505": {
+          "submitted": 4,
+          "completed": 4,
+          "failed": 0,
+          "images": 19,
+          "completed_images": 19
+        },
+        "http://192.168.0.237:33506": {
+          "submitted": 4,
+          "completed": 4,
+          "failed": 0,
+          "images": 20,
+          "completed_images": 20
+        },
+        "http://192.168.0.237:33507": {
+          "submitted": 4,
+          "completed": 4,
+          "failed": 0,
+          "images": 21,
+          "completed_images": 21
+        },
+        "http://192.168.0.240:33500": {
+          "submitted": 4,
+          "completed": 4,
+          "failed": 0,
+          "images": 10,
+          "completed_images": 10
+        },
+        "http://192.168.0.240:33501": {
+          "submitted": 4,
+          "completed": 4,
+          "failed": 0,
+          "images": 17,
+          "completed_images": 17
+        },
+        "http://192.168.0.240:33502": {
+          "submitted": 4,
+          "completed": 4,
+          "failed": 0,
+          "images": 17,
+          "completed_images": 17
+        },
+        "http://192.168.0.240:33503": {
+          "submitted": 4,
+          "completed": 4,
+          "failed": 0,
+          "images": 24,
+          "completed_images": 24
+        },
+        "http://192.168.0.240:33504": {
+          "submitted": 4,
+          "completed": 4,
+          "failed": 0,
+          "images": 25,
+          "completed_images": 25
+        },
+        "http://192.168.0.240:33505": {
+          "submitted": 4,
+          "completed": 4,
+          "failed": 0,
+          "images": 23,
+          "completed_images": 23
+        },
+        "http://192.168.0.240:33506": {
+          "submitted": 4,
+          "completed": 4,
+          "failed": 0,
+          "images": 20,
+          "completed_images": 20
+        },
+        "http://192.168.0.240:33507": {
+          "submitted": 4,
+          "completed": 4,
+          "failed": 0,
+          "images": 16,
+          "completed_images": 16
+        }
+      },
+      "timing": {
+        "ttft_ms": {
+          "n": 64,
+          "p50": 2737.8769172355533,
+          "p95": 4662.801846303046,
+          "p99": 4811.253788676112
+        },
+        "request_tpot_ms": {
+          "n": 0,
+          "p50": null,
+          "p95": null,
+          "p99": null
+        },
+        "sse_span_per_token_ms": {
+          "n": 64,
+          "p50": 5.5864006719168495,
+          "p95": 5.888635274753266,
+          "p99": 6.124861362810227
+        },
+        "sse_content_chunk_gap_ms": {
+          "n": 13679,
+          "p50": 5.719851702451706,
+          "p95": 11.457625217735767,
+          "p99": 11.833612136542797
+        }
+      },
+      "gpu_devices": {
+        "GPU-7fa2179a-f959-6997-1664-60d6bd13badc": {
+          "node": "qjy000",
+          "index": 0,
+          "role": "replica",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-f1851450-9636-91b9-eee0-1292bc31e5b3": {
+          "node": "qjy000",
+          "index": 1,
+          "role": "replica",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-b530f5ba-daaf-4bd4-e6f4-520ff1e6b3d1": {
+          "node": "qjy000",
+          "index": 2,
+          "role": "replica",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-50846dc4-a485-2e59-5f16-79d5d65c497d": {
+          "node": "qjy000",
+          "index": 3,
+          "role": "replica",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-a89f85e5-964a-6895-c675-ae7e19865edf": {
+          "node": "qjy000",
+          "index": 4,
+          "role": "replica",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-809843a6-ca46-e991-2296-4cc20d8c6998": {
+          "node": "qjy000",
+          "index": 5,
+          "role": "replica",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-5949db27-6dd3-c2de-ce52-846a32b4e41b": {
+          "node": "qjy000",
+          "index": 6,
+          "role": "replica",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-1561bc6c-8a4e-bf69-aa2a-c51374467c0a": {
+          "node": "qjy000",
+          "index": 7,
+          "role": "replica",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-fb4fa10d-9222-d6f3-2d9b-5524d21da330": {
+          "node": "qjy001",
+          "index": 0,
+          "role": "replica",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-ea263dbc-c428-d593-eb3d-cfe35a8eb881": {
+          "node": "qjy001",
+          "index": 1,
+          "role": "replica",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-c87fe37a-55db-b5d5-4db9-b23a879096c5": {
+          "node": "qjy001",
+          "index": 2,
+          "role": "replica",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-a1fc259e-abd6-5e93-6d6f-516ff08ea543": {
+          "node": "qjy001",
+          "index": 3,
+          "role": "replica",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-76cdcb81-7ca9-1504-68da-4bc379c9f978": {
+          "node": "qjy001",
+          "index": 4,
+          "role": "replica",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-2d197d92-3d32-937e-5457-83f6c39e5f7f": {
+          "node": "qjy001",
+          "index": 5,
+          "role": "replica",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-66b03d7f-5f80-f9d9-2ebc-98e2b9fc7e81": {
+          "node": "qjy001",
+          "index": 6,
+          "role": "replica",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-0909f212-4be0-6d58-bb82-fb8aed60d343": {
+          "node": "qjy001",
+          "index": 7,
+          "role": "replica",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        }
+      },
+      "transfer": null,
+      "official_provenance": {
+        "run_id": "20261123T094025Z-7b-16-a-pilot",
+        "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/official-8img-0.4qps-seed3467.A.jsonl",
+        "response_sha256": "37a2256e0e92e1b1b4757fb930b4172d46fe078b7b1f98f45b75c0d7f320c562",
+        "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/official-8img-0.4qps-seed3467.A.receipt.json",
+        "receipt_sha256": "fbcb67da26bb76ca5478cb18ad546ac129a070860650d2cebbf50cf17610cd11",
+        "frozen_trace_sha256": "affee263abf6a86d1260540d60d16218139fb93986ce1c805691814c32e1f775",
+        "submitted": 64,
+        "completed": 64,
+        "last_terminal_epoch_s": 1795427786.433674
+      }
+    },
+    {
+      "name": "official-8img-0.6qps-seed3467",
+      "kind": "official",
+      "images": 8,
+      "qps": 0.6,
+      "seed": 3467,
+      "tokens": 256,
+      "group": "A",
+      "planned": 64,
+      "submitted": 64,
+      "success": 64,
+      "failure": 0,
+      "skipped": 0,
+      "unlogged": 0,
+      "source": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/official-8img-0.6qps-seed3467.A.jsonl",
+      "observation_s": 108.31580417789519,
+      "failures_by_type": {},
+      "endpoints": {
+        "http://192.168.0.237:33500": {
+          "submitted": 4,
+          "completed": 4,
+          "failed": 0,
+          "images": 12,
+          "completed_images": 12
+        },
+        "http://192.168.0.237:33501": {
+          "submitted": 4,
+          "completed": 4,
+          "failed": 0,
+          "images": 27,
+          "completed_images": 27
+        },
+        "http://192.168.0.237:33502": {
+          "submitted": 4,
+          "completed": 4,
+          "failed": 0,
+          "images": 20,
+          "completed_images": 20
+        },
+        "http://192.168.0.237:33503": {
+          "submitted": 4,
+          "completed": 4,
+          "failed": 0,
+          "images": 21,
+          "completed_images": 21
+        },
+        "http://192.168.0.237:33504": {
+          "submitted": 4,
+          "completed": 4,
+          "failed": 0,
+          "images": 20,
+          "completed_images": 20
+        },
+        "http://192.168.0.237:33505": {
+          "submitted": 4,
+          "completed": 4,
+          "failed": 0,
+          "images": 19,
+          "completed_images": 19
+        },
+        "http://192.168.0.237:33506": {
+          "submitted": 4,
+          "completed": 4,
+          "failed": 0,
+          "images": 20,
+          "completed_images": 20
+        },
+        "http://192.168.0.237:33507": {
+          "submitted": 4,
+          "completed": 4,
+          "failed": 0,
+          "images": 21,
+          "completed_images": 21
+        },
+        "http://192.168.0.240:33500": {
+          "submitted": 4,
+          "completed": 4,
+          "failed": 0,
+          "images": 10,
+          "completed_images": 10
+        },
+        "http://192.168.0.240:33501": {
+          "submitted": 4,
+          "completed": 4,
+          "failed": 0,
+          "images": 17,
+          "completed_images": 17
+        },
+        "http://192.168.0.240:33502": {
+          "submitted": 4,
+          "completed": 4,
+          "failed": 0,
+          "images": 17,
+          "completed_images": 17
+        },
+        "http://192.168.0.240:33503": {
+          "submitted": 4,
+          "completed": 4,
+          "failed": 0,
+          "images": 24,
+          "completed_images": 24
+        },
+        "http://192.168.0.240:33504": {
+          "submitted": 4,
+          "completed": 4,
+          "failed": 0,
+          "images": 25,
+          "completed_images": 25
+        },
+        "http://192.168.0.240:33505": {
+          "submitted": 4,
+          "completed": 4,
+          "failed": 0,
+          "images": 23,
+          "completed_images": 23
+        },
+        "http://192.168.0.240:33506": {
+          "submitted": 4,
+          "completed": 4,
+          "failed": 0,
+          "images": 20,
+          "completed_images": 20
+        },
+        "http://192.168.0.240:33507": {
+          "submitted": 4,
+          "completed": 4,
+          "failed": 0,
+          "images": 16,
+          "completed_images": 16
+        }
+      },
+      "timing": {
+        "ttft_ms": {
+          "n": 64,
+          "p50": 2736.035997979343,
+          "p95": 4648.980220966041,
+          "p99": 4728.267270233482
+        },
+        "request_tpot_ms": {
+          "n": 0,
+          "p50": null,
+          "p95": null,
+          "p99": null
+        },
+        "sse_span_per_token_ms": {
+          "n": 64,
+          "p50": 5.5849031600005485,
+          "p95": 5.885861506137778,
+          "p99": 6.0750925109228655
+        },
+        "sse_content_chunk_gap_ms": {
+          "n": 13679,
+          "p50": 5.715740844607353,
+          "p95": 11.443289555609228,
+          "p99": 11.832518242299557
+        }
+      },
+      "gpu_devices": {
+        "GPU-7fa2179a-f959-6997-1664-60d6bd13badc": {
+          "node": "qjy000",
+          "index": 0,
+          "role": "replica",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-f1851450-9636-91b9-eee0-1292bc31e5b3": {
+          "node": "qjy000",
+          "index": 1,
+          "role": "replica",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-b530f5ba-daaf-4bd4-e6f4-520ff1e6b3d1": {
+          "node": "qjy000",
+          "index": 2,
+          "role": "replica",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-50846dc4-a485-2e59-5f16-79d5d65c497d": {
+          "node": "qjy000",
+          "index": 3,
+          "role": "replica",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-a89f85e5-964a-6895-c675-ae7e19865edf": {
+          "node": "qjy000",
+          "index": 4,
+          "role": "replica",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-809843a6-ca46-e991-2296-4cc20d8c6998": {
+          "node": "qjy000",
+          "index": 5,
+          "role": "replica",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-5949db27-6dd3-c2de-ce52-846a32b4e41b": {
+          "node": "qjy000",
+          "index": 6,
+          "role": "replica",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-1561bc6c-8a4e-bf69-aa2a-c51374467c0a": {
+          "node": "qjy000",
+          "index": 7,
+          "role": "replica",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-fb4fa10d-9222-d6f3-2d9b-5524d21da330": {
+          "node": "qjy001",
+          "index": 0,
+          "role": "replica",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-ea263dbc-c428-d593-eb3d-cfe35a8eb881": {
+          "node": "qjy001",
+          "index": 1,
+          "role": "replica",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-c87fe37a-55db-b5d5-4db9-b23a879096c5": {
+          "node": "qjy001",
+          "index": 2,
+          "role": "replica",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-a1fc259e-abd6-5e93-6d6f-516ff08ea543": {
+          "node": "qjy001",
+          "index": 3,
+          "role": "replica",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-76cdcb81-7ca9-1504-68da-4bc379c9f978": {
+          "node": "qjy001",
+          "index": 4,
+          "role": "replica",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-2d197d92-3d32-937e-5457-83f6c39e5f7f": {
+          "node": "qjy001",
+          "index": 5,
+          "role": "replica",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-66b03d7f-5f80-f9d9-2ebc-98e2b9fc7e81": {
+          "node": "qjy001",
+          "index": 6,
+          "role": "replica",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-0909f212-4be0-6d58-bb82-fb8aed60d343": {
+          "node": "qjy001",
+          "index": 7,
+          "role": "replica",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        }
+      },
+      "transfer": null,
+      "official_provenance": {
+        "run_id": "20261123T094025Z-7b-16-a-pilot",
+        "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/official-8img-0.6qps-seed3467.A.jsonl",
+        "response_sha256": "e76aae4826e3c435287fd2ad0e438cba9f918e9f2f614096e618c8fed06b4613",
+        "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/official-8img-0.6qps-seed3467.A.receipt.json",
+        "receipt_sha256": "5fa4de1380c64dd3f25fd0fbfb7fc741ac4cb8166a8cd6235acaa01be2948900",
+        "frozen_trace_sha256": "8e19933c88667474e12561930c2b0f660ffda84d607f2f98ed3704cf49da0dd0",
+        "submitted": 64,
+        "completed": 64,
+        "last_terminal_epoch_s": 1795427899.4446437
+      }
+    },
+    {
+      "name": "official-8img-0.8qps-seed3467",
+      "kind": "official",
+      "images": 8,
+      "qps": 0.8,
+      "seed": 3467,
+      "tokens": 256,
+      "group": "A",
+      "planned": 64,
+      "submitted": 64,
+      "success": 64,
+      "failure": 0,
+      "skipped": 0,
+      "unlogged": 0,
+      "source": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/official-8img-0.8qps-seed3467.A.jsonl",
+      "observation_s": 81.97745260596275,
+      "failures_by_type": {},
+      "endpoints": {
+        "http://192.168.0.237:33500": {
+          "submitted": 4,
+          "completed": 4,
+          "failed": 0,
+          "images": 12,
+          "completed_images": 12
+        },
+        "http://192.168.0.237:33501": {
+          "submitted": 4,
+          "completed": 4,
+          "failed": 0,
+          "images": 27,
+          "completed_images": 27
+        },
+        "http://192.168.0.237:33502": {
+          "submitted": 4,
+          "completed": 4,
+          "failed": 0,
+          "images": 20,
+          "completed_images": 20
+        },
+        "http://192.168.0.237:33503": {
+          "submitted": 4,
+          "completed": 4,
+          "failed": 0,
+          "images": 21,
+          "completed_images": 21
+        },
+        "http://192.168.0.237:33504": {
+          "submitted": 4,
+          "completed": 4,
+          "failed": 0,
+          "images": 20,
+          "completed_images": 20
+        },
+        "http://192.168.0.237:33505": {
+          "submitted": 4,
+          "completed": 4,
+          "failed": 0,
+          "images": 19,
+          "completed_images": 19
+        },
+        "http://192.168.0.237:33506": {
+          "submitted": 4,
+          "completed": 4,
+          "failed": 0,
+          "images": 20,
+          "completed_images": 20
+        },
+        "http://192.168.0.237:33507": {
+          "submitted": 4,
+          "completed": 4,
+          "failed": 0,
+          "images": 21,
+          "completed_images": 21
+        },
+        "http://192.168.0.240:33500": {
+          "submitted": 4,
+          "completed": 4,
+          "failed": 0,
+          "images": 10,
+          "completed_images": 10
+        },
+        "http://192.168.0.240:33501": {
+          "submitted": 4,
+          "completed": 4,
+          "failed": 0,
+          "images": 17,
+          "completed_images": 17
+        },
+        "http://192.168.0.240:33502": {
+          "submitted": 4,
+          "completed": 4,
+          "failed": 0,
+          "images": 17,
+          "completed_images": 17
+        },
+        "http://192.168.0.240:33503": {
+          "submitted": 4,
+          "completed": 4,
+          "failed": 0,
+          "images": 24,
+          "completed_images": 24
+        },
+        "http://192.168.0.240:33504": {
+          "submitted": 4,
+          "completed": 4,
+          "failed": 0,
+          "images": 25,
+          "completed_images": 25
+        },
+        "http://192.168.0.240:33505": {
+          "submitted": 4,
+          "completed": 4,
+          "failed": 0,
+          "images": 23,
+          "completed_images": 23
+        },
+        "http://192.168.0.240:33506": {
+          "submitted": 4,
+          "completed": 4,
+          "failed": 0,
+          "images": 20,
+          "completed_images": 20
+        },
+        "http://192.168.0.240:33507": {
+          "submitted": 4,
+          "completed": 4,
+          "failed": 0,
+          "images": 16,
+          "completed_images": 16
+        }
+      },
+      "timing": {
+        "ttft_ms": {
+          "n": 64,
+          "p50": 2736.7062782868743,
+          "p95": 4652.5058078579605,
+          "p99": 4730.254689119756
+        },
+        "request_tpot_ms": {
+          "n": 0,
+          "p50": null,
+          "p95": null,
+          "p99": null
+        },
+        "sse_span_per_token_ms": {
+          "n": 64,
+          "p50": 5.5874857868926195,
+          "p95": 5.888312543724098,
+          "p99": 6.066714712656011
+        },
+        "sse_content_chunk_gap_ms": {
+          "n": 13679,
+          "p50": 5.70865161716938,
+          "p95": 11.384812369942665,
+          "p99": 11.839453876018524
+        }
+      },
+      "gpu_devices": {
+        "GPU-7fa2179a-f959-6997-1664-60d6bd13badc": {
+          "node": "qjy000",
+          "index": 0,
+          "role": "replica",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-f1851450-9636-91b9-eee0-1292bc31e5b3": {
+          "node": "qjy000",
+          "index": 1,
+          "role": "replica",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-b530f5ba-daaf-4bd4-e6f4-520ff1e6b3d1": {
+          "node": "qjy000",
+          "index": 2,
+          "role": "replica",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-50846dc4-a485-2e59-5f16-79d5d65c497d": {
+          "node": "qjy000",
+          "index": 3,
+          "role": "replica",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-a89f85e5-964a-6895-c675-ae7e19865edf": {
+          "node": "qjy000",
+          "index": 4,
+          "role": "replica",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-809843a6-ca46-e991-2296-4cc20d8c6998": {
+          "node": "qjy000",
+          "index": 5,
+          "role": "replica",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-5949db27-6dd3-c2de-ce52-846a32b4e41b": {
+          "node": "qjy000",
+          "index": 6,
+          "role": "replica",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-1561bc6c-8a4e-bf69-aa2a-c51374467c0a": {
+          "node": "qjy000",
+          "index": 7,
+          "role": "replica",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-fb4fa10d-9222-d6f3-2d9b-5524d21da330": {
+          "node": "qjy001",
+          "index": 0,
+          "role": "replica",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-ea263dbc-c428-d593-eb3d-cfe35a8eb881": {
+          "node": "qjy001",
+          "index": 1,
+          "role": "replica",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-c87fe37a-55db-b5d5-4db9-b23a879096c5": {
+          "node": "qjy001",
+          "index": 2,
+          "role": "replica",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-a1fc259e-abd6-5e93-6d6f-516ff08ea543": {
+          "node": "qjy001",
+          "index": 3,
+          "role": "replica",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-76cdcb81-7ca9-1504-68da-4bc379c9f978": {
+          "node": "qjy001",
+          "index": 4,
+          "role": "replica",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-2d197d92-3d32-937e-5457-83f6c39e5f7f": {
+          "node": "qjy001",
+          "index": 5,
+          "role": "replica",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-66b03d7f-5f80-f9d9-2ebc-98e2b9fc7e81": {
+          "node": "qjy001",
+          "index": 6,
+          "role": "replica",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-0909f212-4be0-6d58-bb82-fb8aed60d343": {
+          "node": "qjy001",
+          "index": 7,
+          "role": "replica",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        }
+      },
+      "transfer": null,
+      "official_provenance": {
+        "run_id": "20261123T094025Z-7b-16-a-pilot",
+        "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/official-8img-0.8qps-seed3467.A.jsonl",
+        "response_sha256": "80a32e021297c37b8dd602165cb19e3e71d8b3884b6a0e993924ac5157f99891",
+        "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/official-8img-0.8qps-seed3467.A.receipt.json",
+        "receipt_sha256": "1128c46534146726cc52279562b80bcd8da47b0224bb18f91b69d5afe307c550",
+        "frozen_trace_sha256": "ceeac773ab168dbd2766f23328c993619fa37535f08eb83949f09c396ace7925",
+        "submitted": 64,
+        "completed": 64,
+        "last_terminal_epoch_s": 1795427986.1360128
+      }
+    },
+    {
+      "name": "official-8img-1qps-seed3467",
+      "kind": "official",
+      "images": 8,
+      "qps": 1,
+      "seed": 3467,
+      "tokens": 256,
+      "group": "A",
+      "planned": 64,
+      "submitted": 64,
+      "success": 64,
+      "failure": 0,
+      "skipped": 0,
+      "unlogged": 0,
+      "source": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/official-8img-1qps-seed3467.A.jsonl",
+      "observation_s": 66.18958173319697,
+      "failures_by_type": {},
+      "endpoints": {
+        "http://192.168.0.237:33500": {
+          "submitted": 4,
+          "completed": 4,
+          "failed": 0,
+          "images": 12,
+          "completed_images": 12
+        },
+        "http://192.168.0.237:33501": {
+          "submitted": 4,
+          "completed": 4,
+          "failed": 0,
+          "images": 27,
+          "completed_images": 27
+        },
+        "http://192.168.0.237:33502": {
+          "submitted": 4,
+          "completed": 4,
+          "failed": 0,
+          "images": 20,
+          "completed_images": 20
+        },
+        "http://192.168.0.237:33503": {
+          "submitted": 4,
+          "completed": 4,
+          "failed": 0,
+          "images": 21,
+          "completed_images": 21
+        },
+        "http://192.168.0.237:33504": {
+          "submitted": 4,
+          "completed": 4,
+          "failed": 0,
+          "images": 20,
+          "completed_images": 20
+        },
+        "http://192.168.0.237:33505": {
+          "submitted": 4,
+          "completed": 4,
+          "failed": 0,
+          "images": 19,
+          "completed_images": 19
+        },
+        "http://192.168.0.237:33506": {
+          "submitted": 4,
+          "completed": 4,
+          "failed": 0,
+          "images": 20,
+          "completed_images": 20
+        },
+        "http://192.168.0.237:33507": {
+          "submitted": 4,
+          "completed": 4,
+          "failed": 0,
+          "images": 21,
+          "completed_images": 21
+        },
+        "http://192.168.0.240:33500": {
+          "submitted": 4,
+          "completed": 4,
+          "failed": 0,
+          "images": 10,
+          "completed_images": 10
+        },
+        "http://192.168.0.240:33501": {
+          "submitted": 4,
+          "completed": 4,
+          "failed": 0,
+          "images": 17,
+          "completed_images": 17
+        },
+        "http://192.168.0.240:33502": {
+          "submitted": 4,
+          "completed": 4,
+          "failed": 0,
+          "images": 17,
+          "completed_images": 17
+        },
+        "http://192.168.0.240:33503": {
+          "submitted": 4,
+          "completed": 4,
+          "failed": 0,
+          "images": 24,
+          "completed_images": 24
+        },
+        "http://192.168.0.240:33504": {
+          "submitted": 4,
+          "completed": 4,
+          "failed": 0,
+          "images": 25,
+          "completed_images": 25
+        },
+        "http://192.168.0.240:33505": {
+          "submitted": 4,
+          "completed": 4,
+          "failed": 0,
+          "images": 23,
+          "completed_images": 23
+        },
+        "http://192.168.0.240:33506": {
+          "submitted": 4,
+          "completed": 4,
+          "failed": 0,
+          "images": 20,
+          "completed_images": 20
+        },
+        "http://192.168.0.240:33507": {
+          "submitted": 4,
+          "completed": 4,
+          "failed": 0,
+          "images": 16,
+          "completed_images": 16
+        }
+      },
+      "timing": {
+        "ttft_ms": {
+          "n": 64,
+          "p50": 2756.6417222842574,
+          "p95": 4664.367467537522,
+          "p99": 4763.648655246943
+        },
+        "request_tpot_ms": {
+          "n": 0,
+          "p50": null,
+          "p95": null,
+          "p99": null
+        },
+        "sse_span_per_token_ms": {
+          "n": 64,
+          "p50": 5.579004140899462,
+          "p95": 5.8933713933562535,
+          "p99": 6.093536597694835
+        },
+        "sse_content_chunk_gap_ms": {
+          "n": 13679,
+          "p50": 5.721736699342728,
+          "p95": 11.43445484340191,
+          "p99": 11.831700168550014
+        }
+      },
+      "gpu_devices": {
+        "GPU-7fa2179a-f959-6997-1664-60d6bd13badc": {
+          "node": "qjy000",
+          "index": 0,
+          "role": "replica",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-f1851450-9636-91b9-eee0-1292bc31e5b3": {
+          "node": "qjy000",
+          "index": 1,
+          "role": "replica",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-b530f5ba-daaf-4bd4-e6f4-520ff1e6b3d1": {
+          "node": "qjy000",
+          "index": 2,
+          "role": "replica",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-50846dc4-a485-2e59-5f16-79d5d65c497d": {
+          "node": "qjy000",
+          "index": 3,
+          "role": "replica",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-a89f85e5-964a-6895-c675-ae7e19865edf": {
+          "node": "qjy000",
+          "index": 4,
+          "role": "replica",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-809843a6-ca46-e991-2296-4cc20d8c6998": {
+          "node": "qjy000",
+          "index": 5,
+          "role": "replica",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-5949db27-6dd3-c2de-ce52-846a32b4e41b": {
+          "node": "qjy000",
+          "index": 6,
+          "role": "replica",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-1561bc6c-8a4e-bf69-aa2a-c51374467c0a": {
+          "node": "qjy000",
+          "index": 7,
+          "role": "replica",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-fb4fa10d-9222-d6f3-2d9b-5524d21da330": {
+          "node": "qjy001",
+          "index": 0,
+          "role": "replica",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-ea263dbc-c428-d593-eb3d-cfe35a8eb881": {
+          "node": "qjy001",
+          "index": 1,
+          "role": "replica",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-c87fe37a-55db-b5d5-4db9-b23a879096c5": {
+          "node": "qjy001",
+          "index": 2,
+          "role": "replica",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-a1fc259e-abd6-5e93-6d6f-516ff08ea543": {
+          "node": "qjy001",
+          "index": 3,
+          "role": "replica",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-76cdcb81-7ca9-1504-68da-4bc379c9f978": {
+          "node": "qjy001",
+          "index": 4,
+          "role": "replica",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-2d197d92-3d32-937e-5457-83f6c39e5f7f": {
+          "node": "qjy001",
+          "index": 5,
+          "role": "replica",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-66b03d7f-5f80-f9d9-2ebc-98e2b9fc7e81": {
+          "node": "qjy001",
+          "index": 6,
+          "role": "replica",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-0909f212-4be0-6d58-bb82-fb8aed60d343": {
+          "node": "qjy001",
+          "index": 7,
+          "role": "replica",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        }
+      },
+      "transfer": null,
+      "official_provenance": {
+        "run_id": "20261123T094025Z-7b-16-a-pilot",
+        "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/official-8img-1qps-seed3467.A.jsonl",
+        "response_sha256": "3772c1ed5a325df1c933b33816ff7d6263ad8943503caf8e64b926e3440f7c5f",
+        "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/official-8img-1qps-seed3467.A.receipt.json",
+        "receipt_sha256": "0bf8f6e53cad1369e82b88ed2329079d9eb01510ebf7d2ceb84b3ba2374659d8",
+        "frozen_trace_sha256": "848fedd0b098493f6270d8313bb772d39be2bcdda730fba3f1614aebcc14841b",
+        "submitted": 64,
+        "completed": 64,
+        "last_terminal_epoch_s": 1795428057.0829334
+      }
+    },
+    {
+      "name": "official-8img-0.2qps-seed3467",
+      "kind": "official",
+      "images": 8,
+      "qps": 0.2,
+      "seed": 3467,
+      "tokens": 256,
+      "group": "B",
+      "planned": 64,
+      "submitted": 64,
+      "success": 64,
+      "failure": 0,
+      "skipped": 0,
+      "unlogged": 0,
+      "source": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/official-8img-0.2qps-seed3467.B.jsonl",
+      "observation_s": 318.6217055507004,
+      "failures_by_type": {},
+      "endpoints": {
+        "http://127.0.0.1:33580": {
+          "submitted": 64,
+          "completed": 64,
+          "failed": 0,
+          "images": 312,
+          "completed_images": 312
+        }
+      },
+      "timing": {
+        "ttft_ms": {
+          "n": 64,
+          "p50": 2011.7075750604272,
+          "p95": 3440.8761834725738,
+          "p99": 3450.5264048837125
+        },
+        "request_tpot_ms": {
+          "n": 0,
+          "p50": null,
+          "p95": null,
+          "p99": null
+        },
+        "sse_span_per_token_ms": {
+          "n": 64,
+          "p50": 5.680301190153056,
+          "p95": 6.22821414149275,
+          "p99": 6.2695868522951415
+        },
+        "sse_content_chunk_gap_ms": {
+          "n": 13468,
+          "p50": 5.6973472237586975,
+          "p95": 11.736248899251223,
+          "p99": 12.46379304677248
+        }
+      },
+      "gpu_devices": {
+        "GPU-7fa2179a-f959-6997-1664-60d6bd13badc": {
+          "node": "qjy000",
+          "index": 0,
+          "role": "encoder",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-f1851450-9636-91b9-eee0-1292bc31e5b3": {
+          "node": "qjy000",
+          "index": 1,
+          "role": "encoder",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-b530f5ba-daaf-4bd4-e6f4-520ff1e6b3d1": {
+          "node": "qjy000",
+          "index": 2,
+          "role": "encoder",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-50846dc4-a485-2e59-5f16-79d5d65c497d": {
+          "node": "qjy000",
+          "index": 3,
+          "role": "encoder",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-a89f85e5-964a-6895-c675-ae7e19865edf": {
+          "node": "qjy000",
+          "index": 4,
+          "role": "encoder",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-809843a6-ca46-e991-2296-4cc20d8c6998": {
+          "node": "qjy000",
+          "index": 5,
+          "role": "encoder",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-5949db27-6dd3-c2de-ce52-846a32b4e41b": {
+          "node": "qjy000",
+          "index": 6,
+          "role": "encoder",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-1561bc6c-8a4e-bf69-aa2a-c51374467c0a": {
+          "node": "qjy000",
+          "index": 7,
+          "role": "encoder",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-fb4fa10d-9222-d6f3-2d9b-5524d21da330": {
+          "node": "qjy001",
+          "index": 0,
+          "role": "prefill",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-ea263dbc-c428-d593-eb3d-cfe35a8eb881": {
+          "node": "qjy001",
+          "index": 1,
+          "role": "prefill",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-c87fe37a-55db-b5d5-4db9-b23a879096c5": {
+          "node": "qjy001",
+          "index": 2,
+          "role": "prefill",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-a1fc259e-abd6-5e93-6d6f-516ff08ea543": {
+          "node": "qjy001",
+          "index": 3,
+          "role": "prefill",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-76cdcb81-7ca9-1504-68da-4bc379c9f978": {
+          "node": "qjy001",
+          "index": 4,
+          "role": "decode",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-2d197d92-3d32-937e-5457-83f6c39e5f7f": {
+          "node": "qjy001",
+          "index": 5,
+          "role": "decode",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-66b03d7f-5f80-f9d9-2ebc-98e2b9fc7e81": {
+          "node": "qjy001",
+          "index": 6,
+          "role": "decode",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-0909f212-4be0-6d58-bb82-fb8aed60d343": {
+          "node": "qjy001",
+          "index": 7,
+          "role": "decode",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        }
+      },
+      "transfer": null,
+      "official_provenance": {
+        "run_id": "20261123T101049Z-7b-16-b-pilot",
+        "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/official-8img-0.2qps-seed3467.B.jsonl",
+        "response_sha256": "8c296da6717a030e656dfced4f6ec64012c8172423a9844c3f81126b3e3e5fe7",
+        "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/official-8img-0.2qps-seed3467.B.receipt.json",
+        "receipt_sha256": "9773057a482c257fc5e9b89e4c04367f426f09ed37c13d729cf65a8e2809383f",
+        "frozen_trace_sha256": "d74e5eee63e9020d97abbe66e8cc050e5cb0069fa1dbf1a68fdf5d71efb040b7",
+        "submitted": 64,
+        "completed": 64,
+        "last_terminal_epoch_s": 1795429581.6860824
+      }
+    },
+    {
+      "name": "official-8img-0.4qps-seed3467",
+      "kind": "official",
+      "images": 8,
+      "qps": 0.4,
+      "seed": 3467,
+      "tokens": 256,
+      "group": "B",
+      "planned": 64,
+      "submitted": 64,
+      "success": 64,
+      "failure": 0,
+      "skipped": 0,
+      "unlogged": 0,
+      "source": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/official-8img-0.4qps-seed3467.B.jsonl",
+      "observation_s": 160.57985736988485,
+      "failures_by_type": {},
+      "endpoints": {
+        "http://127.0.0.1:33580": {
+          "submitted": 64,
+          "completed": 64,
+          "failed": 0,
+          "images": 312,
+          "completed_images": 312
+        }
+      },
+      "timing": {
+        "ttft_ms": {
+          "n": 64,
+          "p50": 2022.80249632895,
+          "p95": 3450.8272871375084,
+          "p99": 3469.6583813987672
+        },
+        "request_tpot_ms": {
+          "n": 0,
+          "p50": null,
+          "p95": null,
+          "p99": null
+        },
+        "sse_span_per_token_ms": {
+          "n": 64,
+          "p50": 5.681049159052325,
+          "p95": 6.152374005200816,
+          "p99": 6.5345087120053815
+        },
+        "sse_content_chunk_gap_ms": {
+          "n": 13465,
+          "p50": 5.67665696144104,
+          "p95": 11.739732697606085,
+          "p99": 12.7422234416008
+        }
+      },
+      "gpu_devices": {
+        "GPU-7fa2179a-f959-6997-1664-60d6bd13badc": {
+          "node": "qjy000",
+          "index": 0,
+          "role": "encoder",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-f1851450-9636-91b9-eee0-1292bc31e5b3": {
+          "node": "qjy000",
+          "index": 1,
+          "role": "encoder",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-b530f5ba-daaf-4bd4-e6f4-520ff1e6b3d1": {
+          "node": "qjy000",
+          "index": 2,
+          "role": "encoder",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-50846dc4-a485-2e59-5f16-79d5d65c497d": {
+          "node": "qjy000",
+          "index": 3,
+          "role": "encoder",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-a89f85e5-964a-6895-c675-ae7e19865edf": {
+          "node": "qjy000",
+          "index": 4,
+          "role": "encoder",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-809843a6-ca46-e991-2296-4cc20d8c6998": {
+          "node": "qjy000",
+          "index": 5,
+          "role": "encoder",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-5949db27-6dd3-c2de-ce52-846a32b4e41b": {
+          "node": "qjy000",
+          "index": 6,
+          "role": "encoder",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-1561bc6c-8a4e-bf69-aa2a-c51374467c0a": {
+          "node": "qjy000",
+          "index": 7,
+          "role": "encoder",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-fb4fa10d-9222-d6f3-2d9b-5524d21da330": {
+          "node": "qjy001",
+          "index": 0,
+          "role": "prefill",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-ea263dbc-c428-d593-eb3d-cfe35a8eb881": {
+          "node": "qjy001",
+          "index": 1,
+          "role": "prefill",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-c87fe37a-55db-b5d5-4db9-b23a879096c5": {
+          "node": "qjy001",
+          "index": 2,
+          "role": "prefill",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-a1fc259e-abd6-5e93-6d6f-516ff08ea543": {
+          "node": "qjy001",
+          "index": 3,
+          "role": "prefill",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-76cdcb81-7ca9-1504-68da-4bc379c9f978": {
+          "node": "qjy001",
+          "index": 4,
+          "role": "decode",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-2d197d92-3d32-937e-5457-83f6c39e5f7f": {
+          "node": "qjy001",
+          "index": 5,
+          "role": "decode",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-66b03d7f-5f80-f9d9-2ebc-98e2b9fc7e81": {
+          "node": "qjy001",
+          "index": 6,
+          "role": "decode",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-0909f212-4be0-6d58-bb82-fb8aed60d343": {
+          "node": "qjy001",
+          "index": 7,
+          "role": "decode",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        }
+      },
+      "transfer": null,
+      "official_provenance": {
+        "run_id": "20261123T101049Z-7b-16-b-pilot",
+        "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/official-8img-0.4qps-seed3467.B.jsonl",
+        "response_sha256": "39851d5cae763d36af1394dd027bf9404f45e299378f51f21f15fee263ac148f",
+        "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/official-8img-0.4qps-seed3467.B.receipt.json",
+        "receipt_sha256": "71826f3a7c3e1f0b3df849241b56017451ef84633a8cd24ba706aa82803701db",
+        "frozen_trace_sha256": "affee263abf6a86d1260540d60d16218139fb93986ce1c805691814c32e1f775",
+        "submitted": 64,
+        "completed": 64,
+        "last_terminal_epoch_s": 1795429746.9659874
+      }
+    },
+    {
+      "name": "official-8img-0.6qps-seed3467",
+      "kind": "official",
+      "images": 8,
+      "qps": 0.6,
+      "seed": 3467,
+      "tokens": 256,
+      "group": "B",
+      "planned": 64,
+      "submitted": 64,
+      "success": 64,
+      "failure": 0,
+      "skipped": 0,
+      "unlogged": 0,
+      "source": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/official-8img-0.6qps-seed3467.B.jsonl",
+      "observation_s": 107.92719553597271,
+      "failures_by_type": {},
+      "endpoints": {
+        "http://127.0.0.1:33580": {
+          "submitted": 64,
+          "completed": 64,
+          "failed": 0,
+          "images": 312,
+          "completed_images": 312
+        }
+      },
+      "timing": {
+        "ttft_ms": {
+          "n": 64,
+          "p50": 2022.352491505444,
+          "p95": 3472.0790474675596,
+          "p99": 3525.119909495115
+        },
+        "request_tpot_ms": {
+          "n": 0,
+          "p50": null,
+          "p95": null,
+          "p99": null
+        },
+        "sse_span_per_token_ms": {
+          "n": 64,
+          "p50": 5.6824485899186605,
+          "p95": 6.4083136957796185,
+          "p99": 6.821707562780848
+        },
+        "sse_content_chunk_gap_ms": {
+          "n": 13462,
+          "p50": 5.739390850067139,
+          "p95": 11.776298936456442,
+          "p99": 13.13917590305209
+        }
+      },
+      "gpu_devices": {
+        "GPU-7fa2179a-f959-6997-1664-60d6bd13badc": {
+          "node": "qjy000",
+          "index": 0,
+          "role": "encoder",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-f1851450-9636-91b9-eee0-1292bc31e5b3": {
+          "node": "qjy000",
+          "index": 1,
+          "role": "encoder",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-b530f5ba-daaf-4bd4-e6f4-520ff1e6b3d1": {
+          "node": "qjy000",
+          "index": 2,
+          "role": "encoder",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-50846dc4-a485-2e59-5f16-79d5d65c497d": {
+          "node": "qjy000",
+          "index": 3,
+          "role": "encoder",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-a89f85e5-964a-6895-c675-ae7e19865edf": {
+          "node": "qjy000",
+          "index": 4,
+          "role": "encoder",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-809843a6-ca46-e991-2296-4cc20d8c6998": {
+          "node": "qjy000",
+          "index": 5,
+          "role": "encoder",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-5949db27-6dd3-c2de-ce52-846a32b4e41b": {
+          "node": "qjy000",
+          "index": 6,
+          "role": "encoder",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-1561bc6c-8a4e-bf69-aa2a-c51374467c0a": {
+          "node": "qjy000",
+          "index": 7,
+          "role": "encoder",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-fb4fa10d-9222-d6f3-2d9b-5524d21da330": {
+          "node": "qjy001",
+          "index": 0,
+          "role": "prefill",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-ea263dbc-c428-d593-eb3d-cfe35a8eb881": {
+          "node": "qjy001",
+          "index": 1,
+          "role": "prefill",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-c87fe37a-55db-b5d5-4db9-b23a879096c5": {
+          "node": "qjy001",
+          "index": 2,
+          "role": "prefill",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-a1fc259e-abd6-5e93-6d6f-516ff08ea543": {
+          "node": "qjy001",
+          "index": 3,
+          "role": "prefill",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-76cdcb81-7ca9-1504-68da-4bc379c9f978": {
+          "node": "qjy001",
+          "index": 4,
+          "role": "decode",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-2d197d92-3d32-937e-5457-83f6c39e5f7f": {
+          "node": "qjy001",
+          "index": 5,
+          "role": "decode",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-66b03d7f-5f80-f9d9-2ebc-98e2b9fc7e81": {
+          "node": "qjy001",
+          "index": 6,
+          "role": "decode",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-0909f212-4be0-6d58-bb82-fb8aed60d343": {
+          "node": "qjy001",
+          "index": 7,
+          "role": "decode",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        }
+      },
+      "transfer": null,
+      "official_provenance": {
+        "run_id": "20261123T101049Z-7b-16-b-pilot",
+        "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/official-8img-0.6qps-seed3467.B.jsonl",
+        "response_sha256": "b7f24c284803d12f4214ec9cfb7628ad6b29ea54d5e141a96c19ad7c96bd65d3",
+        "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/official-8img-0.6qps-seed3467.B.receipt.json",
+        "receipt_sha256": "0e6cbb5f716a5d6687a08acedbe73f31b64595ab0d0dbd6973a3383346181a1b",
+        "frozen_trace_sha256": "8e19933c88667474e12561930c2b0f660ffda84d607f2f98ed3704cf49da0dd0",
+        "submitted": 64,
+        "completed": 64,
+        "last_terminal_epoch_s": 1795429859.595774
+      }
+    },
+    {
+      "name": "official-8img-0.8qps-seed3467",
+      "kind": "official",
+      "images": 8,
+      "qps": 0.8,
+      "seed": 3467,
+      "tokens": 256,
+      "group": "B",
+      "planned": 64,
+      "submitted": 64,
+      "success": 64,
+      "failure": 0,
+      "skipped": 0,
+      "unlogged": 0,
+      "source": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/official-8img-0.8qps-seed3467.B.jsonl",
+      "observation_s": 81.59419404529035,
+      "failures_by_type": {},
+      "endpoints": {
+        "http://127.0.0.1:33580": {
+          "submitted": 64,
+          "completed": 64,
+          "failed": 0,
+          "images": 312,
+          "completed_images": 312
+        }
+      },
+      "timing": {
+        "ttft_ms": {
+          "n": 64,
+          "p50": 2019.8323298245668,
+          "p95": 3477.7751113288105,
+          "p99": 3654.425381962209
+        },
+        "request_tpot_ms": {
+          "n": 0,
+          "p50": null,
+          "p95": null,
+          "p99": null
+        },
+        "sse_span_per_token_ms": {
+          "n": 64,
+          "p50": 5.686057344371197,
+          "p95": 6.37626881546834,
+          "p99": 6.868754846062146
+        },
+        "sse_content_chunk_gap_ms": {
+          "n": 13487,
+          "p50": 5.692984908819199,
+          "p95": 11.76031343638897,
+          "p99": 13.200604915618895
+        }
+      },
+      "gpu_devices": {
+        "GPU-7fa2179a-f959-6997-1664-60d6bd13badc": {
+          "node": "qjy000",
+          "index": 0,
+          "role": "encoder",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-f1851450-9636-91b9-eee0-1292bc31e5b3": {
+          "node": "qjy000",
+          "index": 1,
+          "role": "encoder",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-b530f5ba-daaf-4bd4-e6f4-520ff1e6b3d1": {
+          "node": "qjy000",
+          "index": 2,
+          "role": "encoder",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-50846dc4-a485-2e59-5f16-79d5d65c497d": {
+          "node": "qjy000",
+          "index": 3,
+          "role": "encoder",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-a89f85e5-964a-6895-c675-ae7e19865edf": {
+          "node": "qjy000",
+          "index": 4,
+          "role": "encoder",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-809843a6-ca46-e991-2296-4cc20d8c6998": {
+          "node": "qjy000",
+          "index": 5,
+          "role": "encoder",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-5949db27-6dd3-c2de-ce52-846a32b4e41b": {
+          "node": "qjy000",
+          "index": 6,
+          "role": "encoder",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-1561bc6c-8a4e-bf69-aa2a-c51374467c0a": {
+          "node": "qjy000",
+          "index": 7,
+          "role": "encoder",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-fb4fa10d-9222-d6f3-2d9b-5524d21da330": {
+          "node": "qjy001",
+          "index": 0,
+          "role": "prefill",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-ea263dbc-c428-d593-eb3d-cfe35a8eb881": {
+          "node": "qjy001",
+          "index": 1,
+          "role": "prefill",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-c87fe37a-55db-b5d5-4db9-b23a879096c5": {
+          "node": "qjy001",
+          "index": 2,
+          "role": "prefill",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-a1fc259e-abd6-5e93-6d6f-516ff08ea543": {
+          "node": "qjy001",
+          "index": 3,
+          "role": "prefill",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-76cdcb81-7ca9-1504-68da-4bc379c9f978": {
+          "node": "qjy001",
+          "index": 4,
+          "role": "decode",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-2d197d92-3d32-937e-5457-83f6c39e5f7f": {
+          "node": "qjy001",
+          "index": 5,
+          "role": "decode",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-66b03d7f-5f80-f9d9-2ebc-98e2b9fc7e81": {
+          "node": "qjy001",
+          "index": 6,
+          "role": "decode",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-0909f212-4be0-6d58-bb82-fb8aed60d343": {
+          "node": "qjy001",
+          "index": 7,
+          "role": "decode",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        }
+      },
+      "transfer": null,
+      "official_provenance": {
+        "run_id": "20261123T101049Z-7b-16-b-pilot",
+        "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/official-8img-0.8qps-seed3467.B.jsonl",
+        "response_sha256": "61fcba205276766a2703523b6e00d20630ac91bb1f97f2fb936825022d9a9232",
+        "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/official-8img-0.8qps-seed3467.B.receipt.json",
+        "receipt_sha256": "de0b0cc8e20dbef9f798d735f6acdd14590baef1d7df73d3f47f658ac674089b",
+        "frozen_trace_sha256": "ceeac773ab168dbd2766f23328c993619fa37535f08eb83949f09c396ace7925",
+        "submitted": 64,
+        "completed": 64,
+        "last_terminal_epoch_s": 1795429945.940914
+      }
+    },
+    {
+      "name": "official-8img-1qps-seed3467",
+      "kind": "official",
+      "images": 8,
+      "qps": 1,
+      "seed": 3467,
+      "tokens": 256,
+      "group": "B",
+      "planned": 64,
+      "submitted": 64,
+      "success": 64,
+      "failure": 0,
+      "skipped": 0,
+      "unlogged": 0,
+      "source": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/official-8img-1qps-seed3467.B.jsonl",
+      "observation_s": 65.76758352480829,
+      "failures_by_type": {},
+      "endpoints": {
+        "http://127.0.0.1:33580": {
+          "submitted": 64,
+          "completed": 64,
+          "failed": 0,
+          "images": 312,
+          "completed_images": 312
+        }
+      },
+      "timing": {
+        "ttft_ms": {
+          "n": 64,
+          "p50": 2030.762780457735,
+          "p95": 3468.5665123164654,
+          "p99": 3807.727531399577
+        },
+        "request_tpot_ms": {
+          "n": 0,
+          "p50": null,
+          "p95": null,
+          "p99": null
+        },
+        "sse_span_per_token_ms": {
+          "n": 64,
+          "p50": 5.874057683874579,
+          "p95": 6.630120009695198,
+          "p99": 6.793714281828964
+        },
+        "sse_content_chunk_gap_ms": {
+          "n": 13504,
+          "p50": 5.758124403655529,
+          "p95": 11.81249963119626,
+          "p99": 13.430408127605899
+        }
+      },
+      "gpu_devices": {
+        "GPU-7fa2179a-f959-6997-1664-60d6bd13badc": {
+          "node": "qjy000",
+          "index": 0,
+          "role": "encoder",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-f1851450-9636-91b9-eee0-1292bc31e5b3": {
+          "node": "qjy000",
+          "index": 1,
+          "role": "encoder",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-b530f5ba-daaf-4bd4-e6f4-520ff1e6b3d1": {
+          "node": "qjy000",
+          "index": 2,
+          "role": "encoder",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-50846dc4-a485-2e59-5f16-79d5d65c497d": {
+          "node": "qjy000",
+          "index": 3,
+          "role": "encoder",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-a89f85e5-964a-6895-c675-ae7e19865edf": {
+          "node": "qjy000",
+          "index": 4,
+          "role": "encoder",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-809843a6-ca46-e991-2296-4cc20d8c6998": {
+          "node": "qjy000",
+          "index": 5,
+          "role": "encoder",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-5949db27-6dd3-c2de-ce52-846a32b4e41b": {
+          "node": "qjy000",
+          "index": 6,
+          "role": "encoder",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-1561bc6c-8a4e-bf69-aa2a-c51374467c0a": {
+          "node": "qjy000",
+          "index": 7,
+          "role": "encoder",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-fb4fa10d-9222-d6f3-2d9b-5524d21da330": {
+          "node": "qjy001",
+          "index": 0,
+          "role": "prefill",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-ea263dbc-c428-d593-eb3d-cfe35a8eb881": {
+          "node": "qjy001",
+          "index": 1,
+          "role": "prefill",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-c87fe37a-55db-b5d5-4db9-b23a879096c5": {
+          "node": "qjy001",
+          "index": 2,
+          "role": "prefill",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-a1fc259e-abd6-5e93-6d6f-516ff08ea543": {
+          "node": "qjy001",
+          "index": 3,
+          "role": "prefill",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-76cdcb81-7ca9-1504-68da-4bc379c9f978": {
+          "node": "qjy001",
+          "index": 4,
+          "role": "decode",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-2d197d92-3d32-937e-5457-83f6c39e5f7f": {
+          "node": "qjy001",
+          "index": 5,
+          "role": "decode",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-66b03d7f-5f80-f9d9-2ebc-98e2b9fc7e81": {
+          "node": "qjy001",
+          "index": 6,
+          "role": "decode",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "GPU-0909f212-4be0-6d58-bb82-fb8aed60d343": {
+          "node": "qjy001",
+          "index": 7,
+          "role": "decode",
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        }
+      },
+      "transfer": null,
+      "official_provenance": {
+        "run_id": "20261123T101049Z-7b-16-b-pilot",
+        "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/official-8img-1qps-seed3467.B.jsonl",
+        "response_sha256": "944c89088211aac5639e9e0c8d73e1efb1ec1d15a6173728be6b5b227e80fd72",
+        "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/official-8img-1qps-seed3467.B.receipt.json",
+        "receipt_sha256": "0173e35cb53c26904cefcfc9b25eedcf04da4390efcc3dd53403859f8e377410",
+        "frozen_trace_sha256": "848fedd0b098493f6270d8313bb772d39be2bcdda730fba3f1614aebcc14841b",
+        "submitted": 64,
+        "completed": 64,
+        "last_terminal_epoch_s": 1795430016.4363413
+      }
+    },
+    {
+      "name": "official-8img-0.2qps-seed3467",
+      "kind": "official",
+      "images": 8,
+      "qps": 0.2,
+      "seed": 3467,
+      "tokens": 256,
+      "group": "C70",
+      "planned": 64,
+      "submitted": 64,
+      "success": 64,
+      "failure": 0,
+      "skipped": 0,
+      "unlogged": 0,
+      "source": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/official-8img-0.2qps-seed3467.C70.jsonl",
+      "observation_s": 318.43286675028503,
+      "failures_by_type": {},
+      "endpoints": {
+        "http://127.0.0.1:33580": {
+          "submitted": 64,
+          "completed": 64,
+          "failed": 0,
+          "images": 312,
+          "completed_images": 312
+        }
+      },
+      "timing": {
+        "ttft_ms": {
+          "n": 64,
+          "p50": 1606.6487794741988,
+          "p95": 2532.1288488805294,
+          "p99": 2550.8508324809372
+        },
+        "request_tpot_ms": {
+          "n": 0,
+          "p50": null,
+          "p95": null,
+          "p99": null
+        },
+        "sse_span_per_token_ms": {
+          "n": 64,
+          "p50": 5.4684847702874855,
+          "p95": 5.8270575898681205,
+          "p99": 5.8619899298338325
+        },
+        "sse_content_chunk_gap_ms": {
+          "n": 13413,
+          "p50": 5.527535453438759,
+          "p95": 11.184898763895035,
+          "p99": 11.421925425529478
+        }
+      },
+      "gpu_devices": {
+        "GPU-7fa2179a-f959-6997-1664-60d6bd13badc": {
+          "node": "qjy000",
+          "index": 0,
+          "role": "encoder",
+          "samples": 318,
+          "sample_errors": 0,
+          "mean_utilization_pct": 2.660377358490566,
+          "peak_used_mib": 4061
+        },
+        "GPU-f1851450-9636-91b9-eee0-1292bc31e5b3": {
+          "node": "qjy000",
+          "index": 1,
+          "role": "encoder",
+          "samples": 318,
+          "sample_errors": 0,
+          "mean_utilization_pct": 2.4559748427672954,
+          "peak_used_mib": 4061
+        },
+        "GPU-b530f5ba-daaf-4bd4-e6f4-520ff1e6b3d1": {
+          "node": "qjy000",
+          "index": 2,
+          "role": "encoder",
+          "samples": 318,
+          "sample_errors": 0,
+          "mean_utilization_pct": 2.5125786163522013,
+          "peak_used_mib": 4061
+        },
+        "GPU-50846dc4-a485-2e59-5f16-79d5d65c497d": {
+          "node": "qjy000",
+          "index": 3,
+          "role": "encoder",
+          "samples": 318,
+          "sample_errors": 0,
+          "mean_utilization_pct": 2.669811320754717,
+          "peak_used_mib": 4061
+        },
+        "GPU-a89f85e5-964a-6895-c675-ae7e19865edf": {
+          "node": "qjy000",
+          "index": 4,
+          "role": "encoder",
+          "samples": 318,
+          "sample_errors": 0,
+          "mean_utilization_pct": 1.8553459119496856,
+          "peak_used_mib": 4061
+        },
+        "GPU-809843a6-ca46-e991-2296-4cc20d8c6998": {
+          "node": "qjy000",
+          "index": 5,
+          "role": "encoder",
+          "samples": 318,
+          "sample_errors": 0,
+          "mean_utilization_pct": 1.971698113207547,
+          "peak_used_mib": 4061
+        },
+        "GPU-5949db27-6dd3-c2de-ce52-846a32b4e41b": {
+          "node": "qjy000",
+          "index": 6,
+          "role": "encoder",
+          "samples": 318,
+          "sample_errors": 0,
+          "mean_utilization_pct": 2.6823899371069184,
+          "peak_used_mib": 4061
+        },
+        "GPU-1561bc6c-8a4e-bf69-aa2a-c51374467c0a": {
+          "node": "qjy000",
+          "index": 7,
+          "role": "encoder",
+          "samples": 318,
+          "sample_errors": 0,
+          "mean_utilization_pct": 3.091194968553459,
+          "peak_used_mib": 4061
+        },
+        "GPU-fb4fa10d-9222-d6f3-2d9b-5524d21da330": {
+          "node": "qjy001",
+          "index": 0,
+          "role": "prefill",
+          "samples": 318,
+          "sample_errors": 0,
+          "mean_utilization_pct": 5.738993710691824,
+          "peak_used_mib": 67585
+        },
+        "GPU-ea263dbc-c428-d593-eb3d-cfe35a8eb881": {
+          "node": "qjy001",
+          "index": 1,
+          "role": "prefill",
+          "samples": 318,
+          "sample_errors": 0,
+          "mean_utilization_pct": 5.138364779874214,
+          "peak_used_mib": 67255
+        },
+        "GPU-c87fe37a-55db-b5d5-4db9-b23a879096c5": {
+          "node": "qjy001",
+          "index": 2,
+          "role": "prefill",
+          "samples": 318,
+          "sample_errors": 0,
+          "mean_utilization_pct": 3.8333333333333335,
+          "peak_used_mib": 67789
+        },
+        "GPU-a1fc259e-abd6-5e93-6d6f-516ff08ea543": {
+          "node": "qjy001",
+          "index": 3,
+          "role": "prefill",
+          "samples": 318,
+          "sample_errors": 0,
+          "mean_utilization_pct": 6.169811320754717,
+          "peak_used_mib": 67789
+        },
+        "GPU-76cdcb81-7ca9-1504-68da-4bc379c9f978": {
+          "node": "qjy001",
+          "index": 4,
+          "role": "decode",
+          "samples": 318,
+          "sample_errors": 0,
+          "mean_utilization_pct": 7.015723270440252,
+          "peak_used_mib": 67669
+        },
+        "GPU-2d197d92-3d32-937e-5457-83f6c39e5f7f": {
+          "node": "qjy001",
+          "index": 5,
+          "role": "decode",
+          "samples": 318,
+          "sample_errors": 0,
+          "mean_utilization_pct": 9.4937106918239,
+          "peak_used_mib": 67367
+        },
+        "GPU-66b03d7f-5f80-f9d9-2ebc-98e2b9fc7e81": {
+          "node": "qjy001",
+          "index": 6,
+          "role": "decode",
+          "samples": 318,
+          "sample_errors": 0,
+          "mean_utilization_pct": 4.613207547169812,
+          "peak_used_mib": 66461
+        },
+        "GPU-0909f212-4be0-6d58-bb82-fb8aed60d343": {
+          "node": "qjy001",
+          "index": 7,
+          "role": "decode",
+          "samples": 318,
+          "sample_errors": 0,
+          "mean_utilization_pct": 6.588050314465409,
+          "peak_used_mib": 67521
+        }
+      },
+      "transfer": null,
+      "official_provenance": {
+        "run_id": "20261123T110704Z-7b-16-c70-pilot",
+        "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/official-8img-0.2qps-seed3467.C70.jsonl",
+        "response_sha256": "7ab6187e26c9a782fd501bab184f0997f41c8ada2151a0a70e77df01d93d9f88",
+        "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/official-8img-0.2qps-seed3467.C70.receipt.json",
+        "receipt_sha256": "034e3fd837b1c76a8d8f432dc90f4193f561d72808a479591bfd47c14d92b64b",
+        "frozen_trace_sha256": "d74e5eee63e9020d97abbe66e8cc050e5cb0069fa1dbf1a68fdf5d71efb040b7",
+        "submitted": 64,
+        "completed": 64,
+        "last_terminal_epoch_s": 1795432924.0772932
+      }
+    },
+    {
+      "name": "official-8img-0.4qps-seed3467",
+      "kind": "official",
+      "images": 8,
+      "qps": 0.4,
+      "seed": 3467,
+      "tokens": 256,
+      "group": "C70",
+      "planned": 64,
+      "submitted": 64,
+      "success": 64,
+      "failure": 0,
+      "skipped": 0,
+      "unlogged": 0,
+      "source": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/official-8img-0.4qps-seed3467.C70.jsonl",
+      "observation_s": 160.4323330000043,
+      "failures_by_type": {},
+      "endpoints": {
+        "http://127.0.0.1:33580": {
+          "submitted": 64,
+          "completed": 64,
+          "failed": 0,
+          "images": 312,
+          "completed_images": 312
+        }
+      },
+      "timing": {
+        "ttft_ms": {
+          "n": 64,
+          "p50": 1606.5545408055186,
+          "p95": 2545.6942602060735,
+          "p99": 2561.62952657789
+        },
+        "request_tpot_ms": {
+          "n": 0,
+          "p50": null,
+          "p95": null,
+          "p99": null
+        },
+        "sse_span_per_token_ms": {
+          "n": 64,
+          "p50": 5.495208688080311,
+          "p95": 6.051153002635521,
+          "p99": 6.3298331092239595
+        },
+        "sse_content_chunk_gap_ms": {
+          "n": 13479,
+          "p50": 5.5704377591609955,
+          "p95": 11.195641569793224,
+          "p99": 12.465657889842984
+        }
+      },
+      "gpu_devices": {
+        "GPU-7fa2179a-f959-6997-1664-60d6bd13badc": {
+          "node": "qjy000",
+          "index": 0,
+          "role": "encoder",
+          "samples": 160,
+          "sample_errors": 0,
+          "mean_utilization_pct": 3.14375,
+          "peak_used_mib": 4061
+        },
+        "GPU-f1851450-9636-91b9-eee0-1292bc31e5b3": {
+          "node": "qjy000",
+          "index": 1,
+          "role": "encoder",
+          "samples": 160,
+          "sample_errors": 0,
+          "mean_utilization_pct": 3.825,
+          "peak_used_mib": 4061
+        },
+        "GPU-b530f5ba-daaf-4bd4-e6f4-520ff1e6b3d1": {
+          "node": "qjy000",
+          "index": 2,
+          "role": "encoder",
+          "samples": 160,
+          "sample_errors": 0,
+          "mean_utilization_pct": 3.275,
+          "peak_used_mib": 4061
+        },
+        "GPU-50846dc4-a485-2e59-5f16-79d5d65c497d": {
+          "node": "qjy000",
+          "index": 3,
+          "role": "encoder",
+          "samples": 160,
+          "sample_errors": 0,
+          "mean_utilization_pct": 3.975,
+          "peak_used_mib": 4061
+        },
+        "GPU-a89f85e5-964a-6895-c675-ae7e19865edf": {
+          "node": "qjy000",
+          "index": 4,
+          "role": "encoder",
+          "samples": 160,
+          "sample_errors": 0,
+          "mean_utilization_pct": 6.05,
+          "peak_used_mib": 4061
+        },
+        "GPU-809843a6-ca46-e991-2296-4cc20d8c6998": {
+          "node": "qjy000",
+          "index": 5,
+          "role": "encoder",
+          "samples": 160,
+          "sample_errors": 0,
+          "mean_utilization_pct": 6.36875,
+          "peak_used_mib": 4061
+        },
+        "GPU-5949db27-6dd3-c2de-ce52-846a32b4e41b": {
+          "node": "qjy000",
+          "index": 6,
+          "role": "encoder",
+          "samples": 160,
+          "sample_errors": 0,
+          "mean_utilization_pct": 4.11875,
+          "peak_used_mib": 4061
+        },
+        "GPU-1561bc6c-8a4e-bf69-aa2a-c51374467c0a": {
+          "node": "qjy000",
+          "index": 7,
+          "role": "encoder",
+          "samples": 160,
+          "sample_errors": 0,
+          "mean_utilization_pct": 4.00625,
+          "peak_used_mib": 4061
+        },
+        "GPU-fb4fa10d-9222-d6f3-2d9b-5524d21da330": {
+          "node": "qjy001",
+          "index": 0,
+          "role": "prefill",
+          "samples": 160,
+          "sample_errors": 0,
+          "mean_utilization_pct": 11.48125,
+          "peak_used_mib": 67585
+        },
+        "GPU-ea263dbc-c428-d593-eb3d-cfe35a8eb881": {
+          "node": "qjy001",
+          "index": 1,
+          "role": "prefill",
+          "samples": 160,
+          "sample_errors": 0,
+          "mean_utilization_pct": 9.34375,
+          "peak_used_mib": 67255
+        },
+        "GPU-c87fe37a-55db-b5d5-4db9-b23a879096c5": {
+          "node": "qjy001",
+          "index": 2,
+          "role": "prefill",
+          "samples": 160,
+          "sample_errors": 0,
+          "mean_utilization_pct": 9.575,
+          "peak_used_mib": 67789
+        },
+        "GPU-a1fc259e-abd6-5e93-6d6f-516ff08ea543": {
+          "node": "qjy001",
+          "index": 3,
+          "role": "prefill",
+          "samples": 160,
+          "sample_errors": 0,
+          "mean_utilization_pct": 11.84375,
+          "peak_used_mib": 67789
+        },
+        "GPU-76cdcb81-7ca9-1504-68da-4bc379c9f978": {
+          "node": "qjy001",
+          "index": 4,
+          "role": "decode",
+          "samples": 160,
+          "sample_errors": 0,
+          "mean_utilization_pct": 12.5,
+          "peak_used_mib": 67217
+        },
+        "GPU-2d197d92-3d32-937e-5457-83f6c39e5f7f": {
+          "node": "qjy001",
+          "index": 5,
+          "role": "decode",
+          "samples": 160,
+          "sample_errors": 0,
+          "mean_utilization_pct": 12.09375,
+          "peak_used_mib": 67521
+        },
+        "GPU-66b03d7f-5f80-f9d9-2ebc-98e2b9fc7e81": {
+          "node": "qjy001",
+          "index": 6,
+          "role": "decode",
+          "samples": 160,
+          "sample_errors": 0,
+          "mean_utilization_pct": 15.95625,
+          "peak_used_mib": 67521
+        },
+        "GPU-0909f212-4be0-6d58-bb82-fb8aed60d343": {
+          "node": "qjy001",
+          "index": 7,
+          "role": "decode",
+          "samples": 160,
+          "sample_errors": 0,
+          "mean_utilization_pct": 13.53125,
+          "peak_used_mib": 67669
+        }
+      },
+      "transfer": null,
+      "official_provenance": {
+        "run_id": "20261123T110704Z-7b-16-c70-pilot",
+        "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/official-8img-0.4qps-seed3467.C70.jsonl",
+        "response_sha256": "93e35ed6e9a2817b29ff5e113de0e030c480434525032da5d06161cc0cb7cbb4",
+        "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/official-8img-0.4qps-seed3467.C70.receipt.json",
+        "receipt_sha256": "0bdba6200e48418d43de2132dc327419e777fb5005d0f1c0b875c18621ffddfa",
+        "frozen_trace_sha256": "affee263abf6a86d1260540d60d16218139fb93986ce1c805691814c32e1f775",
+        "submitted": 64,
+        "completed": 64,
+        "last_terminal_epoch_s": 1795433089.2414029
+      }
+    },
+    {
+      "name": "official-8img-0.6qps-seed3467",
+      "kind": "official",
+      "images": 8,
+      "qps": 0.6,
+      "seed": 3467,
+      "tokens": 256,
+      "group": "C70",
+      "planned": 64,
+      "submitted": 64,
+      "success": 64,
+      "failure": 0,
+      "skipped": 0,
+      "unlogged": 0,
+      "source": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/official-8img-0.6qps-seed3467.C70.jsonl",
+      "observation_s": 107.7608272600919,
+      "failures_by_type": {},
+      "endpoints": {
+        "http://127.0.0.1:33580": {
+          "submitted": 64,
+          "completed": 64,
+          "failed": 0,
+          "images": 312,
+          "completed_images": 312
+        }
+      },
+      "timing": {
+        "ttft_ms": {
+          "n": 64,
+          "p50": 1592.3104854300618,
+          "p95": 2554.462826717645,
+          "p99": 2588.9596901088953
+        },
+        "request_tpot_ms": {
+          "n": 0,
+          "p50": null,
+          "p95": null,
+          "p99": null
+        },
+        "sse_span_per_token_ms": {
+          "n": 64,
+          "p50": 5.525277679165205,
+          "p95": 5.937911257805194,
+          "p99": 6.297942336356523
+        },
+        "sse_content_chunk_gap_ms": {
+          "n": 13423,
+          "p50": 5.5783092975616455,
+          "p95": 11.324828304350376,
+          "p99": 12.2570189088583
+        }
+      },
+      "gpu_devices": {
+        "GPU-7fa2179a-f959-6997-1664-60d6bd13badc": {
+          "node": "qjy000",
+          "index": 0,
+          "role": "encoder",
+          "samples": 108,
+          "sample_errors": 0,
+          "mean_utilization_pct": 5.62037037037037,
+          "peak_used_mib": 4061
+        },
+        "GPU-f1851450-9636-91b9-eee0-1292bc31e5b3": {
+          "node": "qjy000",
+          "index": 1,
+          "role": "encoder",
+          "samples": 108,
+          "sample_errors": 0,
+          "mean_utilization_pct": 7.953703703703703,
+          "peak_used_mib": 4061
+        },
+        "GPU-b530f5ba-daaf-4bd4-e6f4-520ff1e6b3d1": {
+          "node": "qjy000",
+          "index": 2,
+          "role": "encoder",
+          "samples": 108,
+          "sample_errors": 0,
+          "mean_utilization_pct": 5.175925925925926,
+          "peak_used_mib": 4061
+        },
+        "GPU-50846dc4-a485-2e59-5f16-79d5d65c497d": {
+          "node": "qjy000",
+          "index": 3,
+          "role": "encoder",
+          "samples": 108,
+          "sample_errors": 0,
+          "mean_utilization_pct": 5.342592592592593,
+          "peak_used_mib": 4061
+        },
+        "GPU-a89f85e5-964a-6895-c675-ae7e19865edf": {
+          "node": "qjy000",
+          "index": 4,
+          "role": "encoder",
+          "samples": 108,
+          "sample_errors": 0,
+          "mean_utilization_pct": 3.5,
+          "peak_used_mib": 4061
+        },
+        "GPU-809843a6-ca46-e991-2296-4cc20d8c6998": {
+          "node": "qjy000",
+          "index": 5,
+          "role": "encoder",
+          "samples": 108,
+          "sample_errors": 0,
+          "mean_utilization_pct": 2.935185185185185,
+          "peak_used_mib": 4061
+        },
+        "GPU-5949db27-6dd3-c2de-ce52-846a32b4e41b": {
+          "node": "qjy000",
+          "index": 6,
+          "role": "encoder",
+          "samples": 108,
+          "sample_errors": 0,
+          "mean_utilization_pct": 4.212962962962963,
+          "peak_used_mib": 4061
+        },
+        "GPU-1561bc6c-8a4e-bf69-aa2a-c51374467c0a": {
+          "node": "qjy000",
+          "index": 7,
+          "role": "encoder",
+          "samples": 108,
+          "sample_errors": 0,
+          "mean_utilization_pct": 5.546296296296297,
+          "peak_used_mib": 4061
+        },
+        "GPU-fb4fa10d-9222-d6f3-2d9b-5524d21da330": {
+          "node": "qjy001",
+          "index": 0,
+          "role": "prefill",
+          "samples": 108,
+          "sample_errors": 0,
+          "mean_utilization_pct": 14.305555555555555,
+          "peak_used_mib": 67585
+        },
+        "GPU-ea263dbc-c428-d593-eb3d-cfe35a8eb881": {
+          "node": "qjy001",
+          "index": 1,
+          "role": "prefill",
+          "samples": 108,
+          "sample_errors": 0,
+          "mean_utilization_pct": 16.074074074074073,
+          "peak_used_mib": 67255
+        },
+        "GPU-c87fe37a-55db-b5d5-4db9-b23a879096c5": {
+          "node": "qjy001",
+          "index": 2,
+          "role": "prefill",
+          "samples": 108,
+          "sample_errors": 0,
+          "mean_utilization_pct": 12.712962962962964,
+          "peak_used_mib": 67789
+        },
+        "GPU-a1fc259e-abd6-5e93-6d6f-516ff08ea543": {
+          "node": "qjy001",
+          "index": 3,
+          "role": "prefill",
+          "samples": 108,
+          "sample_errors": 0,
+          "mean_utilization_pct": 14.175925925925926,
+          "peak_used_mib": 67789
+        },
+        "GPU-76cdcb81-7ca9-1504-68da-4bc379c9f978": {
+          "node": "qjy001",
+          "index": 4,
+          "role": "decode",
+          "samples": 108,
+          "sample_errors": 0,
+          "mean_utilization_pct": 17.99074074074074,
+          "peak_used_mib": 66841
+        },
+        "GPU-2d197d92-3d32-937e-5457-83f6c39e5f7f": {
+          "node": "qjy001",
+          "index": 5,
+          "role": "decode",
+          "samples": 108,
+          "sample_errors": 0,
+          "mean_utilization_pct": 23.12037037037037,
+          "peak_used_mib": 67669
+        },
+        "GPU-66b03d7f-5f80-f9d9-2ebc-98e2b9fc7e81": {
+          "node": "qjy001",
+          "index": 6,
+          "role": "decode",
+          "samples": 108,
+          "sample_errors": 0,
+          "mean_utilization_pct": 21.564814814814813,
+          "peak_used_mib": 66463
+        },
+        "GPU-0909f212-4be0-6d58-bb82-fb8aed60d343": {
+          "node": "qjy001",
+          "index": 7,
+          "role": "decode",
+          "samples": 108,
+          "sample_errors": 0,
+          "mean_utilization_pct": 22.11111111111111,
+          "peak_used_mib": 66461
+        }
+      },
+      "transfer": null,
+      "official_provenance": {
+        "run_id": "20261123T110704Z-7b-16-c70-pilot",
+        "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/official-8img-0.6qps-seed3467.C70.jsonl",
+        "response_sha256": "3501245e5481561131e46a2505bf573a7e61e1b6eb71bb97110d71ef6a84cd2d",
+        "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/official-8img-0.6qps-seed3467.C70.receipt.json",
+        "receipt_sha256": "054194f2007aa7dc6b0c69abd066cbb12eaf266640d6dbd6e5f785d01c71c135",
+        "frozen_trace_sha256": "8e19933c88667474e12561930c2b0f660ffda84d607f2f98ed3704cf49da0dd0",
+        "submitted": 64,
+        "completed": 64,
+        "last_terminal_epoch_s": 1795433201.7900121
+      }
+    },
+    {
+      "name": "official-8img-0.8qps-seed3467",
+      "kind": "official",
+      "images": 8,
+      "qps": 0.8,
+      "seed": 3467,
+      "tokens": 256,
+      "group": "C70",
+      "planned": 64,
+      "submitted": 64,
+      "success": 64,
+      "failure": 0,
+      "skipped": 0,
+      "unlogged": 0,
+      "source": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/official-8img-0.8qps-seed3467.C70.jsonl",
+      "observation_s": 81.42320800572634,
+      "failures_by_type": {},
+      "endpoints": {
+        "http://127.0.0.1:33580": {
+          "submitted": 64,
+          "completed": 64,
+          "failed": 0,
+          "images": 312,
+          "completed_images": 312
+        }
+      },
+      "timing": {
+        "ttft_ms": {
+          "n": 64,
+          "p50": 1608.2119196653366,
+          "p95": 2558.2803410477936,
+          "p99": 2674.81752872467
+        },
+        "request_tpot_ms": {
+          "n": 0,
+          "p50": null,
+          "p95": null,
+          "p99": null
+        },
+        "sse_span_per_token_ms": {
+          "n": 64,
+          "p50": 5.612445542333173,
+          "p95": 6.078697679673924,
+          "p99": 6.284519043258007
+        },
+        "sse_content_chunk_gap_ms": {
+          "n": 13326,
+          "p50": 5.59341162443161,
+          "p95": 11.37464214116335,
+          "p99": 12.155802920460701
+        }
+      },
+      "gpu_devices": {
+        "GPU-7fa2179a-f959-6997-1664-60d6bd13badc": {
+          "node": "qjy000",
+          "index": 0,
+          "role": "encoder",
+          "samples": 82,
+          "sample_errors": 0,
+          "mean_utilization_pct": 11.804878048780488,
+          "peak_used_mib": 4061
+        },
+        "GPU-f1851450-9636-91b9-eee0-1292bc31e5b3": {
+          "node": "qjy000",
+          "index": 1,
+          "role": "encoder",
+          "samples": 82,
+          "sample_errors": 0,
+          "mean_utilization_pct": 10.621951219512194,
+          "peak_used_mib": 4061
+        },
+        "GPU-b530f5ba-daaf-4bd4-e6f4-520ff1e6b3d1": {
+          "node": "qjy000",
+          "index": 2,
+          "role": "encoder",
+          "samples": 82,
+          "sample_errors": 0,
+          "mean_utilization_pct": 10.231707317073171,
+          "peak_used_mib": 4061
+        },
+        "GPU-50846dc4-a485-2e59-5f16-79d5d65c497d": {
+          "node": "qjy000",
+          "index": 3,
+          "role": "encoder",
+          "samples": 82,
+          "sample_errors": 0,
+          "mean_utilization_pct": 11.439024390243903,
+          "peak_used_mib": 4061
+        },
+        "GPU-a89f85e5-964a-6895-c675-ae7e19865edf": {
+          "node": "qjy000",
+          "index": 4,
+          "role": "encoder",
+          "samples": 82,
+          "sample_errors": 0,
+          "mean_utilization_pct": 5.902439024390244,
+          "peak_used_mib": 4061
+        },
+        "GPU-809843a6-ca46-e991-2296-4cc20d8c6998": {
+          "node": "qjy000",
+          "index": 5,
+          "role": "encoder",
+          "samples": 82,
+          "sample_errors": 0,
+          "mean_utilization_pct": 5.121951219512195,
+          "peak_used_mib": 4061
+        },
+        "GPU-5949db27-6dd3-c2de-ce52-846a32b4e41b": {
+          "node": "qjy000",
+          "index": 6,
+          "role": "encoder",
+          "samples": 82,
+          "sample_errors": 0,
+          "mean_utilization_pct": 7.7926829268292686,
+          "peak_used_mib": 4061
+        },
+        "GPU-1561bc6c-8a4e-bf69-aa2a-c51374467c0a": {
+          "node": "qjy000",
+          "index": 7,
+          "role": "encoder",
+          "samples": 82,
+          "sample_errors": 0,
+          "mean_utilization_pct": 7.7317073170731705,
+          "peak_used_mib": 4061
+        },
+        "GPU-fb4fa10d-9222-d6f3-2d9b-5524d21da330": {
+          "node": "qjy001",
+          "index": 0,
+          "role": "prefill",
+          "samples": 82,
+          "sample_errors": 0,
+          "mean_utilization_pct": 23.134146341463413,
+          "peak_used_mib": 67585
+        },
+        "GPU-ea263dbc-c428-d593-eb3d-cfe35a8eb881": {
+          "node": "qjy001",
+          "index": 1,
+          "role": "prefill",
+          "samples": 82,
+          "sample_errors": 0,
+          "mean_utilization_pct": 19.329268292682926,
+          "peak_used_mib": 67255
+        },
+        "GPU-c87fe37a-55db-b5d5-4db9-b23a879096c5": {
+          "node": "qjy001",
+          "index": 2,
+          "role": "prefill",
+          "samples": 82,
+          "sample_errors": 0,
+          "mean_utilization_pct": 18.195121951219512,
+          "peak_used_mib": 67789
+        },
+        "GPU-a1fc259e-abd6-5e93-6d6f-516ff08ea543": {
+          "node": "qjy001",
+          "index": 3,
+          "role": "prefill",
+          "samples": 82,
+          "sample_errors": 0,
+          "mean_utilization_pct": 21.76829268292683,
+          "peak_used_mib": 67789
+        },
+        "GPU-76cdcb81-7ca9-1504-68da-4bc379c9f978": {
+          "node": "qjy001",
+          "index": 4,
+          "role": "decode",
+          "samples": 82,
+          "sample_errors": 0,
+          "mean_utilization_pct": 24.536585365853657,
+          "peak_used_mib": 67669
+        },
+        "GPU-2d197d92-3d32-937e-5457-83f6c39e5f7f": {
+          "node": "qjy001",
+          "index": 5,
+          "role": "decode",
+          "samples": 82,
+          "sample_errors": 0,
+          "mean_utilization_pct": 25.573170731707318,
+          "peak_used_mib": 67669
+        },
+        "GPU-66b03d7f-5f80-f9d9-2ebc-98e2b9fc7e81": {
+          "node": "qjy001",
+          "index": 6,
+          "role": "decode",
+          "samples": 82,
+          "sample_errors": 0,
+          "mean_utilization_pct": 26.51219512195122,
+          "peak_used_mib": 66463
+        },
+        "GPU-0909f212-4be0-6d58-bb82-fb8aed60d343": {
+          "node": "qjy001",
+          "index": 7,
+          "role": "decode",
+          "samples": 82,
+          "sample_errors": 0,
+          "mean_utilization_pct": 24.036585365853657,
+          "peak_used_mib": 67067
+        }
+      },
+      "transfer": null,
+      "official_provenance": {
+        "run_id": "20261123T110704Z-7b-16-c70-pilot",
+        "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/official-8img-0.8qps-seed3467.C70.jsonl",
+        "response_sha256": "42551c358b11f2e3d349325bb78ccfdc0ff34c316ef3361c5237e4a230042a6e",
+        "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/official-8img-0.8qps-seed3467.C70.receipt.json",
+        "receipt_sha256": "197e0c73ba27597b3483788cf5f89f543bb7541e03d9d1a299b6a086e6554178",
+        "frozen_trace_sha256": "ceeac773ab168dbd2766f23328c993619fa37535f08eb83949f09c396ace7925",
+        "submitted": 64,
+        "completed": 64,
+        "last_terminal_epoch_s": 1795433287.9775987
+      }
+    },
+    {
+      "name": "official-8img-1qps-seed3467",
+      "kind": "official",
+      "images": 8,
+      "qps": 1,
+      "seed": 3467,
+      "tokens": 256,
+      "group": "C70",
+      "planned": 64,
+      "submitted": 64,
+      "success": 64,
+      "failure": 0,
+      "skipped": 0,
+      "unlogged": 0,
+      "source": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/official-8img-1qps-seed3467.C70.jsonl",
+      "observation_s": 65.58904133178294,
+      "failures_by_type": {},
+      "endpoints": {
+        "http://127.0.0.1:33580": {
+          "submitted": 64,
+          "completed": 64,
+          "failed": 0,
+          "images": 312,
+          "completed_images": 312
+        }
+      },
+      "timing": {
+        "ttft_ms": {
+          "n": 64,
+          "p50": 1603.0056085437536,
+          "p95": 2646.0185372270644,
+          "p99": 2699.8423494957387
+        },
+        "request_tpot_ms": {
+          "n": 0,
+          "p50": null,
+          "p95": null,
+          "p99": null
+        },
+        "sse_span_per_token_ms": {
+          "n": 64,
+          "p50": 5.633428480987455,
+          "p95": 6.0372614593920755,
+          "p99": 6.167894854484236
+        },
+        "sse_content_chunk_gap_ms": {
+          "n": 13305,
+          "p50": 5.596354603767395,
+          "p95": 11.359559372067451,
+          "p99": 13.087409138679407
+        }
+      },
+      "gpu_devices": {
+        "GPU-7fa2179a-f959-6997-1664-60d6bd13badc": {
+          "node": "qjy000",
+          "index": 0,
+          "role": "encoder",
+          "samples": 66,
+          "sample_errors": 0,
+          "mean_utilization_pct": 9.257575757575758,
+          "peak_used_mib": 4061
+        },
+        "GPU-f1851450-9636-91b9-eee0-1292bc31e5b3": {
+          "node": "qjy000",
+          "index": 1,
+          "role": "encoder",
+          "samples": 66,
+          "sample_errors": 0,
+          "mean_utilization_pct": 5.242424242424242,
+          "peak_used_mib": 4061
+        },
+        "GPU-b530f5ba-daaf-4bd4-e6f4-520ff1e6b3d1": {
+          "node": "qjy000",
+          "index": 2,
+          "role": "encoder",
+          "samples": 66,
+          "sample_errors": 0,
+          "mean_utilization_pct": 8.818181818181818,
+          "peak_used_mib": 4061
+        },
+        "GPU-50846dc4-a485-2e59-5f16-79d5d65c497d": {
+          "node": "qjy000",
+          "index": 3,
+          "role": "encoder",
+          "samples": 66,
+          "sample_errors": 0,
+          "mean_utilization_pct": 4.53030303030303,
+          "peak_used_mib": 4061
+        },
+        "GPU-a89f85e5-964a-6895-c675-ae7e19865edf": {
+          "node": "qjy000",
+          "index": 4,
+          "role": "encoder",
+          "samples": 66,
+          "sample_errors": 0,
+          "mean_utilization_pct": 13.787878787878787,
+          "peak_used_mib": 4061
+        },
+        "GPU-809843a6-ca46-e991-2296-4cc20d8c6998": {
+          "node": "qjy000",
+          "index": 5,
+          "role": "encoder",
+          "samples": 66,
+          "sample_errors": 0,
+          "mean_utilization_pct": 7.833333333333333,
+          "peak_used_mib": 4061
+        },
+        "GPU-5949db27-6dd3-c2de-ce52-846a32b4e41b": {
+          "node": "qjy000",
+          "index": 6,
+          "role": "encoder",
+          "samples": 66,
+          "sample_errors": 0,
+          "mean_utilization_pct": 8.666666666666666,
+          "peak_used_mib": 4061
+        },
+        "GPU-1561bc6c-8a4e-bf69-aa2a-c51374467c0a": {
+          "node": "qjy000",
+          "index": 7,
+          "role": "encoder",
+          "samples": 66,
+          "sample_errors": 0,
+          "mean_utilization_pct": 7.484848484848484,
+          "peak_used_mib": 4061
+        },
+        "GPU-fb4fa10d-9222-d6f3-2d9b-5524d21da330": {
+          "node": "qjy001",
+          "index": 0,
+          "role": "prefill",
+          "samples": 66,
+          "sample_errors": 0,
+          "mean_utilization_pct": 23.651515151515152,
+          "peak_used_mib": 67585
+        },
+        "GPU-ea263dbc-c428-d593-eb3d-cfe35a8eb881": {
+          "node": "qjy001",
+          "index": 1,
+          "role": "prefill",
+          "samples": 66,
+          "sample_errors": 0,
+          "mean_utilization_pct": 25.242424242424242,
+          "peak_used_mib": 67255
+        },
+        "GPU-c87fe37a-55db-b5d5-4db9-b23a879096c5": {
+          "node": "qjy001",
+          "index": 2,
+          "role": "prefill",
+          "samples": 66,
+          "sample_errors": 0,
+          "mean_utilization_pct": 21.03030303030303,
+          "peak_used_mib": 67789
+        },
+        "GPU-a1fc259e-abd6-5e93-6d6f-516ff08ea543": {
+          "node": "qjy001",
+          "index": 3,
+          "role": "prefill",
+          "samples": 66,
+          "sample_errors": 0,
+          "mean_utilization_pct": 26.606060606060606,
+          "peak_used_mib": 67789
+        },
+        "GPU-76cdcb81-7ca9-1504-68da-4bc379c9f978": {
+          "node": "qjy001",
+          "index": 4,
+          "role": "decode",
+          "samples": 66,
+          "sample_errors": 0,
+          "mean_utilization_pct": 39.621212121212125,
+          "peak_used_mib": 67367
+        },
+        "GPU-2d197d92-3d32-937e-5457-83f6c39e5f7f": {
+          "node": "qjy001",
+          "index": 5,
+          "role": "decode",
+          "samples": 66,
+          "sample_errors": 0,
+          "mean_utilization_pct": 31.863636363636363,
+          "peak_used_mib": 67217
+        },
+        "GPU-66b03d7f-5f80-f9d9-2ebc-98e2b9fc7e81": {
+          "node": "qjy001",
+          "index": 6,
+          "role": "decode",
+          "samples": 66,
+          "sample_errors": 0,
+          "mean_utilization_pct": 31.53030303030303,
+          "peak_used_mib": 67369
+        },
+        "GPU-0909f212-4be0-6d58-bb82-fb8aed60d343": {
+          "node": "qjy001",
+          "index": 7,
+          "role": "decode",
+          "samples": 66,
+          "sample_errors": 0,
+          "mean_utilization_pct": 32.54545454545455,
+          "peak_used_mib": 67669
+        }
+      },
+      "transfer": null,
+      "official_provenance": {
+        "run_id": "20261123T110704Z-7b-16-c70-pilot",
+        "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/official-8img-1qps-seed3467.C70.jsonl",
+        "response_sha256": "6905c872f8844184c91bc5259b956e0a553f4ed5b2942cd917ae339421b9bddf",
+        "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/official-8img-1qps-seed3467.C70.receipt.json",
+        "receipt_sha256": "8bc0048a9bbb1cc44027a2af1121113680ffd2b42194cd04b93f3e27df7b97aa",
+        "frozen_trace_sha256": "848fedd0b098493f6270d8313bb772d39be2bcdda730fba3f1614aebcc14841b",
+        "submitted": 64,
+        "completed": 64,
+        "last_terminal_epoch_s": 1795433358.244986
+      }
+    },
+    {
+      "name": "official-8img-0.2qps-seed3467",
+      "kind": "official",
+      "images": 8,
+      "qps": 0.2,
+      "seed": 3467,
+      "tokens": 256,
+      "group": "C50",
+      "planned": 64,
+      "submitted": 64,
+      "success": 64,
+      "failure": 0,
+      "skipped": 0,
+      "unlogged": 0,
+      "source": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/official-8img-0.2qps-seed3467.C50.jsonl",
+      "observation_s": 318.24794502928853,
+      "failures_by_type": {},
+      "endpoints": {
+        "http://127.0.0.1:33580": {
+          "submitted": 64,
+          "completed": 64,
+          "failed": 0,
+          "images": 312,
+          "completed_images": 312
+        }
+      },
+      "timing": {
+        "ttft_ms": {
+          "n": 64,
+          "p50": 1256.091307848692,
+          "p95": 1926.239764597267,
+          "p99": 1932.4043498560786
+        },
+        "request_tpot_ms": {
+          "n": 0,
+          "p50": null,
+          "p95": null,
+          "p99": null
+        },
+        "sse_span_per_token_ms": {
+          "n": 64,
+          "p50": 5.388659607692093,
+          "p95": 5.705402579669859,
+          "p99": 5.768032539489806
+        },
+        "sse_content_chunk_gap_ms": {
+          "n": 13234,
+          "p50": 5.411034449934959,
+          "p95": 10.89693671092391,
+          "p99": 11.115807201713324
+        }
+      },
+      "gpu_devices": {
+        "GPU-7fa2179a-f959-6997-1664-60d6bd13badc": {
+          "node": "qjy000",
+          "index": 0,
+          "role": "encoder",
+          "samples": 318,
+          "sample_errors": 0,
+          "mean_utilization_pct": 2.110062893081761,
+          "peak_used_mib": 3255
+        },
+        "GPU-f1851450-9636-91b9-eee0-1292bc31e5b3": {
+          "node": "qjy000",
+          "index": 1,
+          "role": "encoder",
+          "samples": 318,
+          "sample_errors": 0,
+          "mean_utilization_pct": 3.0754716981132075,
+          "peak_used_mib": 3255
+        },
+        "GPU-b530f5ba-daaf-4bd4-e6f4-520ff1e6b3d1": {
+          "node": "qjy000",
+          "index": 2,
+          "role": "encoder",
+          "samples": 318,
+          "sample_errors": 0,
+          "mean_utilization_pct": 1.8270440251572326,
+          "peak_used_mib": 4061
+        },
+        "GPU-50846dc4-a485-2e59-5f16-79d5d65c497d": {
+          "node": "qjy000",
+          "index": 3,
+          "role": "encoder",
+          "samples": 318,
+          "sample_errors": 0,
+          "mean_utilization_pct": 2.7767295597484276,
+          "peak_used_mib": 3255
+        },
+        "GPU-a89f85e5-964a-6895-c675-ae7e19865edf": {
+          "node": "qjy000",
+          "index": 4,
+          "role": "encoder",
+          "samples": 318,
+          "sample_errors": 0,
+          "mean_utilization_pct": 2.4748427672955975,
+          "peak_used_mib": 3255
+        },
+        "GPU-809843a6-ca46-e991-2296-4cc20d8c6998": {
+          "node": "qjy000",
+          "index": 5,
+          "role": "encoder",
+          "samples": 318,
+          "sample_errors": 0,
+          "mean_utilization_pct": 2.5754716981132075,
+          "peak_used_mib": 3255
+        },
+        "GPU-5949db27-6dd3-c2de-ce52-846a32b4e41b": {
+          "node": "qjy000",
+          "index": 6,
+          "role": "encoder",
+          "samples": 318,
+          "sample_errors": 0,
+          "mean_utilization_pct": 2.7264150943396226,
+          "peak_used_mib": 4061
+        },
+        "GPU-1561bc6c-8a4e-bf69-aa2a-c51374467c0a": {
+          "node": "qjy000",
+          "index": 7,
+          "role": "encoder",
+          "samples": 318,
+          "sample_errors": 0,
+          "mean_utilization_pct": 2.1823899371069184,
+          "peak_used_mib": 4061
+        },
+        "GPU-fb4fa10d-9222-d6f3-2d9b-5524d21da330": {
+          "node": "qjy001",
+          "index": 0,
+          "role": "prefill",
+          "samples": 318,
+          "sample_errors": 0,
+          "mean_utilization_pct": 2.7169811320754715,
+          "peak_used_mib": 67355
+        },
+        "GPU-ea263dbc-c428-d593-eb3d-cfe35a8eb881": {
+          "node": "qjy001",
+          "index": 1,
+          "role": "prefill",
+          "samples": 318,
+          "sample_errors": 0,
+          "mean_utilization_pct": 3.90251572327044,
+          "peak_used_mib": 66875
+        },
+        "GPU-c87fe37a-55db-b5d5-4db9-b23a879096c5": {
+          "node": "qjy001",
+          "index": 2,
+          "role": "prefill",
+          "samples": 318,
+          "sample_errors": 0,
+          "mean_utilization_pct": 4.188679245283019,
+          "peak_used_mib": 66893
+        },
+        "GPU-a1fc259e-abd6-5e93-6d6f-516ff08ea543": {
+          "node": "qjy001",
+          "index": 3,
+          "role": "prefill",
+          "samples": 318,
+          "sample_errors": 0,
+          "mean_utilization_pct": 3.8144654088050314,
+          "peak_used_mib": 67291
+        },
+        "GPU-76cdcb81-7ca9-1504-68da-4bc379c9f978": {
+          "node": "qjy001",
+          "index": 4,
+          "role": "decode",
+          "samples": 318,
+          "sample_errors": 0,
+          "mean_utilization_pct": 7.716981132075472,
+          "peak_used_mib": 66883
+        },
+        "GPU-2d197d92-3d32-937e-5457-83f6c39e5f7f": {
+          "node": "qjy001",
+          "index": 5,
+          "role": "decode",
+          "samples": 318,
+          "sample_errors": 0,
+          "mean_utilization_pct": 7.352201257861635,
+          "peak_used_mib": 67675
+        },
+        "GPU-66b03d7f-5f80-f9d9-2ebc-98e2b9fc7e81": {
+          "node": "qjy001",
+          "index": 6,
+          "role": "decode",
+          "samples": 318,
+          "sample_errors": 0,
+          "mean_utilization_pct": 7.512578616352202,
+          "peak_used_mib": 67355
+        },
+        "GPU-0909f212-4be0-6d58-bb82-fb8aed60d343": {
+          "node": "qjy001",
+          "index": 7,
+          "role": "decode",
+          "samples": 318,
+          "sample_errors": 0,
+          "mean_utilization_pct": 4.761006289308176,
+          "peak_used_mib": 66427
+        }
+      },
+      "transfer": null,
+      "official_provenance": {
+        "run_id": "20261123T120518Z-7b-16-c50-retry",
+        "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/official-8img-0.2qps-seed3467.C50.jsonl",
+        "response_sha256": "f8980978722f1ce2a536bc453943195db4634c0bf78f5e3ec30c168ff3eb9400",
+        "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/official-8img-0.2qps-seed3467.C50.receipt.json",
+        "receipt_sha256": "6e8a575359bd3e5abc4f21fc03ef8b684e8059e469e333fa33b110fef97cab23",
+        "frozen_trace_sha256": "d74e5eee63e9020d97abbe66e8cc050e5cb0069fa1dbf1a68fdf5d71efb040b7",
+        "submitted": 64,
+        "completed": 64,
+        "last_terminal_epoch_s": 1795436410.2144217
+      }
+    },
+    {
+      "name": "official-8img-0.4qps-seed3467",
+      "kind": "official",
+      "images": 8,
+      "qps": 0.4,
+      "seed": 3467,
+      "tokens": 256,
+      "group": "C50",
+      "planned": 64,
+      "submitted": 64,
+      "success": 64,
+      "failure": 0,
+      "skipped": 0,
+      "unlogged": 0,
+      "source": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/official-8img-0.4qps-seed3467.C50.jsonl",
+      "observation_s": 160.2137632276863,
+      "failures_by_type": {},
+      "endpoints": {
+        "http://127.0.0.1:33580": {
+          "submitted": 64,
+          "completed": 64,
+          "failed": 0,
+          "images": 312,
+          "completed_images": 312
+        }
+      },
+      "timing": {
+        "ttft_ms": {
+          "n": 64,
+          "p50": 1266.2158757448196,
+          "p95": 1917.2295363619924,
+          "p99": 1950.045880433172
+        },
+        "request_tpot_ms": {
+          "n": 0,
+          "p50": null,
+          "p95": null,
+          "p99": null
+        },
+        "sse_span_per_token_ms": {
+          "n": 64,
+          "p50": 5.3908525911324165,
+          "p95": 5.694026597866825,
+          "p99": 5.900499132991421
+        },
+        "sse_content_chunk_gap_ms": {
+          "n": 13212,
+          "p50": 5.428682081401348,
+          "p95": 10.936908051371574,
+          "p99": 11.610048227012143
+        }
+      },
+      "gpu_devices": {
+        "GPU-7fa2179a-f959-6997-1664-60d6bd13badc": {
+          "node": "qjy000",
+          "index": 0,
+          "role": "encoder",
+          "samples": 160,
+          "sample_errors": 0,
+          "mean_utilization_pct": 5.96875,
+          "peak_used_mib": 3255
+        },
+        "GPU-f1851450-9636-91b9-eee0-1292bc31e5b3": {
+          "node": "qjy000",
+          "index": 1,
+          "role": "encoder",
+          "samples": 160,
+          "sample_errors": 0,
+          "mean_utilization_pct": 6.0875,
+          "peak_used_mib": 3255
+        },
+        "GPU-b530f5ba-daaf-4bd4-e6f4-520ff1e6b3d1": {
+          "node": "qjy000",
+          "index": 2,
+          "role": "encoder",
+          "samples": 160,
+          "sample_errors": 0,
+          "mean_utilization_pct": 6.05,
+          "peak_used_mib": 4061
+        },
+        "GPU-50846dc4-a485-2e59-5f16-79d5d65c497d": {
+          "node": "qjy000",
+          "index": 3,
+          "role": "encoder",
+          "samples": 160,
+          "sample_errors": 0,
+          "mean_utilization_pct": 5.5875,
+          "peak_used_mib": 3255
+        },
+        "GPU-a89f85e5-964a-6895-c675-ae7e19865edf": {
+          "node": "qjy000",
+          "index": 4,
+          "role": "encoder",
+          "samples": 160,
+          "sample_errors": 0,
+          "mean_utilization_pct": 2.93125,
+          "peak_used_mib": 3255
+        },
+        "GPU-809843a6-ca46-e991-2296-4cc20d8c6998": {
+          "node": "qjy000",
+          "index": 5,
+          "role": "encoder",
+          "samples": 160,
+          "sample_errors": 0,
+          "mean_utilization_pct": 6.1625,
+          "peak_used_mib": 3255
+        },
+        "GPU-5949db27-6dd3-c2de-ce52-846a32b4e41b": {
+          "node": "qjy000",
+          "index": 6,
+          "role": "encoder",
+          "samples": 160,
+          "sample_errors": 0,
+          "mean_utilization_pct": 1.9,
+          "peak_used_mib": 4061
+        },
+        "GPU-1561bc6c-8a4e-bf69-aa2a-c51374467c0a": {
+          "node": "qjy000",
+          "index": 7,
+          "role": "encoder",
+          "samples": 160,
+          "sample_errors": 0,
+          "mean_utilization_pct": 2.48125,
+          "peak_used_mib": 4061
+        },
+        "GPU-fb4fa10d-9222-d6f3-2d9b-5524d21da330": {
+          "node": "qjy001",
+          "index": 0,
+          "role": "prefill",
+          "samples": 160,
+          "sample_errors": 0,
+          "mean_utilization_pct": 6.0,
+          "peak_used_mib": 67355
+        },
+        "GPU-ea263dbc-c428-d593-eb3d-cfe35a8eb881": {
+          "node": "qjy001",
+          "index": 1,
+          "role": "prefill",
+          "samples": 160,
+          "sample_errors": 0,
+          "mean_utilization_pct": 6.9125,
+          "peak_used_mib": 66875
+        },
+        "GPU-c87fe37a-55db-b5d5-4db9-b23a879096c5": {
+          "node": "qjy001",
+          "index": 2,
+          "role": "prefill",
+          "samples": 160,
+          "sample_errors": 0,
+          "mean_utilization_pct": 6.48125,
+          "peak_used_mib": 66893
+        },
+        "GPU-a1fc259e-abd6-5e93-6d6f-516ff08ea543": {
+          "node": "qjy001",
+          "index": 3,
+          "role": "prefill",
+          "samples": 160,
+          "sample_errors": 0,
+          "mean_utilization_pct": 8.54375,
+          "peak_used_mib": 67291
+        },
+        "GPU-76cdcb81-7ca9-1504-68da-4bc379c9f978": {
+          "node": "qjy001",
+          "index": 4,
+          "role": "decode",
+          "samples": 160,
+          "sample_errors": 0,
+          "mean_utilization_pct": 12.59375,
+          "peak_used_mib": 67033
+        },
+        "GPU-2d197d92-3d32-937e-5457-83f6c39e5f7f": {
+          "node": "qjy001",
+          "index": 5,
+          "role": "decode",
+          "samples": 160,
+          "sample_errors": 0,
+          "mean_utilization_pct": 13.8875,
+          "peak_used_mib": 67675
+        },
+        "GPU-66b03d7f-5f80-f9d9-2ebc-98e2b9fc7e81": {
+          "node": "qjy001",
+          "index": 6,
+          "role": "decode",
+          "samples": 160,
+          "sample_errors": 0,
+          "mean_utilization_pct": 13.4,
+          "peak_used_mib": 67355
+        },
+        "GPU-0909f212-4be0-6d58-bb82-fb8aed60d343": {
+          "node": "qjy001",
+          "index": 7,
+          "role": "decode",
+          "samples": 160,
+          "sample_errors": 0,
+          "mean_utilization_pct": 16.625,
+          "peak_used_mib": 67635
+        }
+      },
+      "transfer": null,
+      "official_provenance": {
+        "run_id": "20261123T120518Z-7b-16-c50-retry",
+        "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/official-8img-0.4qps-seed3467.C50.jsonl",
+        "response_sha256": "ac2fcbf3d54b9854f7acaceeab66864ec0efe72e03ea4e7a877419be35930cfb",
+        "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/official-8img-0.4qps-seed3467.C50.receipt.json",
+        "receipt_sha256": "63b816504a085d7b46ebc66399442dc67356f2acfbf5d410b3c6f84edf70f5c8",
+        "frozen_trace_sha256": "affee263abf6a86d1260540d60d16218139fb93986ce1c805691814c32e1f775",
+        "submitted": 64,
+        "completed": 64,
+        "last_terminal_epoch_s": 1795436575.1688426
+      }
+    },
+    {
+      "name": "official-8img-0.6qps-seed3467",
+      "kind": "official",
+      "images": 8,
+      "qps": 0.6,
+      "seed": 3467,
+      "tokens": 256,
+      "group": "C50",
+      "planned": 64,
+      "submitted": 64,
+      "success": 64,
+      "failure": 0,
+      "skipped": 0,
+      "unlogged": 0,
+      "source": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/official-8img-0.6qps-seed3467.C50.jsonl",
+      "observation_s": 107.55017507821321,
+      "failures_by_type": {},
+      "endpoints": {
+        "http://127.0.0.1:33580": {
+          "submitted": 64,
+          "completed": 64,
+          "failed": 0,
+          "images": 312,
+          "completed_images": 312
+        }
+      },
+      "timing": {
+        "ttft_ms": {
+          "n": 64,
+          "p50": 1254.3450081720948,
+          "p95": 1946.0720723494887,
+          "p99": 1963.718405161053
+        },
+        "request_tpot_ms": {
+          "n": 0,
+          "p50": null,
+          "p95": null,
+          "p99": null
+        },
+        "sse_span_per_token_ms": {
+          "n": 64,
+          "p50": 5.456061449413206,
+          "p95": 5.697381689633224,
+          "p99": 5.873069319727958
+        },
+        "sse_content_chunk_gap_ms": {
+          "n": 13277,
+          "p50": 5.435531958937645,
+          "p95": 10.945995897054672,
+          "p99": 11.328143626451489
+        }
+      },
+      "gpu_devices": {
+        "GPU-7fa2179a-f959-6997-1664-60d6bd13badc": {
+          "node": "qjy000",
+          "index": 0,
+          "role": "encoder",
+          "samples": 107,
+          "sample_errors": 0,
+          "mean_utilization_pct": 10.36448598130841,
+          "peak_used_mib": 3255
+        },
+        "GPU-f1851450-9636-91b9-eee0-1292bc31e5b3": {
+          "node": "qjy000",
+          "index": 1,
+          "role": "encoder",
+          "samples": 107,
+          "sample_errors": 0,
+          "mean_utilization_pct": 8.757009345794392,
+          "peak_used_mib": 3255
+        },
+        "GPU-b530f5ba-daaf-4bd4-e6f4-520ff1e6b3d1": {
+          "node": "qjy000",
+          "index": 2,
+          "role": "encoder",
+          "samples": 107,
+          "sample_errors": 0,
+          "mean_utilization_pct": 9.626168224299066,
+          "peak_used_mib": 4061
+        },
+        "GPU-50846dc4-a485-2e59-5f16-79d5d65c497d": {
+          "node": "qjy000",
+          "index": 3,
+          "role": "encoder",
+          "samples": 107,
+          "sample_errors": 0,
+          "mean_utilization_pct": 8.953271028037383,
+          "peak_used_mib": 3255
+        },
+        "GPU-a89f85e5-964a-6895-c675-ae7e19865edf": {
+          "node": "qjy000",
+          "index": 4,
+          "role": "encoder",
+          "samples": 107,
+          "sample_errors": 0,
+          "mean_utilization_pct": 8.91588785046729,
+          "peak_used_mib": 3255
+        },
+        "GPU-809843a6-ca46-e991-2296-4cc20d8c6998": {
+          "node": "qjy000",
+          "index": 5,
+          "role": "encoder",
+          "samples": 107,
+          "sample_errors": 0,
+          "mean_utilization_pct": 10.065420560747663,
+          "peak_used_mib": 3255
+        },
+        "GPU-5949db27-6dd3-c2de-ce52-846a32b4e41b": {
+          "node": "qjy000",
+          "index": 6,
+          "role": "encoder",
+          "samples": 107,
+          "sample_errors": 0,
+          "mean_utilization_pct": 5.429906542056075,
+          "peak_used_mib": 4061
+        },
+        "GPU-1561bc6c-8a4e-bf69-aa2a-c51374467c0a": {
+          "node": "qjy000",
+          "index": 7,
+          "role": "encoder",
+          "samples": 107,
+          "sample_errors": 0,
+          "mean_utilization_pct": 8.280373831775702,
+          "peak_used_mib": 4061
+        },
+        "GPU-fb4fa10d-9222-d6f3-2d9b-5524d21da330": {
+          "node": "qjy001",
+          "index": 0,
+          "role": "prefill",
+          "samples": 108,
+          "sample_errors": 0,
+          "mean_utilization_pct": 10.194444444444445,
+          "peak_used_mib": 67355
+        },
+        "GPU-ea263dbc-c428-d593-eb3d-cfe35a8eb881": {
+          "node": "qjy001",
+          "index": 1,
+          "role": "prefill",
+          "samples": 108,
+          "sample_errors": 0,
+          "mean_utilization_pct": 11.694444444444445,
+          "peak_used_mib": 66909
+        },
+        "GPU-c87fe37a-55db-b5d5-4db9-b23a879096c5": {
+          "node": "qjy001",
+          "index": 2,
+          "role": "prefill",
+          "samples": 108,
+          "sample_errors": 0,
+          "mean_utilization_pct": 10.083333333333334,
+          "peak_used_mib": 66927
+        },
+        "GPU-a1fc259e-abd6-5e93-6d6f-516ff08ea543": {
+          "node": "qjy001",
+          "index": 3,
+          "role": "prefill",
+          "samples": 108,
+          "sample_errors": 0,
+          "mean_utilization_pct": 12.981481481481481,
+          "peak_used_mib": 67325
+        },
+        "GPU-76cdcb81-7ca9-1504-68da-4bc379c9f978": {
+          "node": "qjy001",
+          "index": 4,
+          "role": "decode",
+          "samples": 108,
+          "sample_errors": 0,
+          "mean_utilization_pct": 17.194444444444443,
+          "peak_used_mib": 67487
+        },
+        "GPU-2d197d92-3d32-937e-5457-83f6c39e5f7f": {
+          "node": "qjy001",
+          "index": 5,
+          "role": "decode",
+          "samples": 108,
+          "sample_errors": 0,
+          "mean_utilization_pct": 20.22222222222222,
+          "peak_used_mib": 67107
+        },
+        "GPU-66b03d7f-5f80-f9d9-2ebc-98e2b9fc7e81": {
+          "node": "qjy001",
+          "index": 6,
+          "role": "decode",
+          "samples": 108,
+          "sample_errors": 0,
+          "mean_utilization_pct": 16.39814814814815,
+          "peak_used_mib": 67691
+        },
+        "GPU-0909f212-4be0-6d58-bb82-fb8aed60d343": {
+          "node": "qjy001",
+          "index": 7,
+          "role": "decode",
+          "samples": 108,
+          "sample_errors": 0,
+          "mean_utilization_pct": 23.86111111111111,
+          "peak_used_mib": 67183
+        }
+      },
+      "transfer": null,
+      "official_provenance": {
+        "run_id": "20261123T120518Z-7b-16-c50-retry",
+        "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/official-8img-0.6qps-seed3467.C50.jsonl",
+        "response_sha256": "eb2045509a374d586c715535089d57a03c3477c62c8ce69f139da5c8cec6a96a",
+        "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/official-8img-0.6qps-seed3467.C50.receipt.json",
+        "receipt_sha256": "c67769825eba0cc19daa52663d5fc5de56f00ac2cc94adc9a96c1789f85ccb07",
+        "frozen_trace_sha256": "8e19933c88667474e12561930c2b0f660ffda84d607f2f98ed3704cf49da0dd0",
+        "submitted": 64,
+        "completed": 64,
+        "last_terminal_epoch_s": 1795436687.434493
+      }
+    },
+    {
+      "name": "official-8img-0.8qps-seed3467",
+      "kind": "official",
+      "images": 8,
+      "qps": 0.8,
+      "seed": 3467,
+      "tokens": 256,
+      "group": "C50",
+      "planned": 64,
+      "submitted": 64,
+      "success": 64,
+      "failure": 0,
+      "skipped": 0,
+      "unlogged": 0,
+      "source": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/official-8img-0.8qps-seed3467.C50.jsonl",
+      "observation_s": 81.23111221939325,
+      "failures_by_type": {},
+      "endpoints": {
+        "http://127.0.0.1:33580": {
+          "submitted": 64,
+          "completed": 64,
+          "failed": 0,
+          "images": 312,
+          "completed_images": 312
+        }
+      },
+      "timing": {
+        "ttft_ms": {
+          "n": 64,
+          "p50": 1259.537030942738,
+          "p95": 1970.6347369588912,
+          "p99": 2014.6995248645544
+        },
+        "request_tpot_ms": {
+          "n": 0,
+          "p50": null,
+          "p95": null,
+          "p99": null
+        },
+        "sse_span_per_token_ms": {
+          "n": 64,
+          "p50": 5.4519474798557805,
+          "p95": 6.005483846746239,
+          "p99": 6.081468592890921
+        },
+        "sse_content_chunk_gap_ms": {
+          "n": 13219,
+          "p50": 5.439627915620804,
+          "p95": 11.0164200887084,
+          "p99": 11.80669404566288
+        }
+      },
+      "gpu_devices": {
+        "GPU-7fa2179a-f959-6997-1664-60d6bd13badc": {
+          "node": "qjy000",
+          "index": 0,
+          "role": "encoder",
+          "samples": 81,
+          "sample_errors": 0,
+          "mean_utilization_pct": 9.62962962962963,
+          "peak_used_mib": 3255
+        },
+        "GPU-f1851450-9636-91b9-eee0-1292bc31e5b3": {
+          "node": "qjy000",
+          "index": 1,
+          "role": "encoder",
+          "samples": 81,
+          "sample_errors": 0,
+          "mean_utilization_pct": 10.975308641975309,
+          "peak_used_mib": 3255
+        },
+        "GPU-b530f5ba-daaf-4bd4-e6f4-520ff1e6b3d1": {
+          "node": "qjy000",
+          "index": 2,
+          "role": "encoder",
+          "samples": 81,
+          "sample_errors": 0,
+          "mean_utilization_pct": 5.716049382716049,
+          "peak_used_mib": 4061
+        },
+        "GPU-50846dc4-a485-2e59-5f16-79d5d65c497d": {
+          "node": "qjy000",
+          "index": 3,
+          "role": "encoder",
+          "samples": 81,
+          "sample_errors": 0,
+          "mean_utilization_pct": 8.987654320987655,
+          "peak_used_mib": 3255
+        },
+        "GPU-a89f85e5-964a-6895-c675-ae7e19865edf": {
+          "node": "qjy000",
+          "index": 4,
+          "role": "encoder",
+          "samples": 81,
+          "sample_errors": 0,
+          "mean_utilization_pct": 7.283950617283951,
+          "peak_used_mib": 3255
+        },
+        "GPU-809843a6-ca46-e991-2296-4cc20d8c6998": {
+          "node": "qjy000",
+          "index": 5,
+          "role": "encoder",
+          "samples": 81,
+          "sample_errors": 0,
+          "mean_utilization_pct": 10.567901234567902,
+          "peak_used_mib": 3255
+        },
+        "GPU-5949db27-6dd3-c2de-ce52-846a32b4e41b": {
+          "node": "qjy000",
+          "index": 6,
+          "role": "encoder",
+          "samples": 81,
+          "sample_errors": 0,
+          "mean_utilization_pct": 8.728395061728396,
+          "peak_used_mib": 4061
+        },
+        "GPU-1561bc6c-8a4e-bf69-aa2a-c51374467c0a": {
+          "node": "qjy000",
+          "index": 7,
+          "role": "encoder",
+          "samples": 81,
+          "sample_errors": 0,
+          "mean_utilization_pct": 7.814814814814815,
+          "peak_used_mib": 4061
+        },
+        "GPU-fb4fa10d-9222-d6f3-2d9b-5524d21da330": {
+          "node": "qjy001",
+          "index": 0,
+          "role": "prefill",
+          "samples": 81,
+          "sample_errors": 0,
+          "mean_utilization_pct": 9.555555555555555,
+          "peak_used_mib": 67389
+        },
+        "GPU-ea263dbc-c428-d593-eb3d-cfe35a8eb881": {
+          "node": "qjy001",
+          "index": 1,
+          "role": "prefill",
+          "samples": 81,
+          "sample_errors": 0,
+          "mean_utilization_pct": 13.88888888888889,
+          "peak_used_mib": 66909
+        },
+        "GPU-c87fe37a-55db-b5d5-4db9-b23a879096c5": {
+          "node": "qjy001",
+          "index": 2,
+          "role": "prefill",
+          "samples": 81,
+          "sample_errors": 0,
+          "mean_utilization_pct": 15.358024691358025,
+          "peak_used_mib": 66927
+        },
+        "GPU-a1fc259e-abd6-5e93-6d6f-516ff08ea543": {
+          "node": "qjy001",
+          "index": 3,
+          "role": "prefill",
+          "samples": 81,
+          "sample_errors": 0,
+          "mean_utilization_pct": 16.790123456790123,
+          "peak_used_mib": 67325
+        },
+        "GPU-76cdcb81-7ca9-1504-68da-4bc379c9f978": {
+          "node": "qjy001",
+          "index": 4,
+          "role": "decode",
+          "samples": 81,
+          "sample_errors": 0,
+          "mean_utilization_pct": 29.135802469135804,
+          "peak_used_mib": 67521
+        },
+        "GPU-2d197d92-3d32-937e-5457-83f6c39e5f7f": {
+          "node": "qjy001",
+          "index": 5,
+          "role": "decode",
+          "samples": 81,
+          "sample_errors": 0,
+          "mean_utilization_pct": 24.876543209876544,
+          "peak_used_mib": 67561
+        },
+        "GPU-66b03d7f-5f80-f9d9-2ebc-98e2b9fc7e81": {
+          "node": "qjy001",
+          "index": 6,
+          "role": "decode",
+          "samples": 81,
+          "sample_errors": 0,
+          "mean_utilization_pct": 25.82716049382716,
+          "peak_used_mib": 67691
+        },
+        "GPU-0909f212-4be0-6d58-bb82-fb8aed60d343": {
+          "node": "qjy001",
+          "index": 7,
+          "role": "decode",
+          "samples": 81,
+          "sample_errors": 0,
+          "mean_utilization_pct": 18.97530864197531,
+          "peak_used_mib": 67217
+        }
+      },
+      "transfer": null,
+      "official_provenance": {
+        "run_id": "20261123T120518Z-7b-16-c50-retry",
+        "response": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/official-8img-0.8qps-seed3467.C50.jsonl",
+        "response_sha256": "7cef937510624fe581c1a9b1bc010595be248350971a4dd3259a493d73307ab4",
+        "receipt": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/official-8img-0.8qps-seed3467.C50.receipt.json",
+        "receipt_sha256": "048afbfb68cac1cc7522d70a1e9e988880871a16b4a24719390f6adfe0120a71",
+        "frozen_trace_sha256": "ceeac773ab168dbd2766f23328c993619fa37535f08eb83949f09c396ace7925",
+        "submitted": 64,
+        "completed": 64,
+        "last_terminal_epoch_s": 1795436773.4558825
+      }
+    },
+    {
+      "name": "official-8img-1qps-seed3467",
+      "kind": "official",
+      "images": 8,
+      "qps": 1,
+      "seed": 3467,
+      "tokens": 256,
+      "group": "C50",
+      "planned": 64,
+      "submitted": 64,
+      "success": 64,
+      "failure": 0,
+      "skipped": 0,
+      "unlogged": 0,
+      "source": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/official-8img-1qps-seed3467.C50.jsonl",
+      "observation_s": 65.41048552654684,
+      "failures_by_type": {},
+      "endpoints": {
+        "http://127.0.0.1:33580": {
+          "submitted": 64,
+          "completed": 64,
+          "failed": 0,
+          "images": 312,
+          "completed_images": 312
+        }
+      },
+      "timing": {
+        "ttft_ms": {
+          "n": 64,
+          "p50": 1260.716363787651,
+          "p95": 1965.7045358791947,
+          "p99": 2019.5134612172842
+        },
+        "request_tpot_ms": {
+          "n": 0,
+          "p50": null,
+          "p95": null,
+          "p99": null
+        },
+        "sse_span_per_token_ms": {
+          "n": 64,
+          "p50": 5.488967146797507,
+          "p95": 5.897210198363252,
+          "p99": 6.0702653205862225
+        },
+        "sse_content_chunk_gap_ms": {
+          "n": 13273,
+          "p50": 5.437396466732025,
+          "p95": 11.03174313902855,
+          "p99": 11.786386445164684
+        }
+      },
+      "gpu_devices": {
+        "GPU-7fa2179a-f959-6997-1664-60d6bd13badc": {
+          "node": "qjy000",
+          "index": 0,
+          "role": "encoder",
+          "samples": 65,
+          "sample_errors": 0,
+          "mean_utilization_pct": 9.984615384615385,
+          "peak_used_mib": 3255
+        },
+        "GPU-f1851450-9636-91b9-eee0-1292bc31e5b3": {
+          "node": "qjy000",
+          "index": 1,
+          "role": "encoder",
+          "samples": 65,
+          "sample_errors": 0,
+          "mean_utilization_pct": 7.046153846153846,
+          "peak_used_mib": 3255
+        },
+        "GPU-b530f5ba-daaf-4bd4-e6f4-520ff1e6b3d1": {
+          "node": "qjy000",
+          "index": 2,
+          "role": "encoder",
+          "samples": 65,
+          "sample_errors": 0,
+          "mean_utilization_pct": 11.03076923076923,
+          "peak_used_mib": 4061
+        },
+        "GPU-50846dc4-a485-2e59-5f16-79d5d65c497d": {
+          "node": "qjy000",
+          "index": 3,
+          "role": "encoder",
+          "samples": 65,
+          "sample_errors": 0,
+          "mean_utilization_pct": 12.569230769230769,
+          "peak_used_mib": 3255
+        },
+        "GPU-a89f85e5-964a-6895-c675-ae7e19865edf": {
+          "node": "qjy000",
+          "index": 4,
+          "role": "encoder",
+          "samples": 65,
+          "sample_errors": 0,
+          "mean_utilization_pct": 15.107692307692307,
+          "peak_used_mib": 3255
+        },
+        "GPU-809843a6-ca46-e991-2296-4cc20d8c6998": {
+          "node": "qjy000",
+          "index": 5,
+          "role": "encoder",
+          "samples": 65,
+          "sample_errors": 0,
+          "mean_utilization_pct": 15.03076923076923,
+          "peak_used_mib": 3255
+        },
+        "GPU-5949db27-6dd3-c2de-ce52-846a32b4e41b": {
+          "node": "qjy000",
+          "index": 6,
+          "role": "encoder",
+          "samples": 65,
+          "sample_errors": 0,
+          "mean_utilization_pct": 13.476923076923077,
+          "peak_used_mib": 4061
+        },
+        "GPU-1561bc6c-8a4e-bf69-aa2a-c51374467c0a": {
+          "node": "qjy000",
+          "index": 7,
+          "role": "encoder",
+          "samples": 65,
+          "sample_errors": 0,
+          "mean_utilization_pct": 12.107692307692307,
+          "peak_used_mib": 4061
+        },
+        "GPU-fb4fa10d-9222-d6f3-2d9b-5524d21da330": {
+          "node": "qjy001",
+          "index": 0,
+          "role": "prefill",
+          "samples": 65,
+          "sample_errors": 0,
+          "mean_utilization_pct": 14.584615384615384,
+          "peak_used_mib": 67389
+        },
+        "GPU-ea263dbc-c428-d593-eb3d-cfe35a8eb881": {
+          "node": "qjy001",
+          "index": 1,
+          "role": "prefill",
+          "samples": 65,
+          "sample_errors": 0,
+          "mean_utilization_pct": 17.06153846153846,
+          "peak_used_mib": 66909
+        },
+        "GPU-c87fe37a-55db-b5d5-4db9-b23a879096c5": {
+          "node": "qjy001",
+          "index": 2,
+          "role": "prefill",
+          "samples": 65,
+          "sample_errors": 0,
+          "mean_utilization_pct": 19.107692307692307,
+          "peak_used_mib": 66927
+        },
+        "GPU-a1fc259e-abd6-5e93-6d6f-516ff08ea543": {
+          "node": "qjy001",
+          "index": 3,
+          "role": "prefill",
+          "samples": 65,
+          "sample_errors": 0,
+          "mean_utilization_pct": 21.93846153846154,
+          "peak_used_mib": 67325
+        },
+        "GPU-76cdcb81-7ca9-1504-68da-4bc379c9f978": {
+          "node": "qjy001",
+          "index": 4,
+          "role": "decode",
+          "samples": 65,
+          "sample_errors": 0,
+          "mean_utilization_pct": 27.123076923076923,
+          "peak_used_mib": 67669
+        },
+        "GPU-2d197d92-3d32-937e-5457-83f6c39e5f7f": {
+          "node": "qjy001",
+          "index": 5,
+          "role": "decode",
+          "samples": 65,
+          "sample_errors": 0,
+          "mean_utilization_pct": 32.38461538461539,
+          "peak_used_mib": 66501
+        },
+        "GPU-66b03d7f-5f80-f9d9-2ebc-98e2b9fc7e81": {
+          "node": "qjy001",
+          "index": 6,
+          "role": "decode",
+          "samples": 65,
+          "sample_errors": 0,
+          "mean_utilization_pct": 35.90769230769231,
+          "peak_used_mib": 67691
+        },
+        "GPU-0909f212-4be0-6d58-bb82-fb8aed60d343": {
+          "node": "qjy001",
+          "index": 7,
+          "role": "decode",
+          "samples": 65,
+          "sample_errors": 0,
+          "mean_utilization_pct": 25.49230769230769,
+          "peak_used_mib": 66641
+        }
+      },
+      "transfer": null,
+      "official_provenance": {
+        "run_id": "20261123T120518Z-7b-16-c50-retry",
+        "response": "official-8img-1qps-seed3467.C50.jsonl",
+        "response_sha256": "2e7d30435b2fbe208d15d1a6db6e66ba3bf330424898e7effe735daa9932a2ed",
+        "receipt": "official-8img-1qps-seed3467.C50.receipt.json",
+        "receipt_sha256": "9db604a6387bd71a428fe63925f32909cd44ab1e5c5f3c70a2c0d9d20a3fdc64",
+        "frozen_trace_sha256": "848fedd0b098493f6270d8313bb772d39be2bcdda730fba3f1614aebcc14841b",
+        "submitted": 64,
+        "completed": 64,
+        "last_terminal_epoch_s": 1795436843.6149318
+      }
+    }
+  ],
+  "pairs": [
+    {
+      "case": "official-8img-0.2qps-seed3467",
+      "left": "A",
+      "right": "B",
+      "planned": 64,
+      "paired": 64,
+      "both_completed": 64,
+      "baseline_only": 0,
+      "treatment_only": 0,
+      "neither_completed": 0,
+      "ttft_delta_ms": {
+        "n": 64,
+        "p50": -725.2591932192445,
+        "p95": -18.468005303293463,
+        "p99": 1.0454565472900852
+      }
+    },
+    {
+      "case": "official-8img-0.2qps-seed3467",
+      "left": "B",
+      "right": "C70",
+      "planned": 64,
+      "paired": 64,
+      "both_completed": 64,
+      "baseline_only": 0,
+      "treatment_only": 0,
+      "neither_completed": 0,
+      "ttft_delta_ms": {
+        "n": 64,
+        "p50": -397.12963812053204,
+        "p95": -21.78089078515768,
+        "p99": 24.178860094397983
+      }
+    },
+    {
+      "case": "official-8img-0.2qps-seed3467",
+      "left": "B",
+      "right": "C50",
+      "planned": 64,
+      "paired": 64,
+      "both_completed": 64,
+      "baseline_only": 0,
+      "treatment_only": 0,
+      "neither_completed": 0,
+      "ttft_delta_ms": {
+        "n": 64,
+        "p50": -756.7613432183862,
+        "p95": -87.09576148539782,
+        "p99": -79.84846791252494
+      }
+    },
+    {
+      "case": "official-8img-0.4qps-seed3467",
+      "left": "A",
+      "right": "B",
+      "planned": 64,
+      "paired": 64,
+      "both_completed": 64,
+      "baseline_only": 0,
+      "treatment_only": 0,
+      "neither_completed": 0,
+      "ttft_delta_ms": {
+        "n": 64,
+        "p50": -708.9343201369047,
+        "p95": -2.140599396079778,
+        "p99": 369.37315534800075
+      }
+    },
+    {
+      "case": "official-8img-0.4qps-seed3467",
+      "left": "B",
+      "right": "C70",
+      "planned": 64,
+      "paired": 64,
+      "both_completed": 64,
+      "baseline_only": 0,
+      "treatment_only": 0,
+      "neither_completed": 0,
+      "ttft_delta_ms": {
+        "n": 64,
+        "p50": -414.8980714380741,
+        "p95": -24.588978756219138,
+        "p99": -17.112333085387974
+      }
+    },
+    {
+      "case": "official-8img-0.4qps-seed3467",
+      "left": "B",
+      "right": "C50",
+      "planned": 64,
+      "paired": 64,
+      "both_completed": 64,
+      "baseline_only": 0,
+      "treatment_only": 0,
+      "neither_completed": 0,
+      "ttft_delta_ms": {
+        "n": 64,
+        "p50": -754.5499391853809,
+        "p95": -97.07033075392236,
+        "p99": -82.54180839285256
+      }
+    },
+    {
+      "case": "official-8img-0.6qps-seed3467",
+      "left": "A",
+      "right": "B",
+      "planned": 64,
+      "paired": 64,
+      "both_completed": 64,
+      "baseline_only": 0,
+      "treatment_only": 0,
+      "neither_completed": 0,
+      "ttft_delta_ms": {
+        "n": 64,
+        "p50": -711.6003930568695,
+        "p95": 10.616158414632087,
+        "p99": 592.8538567945329
+      }
+    },
+    {
+      "case": "official-8img-0.6qps-seed3467",
+      "left": "B",
+      "right": "C70",
+      "planned": 64,
+      "paired": 64,
+      "both_completed": 64,
+      "baseline_only": 0,
+      "treatment_only": 0,
+      "neither_completed": 0,
+      "ttft_delta_ms": {
+        "n": 64,
+        "p50": -416.4251834154129,
+        "p95": -28.03315212950109,
+        "p99": -15.872397460043443
+      }
+    },
+    {
+      "case": "official-8img-0.6qps-seed3467",
+      "left": "B",
+      "right": "C50",
+      "planned": 64,
+      "paired": 64,
+      "both_completed": 64,
+      "baseline_only": 0,
+      "treatment_only": 0,
+      "neither_completed": 0,
+      "ttft_delta_ms": {
+        "n": 64,
+        "p50": -758.6624585092068,
+        "p95": -96.32701892405744,
+        "p99": -74.45619802922013
+      }
+    },
+    {
+      "case": "official-8img-0.8qps-seed3467",
+      "left": "A",
+      "right": "B",
+      "planned": 64,
+      "paired": 64,
+      "both_completed": 64,
+      "baseline_only": 0,
+      "treatment_only": 0,
+      "neither_completed": 0,
+      "ttft_delta_ms": {
+        "n": 64,
+        "p50": -720.6510547548532,
+        "p95": 76.40327783301484,
+        "p99": 1031.8443424440895
+      }
+    },
+    {
+      "case": "official-8img-0.8qps-seed3467",
+      "left": "B",
+      "right": "C70",
+      "planned": 64,
+      "paired": 64,
+      "both_completed": 64,
+      "baseline_only": 0,
+      "treatment_only": 0,
+      "neither_completed": 0,
+      "ttft_delta_ms": {
+        "n": 64,
+        "p50": -412.3944090679288,
+        "p95": -64.24378911033273,
+        "p99": 43.13745068386177
+      }
+    },
+    {
+      "case": "official-8img-0.8qps-seed3467",
+      "left": "B",
+      "right": "C50",
+      "planned": 64,
+      "paired": 64,
+      "both_completed": 64,
+      "baseline_only": 0,
+      "treatment_only": 0,
+      "neither_completed": 0,
+      "ttft_delta_ms": {
+        "n": 64,
+        "p50": -763.1567278876901,
+        "p95": -113.31670274958006,
+        "p99": -71.66436143219478
+      }
+    },
+    {
+      "case": "official-8img-1qps-seed3467",
+      "left": "A",
+      "right": "B",
+      "planned": 64,
+      "paired": 64,
+      "both_completed": 64,
+      "baseline_only": 0,
+      "treatment_only": 0,
+      "neither_completed": 0,
+      "ttft_delta_ms": {
+        "n": 64,
+        "p50": -706.6624071449041,
+        "p95": 471.3965645991273,
+        "p99": 1376.0255433619004
+      }
+    },
+    {
+      "case": "official-8img-1qps-seed3467",
+      "left": "B",
+      "right": "C70",
+      "planned": 64,
+      "paired": 64,
+      "both_completed": 64,
+      "baseline_only": 0,
+      "treatment_only": 0,
+      "neither_completed": 0,
+      "ttft_delta_ms": {
+        "n": 64,
+        "p50": -455.2541160956025,
+        "p95": -78.3465214073658,
+        "p99": -10.13682570308455
+      }
+    },
+    {
+      "case": "official-8img-1qps-seed3467",
+      "left": "B",
+      "right": "C50",
+      "planned": 64,
+      "paired": 64,
+      "both_completed": 64,
+      "baseline_only": 0,
+      "treatment_only": 0,
+      "neither_completed": 0,
+      "ttft_delta_ms": {
+        "n": 64,
+        "p50": -773.4657302498817,
+        "p95": -99.68812270089968,
+        "p99": -38.63460656255485
+      }
+    }
+  ],
+  "diagnostics": [],
+  "points": [
+    {
+      "kind": "official",
+      "images": 8,
+      "qps": 0.2,
+      "group": "A",
+      "planned": 64,
+      "submitted": 64,
+      "success": 64,
+      "failure": 0,
+      "skipped": 0,
+      "unlogged": 0,
+      "observation_s": 319.00366357527673,
+      "completion_fraction_planned": 1.0,
+      "completion_fraction_submitted": 1.0,
+      "success_per_s": 0.20062465516135877,
+      "success_per_gpu_s": 0.012539040947584923,
+      "ttft_ms": {
+        "n": 64,
+        "p50": 2739.264733158052,
+        "p95": 4674.235498905182,
+        "p99": 4764.286621324717
+      },
+      "request_tpot_ms": {
+        "n": 0,
+        "p50": null,
+        "p95": null,
+        "p99": null
+      },
+      "sse_span_per_token_ms": {
+        "n": 64,
+        "p50": 5.582464840628353,
+        "p95": 5.879355759962516,
+        "p99": 6.081026043158535
+      },
+      "sse_content_chunk_gap_ms": {
+        "n": 13679,
+        "p50": 5.701247602701187,
+        "p95": 11.418878845870495,
+        "p99": 11.822500042617321
+      },
+      "gpu_roles": {
+        "replica": {
+          "gpu_cells": 16,
+          "observed_gpu_cells": 0,
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        }
+      }
+    },
+    {
+      "kind": "official",
+      "images": 8,
+      "qps": 0.4,
+      "group": "A",
+      "planned": 64,
+      "submitted": 64,
+      "success": 64,
+      "failure": 0,
+      "skipped": 0,
+      "unlogged": 0,
+      "observation_s": 160.99861644394696,
+      "completion_fraction_planned": 1.0,
+      "completion_fraction_submitted": 1.0,
+      "success_per_s": 0.39751894403565974,
+      "success_per_gpu_s": 0.024844934002228734,
+      "ttft_ms": {
+        "n": 64,
+        "p50": 2737.8769172355533,
+        "p95": 4662.801846303046,
+        "p99": 4811.253788676112
+      },
+      "request_tpot_ms": {
+        "n": 0,
+        "p50": null,
+        "p95": null,
+        "p99": null
+      },
+      "sse_span_per_token_ms": {
+        "n": 64,
+        "p50": 5.5864006719168495,
+        "p95": 5.888635274753266,
+        "p99": 6.124861362810227
+      },
+      "sse_content_chunk_gap_ms": {
+        "n": 13679,
+        "p50": 5.719851702451706,
+        "p95": 11.457625217735767,
+        "p99": 11.833612136542797
+      },
+      "gpu_roles": {
+        "replica": {
+          "gpu_cells": 16,
+          "observed_gpu_cells": 0,
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        }
+      }
+    },
+    {
+      "kind": "official",
+      "images": 8,
+      "qps": 0.6,
+      "group": "A",
+      "planned": 64,
+      "submitted": 64,
+      "success": 64,
+      "failure": 0,
+      "skipped": 0,
+      "unlogged": 0,
+      "observation_s": 108.31580417789519,
+      "completion_fraction_planned": 1.0,
+      "completion_fraction_submitted": 1.0,
+      "success_per_s": 0.5908648371837594,
+      "success_per_gpu_s": 0.03692905232398496,
+      "ttft_ms": {
+        "n": 64,
+        "p50": 2736.035997979343,
+        "p95": 4648.980220966041,
+        "p99": 4728.267270233482
+      },
+      "request_tpot_ms": {
+        "n": 0,
+        "p50": null,
+        "p95": null,
+        "p99": null
+      },
+      "sse_span_per_token_ms": {
+        "n": 64,
+        "p50": 5.5849031600005485,
+        "p95": 5.885861506137778,
+        "p99": 6.0750925109228655
+      },
+      "sse_content_chunk_gap_ms": {
+        "n": 13679,
+        "p50": 5.715740844607353,
+        "p95": 11.443289555609228,
+        "p99": 11.832518242299557
+      },
+      "gpu_roles": {
+        "replica": {
+          "gpu_cells": 16,
+          "observed_gpu_cells": 0,
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        }
+      }
+    },
+    {
+      "kind": "official",
+      "images": 8,
+      "qps": 0.8,
+      "group": "A",
+      "planned": 64,
+      "submitted": 64,
+      "success": 64,
+      "failure": 0,
+      "skipped": 0,
+      "unlogged": 0,
+      "observation_s": 81.97745260596275,
+      "completion_fraction_planned": 1.0,
+      "completion_fraction_submitted": 1.0,
+      "success_per_s": 0.780702473247441,
+      "success_per_gpu_s": 0.048793904577965064,
+      "ttft_ms": {
+        "n": 64,
+        "p50": 2736.7062782868743,
+        "p95": 4652.5058078579605,
+        "p99": 4730.254689119756
+      },
+      "request_tpot_ms": {
+        "n": 0,
+        "p50": null,
+        "p95": null,
+        "p99": null
+      },
+      "sse_span_per_token_ms": {
+        "n": 64,
+        "p50": 5.5874857868926195,
+        "p95": 5.888312543724098,
+        "p99": 6.066714712656011
+      },
+      "sse_content_chunk_gap_ms": {
+        "n": 13679,
+        "p50": 5.70865161716938,
+        "p95": 11.384812369942665,
+        "p99": 11.839453876018524
+      },
+      "gpu_roles": {
+        "replica": {
+          "gpu_cells": 16,
+          "observed_gpu_cells": 0,
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        }
+      }
+    },
+    {
+      "kind": "official",
+      "images": 8,
+      "qps": 1,
+      "group": "A",
+      "planned": 64,
+      "submitted": 64,
+      "success": 64,
+      "failure": 0,
+      "skipped": 0,
+      "unlogged": 0,
+      "observation_s": 66.18958173319697,
+      "completion_fraction_planned": 1.0,
+      "completion_fraction_submitted": 1.0,
+      "success_per_s": 0.9669195411745772,
+      "success_per_gpu_s": 0.06043247132341108,
+      "ttft_ms": {
+        "n": 64,
+        "p50": 2756.6417222842574,
+        "p95": 4664.367467537522,
+        "p99": 4763.648655246943
+      },
+      "request_tpot_ms": {
+        "n": 0,
+        "p50": null,
+        "p95": null,
+        "p99": null
+      },
+      "sse_span_per_token_ms": {
+        "n": 64,
+        "p50": 5.579004140899462,
+        "p95": 5.8933713933562535,
+        "p99": 6.093536597694835
+      },
+      "sse_content_chunk_gap_ms": {
+        "n": 13679,
+        "p50": 5.721736699342728,
+        "p95": 11.43445484340191,
+        "p99": 11.831700168550014
+      },
+      "gpu_roles": {
+        "replica": {
+          "gpu_cells": 16,
+          "observed_gpu_cells": 0,
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        }
+      }
+    },
+    {
+      "kind": "official",
+      "images": 8,
+      "qps": 0.2,
+      "group": "B",
+      "planned": 64,
+      "submitted": 64,
+      "success": 64,
+      "failure": 0,
+      "skipped": 0,
+      "unlogged": 0,
+      "observation_s": 318.6217055507004,
+      "completion_fraction_planned": 1.0,
+      "completion_fraction_submitted": 1.0,
+      "success_per_s": 0.20086516042396882,
+      "success_per_gpu_s": 0.012554072526498051,
+      "ttft_ms": {
+        "n": 64,
+        "p50": 2011.7075750604272,
+        "p95": 3440.8761834725738,
+        "p99": 3450.5264048837125
+      },
+      "request_tpot_ms": {
+        "n": 0,
+        "p50": null,
+        "p95": null,
+        "p99": null
+      },
+      "sse_span_per_token_ms": {
+        "n": 64,
+        "p50": 5.680301190153056,
+        "p95": 6.22821414149275,
+        "p99": 6.2695868522951415
+      },
+      "sse_content_chunk_gap_ms": {
+        "n": 13468,
+        "p50": 5.6973472237586975,
+        "p95": 11.736248899251223,
+        "p99": 12.46379304677248
+      },
+      "gpu_roles": {
+        "decode": {
+          "gpu_cells": 4,
+          "observed_gpu_cells": 0,
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "encoder": {
+          "gpu_cells": 8,
+          "observed_gpu_cells": 0,
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "prefill": {
+          "gpu_cells": 4,
+          "observed_gpu_cells": 0,
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        }
+      }
+    },
+    {
+      "kind": "official",
+      "images": 8,
+      "qps": 0.4,
+      "group": "B",
+      "planned": 64,
+      "submitted": 64,
+      "success": 64,
+      "failure": 0,
+      "skipped": 0,
+      "unlogged": 0,
+      "observation_s": 160.57985736988485,
+      "completion_fraction_planned": 1.0,
+      "completion_fraction_submitted": 1.0,
+      "success_per_s": 0.3985555912693354,
+      "success_per_gpu_s": 0.02490972445433346,
+      "ttft_ms": {
+        "n": 64,
+        "p50": 2022.80249632895,
+        "p95": 3450.8272871375084,
+        "p99": 3469.6583813987672
+      },
+      "request_tpot_ms": {
+        "n": 0,
+        "p50": null,
+        "p95": null,
+        "p99": null
+      },
+      "sse_span_per_token_ms": {
+        "n": 64,
+        "p50": 5.681049159052325,
+        "p95": 6.152374005200816,
+        "p99": 6.5345087120053815
+      },
+      "sse_content_chunk_gap_ms": {
+        "n": 13465,
+        "p50": 5.67665696144104,
+        "p95": 11.739732697606085,
+        "p99": 12.7422234416008
+      },
+      "gpu_roles": {
+        "decode": {
+          "gpu_cells": 4,
+          "observed_gpu_cells": 0,
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "encoder": {
+          "gpu_cells": 8,
+          "observed_gpu_cells": 0,
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "prefill": {
+          "gpu_cells": 4,
+          "observed_gpu_cells": 0,
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        }
+      }
+    },
+    {
+      "kind": "official",
+      "images": 8,
+      "qps": 0.6,
+      "group": "B",
+      "planned": 64,
+      "submitted": 64,
+      "success": 64,
+      "failure": 0,
+      "skipped": 0,
+      "unlogged": 0,
+      "observation_s": 107.92719553597271,
+      "completion_fraction_planned": 1.0,
+      "completion_fraction_submitted": 1.0,
+      "success_per_s": 0.5929923378641712,
+      "success_per_gpu_s": 0.0370620211165107,
+      "ttft_ms": {
+        "n": 64,
+        "p50": 2022.352491505444,
+        "p95": 3472.0790474675596,
+        "p99": 3525.119909495115
+      },
+      "request_tpot_ms": {
+        "n": 0,
+        "p50": null,
+        "p95": null,
+        "p99": null
+      },
+      "sse_span_per_token_ms": {
+        "n": 64,
+        "p50": 5.6824485899186605,
+        "p95": 6.4083136957796185,
+        "p99": 6.821707562780848
+      },
+      "sse_content_chunk_gap_ms": {
+        "n": 13462,
+        "p50": 5.739390850067139,
+        "p95": 11.776298936456442,
+        "p99": 13.13917590305209
+      },
+      "gpu_roles": {
+        "decode": {
+          "gpu_cells": 4,
+          "observed_gpu_cells": 0,
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "encoder": {
+          "gpu_cells": 8,
+          "observed_gpu_cells": 0,
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "prefill": {
+          "gpu_cells": 4,
+          "observed_gpu_cells": 0,
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        }
+      }
+    },
+    {
+      "kind": "official",
+      "images": 8,
+      "qps": 0.8,
+      "group": "B",
+      "planned": 64,
+      "submitted": 64,
+      "success": 64,
+      "failure": 0,
+      "skipped": 0,
+      "unlogged": 0,
+      "observation_s": 81.59419404529035,
+      "completion_fraction_planned": 1.0,
+      "completion_fraction_submitted": 1.0,
+      "success_per_s": 0.7843695344852065,
+      "success_per_gpu_s": 0.04902309590532541,
+      "ttft_ms": {
+        "n": 64,
+        "p50": 2019.8323298245668,
+        "p95": 3477.7751113288105,
+        "p99": 3654.425381962209
+      },
+      "request_tpot_ms": {
+        "n": 0,
+        "p50": null,
+        "p95": null,
+        "p99": null
+      },
+      "sse_span_per_token_ms": {
+        "n": 64,
+        "p50": 5.686057344371197,
+        "p95": 6.37626881546834,
+        "p99": 6.868754846062146
+      },
+      "sse_content_chunk_gap_ms": {
+        "n": 13487,
+        "p50": 5.692984908819199,
+        "p95": 11.76031343638897,
+        "p99": 13.200604915618895
+      },
+      "gpu_roles": {
+        "decode": {
+          "gpu_cells": 4,
+          "observed_gpu_cells": 0,
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "encoder": {
+          "gpu_cells": 8,
+          "observed_gpu_cells": 0,
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "prefill": {
+          "gpu_cells": 4,
+          "observed_gpu_cells": 0,
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        }
+      }
+    },
+    {
+      "kind": "official",
+      "images": 8,
+      "qps": 1,
+      "group": "B",
+      "planned": 64,
+      "submitted": 64,
+      "success": 64,
+      "failure": 0,
+      "skipped": 0,
+      "unlogged": 0,
+      "observation_s": 65.76758352480829,
+      "completion_fraction_planned": 1.0,
+      "completion_fraction_submitted": 1.0,
+      "success_per_s": 0.9731237878894922,
+      "success_per_gpu_s": 0.06082023674309326,
+      "ttft_ms": {
+        "n": 64,
+        "p50": 2030.762780457735,
+        "p95": 3468.5665123164654,
+        "p99": 3807.727531399577
+      },
+      "request_tpot_ms": {
+        "n": 0,
+        "p50": null,
+        "p95": null,
+        "p99": null
+      },
+      "sse_span_per_token_ms": {
+        "n": 64,
+        "p50": 5.874057683874579,
+        "p95": 6.630120009695198,
+        "p99": 6.793714281828964
+      },
+      "sse_content_chunk_gap_ms": {
+        "n": 13504,
+        "p50": 5.758124403655529,
+        "p95": 11.81249963119626,
+        "p99": 13.430408127605899
+      },
+      "gpu_roles": {
+        "decode": {
+          "gpu_cells": 4,
+          "observed_gpu_cells": 0,
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "encoder": {
+          "gpu_cells": 8,
+          "observed_gpu_cells": 0,
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        },
+        "prefill": {
+          "gpu_cells": 4,
+          "observed_gpu_cells": 0,
+          "samples": 0,
+          "sample_errors": 0,
+          "mean_utilization_pct": null,
+          "peak_used_mib": null
+        }
+      }
+    },
+    {
+      "kind": "official",
+      "images": 8,
+      "qps": 0.2,
+      "group": "C70",
+      "planned": 64,
+      "submitted": 64,
+      "success": 64,
+      "failure": 0,
+      "skipped": 0,
+      "unlogged": 0,
+      "observation_s": 318.43286675028503,
+      "completion_fraction_planned": 1.0,
+      "completion_fraction_submitted": 1.0,
+      "success_per_s": 0.20098427858010268,
+      "success_per_gpu_s": 0.012561517411256417,
+      "ttft_ms": {
+        "n": 64,
+        "p50": 1606.6487794741988,
+        "p95": 2532.1288488805294,
+        "p99": 2550.8508324809372
+      },
+      "request_tpot_ms": {
+        "n": 0,
+        "p50": null,
+        "p95": null,
+        "p99": null
+      },
+      "sse_span_per_token_ms": {
+        "n": 64,
+        "p50": 5.4684847702874855,
+        "p95": 5.8270575898681205,
+        "p99": 5.8619899298338325
+      },
+      "sse_content_chunk_gap_ms": {
+        "n": 13413,
+        "p50": 5.527535453438759,
+        "p95": 11.184898763895035,
+        "p99": 11.421925425529478
+      },
+      "gpu_roles": {
+        "decode": {
+          "gpu_cells": 4,
+          "observed_gpu_cells": 4,
+          "samples": 1272,
+          "sample_errors": 0,
+          "mean_utilization_pct": 6.927672955974843,
+          "peak_used_mib": 67669
+        },
+        "encoder": {
+          "gpu_cells": 8,
+          "observed_gpu_cells": 8,
+          "samples": 2544,
+          "sample_errors": 0,
+          "mean_utilization_pct": 2.4874213836477987,
+          "peak_used_mib": 4061
+        },
+        "prefill": {
+          "gpu_cells": 4,
+          "observed_gpu_cells": 4,
+          "samples": 1272,
+          "sample_errors": 0,
+          "mean_utilization_pct": 5.220125786163522,
+          "peak_used_mib": 67789
+        }
+      }
+    },
+    {
+      "kind": "official",
+      "images": 8,
+      "qps": 0.4,
+      "group": "C70",
+      "planned": 64,
+      "submitted": 64,
+      "success": 64,
+      "failure": 0,
+      "skipped": 0,
+      "unlogged": 0,
+      "observation_s": 160.4323330000043,
+      "completion_fraction_planned": 1.0,
+      "completion_fraction_submitted": 1.0,
+      "success_per_s": 0.398922080127067,
+      "success_per_gpu_s": 0.024932630007941686,
+      "ttft_ms": {
+        "n": 64,
+        "p50": 1606.5545408055186,
+        "p95": 2545.6942602060735,
+        "p99": 2561.62952657789
+      },
+      "request_tpot_ms": {
+        "n": 0,
+        "p50": null,
+        "p95": null,
+        "p99": null
+      },
+      "sse_span_per_token_ms": {
+        "n": 64,
+        "p50": 5.495208688080311,
+        "p95": 6.051153002635521,
+        "p99": 6.3298331092239595
+      },
+      "sse_content_chunk_gap_ms": {
+        "n": 13479,
+        "p50": 5.5704377591609955,
+        "p95": 11.195641569793224,
+        "p99": 12.465657889842984
+      },
+      "gpu_roles": {
+        "decode": {
+          "gpu_cells": 4,
+          "observed_gpu_cells": 4,
+          "samples": 640,
+          "sample_errors": 0,
+          "mean_utilization_pct": 13.5203125,
+          "peak_used_mib": 67669
+        },
+        "encoder": {
+          "gpu_cells": 8,
+          "observed_gpu_cells": 8,
+          "samples": 1280,
+          "sample_errors": 0,
+          "mean_utilization_pct": 4.3453125,
+          "peak_used_mib": 4061
+        },
+        "prefill": {
+          "gpu_cells": 4,
+          "observed_gpu_cells": 4,
+          "samples": 640,
+          "sample_errors": 0,
+          "mean_utilization_pct": 10.5609375,
+          "peak_used_mib": 67789
+        }
+      }
+    },
+    {
+      "kind": "official",
+      "images": 8,
+      "qps": 0.6,
+      "group": "C70",
+      "planned": 64,
+      "submitted": 64,
+      "success": 64,
+      "failure": 0,
+      "skipped": 0,
+      "unlogged": 0,
+      "observation_s": 107.7608272600919,
+      "completion_fraction_planned": 1.0,
+      "completion_fraction_submitted": 1.0,
+      "success_per_s": 0.5939078385648375,
+      "success_per_gpu_s": 0.037119239910302346,
+      "ttft_ms": {
+        "n": 64,
+        "p50": 1592.3104854300618,
+        "p95": 2554.462826717645,
+        "p99": 2588.9596901088953
+      },
+      "request_tpot_ms": {
+        "n": 0,
+        "p50": null,
+        "p95": null,
+        "p99": null
+      },
+      "sse_span_per_token_ms": {
+        "n": 64,
+        "p50": 5.525277679165205,
+        "p95": 5.937911257805194,
+        "p99": 6.297942336356523
+      },
+      "sse_content_chunk_gap_ms": {
+        "n": 13423,
+        "p50": 5.5783092975616455,
+        "p95": 11.324828304350376,
+        "p99": 12.2570189088583
+      },
+      "gpu_roles": {
+        "decode": {
+          "gpu_cells": 4,
+          "observed_gpu_cells": 4,
+          "samples": 432,
+          "sample_errors": 0,
+          "mean_utilization_pct": 21.19675925925926,
+          "peak_used_mib": 67669
+        },
+        "encoder": {
+          "gpu_cells": 8,
+          "observed_gpu_cells": 8,
+          "samples": 864,
+          "sample_errors": 0,
+          "mean_utilization_pct": 5.03587962962963,
+          "peak_used_mib": 4061
+        },
+        "prefill": {
+          "gpu_cells": 4,
+          "observed_gpu_cells": 4,
+          "samples": 432,
+          "sample_errors": 0,
+          "mean_utilization_pct": 14.31712962962963,
+          "peak_used_mib": 67789
+        }
+      }
+    },
+    {
+      "kind": "official",
+      "images": 8,
+      "qps": 0.8,
+      "group": "C70",
+      "planned": 64,
+      "submitted": 64,
+      "success": 64,
+      "failure": 0,
+      "skipped": 0,
+      "unlogged": 0,
+      "observation_s": 81.42320800572634,
+      "completion_fraction_planned": 1.0,
+      "completion_fraction_submitted": 1.0,
+      "success_per_s": 0.7860166845243803,
+      "success_per_gpu_s": 0.04912604278277377,
+      "ttft_ms": {
+        "n": 64,
+        "p50": 1608.2119196653366,
+        "p95": 2558.2803410477936,
+        "p99": 2674.81752872467
+      },
+      "request_tpot_ms": {
+        "n": 0,
+        "p50": null,
+        "p95": null,
+        "p99": null
+      },
+      "sse_span_per_token_ms": {
+        "n": 64,
+        "p50": 5.612445542333173,
+        "p95": 6.078697679673924,
+        "p99": 6.284519043258007
+      },
+      "sse_content_chunk_gap_ms": {
+        "n": 13326,
+        "p50": 5.59341162443161,
+        "p95": 11.37464214116335,
+        "p99": 12.155802920460701
+      },
+      "gpu_roles": {
+        "decode": {
+          "gpu_cells": 4,
+          "observed_gpu_cells": 4,
+          "samples": 328,
+          "sample_errors": 0,
+          "mean_utilization_pct": 25.164634146341463,
+          "peak_used_mib": 67669
+        },
+        "encoder": {
+          "gpu_cells": 8,
+          "observed_gpu_cells": 8,
+          "samples": 656,
+          "sample_errors": 0,
+          "mean_utilization_pct": 8.830792682926829,
+          "peak_used_mib": 4061
+        },
+        "prefill": {
+          "gpu_cells": 4,
+          "observed_gpu_cells": 4,
+          "samples": 328,
+          "sample_errors": 0,
+          "mean_utilization_pct": 20.60670731707317,
+          "peak_used_mib": 67789
+        }
+      }
+    },
+    {
+      "kind": "official",
+      "images": 8,
+      "qps": 1,
+      "group": "C70",
+      "planned": 64,
+      "submitted": 64,
+      "success": 64,
+      "failure": 0,
+      "skipped": 0,
+      "unlogged": 0,
+      "observation_s": 65.58904133178294,
+      "completion_fraction_planned": 1.0,
+      "completion_fraction_submitted": 1.0,
+      "success_per_s": 0.9757727617370598,
+      "success_per_gpu_s": 0.06098579760856624,
+      "ttft_ms": {
+        "n": 64,
+        "p50": 1603.0056085437536,
+        "p95": 2646.0185372270644,
+        "p99": 2699.8423494957387
+      },
+      "request_tpot_ms": {
+        "n": 0,
+        "p50": null,
+        "p95": null,
+        "p99": null
+      },
+      "sse_span_per_token_ms": {
+        "n": 64,
+        "p50": 5.633428480987455,
+        "p95": 6.0372614593920755,
+        "p99": 6.167894854484236
+      },
+      "sse_content_chunk_gap_ms": {
+        "n": 13305,
+        "p50": 5.596354603767395,
+        "p95": 11.359559372067451,
+        "p99": 13.087409138679407
+      },
+      "gpu_roles": {
+        "decode": {
+          "gpu_cells": 4,
+          "observed_gpu_cells": 4,
+          "samples": 264,
+          "sample_errors": 0,
+          "mean_utilization_pct": 33.890151515151516,
+          "peak_used_mib": 67669
+        },
+        "encoder": {
+          "gpu_cells": 8,
+          "observed_gpu_cells": 8,
+          "samples": 528,
+          "sample_errors": 0,
+          "mean_utilization_pct": 8.202651515151516,
+          "peak_used_mib": 4061
+        },
+        "prefill": {
+          "gpu_cells": 4,
+          "observed_gpu_cells": 4,
+          "samples": 264,
+          "sample_errors": 0,
+          "mean_utilization_pct": 24.132575757575758,
+          "peak_used_mib": 67789
+        }
+      }
+    },
+    {
+      "kind": "official",
+      "images": 8,
+      "qps": 0.2,
+      "group": "C50",
+      "planned": 64,
+      "submitted": 64,
+      "success": 64,
+      "failure": 0,
+      "skipped": 0,
+      "unlogged": 0,
+      "observation_s": 318.24794502928853,
+      "completion_fraction_planned": 1.0,
+      "completion_fraction_submitted": 1.0,
+      "success_per_s": 0.20110106286502508,
+      "success_per_gpu_s": 0.012568816429064067,
+      "ttft_ms": {
+        "n": 64,
+        "p50": 1256.091307848692,
+        "p95": 1926.239764597267,
+        "p99": 1932.4043498560786
+      },
+      "request_tpot_ms": {
+        "n": 0,
+        "p50": null,
+        "p95": null,
+        "p99": null
+      },
+      "sse_span_per_token_ms": {
+        "n": 64,
+        "p50": 5.388659607692093,
+        "p95": 5.705402579669859,
+        "p99": 5.768032539489806
+      },
+      "sse_content_chunk_gap_ms": {
+        "n": 13234,
+        "p50": 5.411034449934959,
+        "p95": 10.89693671092391,
+        "p99": 11.115807201713324
+      },
+      "gpu_roles": {
+        "decode": {
+          "gpu_cells": 4,
+          "observed_gpu_cells": 4,
+          "samples": 1272,
+          "sample_errors": 0,
+          "mean_utilization_pct": 6.835691823899371,
+          "peak_used_mib": 67675
+        },
+        "encoder": {
+          "gpu_cells": 8,
+          "observed_gpu_cells": 8,
+          "samples": 2544,
+          "sample_errors": 0,
+          "mean_utilization_pct": 2.4685534591194966,
+          "peak_used_mib": 4061
+        },
+        "prefill": {
+          "gpu_cells": 4,
+          "observed_gpu_cells": 4,
+          "samples": 1272,
+          "sample_errors": 0,
+          "mean_utilization_pct": 3.6556603773584904,
+          "peak_used_mib": 67355
+        }
+      }
+    },
+    {
+      "kind": "official",
+      "images": 8,
+      "qps": 0.4,
+      "group": "C50",
+      "planned": 64,
+      "submitted": 64,
+      "success": 64,
+      "failure": 0,
+      "skipped": 0,
+      "unlogged": 0,
+      "observation_s": 160.2137632276863,
+      "completion_fraction_planned": 1.0,
+      "completion_fraction_submitted": 1.0,
+      "success_per_s": 0.39946630495812646,
+      "success_per_gpu_s": 0.024966644059882904,
+      "ttft_ms": {
+        "n": 64,
+        "p50": 1266.2158757448196,
+        "p95": 1917.2295363619924,
+        "p99": 1950.045880433172
+      },
+      "request_tpot_ms": {
+        "n": 0,
+        "p50": null,
+        "p95": null,
+        "p99": null
+      },
+      "sse_span_per_token_ms": {
+        "n": 64,
+        "p50": 5.3908525911324165,
+        "p95": 5.694026597866825,
+        "p99": 5.900499132991421
+      },
+      "sse_content_chunk_gap_ms": {
+        "n": 13212,
+        "p50": 5.428682081401348,
+        "p95": 10.936908051371574,
+        "p99": 11.610048227012143
+      },
+      "gpu_roles": {
+        "decode": {
+          "gpu_cells": 4,
+          "observed_gpu_cells": 4,
+          "samples": 640,
+          "sample_errors": 0,
+          "mean_utilization_pct": 14.1265625,
+          "peak_used_mib": 67675
+        },
+        "encoder": {
+          "gpu_cells": 8,
+          "observed_gpu_cells": 8,
+          "samples": 1280,
+          "sample_errors": 0,
+          "mean_utilization_pct": 4.64609375,
+          "peak_used_mib": 4061
+        },
+        "prefill": {
+          "gpu_cells": 4,
+          "observed_gpu_cells": 4,
+          "samples": 640,
+          "sample_errors": 0,
+          "mean_utilization_pct": 6.984375,
+          "peak_used_mib": 67355
+        }
+      }
+    },
+    {
+      "kind": "official",
+      "images": 8,
+      "qps": 0.6,
+      "group": "C50",
+      "planned": 64,
+      "submitted": 64,
+      "success": 64,
+      "failure": 0,
+      "skipped": 0,
+      "unlogged": 0,
+      "observation_s": 107.55017507821321,
+      "completion_fraction_planned": 1.0,
+      "completion_fraction_submitted": 1.0,
+      "success_per_s": 0.5950710908044322,
+      "success_per_gpu_s": 0.03719194317527701,
+      "ttft_ms": {
+        "n": 64,
+        "p50": 1254.3450081720948,
+        "p95": 1946.0720723494887,
+        "p99": 1963.718405161053
+      },
+      "request_tpot_ms": {
+        "n": 0,
+        "p50": null,
+        "p95": null,
+        "p99": null
+      },
+      "sse_span_per_token_ms": {
+        "n": 64,
+        "p50": 5.456061449413206,
+        "p95": 5.697381689633224,
+        "p99": 5.873069319727958
+      },
+      "sse_content_chunk_gap_ms": {
+        "n": 13277,
+        "p50": 5.435531958937645,
+        "p95": 10.945995897054672,
+        "p99": 11.328143626451489
+      },
+      "gpu_roles": {
+        "decode": {
+          "gpu_cells": 4,
+          "observed_gpu_cells": 4,
+          "samples": 432,
+          "sample_errors": 0,
+          "mean_utilization_pct": 19.41898148148148,
+          "peak_used_mib": 67691
+        },
+        "encoder": {
+          "gpu_cells": 8,
+          "observed_gpu_cells": 8,
+          "samples": 856,
+          "sample_errors": 0,
+          "mean_utilization_pct": 8.799065420560748,
+          "peak_used_mib": 4061
+        },
+        "prefill": {
+          "gpu_cells": 4,
+          "observed_gpu_cells": 4,
+          "samples": 432,
+          "sample_errors": 0,
+          "mean_utilization_pct": 11.238425925925926,
+          "peak_used_mib": 67355
+        }
+      }
+    },
+    {
+      "kind": "official",
+      "images": 8,
+      "qps": 0.8,
+      "group": "C50",
+      "planned": 64,
+      "submitted": 64,
+      "success": 64,
+      "failure": 0,
+      "skipped": 0,
+      "unlogged": 0,
+      "observation_s": 81.23111221939325,
+      "completion_fraction_planned": 1.0,
+      "completion_fraction_submitted": 1.0,
+      "success_per_s": 0.7878754611551475,
+      "success_per_gpu_s": 0.04924221632219672,
+      "ttft_ms": {
+        "n": 64,
+        "p50": 1259.537030942738,
+        "p95": 1970.6347369588912,
+        "p99": 2014.6995248645544
+      },
+      "request_tpot_ms": {
+        "n": 0,
+        "p50": null,
+        "p95": null,
+        "p99": null
+      },
+      "sse_span_per_token_ms": {
+        "n": 64,
+        "p50": 5.4519474798557805,
+        "p95": 6.005483846746239,
+        "p99": 6.081468592890921
+      },
+      "sse_content_chunk_gap_ms": {
+        "n": 13219,
+        "p50": 5.439627915620804,
+        "p95": 11.0164200887084,
+        "p99": 11.80669404566288
+      },
+      "gpu_roles": {
+        "decode": {
+          "gpu_cells": 4,
+          "observed_gpu_cells": 4,
+          "samples": 324,
+          "sample_errors": 0,
+          "mean_utilization_pct": 24.703703703703702,
+          "peak_used_mib": 67691
+        },
+        "encoder": {
+          "gpu_cells": 8,
+          "observed_gpu_cells": 8,
+          "samples": 648,
+          "sample_errors": 0,
+          "mean_utilization_pct": 8.712962962962964,
+          "peak_used_mib": 4061
+        },
+        "prefill": {
+          "gpu_cells": 4,
+          "observed_gpu_cells": 4,
+          "samples": 324,
+          "sample_errors": 0,
+          "mean_utilization_pct": 13.898148148148149,
+          "peak_used_mib": 67389
+        }
+      }
+    },
+    {
+      "kind": "official",
+      "images": 8,
+      "qps": 1,
+      "group": "C50",
+      "planned": 64,
+      "submitted": 64,
+      "success": 64,
+      "failure": 0,
+      "skipped": 0,
+      "unlogged": 0,
+      "observation_s": 65.41048552654684,
+      "completion_fraction_planned": 1.0,
+      "completion_fraction_submitted": 1.0,
+      "success_per_s": 0.9784364002928186,
+      "success_per_gpu_s": 0.061152275018301165,
+      "ttft_ms": {
+        "n": 64,
+        "p50": 1260.716363787651,
+        "p95": 1965.7045358791947,
+        "p99": 2019.5134612172842
+      },
+      "request_tpot_ms": {
+        "n": 0,
+        "p50": null,
+        "p95": null,
+        "p99": null
+      },
+      "sse_span_per_token_ms": {
+        "n": 64,
+        "p50": 5.488967146797507,
+        "p95": 5.897210198363252,
+        "p99": 6.0702653205862225
+      },
+      "sse_content_chunk_gap_ms": {
+        "n": 13273,
+        "p50": 5.437396466732025,
+        "p95": 11.03174313902855,
+        "p99": 11.786386445164684
+      },
+      "gpu_roles": {
+        "decode": {
+          "gpu_cells": 4,
+          "observed_gpu_cells": 4,
+          "samples": 260,
+          "sample_errors": 0,
+          "mean_utilization_pct": 30.226923076923075,
+          "peak_used_mib": 67691
+        },
+        "encoder": {
+          "gpu_cells": 8,
+          "observed_gpu_cells": 8,
+          "samples": 520,
+          "sample_errors": 0,
+          "mean_utilization_pct": 12.044230769230769,
+          "peak_used_mib": 4061
+        },
+        "prefill": {
+          "gpu_cells": 4,
+          "observed_gpu_cells": 4,
+          "samples": 260,
+          "sample_errors": 0,
+          "mean_utilization_pct": 18.173076923076923,
+          "peak_used_mib": 67389
+        }
+      }
+    }
+  ],
+  "official_deployment_evidence": {
+    "A": true,
+    "B": true,
+    "C70": true,
+    "C50": true
+  },
+  "official_deployment_sources": {
+    "A": "../20261123T094025Z-7b-16-a-pilot",
+    "B": "../20261123T101049Z-7b-16-b-pilot",
+    "C70": "../20261123T110704Z-7b-16-c70-pilot",
+    "C50": "../20261123T120518Z-7b-16-c50-retry"
+  },
+  "official_only": true,
+  "plan_sha256": "bb73895922fc14574017cf84efca87f60e74958a02437cd0d10ce91531058a93",
+  "official_source_audit": {
+    "sha256": "c23b98db077c0263b706901641575d8ec5e84d1f233171862848ab5dcf142f24",
+    "source_manifest_sha256": "d487e60167f7fe421ad8862b82dcc77e6893dcb4cde79ec9dee9ad4c83cfb567"
+  }
+}

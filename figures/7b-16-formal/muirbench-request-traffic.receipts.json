@@ -1,0 +1,34 @@
+{
+  "model": "7B",
+  "report_sha256": "b8f68df6b2443d968c376bad00e453932762dbab7899ced2ed16779b5f8e0e54",
+  "groups": {
+    "A": {
+      "run_id": "20261123T164341Z-7b-16-a-formal",
+      "responses_sha256": "905d1048f0f5fe11cc715dd5d146a54781213bc9167d399e966632d8eb24aa26",
+      "score_sha256": "17e95de8011efe1e1cdb6d840f3ee8a7256b0a20ffbb3f5a861223fe37de16b0",
+      "replay_sha256": "cc70deee80ebd93bb7c30b4b015298f8fb595e5865788620a1035349a80b0bcb",
+      "completed": 2600
+    },
+    "B": {
+      "run_id": "20261123T230931Z-7b-16-b-phase",
+      "responses_sha256": "28db7acc7b0a7a8a94da37ebe0ca9fa9a400f4cbc838b63be124753fd58e2f40",
+      "score_sha256": "a5ec5b8e149a70d2ecffb7a5cda4df3fb9aa8806edd226b21bb2d5ca5a9f9f1d",
+      "replay_sha256": "8803e5bc72c6ea17ca6660d7e6a94831580806c2e1b5aa249c1e52d95cff5f71",
+      "completed": 2600
+    },
+    "C70": {
+      "run_id": "20261124T001300Z-7b-16-c70-phase",
+      "responses_sha256": "4448e0d0b4aedd2d4da89abf4af26f6491d379346ff3ff8cbdbde378b07483bb",
+      "score_sha256": "e49c3d9fb71d3c82ea9a14f73462bb49162b340ad9ea1b640fabce90ef0c065e",
+      "replay_sha256": "acf37fc8b4b30db3d07a35f8a248819d2a42a979c22943aee1487bc5357dd2c2",
+      "completed": 2600
+    },
+    "C50": {
+      "run_id": "20261124T012116Z-7b-16-c50-phase",
+      "responses_sha256": "535050e1912c3fbdc9d7bd300371545743a15415d2e66d8d24e1e431ca2e14b7",
+      "score_sha256": "7d53b4bd8dc1d858d0013c141ccbf1d28042b08c6149876c7e915cae3659b48f",
+      "replay_sha256": "a418c3dbe8667548414e97a9a350afab09e0bf30312c84a38a743aa32f05c497",
+      "completed": 2600
+    }
+  }
+}

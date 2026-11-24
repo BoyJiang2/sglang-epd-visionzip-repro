@@ -1,0 +1,1753 @@
+{
+  "model": "7B",
+  "plan": {
+    "images": 1,
+    "qps": 4,
+    "requests_per_replay": 128,
+    "output_tokens": 64,
+    "formal_seeds": [
+      23011,
+      23012,
+      23013
+    ],
+    "supplement_seeds": [
+      23014,
+      23015,
+      23016,
+      23017,
+      23018
+    ],
+    "groups": [
+      "A",
+      "B",
+      "C70",
+      "C50"
+    ],
+    "minimum_completed_per_group": 1000
+  },
+  "method": "2000 bootstrap draws over requests within each seed",
+  "timing": "Scheduler-host accepted token #1 to #64, including P-to-D handoff for B/C",
+  "paired_timing_samples": {
+    "A-B": 1024,
+    "B-C70": 1024,
+    "B-C50": 1024
+  },
+  "groups": {
+    "A": {
+      "run_id": "20261123T222153Z-7b-16-a-token",
+      "run_ids": [
+        "20261123T222153Z-7b-16-a-token"
+      ],
+      "planned": 1024,
+      "submitted": 1024,
+      "success": 1024,
+      "failure": 0,
+      "skipped": 0,
+      "unlogged": 0,
+      "missing_tpot": 0,
+      "qualified": true,
+      "request_tpot_ms": {
+        "n": 1024,
+        "p50": 5.142218761904761,
+        "p95": 5.197385754761905,
+        "p99": 5.211986577777777
+      },
+      "p99_ci95_ms": [
+        5.201962256190476,
+        5.233707331904761
+      ],
+      "repeats": [
+        {
+          "seed": 23011,
+          "run_id": "20261123T222153Z-7b-16-a-token",
+          "planned": 128,
+          "submitted": 128,
+          "success": 128,
+          "failure": 0,
+          "skipped": 0,
+          "unlogged": 0,
+          "source": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/tail-p99-1img-4qps-seed23011.A.jsonl",
+          "observation_s": 32.139536283910275,
+          "failures_by_type": {},
+          "endpoints": {
+            "http://192.168.0.237:33500": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.237:33501": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.237:33502": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.237:33503": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.237:33504": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.237:33505": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.237:33506": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.237:33507": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.240:33500": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.240:33501": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.240:33502": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.240:33503": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.240:33504": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.240:33505": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.240:33506": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.240:33507": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            }
+          },
+          "valid_tpot": 128,
+          "exclusions": {}
+        },
+        {
+          "seed": 23012,
+          "run_id": "20261123T222153Z-7b-16-a-token",
+          "planned": 128,
+          "submitted": 128,
+          "success": 128,
+          "failure": 0,
+          "skipped": 0,
+          "unlogged": 0,
+          "source": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/tail-p99-1img-4qps-seed23012.A.jsonl",
+          "observation_s": 34.679193994030356,
+          "failures_by_type": {},
+          "endpoints": {
+            "http://192.168.0.237:33500": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.237:33501": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.237:33502": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.237:33503": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.237:33504": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.237:33505": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.237:33506": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.237:33507": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.240:33500": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.240:33501": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.240:33502": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.240:33503": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.240:33504": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.240:33505": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.240:33506": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.240:33507": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            }
+          },
+          "valid_tpot": 128,
+          "exclusions": {}
+        },
+        {
+          "seed": 23013,
+          "run_id": "20261123T222153Z-7b-16-a-token",
+          "planned": 128,
+          "submitted": 128,
+          "success": 128,
+          "failure": 0,
+          "skipped": 0,
+          "unlogged": 0,
+          "source": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/tail-p99-1img-4qps-seed23013.A.jsonl",
+          "observation_s": 26.970920579507947,
+          "failures_by_type": {},
+          "endpoints": {
+            "http://192.168.0.237:33500": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.237:33501": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.237:33502": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.237:33503": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.237:33504": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.237:33505": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.237:33506": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.237:33507": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.240:33500": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.240:33501": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.240:33502": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.240:33503": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.240:33504": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.240:33505": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.240:33506": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.240:33507": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            }
+          },
+          "valid_tpot": 128,
+          "exclusions": {}
+        },
+        {
+          "seed": 23014,
+          "run_id": "20261123T222153Z-7b-16-a-token",
+          "planned": 128,
+          "submitted": 128,
+          "success": 128,
+          "failure": 0,
+          "skipped": 0,
+          "unlogged": 0,
+          "source": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/tail-p99-1img-4qps-seed23014.A.jsonl",
+          "observation_s": 32.42228691652417,
+          "failures_by_type": {},
+          "endpoints": {
+            "http://192.168.0.237:33500": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.237:33501": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.237:33502": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.237:33503": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.237:33504": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.237:33505": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.237:33506": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.237:33507": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.240:33500": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.240:33501": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.240:33502": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.240:33503": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.240:33504": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.240:33505": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.240:33506": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.240:33507": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            }
+          },
+          "valid_tpot": 128,
+          "exclusions": {}
+        },
+        {
+          "seed": 23015,
+          "run_id": "20261123T222153Z-7b-16-a-token",
+          "planned": 128,
+          "submitted": 128,
+          "success": 128,
+          "failure": 0,
+          "skipped": 0,
+          "unlogged": 0,
+          "source": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/tail-p99-1img-4qps-seed23015.A.jsonl",
+          "observation_s": 32.355774860829115,
+          "failures_by_type": {},
+          "endpoints": {
+            "http://192.168.0.237:33500": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.237:33501": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.237:33502": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.237:33503": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.237:33504": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.237:33505": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.237:33506": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.237:33507": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.240:33500": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.240:33501": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.240:33502": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.240:33503": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.240:33504": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.240:33505": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.240:33506": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.240:33507": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            }
+          },
+          "valid_tpot": 128,
+          "exclusions": {}
+        },
+        {
+          "seed": 23016,
+          "run_id": "20261123T222153Z-7b-16-a-token",
+          "planned": 128,
+          "submitted": 128,
+          "success": 128,
+          "failure": 0,
+          "skipped": 0,
+          "unlogged": 0,
+          "source": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/tail-p99-1img-4qps-seed23016.A.jsonl",
+          "observation_s": 31.158896738663316,
+          "failures_by_type": {},
+          "endpoints": {
+            "http://192.168.0.237:33500": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.237:33501": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.237:33502": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.237:33503": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.237:33504": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.237:33505": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.237:33506": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.237:33507": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.240:33500": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.240:33501": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.240:33502": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.240:33503": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.240:33504": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.240:33505": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.240:33506": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.240:33507": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            }
+          },
+          "valid_tpot": 128,
+          "exclusions": {}
+        },
+        {
+          "seed": 23017,
+          "run_id": "20261123T222153Z-7b-16-a-token",
+          "planned": 128,
+          "submitted": 128,
+          "success": 128,
+          "failure": 0,
+          "skipped": 0,
+          "unlogged": 0,
+          "source": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/tail-p99-1img-4qps-seed23017.A.jsonl",
+          "observation_s": 33.157136460766196,
+          "failures_by_type": {},
+          "endpoints": {
+            "http://192.168.0.237:33500": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.237:33501": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.237:33502": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.237:33503": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.237:33504": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.237:33505": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.237:33506": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.237:33507": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.240:33500": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.240:33501": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.240:33502": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.240:33503": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.240:33504": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.240:33505": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.240:33506": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.240:33507": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            }
+          },
+          "valid_tpot": 128,
+          "exclusions": {}
+        },
+        {
+          "seed": 23018,
+          "run_id": "20261123T222153Z-7b-16-a-token",
+          "planned": 128,
+          "submitted": 128,
+          "success": 128,
+          "failure": 0,
+          "skipped": 0,
+          "unlogged": 0,
+          "source": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/tail-p99-1img-4qps-seed23018.A.jsonl",
+          "observation_s": 30.14207207225263,
+          "failures_by_type": {},
+          "endpoints": {
+            "http://192.168.0.237:33500": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.237:33501": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.237:33502": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.237:33503": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.237:33504": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.237:33505": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.237:33506": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.237:33507": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.240:33500": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.240:33501": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.240:33502": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.240:33503": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.240:33504": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.240:33505": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.240:33506": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            },
+            "http://192.168.0.240:33507": {
+              "submitted": 8,
+              "completed": 8,
+              "failed": 0,
+              "images": 8,
+              "completed_images": 8
+            }
+          },
+          "valid_tpot": 128,
+          "exclusions": {}
+        }
+      ]
+    },
+    "B": {
+      "run_id": "20261123T223416Z-7b-16-b-token",
+      "run_ids": [
+        "20261123T223416Z-7b-16-b-token"
+      ],
+      "planned": 1024,
+      "submitted": 1024,
+      "success": 1024,
+      "failure": 0,
+      "skipped": 0,
+      "unlogged": 0,
+      "missing_tpot": 0,
+      "qualified": true,
+      "request_tpot_ms": {
+        "n": 1024,
+        "p50": 5.405795301587302,
+        "p95": 5.723313373809524,
+        "p99": 5.866767547777778
+      },
+      "p99_ci95_ms": [
+        5.808911615873015,
+        5.945656279682539
+      ],
+      "repeats": [
+        {
+          "seed": 23011,
+          "run_id": "20261123T223416Z-7b-16-b-token",
+          "planned": 128,
+          "submitted": 128,
+          "success": 128,
+          "failure": 0,
+          "skipped": 0,
+          "unlogged": 0,
+          "source": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/tail-p99-1img-4qps-seed23011.B.jsonl",
+          "observation_s": 32.132408767938614,
+          "failures_by_type": {},
+          "endpoints": {
+            "http://127.0.0.1:33580": {
+              "submitted": 128,
+              "completed": 128,
+              "failed": 0,
+              "images": 128,
+              "completed_images": 128
+            }
+          },
+          "valid_tpot": 128,
+          "exclusions": {}
+        },
+        {
+          "seed": 23012,
+          "run_id": "20261123T223416Z-7b-16-b-token",
+          "planned": 128,
+          "submitted": 128,
+          "success": 128,
+          "failure": 0,
+          "skipped": 0,
+          "unlogged": 0,
+          "source": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/tail-p99-1img-4qps-seed23012.B.jsonl",
+          "observation_s": 34.66062342375517,
+          "failures_by_type": {},
+          "endpoints": {
+            "http://127.0.0.1:33580": {
+              "submitted": 128,
+              "completed": 128,
+              "failed": 0,
+              "images": 128,
+              "completed_images": 128
+            }
+          },
+          "valid_tpot": 128,
+          "exclusions": {}
+        },
+        {
+          "seed": 23013,
+          "run_id": "20261123T223416Z-7b-16-b-token",
+          "planned": 128,
+          "submitted": 128,
+          "success": 128,
+          "failure": 0,
+          "skipped": 0,
+          "unlogged": 0,
+          "source": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/tail-p99-1img-4qps-seed23013.B.jsonl",
+          "observation_s": 26.96349617280066,
+          "failures_by_type": {},
+          "endpoints": {
+            "http://127.0.0.1:33580": {
+              "submitted": 128,
+              "completed": 128,
+              "failed": 0,
+              "images": 128,
+              "completed_images": 128
+            }
+          },
+          "valid_tpot": 128,
+          "exclusions": {}
+        },
+        {
+          "seed": 23014,
+          "run_id": "20261123T223416Z-7b-16-b-token",
+          "planned": 128,
+          "submitted": 128,
+          "success": 128,
+          "failure": 0,
+          "skipped": 0,
+          "unlogged": 0,
+          "source": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/tail-p99-1img-4qps-seed23014.B.jsonl",
+          "observation_s": 32.415156949311495,
+          "failures_by_type": {},
+          "endpoints": {
+            "http://127.0.0.1:33580": {
+              "submitted": 128,
+              "completed": 128,
+              "failed": 0,
+              "images": 128,
+              "completed_images": 128
+            }
+          },
+          "valid_tpot": 128,
+          "exclusions": {}
+        },
+        {
+          "seed": 23015,
+          "run_id": "20261123T223416Z-7b-16-b-token",
+          "planned": 128,
+          "submitted": 128,
+          "success": 128,
+          "failure": 0,
+          "skipped": 0,
+          "unlogged": 0,
+          "source": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/tail-p99-1img-4qps-seed23015.B.jsonl",
+          "observation_s": 32.49905572086573,
+          "failures_by_type": {},
+          "endpoints": {
+            "http://127.0.0.1:33580": {
+              "submitted": 128,
+              "completed": 128,
+              "failed": 0,
+              "images": 128,
+              "completed_images": 128
+            }
+          },
+          "valid_tpot": 128,
+          "exclusions": {}
+        },
+        {
+          "seed": 23016,
+          "run_id": "20261123T223416Z-7b-16-b-token",
+          "planned": 128,
+          "submitted": 128,
+          "success": 128,
+          "failure": 0,
+          "skipped": 0,
+          "unlogged": 0,
+          "source": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/tail-p99-1img-4qps-seed23016.B.jsonl",
+          "observation_s": 31.15124181471765,
+          "failures_by_type": {},
+          "endpoints": {
+            "http://127.0.0.1:33580": {
+              "submitted": 128,
+              "completed": 128,
+              "failed": 0,
+              "images": 128,
+              "completed_images": 128
+            }
+          },
+          "valid_tpot": 128,
+          "exclusions": {}
+        },
+        {
+          "seed": 23017,
+          "run_id": "20261123T223416Z-7b-16-b-token",
+          "planned": 128,
+          "submitted": 128,
+          "success": 128,
+          "failure": 0,
+          "skipped": 0,
+          "unlogged": 0,
+          "source": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/tail-p99-1img-4qps-seed23017.B.jsonl",
+          "observation_s": 33.17352532222867,
+          "failures_by_type": {},
+          "endpoints": {
+            "http://127.0.0.1:33580": {
+              "submitted": 128,
+              "completed": 128,
+              "failed": 0,
+              "images": 128,
+              "completed_images": 128
+            }
+          },
+          "valid_tpot": 128,
+          "exclusions": {}
+        },
+        {
+          "seed": 23018,
+          "run_id": "20261123T223416Z-7b-16-b-token",
+          "planned": 128,
+          "submitted": 128,
+          "success": 128,
+          "failure": 0,
+          "skipped": 0,
+          "unlogged": 0,
+          "source": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/tail-p99-1img-4qps-seed23018.B.jsonl",
+          "observation_s": 30.14298945479095,
+          "failures_by_type": {},
+          "endpoints": {
+            "http://127.0.0.1:33580": {
+              "submitted": 128,
+              "completed": 128,
+              "failed": 0,
+              "images": 128,
+              "completed_images": 128
+            }
+          },
+          "valid_tpot": 128,
+          "exclusions": {}
+        }
+      ]
+    },
+    "C70": {
+      "run_id": "20261123T224734Z-7b-16-c70-token",
+      "run_ids": [
+        "20261123T224734Z-7b-16-c70-token"
+      ],
+      "planned": 1024,
+      "submitted": 1024,
+      "success": 1024,
+      "failure": 0,
+      "skipped": 0,
+      "unlogged": 0,
+      "missing_tpot": 0,
+      "qualified": true,
+      "request_tpot_ms": {
+        "n": 1024,
+        "p50": 5.302078690476191,
+        "p95": 5.638367785714285,
+        "p99": 5.762615013809524
+      },
+      "p99_ci95_ms": [
+        5.741968682539683,
+        5.796223696349207
+      ],
+      "repeats": [
+        {
+          "seed": 23011,
+          "run_id": "20261123T224734Z-7b-16-c70-token",
+          "planned": 128,
+          "submitted": 128,
+          "success": 128,
+          "failure": 0,
+          "skipped": 0,
+          "unlogged": 0,
+          "source": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/tail-p99-1img-4qps-seed23011.C70.jsonl",
+          "observation_s": 32.13168608210981,
+          "failures_by_type": {},
+          "endpoints": {
+            "http://127.0.0.1:33580": {
+              "submitted": 128,
+              "completed": 128,
+              "failed": 0,
+              "images": 128,
+              "completed_images": 128
+            }
+          },
+          "valid_tpot": 128,
+          "exclusions": {}
+        },
+        {
+          "seed": 23012,
+          "run_id": "20261123T224734Z-7b-16-c70-token",
+          "planned": 128,
+          "submitted": 128,
+          "success": 128,
+          "failure": 0,
+          "skipped": 0,
+          "unlogged": 0,
+          "source": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/tail-p99-1img-4qps-seed23012.C70.jsonl",
+          "observation_s": 34.64461583085358,
+          "failures_by_type": {},
+          "endpoints": {
+            "http://127.0.0.1:33580": {
+              "submitted": 128,
+              "completed": 128,
+              "failed": 0,
+              "images": 128,
+              "completed_images": 128
+            }
+          },
+          "valid_tpot": 128,
+          "exclusions": {}
+        },
+        {
+          "seed": 23013,
+          "run_id": "20261123T224734Z-7b-16-c70-token",
+          "planned": 128,
+          "submitted": 128,
+          "success": 128,
+          "failure": 0,
+          "skipped": 0,
+          "unlogged": 0,
+          "source": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/tail-p99-1img-4qps-seed23013.C70.jsonl",
+          "observation_s": 26.943071261048317,
+          "failures_by_type": {},
+          "endpoints": {
+            "http://127.0.0.1:33580": {
+              "submitted": 128,
+              "completed": 128,
+              "failed": 0,
+              "images": 128,
+              "completed_images": 128
+            }
+          },
+          "valid_tpot": 128,
+          "exclusions": {}
+        },
+        {
+          "seed": 23014,
+          "run_id": "20261123T224734Z-7b-16-c70-token",
+          "planned": 128,
+          "submitted": 128,
+          "success": 128,
+          "failure": 0,
+          "skipped": 0,
+          "unlogged": 0,
+          "source": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/tail-p99-1img-4qps-seed23014.C70.jsonl",
+          "observation_s": 32.39567427895963,
+          "failures_by_type": {},
+          "endpoints": {
+            "http://127.0.0.1:33580": {
+              "submitted": 128,
+              "completed": 128,
+              "failed": 0,
+              "images": 128,
+              "completed_images": 128
+            }
+          },
+          "valid_tpot": 128,
+          "exclusions": {}
+        },
+        {
+          "seed": 23015,
+          "run_id": "20261123T224734Z-7b-16-c70-token",
+          "planned": 128,
+          "submitted": 128,
+          "success": 128,
+          "failure": 0,
+          "skipped": 0,
+          "unlogged": 0,
+          "source": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/tail-p99-1img-4qps-seed23015.C70.jsonl",
+          "observation_s": 32.34278893843293,
+          "failures_by_type": {},
+          "endpoints": {
+            "http://127.0.0.1:33580": {
+              "submitted": 128,
+              "completed": 128,
+              "failed": 0,
+              "images": 128,
+              "completed_images": 128
+            }
+          },
+          "valid_tpot": 128,
+          "exclusions": {}
+        },
+        {
+          "seed": 23016,
+          "run_id": "20261123T224734Z-7b-16-c70-token",
+          "planned": 128,
+          "submitted": 128,
+          "success": 128,
+          "failure": 0,
+          "skipped": 0,
+          "unlogged": 0,
+          "source": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/tail-p99-1img-4qps-seed23016.C70.jsonl",
+          "observation_s": 31.138059124350548,
+          "failures_by_type": {},
+          "endpoints": {
+            "http://127.0.0.1:33580": {
+              "submitted": 128,
+              "completed": 128,
+              "failed": 0,
+              "images": 128,
+              "completed_images": 128
+            }
+          },
+          "valid_tpot": 128,
+          "exclusions": {}
+        },
+        {
+          "seed": 23017,
+          "run_id": "20261123T224734Z-7b-16-c70-token",
+          "planned": 128,
+          "submitted": 128,
+          "success": 128,
+          "failure": 0,
+          "skipped": 0,
+          "unlogged": 0,
+          "source": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/tail-p99-1img-4qps-seed23017.C70.jsonl",
+          "observation_s": 33.13975757919252,
+          "failures_by_type": {},
+          "endpoints": {
+            "http://127.0.0.1:33580": {
+              "submitted": 128,
+              "completed": 128,
+              "failed": 0,
+              "images": 128,
+              "completed_images": 128
+            }
+          },
+          "valid_tpot": 128,
+          "exclusions": {}
+        },
+        {
+          "seed": 23018,
+          "run_id": "20261123T224734Z-7b-16-c70-token",
+          "planned": 128,
+          "submitted": 128,
+          "success": 128,
+          "failure": 0,
+          "skipped": 0,
+          "unlogged": 0,
+          "source": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/tail-p99-1img-4qps-seed23018.C70.jsonl",
+          "observation_s": 30.12128539569676,
+          "failures_by_type": {},
+          "endpoints": {
+            "http://127.0.0.1:33580": {
+              "submitted": 128,
+              "completed": 128,
+              "failed": 0,
+              "images": 128,
+              "completed_images": 128
+            }
+          },
+          "valid_tpot": 128,
+          "exclusions": {}
+        }
+      ]
+    },
+    "C50": {
+      "run_id": "20261123T225840Z-7b-16-c50-token",
+      "run_ids": [
+        "20261123T225840Z-7b-16-c50-token"
+      ],
+      "planned": 1024,
+      "submitted": 1024,
+      "success": 1024,
+      "failure": 0,
+      "skipped": 0,
+      "unlogged": 0,
+      "missing_tpot": 0,
+      "qualified": true,
+      "request_tpot_ms": {
+        "n": 1024,
+        "p50": 5.273611634920636,
+        "p95": 5.599946291269841,
+        "p99": 5.704736187460317
+      },
+      "p99_ci95_ms": [
+        5.674333352380952,
+        5.770671093492063
+      ],
+      "repeats": [
+        {
+          "seed": 23011,
+          "run_id": "20261123T225840Z-7b-16-c50-token",
+          "planned": 128,
+          "submitted": 128,
+          "success": 128,
+          "failure": 0,
+          "skipped": 0,
+          "unlogged": 0,
+          "source": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/tail-p99-1img-4qps-seed23011.C50.jsonl",
+          "observation_s": 32.054104372859,
+          "failures_by_type": {},
+          "endpoints": {
+            "http://127.0.0.1:33580": {
+              "submitted": 128,
+              "completed": 128,
+              "failed": 0,
+              "images": 128,
+              "completed_images": 128
+            }
+          },
+          "valid_tpot": 128,
+          "exclusions": {}
+        },
+        {
+          "seed": 23012,
+          "run_id": "20261123T225840Z-7b-16-c50-token",
+          "planned": 128,
+          "submitted": 128,
+          "success": 128,
+          "failure": 0,
+          "skipped": 0,
+          "unlogged": 0,
+          "source": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/tail-p99-1img-4qps-seed23012.C50.jsonl",
+          "observation_s": 34.587688751518726,
+          "failures_by_type": {},
+          "endpoints": {
+            "http://127.0.0.1:33580": {
+              "submitted": 128,
+              "completed": 128,
+              "failed": 0,
+              "images": 128,
+              "completed_images": 128
+            }
+          },
+          "valid_tpot": 128,
+          "exclusions": {}
+        },
+        {
+          "seed": 23013,
+          "run_id": "20261123T225840Z-7b-16-c50-token",
+          "planned": 128,
+          "submitted": 128,
+          "success": 128,
+          "failure": 0,
+          "skipped": 0,
+          "unlogged": 0,
+          "source": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/tail-p99-1img-4qps-seed23013.C50.jsonl",
+          "observation_s": 26.880779042840004,
+          "failures_by_type": {},
+          "endpoints": {
+            "http://127.0.0.1:33580": {
+              "submitted": 128,
+              "completed": 128,
+              "failed": 0,
+              "images": 128,
+              "completed_images": 128
+            }
+          },
+          "valid_tpot": 128,
+          "exclusions": {}
+        },
+        {
+          "seed": 23014,
+          "run_id": "20261123T225840Z-7b-16-c50-token",
+          "planned": 128,
+          "submitted": 128,
+          "success": 128,
+          "failure": 0,
+          "skipped": 0,
+          "unlogged": 0,
+          "source": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/tail-p99-1img-4qps-seed23014.C50.jsonl",
+          "observation_s": 32.33505557104945,
+          "failures_by_type": {},
+          "endpoints": {
+            "http://127.0.0.1:33580": {
+              "submitted": 128,
+              "completed": 128,
+              "failed": 0,
+              "images": 128,
+              "completed_images": 128
+            }
+          },
+          "valid_tpot": 128,
+          "exclusions": {}
+        },
+        {
+          "seed": 23015,
+          "run_id": "20261123T225840Z-7b-16-c50-token",
+          "planned": 128,
+          "submitted": 128,
+          "success": 128,
+          "failure": 0,
+          "skipped": 0,
+          "unlogged": 0,
+          "source": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/tail-p99-1img-4qps-seed23015.C50.jsonl",
+          "observation_s": 32.276607943698764,
+          "failures_by_type": {},
+          "endpoints": {
+            "http://127.0.0.1:33580": {
+              "submitted": 128,
+              "completed": 128,
+              "failed": 0,
+              "images": 128,
+              "completed_images": 128
+            }
+          },
+          "valid_tpot": 128,
+          "exclusions": {}
+        },
+        {
+          "seed": 23016,
+          "run_id": "20261123T225840Z-7b-16-c50-token",
+          "planned": 128,
+          "submitted": 128,
+          "success": 128,
+          "failure": 0,
+          "skipped": 0,
+          "unlogged": 0,
+          "source": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/tail-p99-1img-4qps-seed23016.C50.jsonl",
+          "observation_s": 31.16613960824907,
+          "failures_by_type": {},
+          "endpoints": {
+            "http://127.0.0.1:33580": {
+              "submitted": 128,
+              "completed": 128,
+              "failed": 0,
+              "images": 128,
+              "completed_images": 128
+            }
+          },
+          "valid_tpot": 128,
+          "exclusions": {}
+        },
+        {
+          "seed": 23017,
+          "run_id": "20261123T225840Z-7b-16-c50-token",
+          "planned": 128,
+          "submitted": 128,
+          "success": 128,
+          "failure": 0,
+          "skipped": 0,
+          "unlogged": 0,
+          "source": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/tail-p99-1img-4qps-seed23017.C50.jsonl",
+          "observation_s": 33.07186762802303,
+          "failures_by_type": {},
+          "endpoints": {
+            "http://127.0.0.1:33580": {
+              "submitted": 128,
+              "completed": 128,
+              "failed": 0,
+              "images": 128,
+              "completed_images": 128
+            }
+          },
+          "valid_tpot": 128,
+          "exclusions": {}
+        },
+        {
+          "seed": 23018,
+          "run_id": "20261123T225840Z-7b-16-c50-token",
+          "planned": 128,
+          "submitted": 128,
+          "success": 128,
+          "failure": 0,
+          "skipped": 0,
+          "unlogged": 0,
+          "source": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/tail-p99-1img-4qps-seed23018.C50.jsonl",
+          "observation_s": 30.05606009811163,
+          "failures_by_type": {},
+          "endpoints": {
+            "http://127.0.0.1:33580": {
+              "submitted": 128,
+              "completed": 128,
+              "failed": 0,
+              "images": 128,
+              "completed_images": 128
+            }
+          },
+          "valid_tpot": 128,
+          "exclusions": {}
+        }
+      ]
+    }
+  },
+  "evidence": {
+    "path": "/home/boyjiang/mllm-epd/runs/20261123T093855Z-7b-16-campaign/evidence.json",
+    "sha256": "ca6370439d296e29bf3f873c234c3833e657f50a9905c2688086cf0d0e484af6"
+  }
+}

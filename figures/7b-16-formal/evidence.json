@@ -1,0 +1,140 @@
+{
+  "input_kind": "measured",
+  "groups": {
+    "A": {
+      "official": {
+        "deployment": "../20261123T094025Z-7b-16-a-pilot"
+      },
+      "deployment": "../20261123T164341Z-7b-16-a-formal",
+      "token_p99": {
+        "deployment": "../20261123T222153Z-7b-16-a-token"
+      }
+    },
+    "B": {
+      "official": {
+        "deployment": "../20261123T101049Z-7b-16-b-pilot"
+      },
+      "deployment": "../20261123T180658Z-7b-16-b-formal",
+      "kv_qualification": {
+        "deployment": "../20261123T100423Z-7b-16-b-qualification",
+        "probes": "core-probes.jsonl"
+      },
+      "token_p99": {
+        "deployment": "../20261123T223416Z-7b-16-b-token"
+      },
+      "diagnostic": {
+        "deployment": "../20261124T000206Z-7b-16-b-phase-probes",
+        "replays": [
+          {
+            "path": "../20261124T000206Z-7b-16-b-phase-probes/1img.jsonl",
+            "images": 1,
+            "planned": 1,
+            "tokens": 64
+          },
+          {
+            "path": "../20261124T000206Z-7b-16-b-phase-probes/4img.jsonl",
+            "images": 4,
+            "planned": 1,
+            "tokens": 64
+          },
+          {
+            "path": "../20261124T000206Z-7b-16-b-phase-probes/8img.jsonl",
+            "images": 8,
+            "planned": 1,
+            "tokens": 64
+          },
+          {
+            "path": "../20261124T000206Z-7b-16-b-phase-probes/mixed.jsonl",
+            "images": 8,
+            "planned": 3,
+            "tokens": 64
+          }
+        ]
+      }
+    },
+    "C70": {
+      "official": {
+        "deployment": "../20261123T110704Z-7b-16-c70-pilot"
+      },
+      "deployment": "../20261123T193318Z-7b-16-c70-formal",
+      "kv_qualification": {
+        "deployment": "../20261123T110051Z-7b-16-c70-qualification",
+        "probes": "core-probes.jsonl"
+      },
+      "token_p99": {
+        "deployment": "../20261123T224734Z-7b-16-c70-token"
+      },
+      "diagnostic": {
+        "deployment": "../20261124T001300Z-7b-16-c70-phase",
+        "replays": [
+          {
+            "path": "../20261124T001300Z-7b-16-c70-phase/1img.jsonl",
+            "images": 1,
+            "planned": 1,
+            "tokens": 64
+          },
+          {
+            "path": "../20261124T001300Z-7b-16-c70-phase/4img.jsonl",
+            "images": 4,
+            "planned": 1,
+            "tokens": 64
+          },
+          {
+            "path": "../20261124T001300Z-7b-16-c70-phase/8img.jsonl",
+            "images": 8,
+            "planned": 1,
+            "tokens": 64
+          },
+          {
+            "path": "../20261124T001300Z-7b-16-c70-phase/mixed.jsonl",
+            "images": 8,
+            "planned": 3,
+            "tokens": 64
+          }
+        ]
+      }
+    },
+    "C50": {
+      "official": {
+        "deployment": "../20261123T120518Z-7b-16-c50-retry"
+      },
+      "kv_qualification": {
+        "deployment": "../20261123T114916Z-7b-16-c50-qualification",
+        "probes": "core-probes.jsonl"
+      },
+      "deployment": "../20261123T205856Z-7b-16-c50-formal",
+      "token_p99": {
+        "deployment": "../20261123T225840Z-7b-16-c50-token"
+      },
+      "diagnostic": {
+        "deployment": "../20261124T012116Z-7b-16-c50-phase",
+        "replays": [
+          {
+            "path": "../20261124T012116Z-7b-16-c50-phase/1img.jsonl",
+            "images": 1,
+            "planned": 1,
+            "tokens": 64
+          },
+          {
+            "path": "../20261124T012116Z-7b-16-c50-phase/4img.jsonl",
+            "images": 4,
+            "planned": 1,
+            "tokens": 64
+          },
+          {
+            "path": "../20261124T012116Z-7b-16-c50-phase/8img.jsonl",
+            "images": 8,
+            "planned": 1,
+            "tokens": 64
+          },
+          {
+            "path": "../20261124T012116Z-7b-16-c50-phase/mixed.jsonl",
+            "images": 8,
+            "planned": 3,
+            "tokens": 64
+          }
+        ]
+      }
+    }
+  }
+}
